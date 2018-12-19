@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+  onload="resizeIframe(this);
+</script>
 <style>
 div.gallery {
   border: 1px solid #ccc;
@@ -72,7 +78,7 @@ h4 {
 </style>
 </head>
 <body>
-<h4>Internet de las cosas</h4>
+<h4>Internet de las cosas v1.0</h4>
 
 <div class="responsive">
   <div class="gallery">
