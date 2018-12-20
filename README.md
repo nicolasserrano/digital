@@ -4,7 +4,7 @@
 
 <a id="s1" />
 ### Sesi&oacute;n 1 ### 
-1.Tecnolog&iacute;a digital
+1. Tecnolog&iacute;a digital
    - Caso Mrs. Fields
    - Estructura del curso (Descendiendo del Machine learning al transistor) 
    - Simulador de ordenador (c5i) 
