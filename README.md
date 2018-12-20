@@ -2,7 +2,7 @@
 
 <iframe width="100%" height="500" src="https://nicolasserrano.github.io/digital/cover.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
 
-<a id=s1>
+<a id="s1" />
 ### Sesi&oacute;n 1 ### 
 1.Sistemas informáticos - Caso Mrs. Fields
    - Estructura del curso (Descendiendo del Machine learning al transistor) 
@@ -13,7 +13,7 @@
    - Ley de Moore 
    - Programas, funciones 
 
-<a id=s2>
+<a id="s2" />
 ### Sesi&oacute;n 2 ### 
 2.Internet - Caso Vueling
    - Internet en la edad media
