@@ -8,7 +8,7 @@ Tecnolog&iacute;a digital
    - Caso Mrs. Fields
    - Estructura del curso (Descendiendo del Machine learning al transistor) 
    - Simulador de ordenador (c5i) 
-   - Binario 
+   - L&oacute;gica digital 
    - Transistor 
    - Procesador 
    - Ley de Moore 
@@ -18,17 +18,17 @@ Tecnolog&iacute;a digital
 ### Sesi&oacute;n 2 ### 
 Internet
    - Caso Vueling
-   - Internet en la edad media
+   - Internet (en la edad media)
    - La Web: Ver html de la primera web
    - Http: Ver una petición http
    - Aplicaciones Web
-   - Datos en la Web
 
 <a id="s3" />
 ### Sesi&oacute;n 3 ### 
 Internet de las cosas 
    - Caso Olapic
-   - Información digital
+   - Datos en la Web
+   - Informaci&oacute;n digital
    - IAAS, PAAS, SAAS
 
 <a id="s4" />
