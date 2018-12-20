@@ -22,19 +22,19 @@
    - Aplicaciones Web
    - Datos en la Web
 
-<a id=s3>
+<a id="s3" />
 ### Sesi&oacute;n 3 ### 
 3.Internet de las cosas - Caso Olapic
    - Información digital
    - IAAS, PAAS, SAAS
 
-<a id=s4>
+<a id="s4" />
 ### Sesi&oacute;n 4 ### 
 4.Era Digital - Caso Amazon, Apple, Facebook y Google
    - Las 4 megatendencias. The 4 Big
    - Why software is eating the world
 
-<a id=s5>
+<a id="s5" />
 ### Sesi&oacute;n 5 ### 
 5.Inteligencia artificial - Caso GROW: Using Artificial Intelligence to Screen Human Intelligence
    - Evolución y tipos de la AI
@@ -42,7 +42,7 @@
    - Aprendizaje no supervisado
    - Aprendizaje reforzado
 
-<a id=s6>
+<a id="s6" />
 ### Sesi&oacute;n 6 ### 
 6.Machine Learning - Historia de los Omega
    - Neurona
