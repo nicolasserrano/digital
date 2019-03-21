@@ -12,8 +12,13 @@
 
 ## Neurona
 
+???
+Grafico
 
 ## Red neuronal
+
+??
+Grafico2
 
 ## Aprendiazaje
 Descenso del gradiente
