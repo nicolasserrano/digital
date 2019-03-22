@@ -76,6 +76,6 @@ Descenso del gradiente
     styleEl.appendChild(document.createTextNode(""));
     document.head.appendChild(styleEl);
     styleSheet = styleEl.sheet;
-    styleSheet.insertRule(".markdown-body img { width: initial; }", 0);
+    styleSheet.insertRule(".markdown-body img { width: initial !important; }", 0);
   }
   </script>
