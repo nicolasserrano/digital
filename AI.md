@@ -57,7 +57,15 @@ Descenso del gradiente
 
 
 <style>
-.Box img {
+.markdown-body img {
     width: 2%;
 }
-</style>
+<button onclick="setStyle()">Set Style</button>
+<script>
+  function setStyle() {
+  var styleEl = document.createElement('style'), styleSheet;
+            document.head.appendChild(styleEl);
+            styleSheet = styleEl.sheet;
+            styleSheet.insertRule(".markdown-body img { width: initial; }", 0);
+  }
+  </script>
