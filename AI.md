@@ -73,7 +73,7 @@ Descenso del gradiente
 <script>
   function setStyle() {
     var styleEl = document.createElement('style');
-    style.appendChild(document.createTextNode(""));
+    styleEl.appendChild(document.createTextNode(""));
     document.head.appendChild(styleEl);
     styleSheet = styleEl.sheet;
     styleSheet.insertRule(".markdown-body img { width: initial; }", 0);
