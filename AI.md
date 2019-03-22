@@ -72,9 +72,10 @@ Descenso del gradiente
 <button onclick="setStyle()">Set Style</button>
 <script>
   function setStyle() {
-  var styleEl = document.createElement('style'), styleSheet;
-            document.head.appendChild(styleEl);
-            styleSheet = styleEl.sheet;
-            styleSheet.insertRule(".markdown-body img { width: initial; }", 0);
+    var styleEl = document.createElement('style');
+    style.appendChild(document.createTextNode(""));
+    document.head.appendChild(styleEl);
+    styleSheet = styleEl.sheet;
+    styleSheet.insertRule(".markdown-body img { width: initial; }", 0);
   }
   </script>
