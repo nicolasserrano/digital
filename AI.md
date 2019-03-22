@@ -38,7 +38,7 @@ Grafico
 Grafico2
 ![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
 
-### Aprendiazaje
+### Aprendizaje
 Descenso del gradiente
 
 ### Deep learning
@@ -46,10 +46,19 @@ Descenso del gradiente
 
 ## Futuro
 
+### Trabajo
+Propuesta de Isaac Assimov
+![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)
+[Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647)
+
 ### ¿Competición?
 
 ### Implicación para las personas
-![Eliminar las lavadoras](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)[Link](https://actualidad.rt.com/galerias/298874-lavanderia-tradicional-aire-libre-india)
+![lavandería tradicional](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)[Link](https://actualidad.rt.com/galerias/298874-lavanderia-tradicional-aire-libre-india)
+???
+sustituir por lavadoras industriales
+eliminar las lavadoras
+
 ---
 ![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
 [The Second Machine Age](https://www.amazon.com/dp/0393350649/)
