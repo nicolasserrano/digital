@@ -46,7 +46,8 @@ Descenso del gradiente
 ## ¿Competición?
 
 ## Implicación para las personas
-![Eliminar las lavadoras](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)
+![Eliminar las lavadoras](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)[Link](https://actualidad.rt.com/galerias/298874-lavanderia-tradicional-aire-libre-india)
+---
 ![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
 [The Second Machine Age](https://www.amazon.com/dp/0393350649/)
 
