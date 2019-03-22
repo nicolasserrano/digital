@@ -33,6 +33,7 @@ Grafico
 
 ???
 Grafico2
+![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
 
 ## Aprendiazaje
 Descenso del gradiente
@@ -45,6 +46,9 @@ Descenso del gradiente
 ## ¿Competición?
 
 ## Implicación para las personas
+Eliminar las automáticas
+![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
+[The Second Machine Age](https://www.amazon.com/dp/0393350649/)
 
 ## Implicación para las empresas
 
