@@ -7,6 +7,7 @@
 1951 Manifiesto
 
 ## Ley de Moore
+<button onclick="print64()">Imprime la serie de 64 potenias de 2</button>
 <script>
   for (i=0;i<64;i++) document.write(Math.pow(2,i) + "<br>");
 </script>
