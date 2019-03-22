@@ -54,3 +54,10 @@ Descenso del gradiente
 ## Implicación para las empresas
 
 ## Implicación para la sociedad
+
+
+<style>
+.Box img {
+    width: 2%;
+}
+</style>
