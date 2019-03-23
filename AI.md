@@ -53,6 +53,13 @@ Propuesta de Isaac Assimov
 
 ### ¿Competición?
 
+### Background
+
+background-image: url(https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)
+Texto 2
+
+### Background 2
+
 ### Implicación para las personas
 ![lavandería tradicional](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)[Link](https://actualidad.rt.com/galerias/298874-lavanderia-tradicional-aire-libre-india)
 ???
