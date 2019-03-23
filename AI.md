@@ -14,6 +14,10 @@ https://images-na.ssl-images-amazon.com/images/I/51PPlcfk6cL._SX311_BO1,204,203,
 1951 Manifiesto
 
 ### Ley de Moore
+
+<iframe src='https://www.cs.utexas.edu/users/fussell/courses/cs352h/papers/moore.pdf'></iframe>
+
+### Ley de Moore
 <button onclick="print64()">Imprime la serie de 64 potenias de 2</button>
 <script>
 function print64() {
