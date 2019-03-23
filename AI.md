@@ -55,6 +55,7 @@ Propuesta de Isaac Assimov
 
 ### Background
 
+---
 background-image: url(https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)
 Texto 2
 
