@@ -68,7 +68,7 @@ Scronfinkle y sus seguidores.
  ![](https://steemitimages.com/p/2YRZBi4FZVHehnzJUCrtbagUKMa8YnErmcyYSe6JB1cBsMNM2tAffrp2wVpcz1gFGnkU9w92rYSqgmj2VnBLizwqvfAAvpGf9Ui?format=match&mode=fit) | ![](https://steemitimages.com/p/3MxaK27PJLbMv2xiz1o1MhH1XGtCPi8tjbzxTdX6Jr4cfmG?format=match&mode=fit) 
 
 ### Escalas
-<iframe width="100%" height="300" src="http://jsfiddle.net/QLZcr/embedded/result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="80%" src="files/scale.html" frameborder="0"></iframe>
 
 ### Ley de Moore
 
