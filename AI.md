@@ -79,6 +79,7 @@ Grafico2
 ???
 http://cognitivemedium.com/magic_paper/index.html 
 Dibujar con el ratón y pulsar la inicial de la acción 
+![](images/magic_paper._neurons.png)
 
 ### Aprendizaje
 Descenso del gradiente
