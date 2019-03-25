@@ -94,7 +94,8 @@ function print64() {
 ### Machine learning
 
 ### Neurona
-
+https://upload.wikimedia.org/wikipedia/commons/1/15/PurkinjeCell.jpg
+Ramon y Cajal 1899
 ???
 Grafico
 
