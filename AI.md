@@ -1,4 +1,5 @@
 # Inteligencia Artificial y sociedad
+Play: https://nicolasserrano.github.io/r?https://nicolasserrano.github.io/digital/AI.md
 
 ## En los orígenes
 
