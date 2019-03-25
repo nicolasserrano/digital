@@ -18,9 +18,13 @@ https://www.youtube.com/watch?v=7rRJ9Ep1Wzs
 
 <iframe width="100%" height="80%" src="files/gorriones" frameborder="0"></iframe>
 
-### Primeros ordenadores
-1945 Primeros ordenadores
-1951 Manifiesto
+### Inicios
+
+Test de turing
+--
+![](https://sophoslogos.files.wordpress.com/2010/04/chinese-room.png)
+1945 Primeros ordenadores 
+1951 Manifiesto 
 
 ### La historia del ajedrez
 
