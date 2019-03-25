@@ -94,10 +94,16 @@ function print64() {
 ### Machine learning
 
 ### Neurona
-https://upload.wikimedia.org/wikipedia/commons/1/15/PurkinjeCell.jpg
+https://neurophilosophy.files.wordpress.com/2006/08/cajal-chick-cerebellum.jpg?w=700&h=410
 Ramon y Cajal 1899
 ???
-Grafico
+https://neurophilosophy.wordpress.com/2006/08/29/the-discovery-of-the-neuron/
+
+### Representación en AI de la Neurona
+http://neuralnetworksanddeeplearning.com/images/tikz0.png
+???
+Perceptron
+http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons
 
 ### Red neuronal
 
