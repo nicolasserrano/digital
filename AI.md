@@ -96,6 +96,24 @@ Descenso del gradiente
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lMSuGoYcT3s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+### Generar caras
+
+<iframe width="560" height="315" src="https://thispersondoesnotexist.com/" allowfullscreen></iframe>
+
+### Novela de AI
+![](https://botnik.org/content/hp01.jpg)
+
+???
+https://botnik.org/content/harry-potter.html
+
+### Novela de AI (2)
+
+<iframe width="560" height="315" src="https://bigthink.com/natalie-shoemaker/a-japanese-ai-wrote-a-novel-almost-wins-literary-award"></iframe>
+
+### Novela de AI (3)
+
+<iframe width="560" height="315" src="https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural"></iframe>
+
 ## Futuro
 
 ### Trabajo
