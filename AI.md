@@ -108,10 +108,6 @@ https://botnik.org/content/harry-potter.html
 
 ### Novela de AI (2)
 
-<iframe width="560" height="315" src="https://bigthink.com/natalie-shoemaker/a-japanese-ai-wrote-a-novel-almost-wins-literary-award"></iframe>
-
-### Novela de AI (3)
-
 <iframe width="560" height="315" src="https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural"></iframe>
 
 ## Futuro
@@ -120,6 +116,9 @@ https://botnik.org/content/harry-potter.html
 Propuesta de Isaac Assimov
 ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)
 [Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647)
+
+???
+Propuesta de robots solo fuera de la tierra (también en Blade Runner)
 
 ### ¿Competición?
 
