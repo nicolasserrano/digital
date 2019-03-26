@@ -51,7 +51,15 @@ function print64() {
   for (i=0;i<64;i++) document.write(Math.pow(2,i) + "<br>");
 }
 </script>
-               
+ 
+### Time cover 2011
+
+![](http://img.timeinc.net/time/magazine/archive/covers/2011/1101110221_400.jpg)
+
+???
+Article: http://content.time.com/time/printout/0,8816,2048299,00.html
+Video: http://content.time.com/time/video/player/0,32068,784887564001_2048332,00.html
+
 ## Qué es
                
 ### Técnicas
