@@ -90,6 +90,11 @@ Descenso del gradiente
 
 ### Deep learning
 
+## Aplicaciones
+
+### Realidad virtual
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lMSuGoYcT3s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Futuro
 
