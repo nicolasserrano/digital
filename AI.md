@@ -57,14 +57,22 @@ function print64() {
 “Pienso que hay mercado en el mundo como para unos cinco ordenadores”
 — Thomas J. Watson, Presidente de IBM, 1948
 
+--
+
 “Podría parecer que hemos llegado a los límites alcanzables por la tecnología informática, aunque uno debe ser prudente con estas afirmaciones, pues tienden a sonar bastante tontas en cinco años”
 — John Von Neumann, 1949
+
+--
 
 “No hay ninguna razón para que un individuo tenga un ordenador en su casa”
 — Ken Olson, Presidente de Digital Equipment Corporation, en 1977
 
+--
+
 “640K deberían ser suficientes para todo el mundo”
 — Bill Gates, 1981
+
+--
 
 “Windows NT podrá direccionar 2GB de RAM, que es más de lo que cualquier aplicación va a necesitar jamás”
 — Microsoft, durante el desarrollo de Windows NT, en 1992
