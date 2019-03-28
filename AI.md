@@ -163,6 +163,16 @@ Texto 2
 
 ### Background 2
 
+### Actividades automatizables
+
+![](https://www.mckinsey.com/~/media/McKinsey/Business%20Functions/McKinsey%20Digital/Our%20Insights/Where%20machines%20could%20replace%20humans%20and%20where%20they%20cant/SVGZ-Sector-Automation-ex1.ashx)
+
+???
+https://www.mckinsey.com/business-functions/digital-mckinsey/our-insights/where-machines-could-replace-humans-and-where-they-cant-yet
+
+### 
+<iframe src='//players.brightcove.net/1971571337001/HkOJqCPWdb_default/index.html?videoId=5026740534001' allowfullscreen frameborder=0></iframe>
+
 ### Implicación para las personas
 ![lavandería tradicional](https://cdni.rt.com/actualidad/public_images/2018.12/original/5c115b5fe9180f7d198b456c.jpg)[Link](https://actualidad.rt.com/galerias/298874-lavanderia-tradicional-aire-libre-india)
 ???
