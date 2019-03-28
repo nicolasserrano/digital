@@ -123,6 +123,18 @@ Descenso del gradiente
 
 ### Deep learning
 
+### Situación
+
+![](https://blogs.gartner.com/smarterwithgartner/files/2018/08/PR_490866_5_Trends_in_the_Emerging_Tech_Hype_Cycle_2018_Hype_Cycle.png)
+
+???
+https://www.gartner.com/smarterwithgartner/5-trends-emerge-in-gartner-hype-cycle-for-emerging-technologies-2018/
+
+### Gartner
+?[](https://blogs.gartner.com/smarterwithgartner/files/2018/09/PR_051_515406_Panetta_6_Strategic_Technologies_on_the_Gartner_Hype_Cycle_for_Midsize_Enterprises_2018_Article_HypeCycle_v3-1024x866.png)
+???
+https://www.gartner.com/smarterwithgartner/5-strategic-technologies-on-the-gartner-hype-cycle-for-midsize-enterprises-2018/
+
 ## Aplicaciones
 
 ### Realidad virtual
@@ -219,9 +231,9 @@ y formar a la persona para participar en la vida socio-económica
 
 ### Elegir un futuro
 
-<img src="https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg" heigh=40%>
+<img src="https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg" heigh=35%>
 <br>
-<img src=https://i.pinimg.com/originals/3c/a7/fb/3ca7fbd180af945e6716b3d0728d1178.jpg heigh=40%>
+<img src="http://3.bp.blogspot.com/-5_-kUMv6Ifg/VlBftIyBHgI/AAAAAAAADLs/-5IfHbJSi1k/s1600/walle-socialnetwork05.jpg" heigh=35%>
 
 ---
 
