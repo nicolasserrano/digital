@@ -219,9 +219,9 @@ y formar a la persona para participar en la vida socio-económica
 
 ### Elegir un futuro
 
-<img src=https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg?key=5c5304 height=40%>
+<img src=https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg?key=5c5304 heigh=40%>
 <br>
-<img src=https://i.pinimg.com/originals/3c/a7/fb/3ca7fbd180af945e6716b3d0728d1178.jpg width=40%>
+<img src=https://i.pinimg.com/originals/3c/a7/fb/3ca7fbd180af945e6716b3d0728d1178.jpg heigh=40%>
 
 ---
 
