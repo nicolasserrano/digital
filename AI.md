@@ -176,11 +176,12 @@ https://singularityhub.com/2018/10/25/ai-wrote-a-road-trip-novel-is-it-a-good-re
 https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural
 
 ## Cambio de paradigma
+![](https://images-na.ssl-images-amazon.com/images/I/813eCPST0FL.jpg)
 
-** slide de sesión Miramón
+*** slide de sesión Miramón
 
-*** Artículo el Pais
-
+???
+https://elpais.com/elpais/2017/06/16/opinion/1497602599_425102.html?rel=mas
 
 ## Futuro
 
