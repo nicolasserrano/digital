@@ -180,6 +180,8 @@ https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural
 ???
 https://www.amazon.es/ESTRUCTURA-REVOLUCIONES-CIENT%C3%8DFICAS-Breviarios/dp/8437507782/ref=asc_df_8437507782/?tag=googshopes-21&linkCode=df0&hvadid=199030883958&hvpos=1o2&hvnetw=g&hvrand=1528952788286390148&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1005530&hvtargid=pla-416253063971&psc=1
 v1
+
+### Cambio de paradigma de machine learning
 *** slide de sesión Miramón
 
 ???
