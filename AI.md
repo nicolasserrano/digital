@@ -155,6 +155,13 @@ https://botnik.org/content/harry-potter.html
 
 <iframe width="560" height="315" src="https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural"></iframe>
 
+## Cambio de paradigma
+
+** slide de sesión Miramón
+
+*** Artículo el Pais
+
+
 ## Futuro
 
 ### Trabajo
