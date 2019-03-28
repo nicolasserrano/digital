@@ -18,10 +18,12 @@ https://www.youtube.com/watch?v=7rRJ9Ep1Wzs
 
 <iframe width="100%" height="80%" src="files/gorriones" frameborder="0"></iframe>
 
-### Inicios
+### Test de turing
 
-Test de turing
---
+A machine can be said to be intelligent if its answers are indistinguishable from those of a human being"
+Alan Turing
+
+### Chinese room
 ![](https://sophoslogos.files.wordpress.com/2010/04/chinese-room.png)
 1945 Primeros ordenadores 
 1951 Manifiesto 
@@ -123,12 +125,27 @@ Descenso del gradiente
 
 ### Deep learning
 
-### Situación
+### Situación Hype cicle
 
 ![](https://blogs.gartner.com/smarterwithgartner/files/2018/08/PR_490866_5_Trends_in_the_Emerging_Tech_Hype_Cycle_2018_Hype_Cycle.png)
 
 ???
 https://www.gartner.com/smarterwithgartner/5-trends-emerge-in-gartner-hype-cycle-for-emerging-technologies-2018/
+
+Etapas:
+- Pico de la expectación inflada
+- Agujero de la desilusión
+- Valle de la luz
+- Meseta de la productividad
+
+Cloud computing, en 2010, 2011, 2012 está alrededor del pico, en 2016 ya está en la meseta y aparecen otros términos Edge Computing, IoT Computing.  
+Internet of Things 2011, pico, 2016 aparece IoT platforms. 
+Predictive Analytics, en 2010 estaba en la meseta. También reconocimiento del habla o gestos. 
+En 2011 aparece el término Big Data. En 2012 y 2013 se acerca al pico. En 2013 entra también Prescriptive Analytics (además de predecir, plantea soluciones).
+En 2014 aparece el término Data Science, en 2015 le llaman Citizen Data Science. 
+En 2016 aparece pasando el pico Machine Learning. 
+En 2017 aparece Deep Learning (redes neuronales con muchas capas) y Deep Reinforcement Learning.  
+En 2017 también aparece en el inicio Artificial General Intelligence.
 
 ### Gartner
 ![](https://blogs.gartner.com/smarterwithgartner/files/2018/09/PR_051_515406_Panetta_6_Strategic_Technologies_on_the_Gartner_Hype_Cycle_for_Midsize_Enterprises_2018_Article_HypeCycle_v3-1024x866.png)
@@ -148,13 +165,15 @@ v3
 
 ### Novela de AI
 ![](https://botnik.org/content/hp01.jpg)
-
 ???
 https://botnik.org/content/harry-potter.html
 
 ### Novela de AI (2)
+![](images/SingularityHub-FirstAINovel.png)
 
-<iframe width="560" height="315" src="https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural"></iframe>
+???
+https://singularityhub.com/2018/10/25/ai-wrote-a-road-trip-novel-is-it-a-good-read/#sm.000lsrzdt16ntdqlz7r1uxnk23q1f
+https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural
 
 ## Cambio de paradigma
 
