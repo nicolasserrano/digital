@@ -130,7 +130,7 @@ Descenso del gradiente
 ???
 https://www.gartner.com/smarterwithgartner/5-trends-emerge-in-gartner-hype-cycle-for-emerging-technologies-2018/
 
-### Gartner
+### Gartner  
 ?[](https://blogs.gartner.com/smarterwithgartner/files/2018/09/PR_051_515406_Panetta_6_Strategic_Technologies_on_the_Gartner_Hype_Cycle_for_Midsize_Enterprises_2018_Article_HypeCycle_v3-1024x866.png)
 ???
 https://www.gartner.com/smarterwithgartner/5-strategic-technologies-on-the-gartner-hype-cycle-for-midsize-enterprises-2018/
