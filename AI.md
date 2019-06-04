@@ -175,6 +175,12 @@ https://botnik.org/content/harry-potter.html
 https://singularityhub.com/2018/10/25/ai-wrote-a-road-trip-novel-is-it-a-good-read/#sm.000lsrzdt16ntdqlz7r1uxnk23q1f
 https://www.jean-boite.fr/product/1-the-road-by-an-artificial-neural
 
+### Predecir que películas funcionarán  
+![](images/filmsAnalysis.png)
+
+???
+https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-analysis-data-machine-learning
+
 ## Cambio de paradigma
 ![](https://images-na.ssl-images-amazon.com/images/I/813eCPST0FL.jpg  =100x)
 ???
