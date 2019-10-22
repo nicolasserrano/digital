@@ -1,6 +1,6 @@
 # Inteligencia Artificial y sociedad
 ???
-Play: https://nicolasserrano.github.io/r?https://nicolasserrano.github.io/digital/AI.md
+Play: http://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#1
 
 ## En los orígenes
 
