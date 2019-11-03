@@ -77,6 +77,27 @@ function print64() {
 “640K deberían ser suficientes para todo el mundo”  
 — Bill Gates, 1981
 
+### Transistores
+
+![](https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png)
+
+???
+https://ourworldindata.org/technological-progress#the-exponential-increase-of-the-number-of-transistors-on-integrated-circuits
+### Almacenamiento
+
+ &nbsp; | &nbsp; 
+--- | --- 
+ ![](https://ourworldindata.org/uploads/2013/05/1956-vs-Micro-SD-768x538.png) | ![](https://ourworldindata.org/uploads/2013/05/Increasing-Hard-Drive-Capacity-from-1980-till-2011-Wikipedia.png)
+ 
+ ???
+ https://ourworldindata.org/technological-progress#costs-of-computer-storage
+
+### Transmisión: 5G
+![](https://www.qorvo.com/-/media/images/qorvopublic/blog/2017/5g-rf-for-dummies/comparing-4g-and-5g_960x410.jpg?la=en&hash=E1FFC3DE5BE310431677736F4397800797FD145E)
+
+???
+https://www.qorvo.com/design-hub/blog/getting-to-5g-comparing-4g-and-5g-system-requirements
+
 ### Singularidad
 - Speculations Concerning the First Ultraintelligent Machine, Irving John Good, 1965  
 --
