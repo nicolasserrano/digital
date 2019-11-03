@@ -90,8 +90,9 @@ https://ourworldindata.org/technological-progress#the-exponential-increase-of-th
 --- | --- 
  <img src="https://ourworldindata.org/uploads/2013/05/1956-vs-Micro-SD-768x538.png" width="100%"/> | <img src="https://ourworldindata.org/uploads/2013/05/Increasing-Hard-Drive-Capacity-from-1980-till-2011-Wikipedia.png" width="100%"/>
   
- ???
- https://ourworldindata.org/technological-progress#costs-of-computer-storage
+???
+https://ourworldindata.org/technological-progress#costs-of-computer-storage
+https://royal.pingdom.com/the-history-of-computer-data-storage-in-pictures/
 
 ### Transmisión: 5G
 ![](https://www.qorvo.com/-/media/images/qorvopublic/blog/2017/5g-rf-for-dummies/comparing-4g-and-5g_960x410.jpg?la=en&hash=E1FFC3DE5BE310431677736F4397800797FD145E)
@@ -193,7 +194,7 @@ Tesla mejora su autopiloto hasta hacerlo cercano a la conducción autonoma
 
 DeepMind puede detectar 50 enfermedades del ojo con una predicción similar a la de los doctores
 
---  
+--
 
 CycleGAN [Paper](https://arxiv.org/pdf/1703.10593.pdf) [Web](https://junyanz.github.io/CycleGAN/)  
 
@@ -202,7 +203,7 @@ The verge
 
 ### Cycle GAN website
 
-<iframe src="https://junyanz.github.io/CycleGAN/" width="100%" height="90%"></iframe>
+<iframe src="https://junyanz.github.io/CycleGAN/" width="100%" height="88%"></iframe>
 
 ### Cycle GAN
 
