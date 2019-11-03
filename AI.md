@@ -2,6 +2,14 @@
 ???
 Play: http://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#1
 
+<button onclick="reloadIframes()">Reload Iframes</button>
+<script>
+function reloadIframes() {
+  iframes = document.getElementsByTagName("iframe")
+  for (i=0;i<iframes.length;i++){iframes[i].src = iframes[i].src;}
+}
+</script>
+
 ## En los orígenes
 
 ### Una historia de ciencia ficción sobre AI, ¿o no?
