@@ -193,8 +193,25 @@ Tesla mejora su autopiloto hasta hacerlo cercano a la conducción autonoma
 
 DeepMind puede detectar 50 enfermedades del ojo con una predicción similar a la de los doctores
 
+--  
+
+CycleGAN [Paper](https://arxiv.org/pdf/1703.10593.pdf) [Web](https://junyanz.github.io/CycleGAN/)  
+
 ???
- The verge
+The verge
+
+### Cycle GAN website
+
+<iframe src="https://junyanz.github.io/CycleGAN/" width="100%" height="100%"></iframe>
+
+### Cycle GAN
+
+<iframe src="https://arxiv.org/pdf/1712.02950.pdf#page=2" width="100%" height="100%"></iframe>
+
+--  
+
+???
+CycleGAN - Master of Steganography  
 
 ### Tipos
 - Aprendizaje supervisado  
