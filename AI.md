@@ -89,7 +89,7 @@ https://ourworldindata.org/technological-progress#the-exponential-increase-of-th
  &nbsp; | &nbsp; 
 --- | --- 
  <img src="https://ourworldindata.org/uploads/2013/05/1956-vs-Micro-SD-768x538.png" width="100%"/> | <img src="https://ourworldindata.org/uploads/2013/05/Increasing-Hard-Drive-Capacity-from-1980-till-2011-Wikipedia.png" width="100%"/>
- 
+  
  ???
  https://ourworldindata.org/technological-progress#costs-of-computer-storage
 
