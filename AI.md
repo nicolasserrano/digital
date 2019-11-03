@@ -214,6 +214,11 @@ The verge
 ???
 CycleGAN - Master of Steganography  
 
+### Policias y ladrones
+
+<iframe width="1120" height="630" src="https://www.youtube.com/embed/kopoLzvh5jY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[Web page in OpenAI](https://openai.com/blog/emergent-tool-use/)
+
 ### Tipos
 - Aprendizaje supervisado  
 - Aprendizaje no supervisado  
