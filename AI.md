@@ -372,6 +372,7 @@ McKinsey video
 ???
 http://www.moley.com
 http://www.moley.com/video/moley_future_served.mp4
+https://openai.com/blog/learning-dexterity/
 
 
 ---
