@@ -202,11 +202,11 @@ The verge
 
 ### Cycle GAN website
 
-<iframe src="https://junyanz.github.io/CycleGAN/" width="100%" height="100%"></iframe>
+<iframe src="https://junyanz.github.io/CycleGAN/" width="100%" height="90%"></iframe>
 
 ### Cycle GAN
 
-<iframe src="https://arxiv.org/pdf/1712.02950.pdf#page=2" width="100%" height="100%"></iframe>
+<iframe src="https://arxiv.org/pdf/1712.02950.pdf#page=2" width="100%" height="90%"></iframe>
 
 --  
 
@@ -288,8 +288,7 @@ v3
 ## Aplicaciones
 
 ### Novela de AI
-class: center
-<img src="https://botnik.org/content/hp01.jpg" height="500">
+.center[<img src="https://botnik.org/content/hp01.jpg" height="500">]
 
 ???
 https://botnik.org/content/harry-potter.html
