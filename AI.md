@@ -344,8 +344,9 @@ https://elpais.com/elpais/2017/06/16/opinion/1497602599_425102.html?rel=mas
 ## Futuro
 
 ### Trabajo
-Propuesta de Isaac Assimov  
---|--
+
+&nbsp; | &nbsp; 
+--- | --- 
 ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)  
 [Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647)
 |
@@ -353,7 +354,7 @@ Propuesta de Isaac Assimov
 [](https://www.goodreads.com/book/show/22928874-rise-of-the-robots)
 
 ???
-Propuesta de robots solo fuera de la tierra (también en Blade Runner)
+Propuesta Asimov de robots solo fuera de la tierra (también en Blade Runner)
 
 [AI May Not Kill Your Job—Just Change It (Wired)](https://www.wired.com/story/ai-not-kill-job-change-it)
 [The Future of Work: How New Technologies Are Transforming Tasks (MIT, IBM)](https://mitibmwatsonailab.mit.edu/research/publications/paper/download/The-Future-of-Work-How-New-Technologies-Are-Transforming-Tasks.pdf)
