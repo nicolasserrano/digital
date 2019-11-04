@@ -1,8 +1,9 @@
 # Inteligencia Artificial y sociedad
 ???
-Play: http://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#1
+Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#1
 
 <button onclick="reloadIframes()">Reload Iframes</button>
+[Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
 
 ## En los orígenes
 
@@ -344,11 +345,19 @@ https://elpais.com/elpais/2017/06/16/opinion/1497602599_425102.html?rel=mas
 
 ### Trabajo
 Propuesta de Isaac Assimov  
+--|--
 ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)  
 [Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647)
+|
+![](https://www.revit.news/wp-content/uploads/2017/09/no-rise-of-the-robots-robots-and-the-future-of-work.png)
+[](https://www.goodreads.com/book/show/22928874-rise-of-the-robots)
 
 ???
 Propuesta de robots solo fuera de la tierra (también en Blade Runner)
+
+[AI May Not Kill Your Job—Just Change It (Wired)](https://www.wired.com/story/ai-not-kill-job-change-it)
+[The Future of Work: How New Technologies Are Transforming Tasks (MIT, IBM)](https://mitibmwatsonailab.mit.edu/research/publications/paper/download/The-Future-of-Work-How-New-Technologies-Are-Transforming-Tasks.pdf)
+[Jobs lost, jobs gained: Workforce transitions in a time of automation (McKinsey)](https://www.mckinsey.com/~/media/mckinsey/featured%20insights/future%20of%20organizations/what%20the%20future%20of%20work%20will%20mean%20for%20jobs%20skills%20and%20wages/mgi-jobs-lost-jobs-gained-report-december-6-2017.ashx)
 
 ### ¿Competición?
 ![](https://images-eu.ssl-images-amazon.com/images/I/512xjHhcZLL.jpg)
