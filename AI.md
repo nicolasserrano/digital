@@ -4,7 +4,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
-v1.20
+v1.21
 
 ## En los orígenes
 
@@ -347,8 +347,8 @@ https://elpais.com/elpais/2017/06/16/opinion/1497602599_425102.html?rel=mas
 ### Trabajo
 
  &nbsp; | &nbsp; 
---- | ---  
- ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)<br>[Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647) | <img src="https://www.revit.news/wp-content/uploads/2017/09/no-rise-of-the-robots-robots-and-the-future-of-work.png" alt="" height="499px"><br>[](https://www.goodreads.com/book/show/22928874-rise-of-the-robots)
+--- | --- | ---   
+ ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)<br>[Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647) | <img src="https://www.revit.news/wp-content/uploads/2017/09/no-rise-of-the-robots-robots-and-the-future-of-work.png" alt="" height="499px"><br>[Rise of the Robots: Technology and the Threat of a Jobless Future](https://www.goodreads.com/book/show/22928874-rise-of-the-robots) | ![](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1430944590l/24945487.jpg)<br>[Humans Need Not Apply](https://www.goodreads.com/book/show/24945487-humans-need-not-apply)
 
 ???
 Propuesta Asimov de robots solo fuera de la tierra (también en Blade Runner)
