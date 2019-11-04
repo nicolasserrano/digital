@@ -4,6 +4,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
+v1.19
 
 ## En los orígenes
 
@@ -345,12 +346,10 @@ https://elpais.com/elpais/2017/06/16/opinion/1497602599_425102.html?rel=mas
 
 ### Trabajo
 
-&nbsp; | &nbsp; 
---- | --- 
+&nbsp; | &nbsp;  
+--- | ---  
 ![](https://images-na.ssl-images-amazon.com/images/I/51RtqJr97-L._SX302_BO1,204,203,200_.jpg)  
-[Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647)
-|
-![](https://www.revit.news/wp-content/uploads/2017/09/no-rise-of-the-robots-robots-and-the-future-of-work.png)
+[Robot Visions](https://www.amazon.com/Robot-Visions-Isaac-Asimov/dp/0451450647) | ![](https://www.revit.news/wp-content/uploads/2017/09/no-rise-of-the-robots-robots-and-the-future-of-work.png)
 [](https://www.goodreads.com/book/show/22928874-rise-of-the-robots)
 
 ???
