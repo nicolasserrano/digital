@@ -218,6 +218,10 @@ The verge
 ???
 CycleGAN - Master of Steganography  
 
+### Cycle GAN 2
+
+<embed controller="true" src="https://arxiv.org/pdf/1712.02950.pdf#page=2" alt="" width="100%" id="PDFEmbedID" scale="tofit" height="633" type="application/pdf" name="PDFEmbed"></embed>
+
 ### Policias y ladrones
 
 <iframe width="1120" height="630" src="https://www.youtube.com/embed/kopoLzvh5jY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
