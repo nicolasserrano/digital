@@ -15,5 +15,11 @@ v1.21
 [Comunicación Visual](http://prezi.com/mtzl27pq3dl-/sessions-of-visual-communication-at-tecnun/?utm_campaign=share&utm_medium=copy)
 ---
 ### Impress
+http://www.nicolasserrano.com/viscom/VC2018.html
 ---
 ### Remark
+https://remarkjs.com
+https://github.com/gnab/remark/wiki/Markdown
+---
+### Pdf
+Formato 16:9
