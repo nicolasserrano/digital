@@ -28,5 +28,6 @@ Formato 16:9
 ---
 ### Open or propietary
 « Tout ce qui n'est pas donné est perdu »
+??? https://www.lefigaro.fr/actualite/2007/07/23/01001-20070723ARTFIG90243-mon_seul_regret.php
 --
 ![](pres-images/CannotOpen.png)
