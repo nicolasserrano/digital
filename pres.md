@@ -25,3 +25,8 @@ https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#p1
 ---
 ### Pdf
 Formato 16:9
+---
+### Open or propietary
+« Tout ce qui n'est pas donné est perdu »
+--
+![](pres-images/CannotOpen.png)
