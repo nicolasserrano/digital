@@ -4,7 +4,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-v1.21
+v1.22
 ---
 ## Powerpoint
 
@@ -28,6 +28,7 @@ Formato 16:9
 ---
 ### Open or propietary
 « Tout ce qui n'est pas donné est perdu »
-??? https://www.lefigaro.fr/actualite/2007/07/23/01001-20070723ARTFIG90243-mon_seul_regret.php
+???
+https://www.lefigaro.fr/actualite/2007/07/23/01001-20070723ARTFIG90243-mon_seul_regret.php
 --
 ![](pres-images/CannotOpen.png)
