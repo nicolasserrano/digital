@@ -30,13 +30,13 @@ v1.27
 [Remark](https://remarkjs.com)
 [Markdown](https://github.com/gnab/remark/wiki/Markdown)
 Ejemplos:
-[Artficial Intelligence](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#p1)
-<iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#p1" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+[Artficial Intelligence](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md)
+<iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ---
 ### Pdf
 Formato 16:9
-[AI](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md)
+[AI](https://www.nicolasserrano.com/digital/AI.pdf)
 [VBA](https://www.nicolasserrano.com/tools/hojas/Excel_VBA.pdf)
 
 From any source. Example: https://help.sketchfab.com/hc/en-us/articles/204429595-Materials-PBR-
