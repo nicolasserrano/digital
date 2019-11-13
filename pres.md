@@ -50,3 +50,100 @@ https://www.lefigaro.fr/actualite/2007/07/23/01001-20070723ARTFIG90243-mon_seul_
 --
 
 ![](pres-images/CannotOpen.png)
+---
+Features
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 12.5%; text-align: center;">Product</td>
+<td style="width: 6.25%; text-align: center;">Free</td>
+<td style="width: 6.25%; text-align: center;">Web edit</td>
+<td style="width: 12.5%; text-align: center;">Web view</td>
+<td style="width: 12.5%; text-align: center;">Text edit</td>
+<td style="width: 10.6638%; text-align: center;">Video</td>
+<td style="width: 13.3475%; text-align: center;">Interactive<br />content</td>
+<td style="width: 11.935%; text-align: center;">Zoom</td>
+<td style="width: 8.79237%; text-align: center;">Index</td>
+<td style="width: 2.63065%; text-align: center;">Presenter<br />mode</td>
+<td style="width: 2.63065%; text-align: center;">Offline</td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">PowerPoint</td>
+<td style="width: 6.25%; text-align: center;">&nbsp;</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">Specific<br />people</span></td>
+<td style="width: 12.5%; text-align: center;">&nbsp;</td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 13.3475%; text-align: center;">&nbsp;</td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">Google Slides</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;">&nbsp;</td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 13.3475%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">Prezi</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 12.5%; text-align: center;">&nbsp;</td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 13.3475%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">Impress</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 13.3475%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">Remark</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔</span></td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 13.3475%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">With<br />plugin</span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="width: 12.5%; text-align: center;">Pdf</td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 6.25%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 12.5%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 12.5%; text-align: center;">&nbsp;</td>
+<td style="width: 10.6638%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 13.3475%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 11.935%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 8.79237%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">&nbsp;</span></td>
+<td style="width: 2.63065%; text-align: center;"><span style="color: #2dc26b;">✔ </span></td>
+</tr>
+</tbody>
+</table>
