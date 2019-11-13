@@ -5,7 +5,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-v1.28
+v1.29
 ---
 ## Powerpoint
 [Lights](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-lights.ppt)
@@ -30,8 +30,8 @@ v1.28
 [Remark](https://remarkjs.com)
 [Markdown](https://github.com/gnab/remark/wiki/Markdown)
 Ejemplos:
-[Artficial Intelligence](/r?/digital/AI.md)
-<iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+[Artficial Intelligence](http://www.nicolasserrano.com/AI)
+<iframe src="http://www.nicolasserrano.com/AI" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ---
 ### Pdf
