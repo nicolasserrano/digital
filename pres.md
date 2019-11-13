@@ -15,19 +15,24 @@ v1.27
 ## Google Slides
 [Apollo 11](https://docs.google.com/presentation/d/18Y4V-CZZsXEkoKKylcnzf0D8inAc_suvb_RecvsFYR8/edit#slide=id.p)
 [Atenas](https://docs.google.com/presentation/d/1S4dz-sSJm6f3qk-_BQJn4EHzWjzjV-bqZhCXfm-OOdU/edit#slide=id.p3)
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWcsqRdrzRdMxX22OeUYqiIq1VjTAoSFVcBb6FY4728-HP1kLufPZuYTD7VZlM44aOWaoiWy1c7Gqx/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 ---
 ## Prezi
 [Comunicación Visual](http://prezi.com/mtzl27pq3dl-/sessions-of-visual-communication-at-tecnun/?utm_campaign=share&utm_medium=copy)
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWcsqRdrzRdMxX22OeUYqiIq1VjTAoSFVcBb6FY4728-HP1kLufPZuYTD7VZlM44aOWaoiWy1c7Gqx/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 ---
 ### Impress
 [CSS](http://www.nicolasserrano.com/viscom/CSS.html)
 [Color](http://www.nicolasserrano.com/viscom/VC2018.html)
+<iframe src="http://www.nicolasserrano.com/viscom/CSS.html" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 ---
 ### Remark
 [Remark](https://remarkjs.com)
 [Markdown](https://github.com/gnab/remark/wiki/Markdown)
 Ejemplos:
 [Artficial Intelligence](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#p1)
+<iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md#p1" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 ---
 ### Pdf
 Formato 16:9
