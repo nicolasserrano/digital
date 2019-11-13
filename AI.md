@@ -4,7 +4,8 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
-v1.21
+v1.22
+breakTitlesWith#  // to crate a new slide with each title defined with #
 
 ## En los orígenes
 
