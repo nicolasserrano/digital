@@ -1,10 +1,11 @@
 # Presentations
+
 ???
 Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pres.md#1
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-v1.23
+v1.24
 ---
 ## Powerpoint
 [Lights](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-lights.ppt)
@@ -31,6 +32,14 @@ Ejemplos:
 Formato 16:9
 [AI](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md)
 [VBA](https://www.nicolasserrano.com/tools/hojas/Excel_VBA.pdf)
+
+From any source. Example: https://help.sketchfab.com/hc/en-us/articles/204429595-Materials-PBR-
+With CSS:
+```css
+h2, h3 {
+    page-break-before: always;
+}
+```
 ---
 ### Open or propietary
 « Tout ce qui n'est pas donné est perdu »
