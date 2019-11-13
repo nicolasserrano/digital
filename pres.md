@@ -19,12 +19,12 @@ v1.27
 ---
 ## Prezi
 [Comunicación Visual](http://prezi.com/mtzl27pq3dl-/sessions-of-visual-communication-at-tecnun/?utm_campaign=share&utm_medium=copy)
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWcsqRdrzRdMxX22OeUYqiIq1VjTAoSFVcBb6FY4728-HP1kLufPZuYTD7VZlM44aOWaoiWy1c7Gqx/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" width="550" height="400" src="https://prezi.com/embed/mtzl27pq3dl-/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI0VTRkWDdpK0RNa0lSOEphRWsyMTY2VzdnPT0&amp;landing_sign=GuPg2Wep0jRygSSmBXXjMoFSRvF78ohzhc0MvqcCECs"></iframe>
 ---
 ### Impress
 [CSS](http://www.nicolasserrano.com/viscom/CSS.html)
 [Color](http://www.nicolasserrano.com/viscom/VC2018.html)
-<iframe src="http://www.nicolasserrano.com/viscom/CSS.html" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="http://www.nicolasserrano.com/viscom/CSS.html" frameborder="0" width="960" height="569"></iframe>
 ---
 ### Remark
 [Remark](https://remarkjs.com)
