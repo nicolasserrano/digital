@@ -7,7 +7,6 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
 v1.29
 --- 
-.center 
 ## Powerpoint 
 [Lights](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-lights.ppt)
 [Color](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-color.ppt)
