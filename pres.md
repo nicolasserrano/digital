@@ -5,11 +5,10 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-v1.31
+v1.33
 
 ---
 ## Powerpoint 
-.center
 [Lights](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-lights.ppt)
 [Color](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-color.ppt)
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/zQ1qFtO86J43XS" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/jessedee/steal-this-presentation-5038209" title="STEAL THIS PRESENTATION! " target="_blank">STEAL THIS PRESENTATION! </a> </strong> from <strong><a href="https://www.slideshare.net/jessedee" target="_blank">Jesse Desjardins - @jessedee</a></strong> </div>
@@ -35,13 +34,12 @@ Ejemplos:
 [Artficial Intelligence](http://www.nicolasserrano.com/AI)
 [Ordenador](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/c5i/Notas.md?breakTitlesWith&#35;1)
 [Markdown](https://www.nicolasserrano.com/r?https://raw.githubusercontent.com/gnab/remark/develop/README.md?breakTitlesWith&#35;)
-<iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md" frameborder="0" width="854" height="480" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<script>document.getElementById("iframeAI").src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md"</script>
+<iframe src="https://remarkjs.com" frameborder="0" width="854" height="480" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ---
 ### Pdf
 Formato 16:9
-[AI](https://www.nicolasserrano.com/digital/AI.pdf)
+[Computer Graphics](https://www.nicolasserrano.com/viscom/CG.pdf)
 [VBA](https://www.nicolasserrano.com/tools/hojas/Excel_VBA.pdf)
 
 From any source. Example: https://help.sketchfab.com/hc/en-us/articles/204429595-Materials-PBR-
