@@ -31,7 +31,7 @@ v1.29
 [Markdown](https://github.com/gnab/remark/wiki/Markdown)
 Ejemplos:
 [Artficial Intelligence](http://www.nicolasserrano.com/AI)
-[Ordenador](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/c5i/Notas.md?breakTitlesWith#1)
+[Ordenador](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/c5i/Notas.md?breakTitlesWith&#35;1)
 <iframe src="http://www.nicolasserrano.com/AI" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ---
