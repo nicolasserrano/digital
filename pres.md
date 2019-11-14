@@ -34,7 +34,9 @@ v1.31
 Ejemplos:
 [Artficial Intelligence](http://www.nicolasserrano.com/AI)
 [Ordenador](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/c5i/Notas.md?breakTitlesWith&#35;1)
+[Markdown](https://www.nicolasserrano.com/r?https://raw.githubusercontent.com/gnab/remark/develop/README.md?breakTitlesWith&#35;)
 <iframe src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md" frameborder="0" width="854" height="480" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<script>document.getElementById("iframeAI").src="https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI.md"</script>
 
 ---
 ### Pdf
