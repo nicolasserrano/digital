@@ -5,9 +5,11 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-v1.29
+v1.30
+
 --- 
 ## Powerpoint 
+.center
 [Lights](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-lights.ppt)
 [Color](http://www4.tecnun.es/asignaturas/grafcomp/presentaciones/en-color.ppt)
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/zQ1qFtO86J43XS" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/jessedee/steal-this-presentation-5038209" title="STEAL THIS PRESENTATION! " target="_blank">STEAL THIS PRESENTATION! </a> </strong> from <strong><a href="https://www.slideshare.net/jessedee" target="_blank">Jesse Desjardins - @jessedee</a></strong> </div>
