@@ -5,7 +5,10 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pr
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
+[Page](https://github.com/nicolasserrano/digital/pres)
 v1.34
+### References
+https://www.thelinuxrain.com/articles/presentations-in-a-browser
 
 ---
 ## Powerpoint 
