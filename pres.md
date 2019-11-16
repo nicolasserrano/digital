@@ -1,12 +1,12 @@
 
 # Presentations
 ???
-Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pres.md#1
+[Play](https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/pres.md)
+[Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
+[Page](https://www.nicolasserrano.com/digital/pres)
 
 <button onclick="reloadIframes()">Reload Iframes</button>
-[Edit](https://github.com/nicolasserrano/digital/edit/master/pres.md)
-[Page](https://github.com/nicolasserrano/digital/pres)
-v1.34
+v1.35
 ### References
 https://www.thelinuxrain.com/articles/presentations-in-a-browser
 
