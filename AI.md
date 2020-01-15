@@ -203,6 +203,10 @@ DeepMind puede detectar 50 enfermedades del ojo con una predicción similar a la
 
 CycleGAN [Paper](https://arxiv.org/pdf/1703.10593.pdf) [Web](https://junyanz.github.io/CycleGAN/)  
 
+--
+
+Google weather forecasts
+
 ???
 The verge
 
@@ -227,6 +231,13 @@ CycleGAN - Master of Steganography
 
 <iframe width="1120" height="630" src="https://www.youtube.com/embed/kopoLzvh5jY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 [Web page in OpenAI](https://openai.com/blog/emergent-tool-use/)
+
+### Google weather forecasts
+![](https://1.bp.blogspot.com/-bFntPW7NoJU/XhyrMMB9pOI/AAAAAAAAFMA/4Mc3SFC5PSof4i6wpsQPX645EIuYH7VaQCEwYBhgL/s640/image2.gif)
+
+???
+https://arstechnica.com/science/2020/01/google-used-deep-learning-to-improve-short-term-weather-forecasts/
+https://ai.googleblog.com/2020/01/using-machine-learning-to-nowcast.html?m=1
 
 ### Tipos
 - Aprendizaje supervisado  
