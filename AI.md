@@ -340,6 +340,14 @@ https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-an
 
 <iframe width="840"  height="472"" src="https://thispersondoesnotexist.com/" allowfullscreen></iframe>
 
+### Empleado virtual
+
+<iframe width="840" height="472" src="https://www.youtube.com/embed/ZYcSuUfcB10" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Empleado virtual (2)
+
+<iframe width="840" height="472" src="https://www.youtube.com/embed/RBarYimXnxs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Cambio de paradigma
 <p align="center">
 <img src="https://images-na.ssl-images-amazon.com/images/I/813eCPST0FL.jpg"  height="500">
