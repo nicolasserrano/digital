@@ -6,6 +6,9 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
 v1.22
 breakTitlesWith#  // to crate a new slide with each title defined with #
+Other referencies:
+IESE: https://issuu.com/iese/docs/150_iese_bs_insight_esp
+https://insightreports.iese.edu/en/artificial-intelligence-real-leadership/
 
 ## En los orígenes
 
