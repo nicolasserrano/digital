@@ -427,6 +427,9 @@ sustituir por lavadoras industriales
 
 ### Implicación para las empresas
 
+???
+https://elpais.com/economia/2020-10-21/robots-y-humanos-se-repartiran-por-igual-los-trabajos-en-2025.html
+
 ### Implicación para la sociedad
 
 ### ¿Renta básica universal?
