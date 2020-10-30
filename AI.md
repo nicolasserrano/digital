@@ -476,5 +476,8 @@ y formar a la persona para participar en la vida socio-económica
     styleSheet.insertRule(".markdown-body img { width: initial !important; }", 0);
   }
   </script>
-
+  
 [![button](http://www.presentationpro.com/images/product/medium/slide/PPP_CGENE_LT3_Presentation-PowerPoint-Slide-Graphic_Push_Button_Up.jpg)](https://mattermost.com)
+
+Resources:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5dZ_lvDgevk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
