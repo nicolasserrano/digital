@@ -13,4 +13,15 @@ breakTitlesWith#  // to crate a new slide with each title defined with #
 ???
 Reference: https://www.lanner-america.com/es/computacion-embebida/una-pasarela-segura-y-flexible-de-io-para-smart-cities/
 
-## 
+## Connected world
+![](https://i.pinimg.com/originals/ae/aa/3d/aeaa3d3af48eca0f7e1a4c64535c5cda.jpg)
+
+## Smart City
+![](https://pbs.twimg.com/media/DDW0n6RW0AM6syQ?format=jpg)
+
+???
+Reference: https://www.libelium.com/
+
+## Smart City
+background-image: url(https://miro.medium.com/max/1050/1*iuNaZ4js0Ajjk9Wcc9unvg.png)
+
