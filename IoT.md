@@ -22,6 +22,6 @@ Reference: https://www.lanner-america.com/es/computacion-embebida/una-pasarela-s
 ???
 Reference: https://www.libelium.com/
 
-## Smart City
+---
 background-image: url(https://miro.medium.com/max/1050/1*iuNaZ4js0Ajjk9Wcc9unvg.png)
 
