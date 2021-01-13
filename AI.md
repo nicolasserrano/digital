@@ -4,7 +4,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
-v1.23
+v1.24
 breakTitlesWith#  // to crate a new slide with each title defined with #
 Other referencies:
 IESE: https://issuu.com/iese/docs/150_iese_bs_insight_esp
@@ -93,8 +93,12 @@ function print64() {
 ???
 https://ourworldindata.org/technological-progress#the-exponential-increase-of-the-number-of-transistors-on-integrated-circuits
 
----  
-background-image: url(https://i.imgur.com/oQzZ1F4.jpg?1)
+
+---
+background-image: url(https://i.imgur.com/oQzZ1F4.jpg)
+
+???
+IBM 305 RAMAC, first computer with a hard disk drive (HDD). weight: 1 ton . Capcity: 5 MB (1956)
 
 ### Almacenamiento
 
