@@ -4,7 +4,7 @@ Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/AI
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/AI.md)
-v1.22
+v1.23
 breakTitlesWith#  // to crate a new slide with each title defined with #
 Other referencies:
 IESE: https://issuu.com/iese/docs/150_iese_bs_insight_esp
@@ -88,10 +88,13 @@ function print64() {
 
 ### Transistores
 
-<img src="https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png" width="90%"/>
+<img src="https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png" width="80%"/>
 
 ???
 https://ourworldindata.org/technological-progress#the-exponential-increase-of-the-number-of-transistors-on-integrated-circuits
+
+---  
+background-image: url(https://i.imgur.com/oQzZ1F4.jpg?1)
 
 ### Almacenamiento
 
@@ -352,9 +355,9 @@ https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-an
 
 <iframe width="840" height="472" src="https://www.youtube.com/embed/RBarYimXnxs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Synthesia
+### Dall-e
 
-<iframe width="840" height="472" src="https://www.synthesia.io/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="840" height="472" src="https://openai.com/blog/dall-e/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Cambio de paradigma
 <p align="center">
