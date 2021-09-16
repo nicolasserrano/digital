@@ -46,10 +46,11 @@ Formato 16:9
 [Computer Graphics](https://www.nicolasserrano.com/viscom/CG.pdf)
 [VBA](https://www.nicolasserrano.com/tools/hojas/Excel_VBA.pdf)
 
-From any source. Example: https://help.sketchfab.com/hc/en-us/articles/204429595-Materials-PBR-
+From any source. Example: https://help.sketchfab.com/hc/en-us/articles/115004862686-Model-Inspector
+
 With CSS:
 ```css
-h2, h3 {
+h2 {
     page-break-before: always;
 }
 ```
