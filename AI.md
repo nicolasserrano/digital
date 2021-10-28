@@ -265,17 +265,17 @@ Ramon y Cajal 1899
 https://neurophilosophy.wordpress.com/2006/08/29/the-discovery-of-the-neuron/
 
 ### Representación en AI de la Neurona
-![](https://www.nicolasserrano.com/digital/images/neuronal/tikz0.png)
+![](images/neuronal/tikz0.png)
 ???
 Perceptron
 http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons
 
 ### Red neuronal
-![]((https://www.nicolasserrano.com/digital/images/neuronal/tikz1.png)
+![](images/neuronal/tikz1.png)
 
 ### Deep learning
 (Three layer neural network)
-![]((https://www.nicolasserrano.com/digital/images/neuronal/tikz12.png)
+![](images/neuronal/tikz12.png)
 
 ### Simulación
 
@@ -289,7 +289,7 @@ Dibujar con el ratón y pulsar la inicial de la acción
 
 ### Aprendizaje
 Descenso del gradiente
-![]((https://www.nicolasserrano.com/digital/images/neuronal/valley.png)
+![](images/neuronal/valley.png)
 
 
 ### Situación Hype cicle
