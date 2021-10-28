@@ -265,17 +265,17 @@ Ramon y Cajal 1899
 https://neurophilosophy.wordpress.com/2006/08/29/the-discovery-of-the-neuron/
 
 ### Representación en AI de la Neurona
-![](http://neuralnetworksanddeeplearning.com/images/tikz0.png)
+![](https://www.nicolasserrano.com/digital/images/neuronal/tikz0.png)
 ???
 Perceptron
 http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons
 
 ### Red neuronal
-![](http://neuralnetworksanddeeplearning.com/images/tikz1.png)
+![]((https://www.nicolasserrano.com/digital/images/neuronal/tikz1.png)
 
 ### Deep learning
 (Three layer neural network)
-![](http://neuralnetworksanddeeplearning.com/images/tikz12.png)
+![]((https://www.nicolasserrano.com/digital/images/neuronal/tikz12.png)
 
 ### Simulación
 
@@ -285,10 +285,11 @@ http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons
 http://cognitivemedium.com/magic_paper/index.html 
 Dibujar con el ratón y pulsar la inicial de la acción 
 ![](images/magic_paper._neurons.png)
+ http://www.nicolasserrano.com/magic_paper/magic.html
 
 ### Aprendizaje
 Descenso del gradiente
-![](http://neuralnetworksanddeeplearning.com/images/valley.png)
+![]((https://www.nicolasserrano.com/digital/images/neuronal/valley.png)
 
 
 ### Situación Hype cicle
@@ -415,10 +416,11 @@ McKinsey video
 
 ### Robotic Kitchen
 
-<iframe width="840"  height="472" src="https://www.youtube.com/embed/P-gwWpQKuco" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="840"  height="472" src="https://www.youtube.com/embed/PvxrM0-qhlQ?start=43" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ???
 http://www.moley.com
+https://www.youtube.com/watch?v=PvxrM0-qhlQ
 http://www.moley.com/video/moley_future_served.mp4
 https://openai.com/blog/learning-dexterity/
 
