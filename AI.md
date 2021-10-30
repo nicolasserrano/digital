@@ -460,7 +460,8 @@ Un subsidio, que puede resolver un problema, puede causar otros, como es la falt
                                                                                                                     
 Otra forma de aportar dinero es mediante una beca:
 Una beca es un aporte económico que se concede a aquellos estudiantes o investigadores con el fin de llevar a cabo sus estudios o investigaciones.  
-https://es.wikipedia.org/wiki/Beca
+https://es.wikipedia.org/wiki/Beca  
+                                                                                                                    
 --
 
 Financiar a las personas con becas logra el desarrollo de la persona 
