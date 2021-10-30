@@ -455,16 +455,15 @@ Un subsidio, que puede resolver un problema, puede causar otros, como es la falt
 
                                                                                                                     
 ### ¿Hay alternativas a la renta básica universal?
+                                                                                                                   
+-- 
                                                                                                                     
---
-                                                                                                                    Otra forma de aportar dinero es mediante una beca:
+Otra forma de aportar dinero es mediante una beca:
 Una beca es un aporte económico que se concede a aquellos estudiantes o investigadores con el fin de llevar a cabo sus estudios o investigaciones.  
 https://es.wikipedia.org/wiki/Beca
-
 --
 
-Financiar a las personas con becas logra 
-el desarrollo de la persona 
+Financiar a las personas con becas logra el desarrollo de la persona 
 y formar a la persona para participar en la vida socio-económica  
                                                                                                                     
 --  
