@@ -477,12 +477,12 @@ y formar a la persona para participar en la vida socio-económica
 
 ### Elegir un futuro 2
 
-<img src="https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg" height=300px>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/La_scuola_di_Atene.jpg/1920px-La_scuola_di_Atene.jpg" height=300px>
 
 
 ### Elegir un futuro
 
-<img src="https://www.deutschlandfunkkultur.de/media/thumbs/b/b67a8bbac23c3b03c9790c98d6340260v1_max_635x357_b3535db83dc50e27c1bb1392364c95a2.jpg" height=300px>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/La_scuola_di_Atene.jpg/1920px-La_scuola_di_Atene.jpg" height=300px>
 <br>
 <img src="http://3.bp.blogspot.com/-5_-kUMv6Ifg/VlBftIyBHgI/AAAAAAAADLs/-5IfHbJSi1k/s1600/walle-socialnetwork05.jpg" height=300px>
 
