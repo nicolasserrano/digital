@@ -10,7 +10,11 @@
 
 ## title 2a {#custom-id}
 
-## title 2a {#custom-id2 .abc.d}
+## title 2a {#custom-id2 .abc}
+
+## title 2a {#custom-id3} {.ab}
+
+## title 2a {#custom-id4 .abc.d}
 
 ## title 2b{: #references-4 .a.b.c.d.e}
 
