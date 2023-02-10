@@ -12,6 +12,8 @@
 
 ## title 2a {#custom-id2 .abc}
 
+## title 2a {#custom-id2b.abc}
+
 ## title 2a {#custom-id3} {.ab}
 
 ## title 2a {#custom-id4 .abc.d}
