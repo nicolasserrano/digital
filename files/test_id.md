@@ -22,5 +22,7 @@
 
 ## title 2c ##{: #references-4 .a.b.c.d.e}
 
-- title 2a {#custom-id_l1}
-- title 2a {#custom-id_l2}
+- title 2a {#custom-idl1}
+- title 2a {#custom-idl2}
+
+text {#custom-idt1}
