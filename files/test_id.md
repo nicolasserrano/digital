@@ -8,6 +8,10 @@
 
 ## title 2a
 
+## title 2a {#custom-id}
+
+## title 2a {#custom-id2 .abc.d}
+
 ## title 2b{: #references-4 .a.b.c.d.e}
 
 ## title 2c ##{: #references-4 .a.b.c.d.e}
