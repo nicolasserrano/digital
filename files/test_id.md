@@ -4,6 +4,8 @@
 
 [Read more](http://www.stackoverflow.com "read more"){: #references-3 .a.b.cde }
 
+[Anchor](){: #references-3 .a.b.cde }
+
 ## title 2a
 
 ## title 2b{: #references-4 .a.b.c.d.e}
