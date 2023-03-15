@@ -482,8 +482,7 @@ y formar a la persona para participar en la vida socio-económica
 
 ### Elegir un futuro
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Escuela_atenas.jpg" height=300px>
-<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/La_scuola_di_Atene.jpg/1920px-La_scuola_di_Atene.jpg" height="200px" width="680px" style="object-fit: cover;"><br>
 <img src="http://3.bp.blogspot.com/-5_-kUMv6Ifg/VlBftIyBHgI/AAAAAAAADLs/-5IfHbJSi1k/s1600/walle-socialnetwork05.jpg" height=300px>
 
 ???
