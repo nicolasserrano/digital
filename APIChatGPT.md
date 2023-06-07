@@ -21,6 +21,10 @@ Other referencies:
 
 ## ChatGPT
 ## APIs
+## Marvel example API
+<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="900" width="1600" allowfullscreen="" ></iframe>
+
+
 ## ChatGPT API
 ## API usage
 ## API parameters
