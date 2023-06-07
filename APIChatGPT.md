@@ -22,7 +22,7 @@ Other referencies:
 ## ChatGPT
 ## APIs
 ## Marvel example API
-<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="900" width="1600" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="576" width="1024" allowfullscreen="" ></iframe>
 
 
 ## ChatGPT API
