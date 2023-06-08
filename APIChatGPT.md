@@ -22,14 +22,14 @@ Other referencies:
 ## ChatGPT
 ## APIs
 ---
-<iframe style="display: block; margin: 0 auto;" src="[https://developer.marvel.com/docs](https://platform.openai.com/tokenizer)" height="520" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
 
 
 ## ChatGPT API
 ## API usage
 ## API parameters
 ## Tokens
-<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="576" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https://platform.openai.com/tokenizer" height="480" width="1024" allowfullscreen="" ></iframe>
 ## Excel example
 ## JavaScript example
 ## Colab example (Python)
