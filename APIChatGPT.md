@@ -29,7 +29,16 @@ Other referencies:
 ## API usage
 ## API parameters
 ## Tokens
-<iframe style="display: block; margin: 0 auto;" src="https://platform.openai.com/tokenizer" height="480" width="1024" allowfullscreen="" ></iframe>
+[Tokenizer](https://platform.openai.com/tokenizer)
+English use less tokens
+???
+Example of the "Show example" and translated:
+Muchas palabras se asignan a un token, pero otras no: indivisible.
+
+Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que contengan los bytes subyacentes: 🤚🏾.
+
+Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
+
 ## Excel example
 ## JavaScript example
 ## Colab example (Python)
