@@ -92,9 +92,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     
     ' Set OpenAI API endpoint URL
     apiUrl = "https://api.openai.com/v1/chat/completions"
-    'gpt-3.5-turbo
     
-  
     max_tokens = 200
     jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
       "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
@@ -113,8 +111,13 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
         .send jsonBody
         jsonResponse = .responseText
     End With
-    
     Range("D2").Value = jsonResponse
+```
+
+## Excel example (parse JSON)
+
+```  
+' Parse JSON
     Dim objResponse
     Set objResponse = ParseJSON(jsonResponse)
     Debug.Print ListPaths(objResponse)
@@ -126,7 +129,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     response = objResponse("obj.choices(0).message.content")
     response = Replace(response, "\n", vbCrLf)
     GetOpenAIResponse = response
-```
+```  
 
 ## JavaScript example
 ## Colab example (Python)
