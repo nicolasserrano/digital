@@ -1,4 +1,4 @@
-# ChatGPT for engineers (ChatGPT API) v1.03
+# ChatGPT for engineers (ChatGPT API) v1.04
 ???
 Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md
 
@@ -20,15 +20,15 @@ Other referencies:
 - Codex example (Java)
 
 ## ChatGPT
-La dirección de chat GPT es: https://chat.openai.com/
+https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
 ## HTTP
-![](https://nicolasserrano.github.io/CS/images/digital_50.jpg)
+![](//nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
 http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
 <iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
 ## APIs
----
+https://developer.marvel.com/docs
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
 
 ## JSON
