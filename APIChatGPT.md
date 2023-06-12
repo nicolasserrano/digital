@@ -84,7 +84,34 @@ Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que c
 
 Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
 
-## Excel example 1. Set the data
+## Excel example 1. Set the data vba
+
+``` vba    
+    ' Set the data
+    ' Set your OpenAI API key here
+    apiKey = "sk-" + Range("Conf!A2")
+    
+    ' Set OpenAI API endpoint URL
+    apiUrl = "https://api.openai.com/v1/chat/completions"
+    max_tokens = 200
+    
+    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
+      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
+      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
+    
+    Range("E2").Value = jsonBody
+    Dim a
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    
+    ' Send the request to OpenAI API
+    With objHTTP
+        .Open "POST", apiUrl, False
+        .send jsonBody
+        jsonResponse = .responseText
+    End With
+```    
+
+## Excel example 1. Set the data vbnet
 
 ``` vbnet    
     ' Set the data
@@ -101,7 +128,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     
     Range("E2").Value = jsonBody
     Dim a
-     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
     
     ' Send the request to OpenAI API
     With objHTTP
@@ -110,10 +137,36 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
         jsonResponse = .responseText
     End With
 ```    
-    
-## Excel example 2. Call the API
+## Excel example 1. Set the data vbscript
 
-```  vbscript  
+``` vbscript    
+    ' Set the data
+    ' Set your OpenAI API key here
+    apiKey = "sk-" + Range("Conf!A2")
+    
+    ' Set OpenAI API endpoint URL
+    apiUrl = "https://api.openai.com/v1/chat/completions"
+    max_tokens = 200
+    
+    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
+      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
+      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
+    
+    Range("E2").Value = jsonBody
+    Dim a
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    
+    ' Send the request to OpenAI API
+    With objHTTP
+        .Open "POST", apiUrl, False
+        .send jsonBody
+        jsonResponse = .responseText
+    End With
+```    
+
+## Excel example 2. Call the vba
+
+```  vba  
     ' Call API
     ' Create an HTTP object
     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
