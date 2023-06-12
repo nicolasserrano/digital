@@ -86,7 +86,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 
 ## Excel example 1. Set the data
 
-```    
+``` vbnet    
     ' Set the data
     ' Set your OpenAI API key here
     apiKey = "sk-" + Range("Conf!A2")
