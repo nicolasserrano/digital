@@ -25,7 +25,7 @@ La dirección de chat GPT es: https://chat.openai.com/
 ## HTTP
 ![](http://nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
-<iframe style="display: block; margin: 0 auto;" src="http://www.nicolasserrano.com/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https://www.nicolasserrano.com/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
 ## APIs
 ---
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
@@ -36,7 +36,7 @@ La dirección de chat GPT es: https://chat.openai.com/
   "nombre": "Juan Pérez",
   "edad": 30
 }
-
+```
 ## JSON
 ```
 {
@@ -64,6 +64,9 @@ La dirección de chat GPT es: https://chat.openai.com/
 
 ```
 ## ChatGPT API
+- A way to make http calls to the Chat GPT
+- [Playground](https://platform.openai.com/playground)
+- https://platform.openai.com/playground/p/default-playful-thank-you-note
 ## API usage
 ## API parameters
 ## Tokens
