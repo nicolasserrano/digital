@@ -100,11 +100,12 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
       "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
     
     Range("E2").Value = jsonBody
+    Dim a
 ```    
     
 ## Excel example 2. Call the API
 
-```  bas  
+```  vbscript  
     ' Call API
     ' Create an HTTP object
     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
