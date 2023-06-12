@@ -1,4 +1,4 @@
-# ChatGPT for engineers (ChatGPT API) v1.02
+# ChatGPT for engineers (ChatGPT API) v1.03
 ???
 Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md
 
