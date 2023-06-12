@@ -39,6 +39,9 @@ http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
 }
 ```
 ## JSON
+http://www.nicolasserrano.com/CS/JSON
+<iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
+## JSON
 ```
 {
   "nombre": "Juan Pérez",
