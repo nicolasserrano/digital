@@ -21,6 +21,7 @@ Other referencies:
 
 ## ChatGPT
 La dirección de chat GPT es: https://chat.openai.com/
+![](pres-images/ChatGPT/ChatGPT.png)
 ## HTTP
 ![](http://nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
