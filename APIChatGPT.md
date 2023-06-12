@@ -85,6 +85,49 @@ Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que c
 Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
 
 ## Excel example
+
+```    
+    ' Set your OpenAI API key here
+    apiKey = "sk-" + Range("Conf!A2")
+    
+    ' Set OpenAI API endpoint URL
+    apiUrl = "https://api.openai.com/v1/chat/completions"
+    'gpt-3.5-turbo
+    
+  
+    max_tokens = 200
+    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
+      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
+      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
+    
+    Range("E2").Value = jsonBody
+    
+    ' Create an HTTP object
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    
+    ' Send the request to OpenAI API
+    With objHTTP
+        .Open "POST", apiUrl, False
+        .setRequestHeader "Content-Type", "application/json"
+        .setRequestHeader "Authorization", "Bearer " & apiKey
+        .send jsonBody
+        jsonResponse = .responseText
+    End With
+    
+    Range("D2").Value = jsonResponse
+    Dim objResponse
+    Set objResponse = ParseJSON(jsonResponse)
+    Debug.Print ListPaths(objResponse)
+    
+    Dim totalTokens As String
+    totalTokens = objResponse("obj.usage.total_tokens")
+    Range("C2").Value = totalTokens
+    
+    response = objResponse("obj.choices(0).message.content")
+    response = Replace(response, "\n", vbCrLf)
+    GetOpenAIResponse = response
+```
+
 ## JavaScript example
 ## Colab example (Python)
 ## Codex example (Java)
