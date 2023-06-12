@@ -104,7 +104,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     
 ## Excel example 2. Call the API
 
-```    
+```  bas  
     ' Call API
     ' Create an HTTP object
     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
@@ -122,7 +122,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 
 ## Excel example 3. Parse JSON)
 
-```  
+``` vb 
     ' Parse JSON
     Dim objResponse
     Set objResponse = ParseJSON(jsonResponse)
