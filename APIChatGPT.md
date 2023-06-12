@@ -122,7 +122,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 
 ## Excel example 3. Parse JSON)
 
-``` vb 
+``` vba
     ' Parse JSON
     Dim objResponse
     Set objResponse = ParseJSON(jsonResponse)
