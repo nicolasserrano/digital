@@ -25,7 +25,7 @@ Other referencies:
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
 
 ## JSON
-'''
+```
 {
   "nombre": "Juan Pérez",
   "edad": 30,
@@ -49,7 +49,7 @@ Other referencies:
   ]
 }
 
-'''
+```
 ## ChatGPT API
 ## API usage
 ## API parameters
