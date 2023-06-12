@@ -84,60 +84,7 @@ Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que c
 
 Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
 
-## Excel example 1. Set the data vba
-
-``` vba    
-    ' Set the data
-    ' Set your OpenAI API key here
-    apiKey = "sk-" + Range("Conf!A2")
-    
-    ' Set OpenAI API endpoint URL
-    apiUrl = "https://api.openai.com/v1/chat/completions"
-    max_tokens = 200
-    
-    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
-      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
-      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
-    
-    Range("E2").Value = jsonBody
-    Dim a
-    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    
-    ' Send the request to OpenAI API
-    With objHTTP
-        .Open "POST", apiUrl, False
-        .send jsonBody
-        jsonResponse = .responseText
-    End With
-```    
-
-## Excel example 1. Set the data vbnet
-
-``` vbnet    
-    ' Set the data
-    ' Set your OpenAI API key here
-    apiKey = "sk-" + Range("Conf!A2")
-    
-    ' Set OpenAI API endpoint URL
-    apiUrl = "https://api.openai.com/v1/chat/completions"
-    max_tokens = 200
-    
-    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
-      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
-      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
-    
-    Range("E2").Value = jsonBody
-    Dim a
-    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    
-    ' Send the request to OpenAI API
-    With objHTTP
-        .Open "POST", apiUrl, False
-        .send jsonBody
-        jsonResponse = .responseText
-    End With
-```    
-## Excel example 1. Set the data vbscript
+## Excel example 1. Set the data
 
 ``` vbscript    
     ' Set the data
@@ -153,20 +100,11 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
       "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
     
     Range("E2").Value = jsonBody
-    Dim a
-    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    
-    ' Send the request to OpenAI API
-    With objHTTP
-        .Open "POST", apiUrl, False
-        .send jsonBody
-        jsonResponse = .responseText
-    End With
 ```    
 
-## Excel example 2. Call the vba
+## Excel example 2. Call the API
 
-```  vba  
+```  vbscript  
     ' Call API
     ' Create an HTTP object
     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
@@ -182,9 +120,9 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     Range("D2").Value = jsonResponse
 ```
 
-## Excel example 3. Parse JSON)
+## Excel example 3. Parse JSON
 
-``` vba
+``` vbscript
     ' Parse JSON
     Dim objResponse
     Set objResponse = ParseJSON(jsonResponse)
@@ -202,6 +140,8 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ## JavaScript example
 ## Colab example (Python)
 ## Codex example (Java)
+https://codex.tecnun.es
+## Questions
 
 ## 
 <iframe style="display: block; margin: 0 auto;" src="https://unav.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=1bb8b4d5-3526-4ec6-8e70-ac53010e490a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="529" width="940" allowfullscreen="" allow="autoplay"></iframe>
