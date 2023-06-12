@@ -101,6 +101,14 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     
     Range("E2").Value = jsonBody
     Dim a
+     Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    
+    ' Send the request to OpenAI API
+    With objHTTP
+        .Open "POST", apiUrl, False
+        .send jsonBody
+        jsonResponse = .responseText
+    End With
 ```    
     
 ## Excel example 2. Call the API
