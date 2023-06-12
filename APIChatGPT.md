@@ -20,9 +20,19 @@ Other referencies:
 - Codex example (Java)
 
 ## ChatGPT
+La dirección de chat GPT es: https://chat.openai.com/
+## HTTP
+![](http://nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
 ---
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
+
+## JSON
+```
+{
+  "nombre": "Juan Pérez",
+  "edad": 30
+}
 
 ## JSON
 ```
@@ -81,3 +91,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ### How AI could save (not destroy) education
 Sal Khan • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+### Questions
+???
+Pending:
+Referencias a documentación y videos
