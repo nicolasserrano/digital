@@ -1,6 +1,6 @@
 # ChatGPT for engineers (ChatGPT API) v1.04
 ???
-Play: https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md
+Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/APIChatGPT.md)
 
 <button onclick="reloadIframes()">Reload Iframes</button>
 [Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md)
