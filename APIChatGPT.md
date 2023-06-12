@@ -24,7 +24,32 @@ Other referencies:
 ---
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com/docs" height="520" width="1024" allowfullscreen="" ></iframe>
 
+## JSON
+'''
+{
+  "nombre": "Juan Pérez",
+  "edad": 30,
+  "ciudad": "Ciudad de México",
+  "intereses": ["programación", "viajes", "lectura"],
+  "educación": {
+    "universidad": "Universidad Nacional Autónoma de México",
+    "carrera": "Ingeniería de Software"
+  },
+  "experiencia_laboral": [
+    {
+      "puesto": "Desarrollador de software",
+      "empresa": "ABC Software",
+      "años": 3
+    },
+    {
+      "puesto": "Analista de datos",
+      "empresa": "XYZ Analytics",
+      "años": 2
+    }
+  ]
+}
 
+'''
 ## ChatGPT API
 ## API usage
 ## API parameters
