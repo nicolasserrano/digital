@@ -89,12 +89,16 @@ http://www.nicolasserrano.com/CS/JSON
 - [Playground](https://platform.openai.com/playground)
 - https://platform.openai.com/playground/p/default-playful-thank-you-note
 ## API usage
+https://platform.openai.com/account/usage
+[https://platform.openai.com/account/usage](https://platform.openai.com/account/usage)
 ## API parameters
-## Tokens  
+### Tokens  
 https://platform.openai.com/tokenizer
+
 --  
 
 English use less tokens  
+
 -- 
 
 You can set the instructions in english and the output in another language  
