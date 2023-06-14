@@ -1,4 +1,6 @@
 # ChatGPT for engineers (ChatGPT API) v1.04
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/watch?v=eUH2_n8jE70" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/APIChatGPT.md)
 
@@ -166,19 +168,19 @@ https://codex.tecnun.es
 - Permanent assistant (server mode)
 - Chatbot for existing application
 ## References
-[The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)
-[DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)
-[How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)
-[Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)
+<div></div>
+[The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
+[DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
+[How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
+[Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
 
 ### The Inside Story of ChatGPT’s Astonishing Potential
 Greg Brockman • TED2023
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="[https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education](https://www.youtube.com/embed/C_78DM8fG6E)" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/C_78DM8fG6E" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ### How AI could save (not destroy) education
 Sal Khan • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ## Questions
-
 
 ## 
 <iframe style="display: block; margin: 0 auto;" src="https://unav.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=1bb8b4d5-3526-4ec6-8e70-ac53010e490a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="529" width="940" allowfullscreen="" allow="autoplay"></iframe>
