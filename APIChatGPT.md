@@ -45,6 +45,7 @@ https://chat.openai.com/
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/9edcb4c0-ca8a-4968-8be9-7709d0b4ae73)
 ???
 https://www.nbcnews.com/tech/tech-news/twitter-will-start-charging-developers-api-access-rcna68905
+Otra noticia, sobre reddit: https://www.theverge.com/2023/4/18/23688463/reddit-developer-api-terms-change-monetization-ai
 ## APIs
 http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
 <iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
@@ -183,9 +184,13 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ## Colab example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 ## Codex example (Java)
+class: vertical
+
 https://codex.tecnun.es
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/30daa3b3-f483-445e-ba13-c53591d53b98){: #codex1 .image.vertical}
 ## Codex example
+class: vertical
+
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/74104cb6-f4ca-4ff7-9b57-169bd148669a){: #codex2 .image.vertical}
 
 ## Codex example (Java)
