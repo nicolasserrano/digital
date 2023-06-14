@@ -193,7 +193,6 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ``` javascript
 // API endpoint URL
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
-
 // API parameters
 const data = {
   messages: [
@@ -230,11 +229,12 @@ async function handleApiResponse() {
 
 // Make the API call
 handleApiResponse();
+```
+### Javscript console response:
 
 Promise {<pending>}
 The second place in the 2020 World Series was the Tampa Bay Rays.
 
-```
 ## Colab example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 .horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
