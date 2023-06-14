@@ -192,7 +192,6 @@ https://codex.tecnun.es
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/30daa3b3-f483-445e-ba13-c53591d53b98)
 
 ---
-
 class: vertical
 
 <h2>Codex example</H2>
