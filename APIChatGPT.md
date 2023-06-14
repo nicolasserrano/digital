@@ -187,6 +187,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
     response = Replace(response, "\n", vbCrLf)
     GetOpenAIResponse = response
 ```  
+![image](https://github.com/nicolasserrano/digital/assets/13941127/7ee2de52-fd32-4d01-8b27-dfb2aefa0a28)
 
 ## JavaScript example
 ## Colab example (Python)
