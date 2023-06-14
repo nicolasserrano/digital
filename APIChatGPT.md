@@ -204,9 +204,13 @@ class: vertical
 ## Codex example 3
 .right.vertical[![image](https://github.com/nicolasserrano/digital/assets/13941127/6fde4e21-dc16-4d76-81b8-fd1578262205)]
 
-## Codex example 3
+---
+
 .horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/f9b2bd3c-9bec-4406-bc64-70975d49ca77)]
 
+---
+
+.horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
 
 ## Applications / Suggestions
 - Same prompt for a list of items
