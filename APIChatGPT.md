@@ -113,7 +113,7 @@ https://platform.openai.com/tokenizer
 
 - You can set instructions in English and request output in another language
 
----
+--
 
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/666817d4-60e6-43bc-a96f-5df70f0d96fd)
 
@@ -192,19 +192,19 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ## JavaScript example
 ## Colab example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
-.vertical[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
 
 ---
 
-.horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/f9b2bd3c-9bec-4406-bc64-70975d49ca77)]
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/f9b2bd3c-9bec-4406-bc64-70975d49ca77)]
 
 ---
 
-.horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/c394107b-54f5-403d-9a14-741c667818b6)]
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/c394107b-54f5-403d-9a14-741c667818b6)]
 
 ---
 
-.horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
 
 ## Applications / Suggestions
 - Same prompt for a list of items
