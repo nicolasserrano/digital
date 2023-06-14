@@ -102,7 +102,7 @@ https://platform.openai.com/tokenizer
 
 --
 
-You can set the instructions in english and the output in another language
+- You can set the instructions in english and the output in another language
 
 ???
 Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
