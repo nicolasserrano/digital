@@ -1,5 +1,5 @@
 # ChatGPT for engineers (ChatGPT API) v1.04
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="<iframe width="560" height="315" src="https://www.youtube.com/embed/eUH2_n8jE70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="<iframe width="560" height="315" src="https://www.youtube.com/embed/eUH2_n8jE70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/APIChatGPT.md)
@@ -34,7 +34,8 @@ https://chat.openai.com/
 ChatGPT Plus 
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/c1605491-db27-4d85-ac44-1335f0d181a5)
 [OpenAI API](https://platform.openai.com/overview) 
-<iframe style="display: block; margin: 0 auto;" src="https://platform.openai.com/overview" height="320" width="1024" allowfullscreen="" ></iframe>
+![image](https://github.com/nicolasserrano/digital/assets/13941127/51120153-c33a-4386-8726-f776dfda79a5)
+
 ## HTTP
 ![](//nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
