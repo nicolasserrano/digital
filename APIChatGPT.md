@@ -42,6 +42,10 @@ https://chat.openai.com/
 ## HTTP
 ![](//nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
+![image](https://github.com/nicolasserrano/digital/assets/13941127/9edcb4c0-ca8a-4968-8be9-7709d0b4ae73)
+???
+https://www.nbcnews.com/tech/tech-news/twitter-will-start-charging-developers-api-access-rcna68905
+## APIs
 http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
 <iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
 ## APIs
@@ -180,6 +184,14 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 ## Codex example (Java)
 https://codex.tecnun.es
+![image](https://github.com/nicolasserrano/digital/assets/13941127/30daa3b3-f483-445e-ba13-c53591d53b98){: #codex1 .image.vertical}
+## Codex example
+![image](https://github.com/nicolasserrano/digital/assets/13941127/74104cb6-f4ca-4ff7-9b57-169bd148669a){: #codex2 .image.vertical}
+
+## Codex example (Java)
+![image](https://github.com/nicolasserrano/digital/assets/13941127/6fde4e21-dc16-4d76-81b8-fd1578262205){: #codex3 .image.vertical}
+
+
 ## Applications / Suggestions
 - Same prompt for a list of items
 - Permanent assistant (server mode)
