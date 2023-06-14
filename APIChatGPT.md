@@ -186,6 +186,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 
 --- 
 class: vertical
+
 <H2>Codex example</H2>
  
 https://codex.tecnun.es
