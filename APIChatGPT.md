@@ -2,11 +2,17 @@
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/APIChatGPT.md)
 
-<button onclick="reloadIframes()">Reload Iframes</button>
-[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md)
-v0.01
+[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md) v0.04
+
 breakTitlesWith#  // to crate a new slide with each title defined with #
-Other referencies:
+
+<button onclick="reloadIframes()">Reload Iframes</button>
+
+Login in:
+- https://codex.tecnun.es
+- https://developer.marvel.com/signin
+- https://auth0.openai.com/u/login/identifier?state=hKFo2SBZYnpsZWRNRUZVR0JQeE5IMFpNMXlRS0FEYkdHa1U3eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIHhZNVhyTzdhS2M1SVJOMWVjb2RzVFVkWnc4cWI5RklTo2NpZNkgRFJpdnNubTJNdTQyVDNLT3BxZHR3QjNOWXZpSFl6d0Q
+- https://learn.deeplearning.ai/login
 
 ## Content
 - ChatGPT
@@ -75,9 +81,22 @@ http://www.nicolasserrano.com/CS/JSON
 ## API parameters
 ## Tokens
 [Tokenizer](https://platform.openai.com/tokenizer)
+--
 English use less tokens
+--
+You can set the instructions in english and the output in another language
 ???
-Example of the "Show example" and translated:
+Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
+
+English: 
+The GPT family of models process text using tokens, which are common sequences of characters found in text. The models understand the statistical relationships between these tokens, and excel at producing the next token in a sequence of tokens.
+
+Spanish:
+
+La familia de modelos GPT procesa texto mediante tokens, que son secuencias comunes de caracteres que se encuentran en el texto. Los modelos comprenden las relaciones estadísticas entre estos tokens y sobresalen en la producción del siguiente token en una secuencia de tokens.
+
+Example of the "Show example" translated:
+
 Muchas palabras se asignan a un token, pero otras no: indivisible.
 
 Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que contengan los bytes subyacentes: 🤚🏾.
