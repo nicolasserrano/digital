@@ -30,9 +30,9 @@ Login in:
 ## ChatGPT
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
-## OpenAI API
-ChatGPT Plus 
+## ChatGPT Plus 
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/c1605491-db27-4d85-ac44-1335f0d181a5)
+## OpenAI API
 [OpenAI API](https://platform.openai.com/overview) 
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/51120153-c33a-4386-8726-f776dfda79a5)
 
@@ -87,8 +87,8 @@ http://www.nicolasserrano.com/CS/JSON
 - https://platform.openai.com/playground/p/default-playful-thank-you-note
 ## API usage
 ## API parameters
-## Tokens
-[Tokenizer](https://platform.openai.com/tokenizer)  
+## Tokens  
+https://platform.openai.com/tokenizer
 --  
 English use less tokens  
 --  
