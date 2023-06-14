@@ -30,6 +30,11 @@ Login in:
 ## ChatGPT
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
+## OpenAI API
+ChatGPT Plus 
+![image](https://github.com/nicolasserrano/digital/assets/13941127/c1605491-db27-4d85-ac44-1335f0d181a5)
+[OpenAI API](https://platform.openai.com/overview) 
+<iframe style="display: block; margin: 0 auto;" src="https://platform.openai.com/overview" height="320" width="1024" allowfullscreen="" ></iframe>
 ## HTTP
 ![](//nicolasserrano.github.io/CS/images/digital_50.jpg)
 ## APIs
