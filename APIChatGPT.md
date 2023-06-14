@@ -81,9 +81,9 @@ http://www.nicolasserrano.com/CS/JSON
 ## API parameters
 ## Tokens
 [Tokenizer](https://platform.openai.com/tokenizer)
---
+-- 
 English use less tokens
---
+-- 
 You can set the instructions in english and the output in another language
 ???
 Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
