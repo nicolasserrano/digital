@@ -210,6 +210,10 @@ class: vertical
 
 ---
 
+.horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/c394107b-54f5-403d-9a14-741c667818b6)]
+
+---
+
 .horizonal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
 
 ## Applications / Suggestions
