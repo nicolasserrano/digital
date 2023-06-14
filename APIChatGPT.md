@@ -202,7 +202,7 @@ class: vertical
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/74104cb6-f4ca-4ff7-9b57-169bd148669a)
 
 ## Codex example 3
-.right[![image](https://github.com/nicolasserrano/digital/assets/13941127/6fde4e21-dc16-4d76-81b8-fd1578262205)]
+.right.vertical[![image](https://github.com/nicolasserrano/digital/assets/13941127/6fde4e21-dc16-4d76-81b8-fd1578262205)]
 
 
 ## Applications / Suggestions
