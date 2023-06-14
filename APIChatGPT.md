@@ -9,7 +9,7 @@ breakTitlesWith#  // to crate a new slide with each title defined with #
 <button onclick="reloadIframes()">Reload Iframes</button>
 
 Login in:
-- https://codex.tecnun.es
+- [https://codex.tecnun.es](https://codex.tecnun.es/codex/ItemList)
 - https://developer.marvel.com/signin
 - https://auth0.openai.com/u/login/identifier?state=hKFo2SBZYnpsZWRNRUZVR0JQeE5IMFpNMXlRS0FEYkdHa1U3eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIHhZNVhyTzdhS2M1SVJOMWVjb2RzVFVkWnc4cWI5RklTo2NpZNkgRFJpdnNubTJNdTQyVDNLT3BxZHR3QjNOWXZpSFl6d0Q
 - https://learn.deeplearning.ai/login
@@ -161,7 +161,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 ## Codex example (Java)
 https://codex.tecnun.es
-## Suggestions
+## Applications / Suggestions
 - Same prompt for a list of items
 - Permanent assistant (server mode)
 - Chatbot for existing application
