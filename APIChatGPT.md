@@ -1,4 +1,5 @@
 # ChatGPT for engineers (ChatGPT API) v1.04
+<div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eUH2_n8jE70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ???
@@ -15,6 +16,9 @@ Login in:
 - https://developer.marvel.com/signin
 - https://auth0.openai.com/u/login/identifier?state=hKFo2SBZYnpsZWRNRUZVR0JQeE5IMFpNMXlRS0FEYkdHa1U3eKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIHhZNVhyTzdhS2M1SVJOMWVjb2RzVFVkWnc4cWI5RklTo2NpZNkgRFJpdnNubTJNdTQyVDNLT3BxZHR3QjNOWXZpSFl6d0Q
 - https://learn.deeplearning.ai/login
+
+# ChatGPT for engineers (ChatGPT API) v1.04
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eUH2_n8jE70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ## Content
 - ChatGPT
