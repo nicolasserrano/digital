@@ -158,9 +158,15 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 
 ## JavaScript example
 ## Colab example (Python)
+[https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 ## Codex example (Java)
 https://codex.tecnun.es
+## Suggestions
+- Same prompt for a list of items
+- Permanent assistant (server mode)
+- Chatbot for existing application
 ## Questions
+
 
 ## 
 <iframe style="display: block; margin: 0 auto;" src="https://unav.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=1bb8b4d5-3526-4ec6-8e70-ac53010e490a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="529" width="940" allowfullscreen="" allow="autoplay"></iframe>
