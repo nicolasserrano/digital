@@ -107,7 +107,15 @@ https://platform.openai.com/tokenizer
 
 --
 
-- You can set the instructions in english and the output in another language
+- Tokens are english words
+
+--
+
+- You can set instructions in English and request output in another language
+
+---
+
+![image](https://github.com/nicolasserrano/digital/assets/13941127/666817d4-60e6-43bc-a96f-5df70f0d96fd)
 
 ???
 Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
