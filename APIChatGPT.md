@@ -183,26 +183,7 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ## JavaScript example
 ## Colab example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
-
----
-
-class: vertical
-
-<H2>Codex example 1</H2>
- 
-https://codex.tecnun.es
-![image](https://github.com/nicolasserrano/digital/assets/13941127/30daa3b3-f483-445e-ba13-c53591d53b98)
-
----
-
-class: vertical
-
-<h2>Codex example 2</H2>
-
-![image](https://github.com/nicolasserrano/digital/assets/13941127/74104cb6-f4ca-4ff7-9b57-169bd148669a)
-
-## Codex example 3
-.right.vertical[![image](https://github.com/nicolasserrano/digital/assets/13941127/6fde4e21-dc16-4d76-81b8-fd1578262205)]
+.vertical[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
 
 ---
 
