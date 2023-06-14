@@ -190,6 +190,51 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/7ee2de52-fd32-4d01-8b27-dfb2aefa0a28)
 
 ## JavaScript example
+``` javascript
+// API endpoint URL
+const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+// API parameters
+const data = {
+  messages: [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Who won the world series in 2020?' },
+    { role: 'assistant', content: 'The Los Angeles Dodgers won the World Series in 2020.' },
+    { role: 'user', content: 'Where was it played?' },
+    { role: 'assistant', content: 'The 2020 World Series was played in Arlington, Texas at the Globe Life Field, which was the new home stadium for the Texas Rangers.' },
+    { role: 'user', content: 'Who was the second one.' }
+  ],
+  model:'gpt-3.5-turbo'
+};
+
+// API request options
+const requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + api_key // Replace with your OpenAI API key
+  },
+  body: JSON.stringify(data)
+};
+
+// Function to handle the API response
+async function handleApiResponse() {
+  try {
+    const response = await fetch(apiUrl, requestOptions);
+    const json = await response.json();
+    console.log(json.choices[0].message.content); // Output the assistant's response
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Make the API call
+handleApiResponse();
+
+Promise {<pending>}
+The second place in the 2020 World Series was the Tampa Bay Rays.
+
+```
 ## Colab example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 .horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
