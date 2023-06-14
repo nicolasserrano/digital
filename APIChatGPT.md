@@ -165,6 +165,18 @@ https://codex.tecnun.es
 - Same prompt for a list of items
 - Permanent assistant (server mode)
 - Chatbot for existing application
+## References
+[The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)
+[DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)
+[How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)
+[Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)
+
+### The Inside Story of ChatGPT’s Astonishing Potential
+Greg Brockman • TED2023
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="[https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education](https://www.youtube.com/embed/C_78DM8fG6E)" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+### How AI could save (not destroy) education
+Sal Khan • TED2023
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ## Questions
 
 
@@ -177,9 +189,6 @@ https://codex.tecnun.es
 ???
 [Vida 3.0](https://www.amazon.es/Vida-3-0-Historia-Max-Tegmark/dp/8430619623)
 
-### How AI could save (not destroy) education
-Sal Khan • TED2023
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ### Questions
 ???
 Pending:
