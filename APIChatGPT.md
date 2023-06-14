@@ -87,11 +87,11 @@ http://www.nicolasserrano.com/CS/JSON
 ## API usage
 ## API parameters
 ## Tokens
-[Tokenizer](https://platform.openai.com/tokenizer)
--- 
-English use less tokens
--- 
-You can set the instructions in english and the output in another language
+[Tokenizer](https://platform.openai.com/tokenizer)  
+--  
+English use less tokens  
+--  
+You can set the instructions in english and the output in another language  
 ???
 Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
 
@@ -173,15 +173,18 @@ https://codex.tecnun.es
 - Permanent assistant (server mode)
 - Chatbot for existing application
 ## References
-<div></div>
-[The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
-[DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
-[How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
-[Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
+<span></span>
+- [The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
+- [DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
+- [How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
+- [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
 
-### The Inside Story of ChatGPT’s Astonishing Potential
+### The Inside Story of ChatGPT’s Astonishing Potential (YouTube)
 Greg Brockman • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/C_78DM8fG6E" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
+### The Inside Story of ChatGPT’s Astonishing Potential (TED)
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/greg_brockman_the_inside_story_of_chatgpt_s_astonishing_potential" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ### How AI could save (not destroy) education
 Sal Khan • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
