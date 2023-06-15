@@ -1,10 +1,10 @@
-# ChatGPT for engineers (ChatGPT API) v1.04
+# ChatGPT for Engineers (OpenAI API)
 <div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/APIChatGPT.md)
 
-[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md) v0.04
+[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md) v1.05
 
 breakTitlesWith#  // to crate a new slide with each title defined with #
 
