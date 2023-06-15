@@ -140,6 +140,22 @@ Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que c
 
 Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
 
+## Guidelines
+<h2>Prompting Principles¶
+<h3>Principle 1: Write clear and specific instructions
+<h3>Principle 2: Give the model time to “think”
+
+## Principle 1: Write clear and specific instructions
+<h3>Tactic 1: Use delimiters to clearly indicate distinct parts of the input
+    Delimiters can be anything like: ```, """, < >, <tag> </tag>,
+<h3>Tactic 2: Ask for a structured output
+<h3>Tactic 3: Ask the model to check whether conditions are satisfied
+<h3>Tactic 4: "Few-shot" prompting
+
+## Principle 2: Give the model time to “think”
+<h3>Tactic 1: Specify the steps required to complete a task
+<h3>Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion
+
 ## Excel example 1. Set the data
 
 ``` vbscript    
@@ -235,12 +251,12 @@ async function handleApiResponse() {
 // Make the API call
 handleApiResponse();
 ```
-### Javscript console response:
+### Javascript console response:
 
 Promise {<pending>}
 The second place in the 2020 World Series was the Tampa Bay Rays.
 
-## Colab example (Python)
+## Jupyter Notebook example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
 .horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
 
