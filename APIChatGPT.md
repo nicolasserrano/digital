@@ -26,15 +26,21 @@ https://jsonformatter.org/?utm_content=cmp-true
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eUH2_n8jE70?t=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ## Content
-- ChatGPT
-- APIs
-- ChatGPT API
-- API usage
-- API parameters
-- Excel example
-- JavaScript example
-- Colab example (Python)
-- Codex example (Java)
+<pre>
+- ChatGPT        2min
+- APIs           4 min
+- Formatos       5 min
+- Open AI API    
+  - Uso          2 min
+  - Tokens       2 min 30 s
+  - Principios   min2
+- Examples
+  - Excel        6 min
+  - Navegador    1 min 30 s
+  - Jupyter      1 min 30 s
+  - Codex        1 min 30 s
+- Aplicaciones   2 min
+</pre>
 
 ## ChatGPT
 https://chat.openai.com/
