@@ -27,19 +27,21 @@ https://jsonformatter.org/?utm_content=cmp-true
 
 ## Content
 <pre>
-- ChatGPT        2min
+- ChatGPT        2 min
 - APIs           4 min
 - Formatos       5 min
 - Open AI API    
   - Uso          2 min
   - Tokens       2 min 30 s
-  - Principios   min2
+  - Principios   2 min
 - Examples
   - Excel        6 min
   - Navegador    1 min 30 s
   - Jupyter      1 min 30 s
   - Codex        1 min 30 s
 - Aplicaciones   2 min
+                 ======  
+         Total  30 min
 </pre>
 
 ## ChatGPT
