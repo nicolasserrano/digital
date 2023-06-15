@@ -1,4 +1,4 @@
-class: black
+ black
 
 <h2>ChatGPT for Engineers (OpenAI API)</h2>
 
@@ -294,9 +294,6 @@ The second place in the 2020 World Series was the Tampa Bay Rays.
 Sal Khan • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 <div class="videoHolder" style="height: 403px;"><div class="videoDisplay"> 
-
-## Seminar HBSP: Unlocking the Power of AI
-<video controls="" name="media"><source src="[https://synthesia-results.s3.eu-west-1.amazonaws.com/website_demos/Avatars-Page/white-bkg/Jason.mp4](https://cdnapisec.kaltura.com/p/506471/sp/50647100/playManifest/entryId/1_8f7qesm9/flavorIds/1_t5vuk9gq,1_yfy245dc,1_4j9w5q72,1_qd0uag68,1_boishqk3/format/applehttp/protocol/https/a.m3u8?referrer=aHR0cHM6Ly9oYnNwLmhhcnZhcmQuZWR1&amp;playSessionId=33fd228a-45d6-19d7-fc4e-81dccd254aeb&amp;clientTag=html5:v2.86.1&amp;uiConfId=47080633)" type="video/mp4"></video>
 
 ## 
 <iframe style="display: block; margin: 0 auto;" src="https://unav.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=1bb8b4d5-3526-4ec6-8e70-ac53010e490a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="529" width="940" allowfullscreen="" allow="autoplay"></iframe>
