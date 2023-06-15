@@ -102,8 +102,8 @@ http://www.nicolasserrano.com/CS/JSON
     }
   ]
 }
-
 ```
+
 ## ChatGPT API
 - A way to make http calls to the Chat GPT
 - [Playground](https://platform.openai.com/playground)
