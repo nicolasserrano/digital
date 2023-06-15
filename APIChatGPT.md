@@ -1,4 +1,6 @@
-# ChatGPT for Engineers (OpenAI API)
+<h1> ChatGPT for Engineers (OpenAI API) </h1>
+class: black
+
 <div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
 ???
@@ -140,13 +142,13 @@ Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que c
 
 Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
 
-## Guidelines
-<h2>Prompting Principles¶
+## Prompting Principles
 <h3>Principle 1: Write clear and specific instructions
 <h3>Principle 2: Give the model time to “think”
 
 ## Principle 1: Write clear and specific instructions
-<h3>Tactic 1: Use delimiters to clearly indicate distinct parts of the input
+<h3>Tactic 1: Use delimiters to clearly indicate distinct parts of the input  
+  
     Delimiters can be anything like: ```, """, < >, <tag> </tag>,
 <h3>Tactic 2: Ask for a structured output
 <h3>Tactic 3: Ask the model to check whether conditions are satisfied
