@@ -1,4 +1,6 @@
-## ChatGPT for Engineers (OpenAI API)
+class: black
+
+<h2>ChatGPT for Engineers (OpenAI API)</h2>
 
 <div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
