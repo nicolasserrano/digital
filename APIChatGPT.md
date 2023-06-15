@@ -1,4 +1,5 @@
-<h1> ChatGPT for Engineers (OpenAI API) </h1>
+ChatGPT for Engineers (OpenAI API)
+===================================
 class: black
 
 <div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
@@ -285,16 +286,19 @@ The second place in the 2020 World Series was the Tampa Bay Rays.
 - [How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
 - [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
 
-### The Inside Story of ChatGPT’s Astonishing Potential (YouTube)
-Greg Brockman • TED2023
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/C_78DM8fG6E" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+## Questions
 
-### The Inside Story of ChatGPT’s Astonishing Potential (TED)
+### The Inside Story of ChatGPT’s Astonishing Potential
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/greg_brockman_the_inside_story_of_chatgpt_s_astonishing_potential" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 ### How AI could save (not destroy) education
 Sal Khan • TED2023
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
-## Questions
+<div class="videoHolder" style="height: 403px;"><div class="videoDisplay"> 
+
+## Seminar HBSP: Unlocking the Power of AI
+<video class="persistentNativePlayer nativeEmbedPlayerPid" poster="data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%01%00%00%00%01%08%02%00%00%00%90wS%DE%00%00%00%01sRGB%00%AE%CE%1C%E9%00%00%00%09pHYs%00%00%0B%13%00%00%0B%13%01%00%9A%9C%18%00%00%00%07tIME%07%DB%0B%0A%17%041%80%9B%E7%F2%00%00%00%19tEXtComment%00Created%20with%20GIMPW%81%0E%17%00%00%00%0CIDAT%08%D7c%60%60%60%00%00%00%04%00%01'4'%0A%00%00%00%00IEND%AEB%60%82" id="pid_kaltura_player_1_8f7qesm9" kentryid="1_8f7qesm9" kuiconfid="47080633" kwidgetid="_506471" kpartnerid="506471" preload="none" width="789" height="439" src="https://cdnapisec.kaltura.com/p/506471/sp/50647100/playManifest/entryId/1_8f7qesm9/flavorIds/1_t5vuk9gq,1_yfy245dc,1_4j9w5q72,1_qd0uag68,1_boishqk3/format/applehttp/protocol/https/a.m3u8?referrer=aHR0cHM6Ly9oYnNwLmhhcnZhcmQuZWR1&amp;playSessionId=33fd228a-45d6-19d7-fc4e-81dccd254aeb&amp;clientTag=html5:v2.86.1&amp;uiConfId=47080633" style="position: absolute;"></video><div class="videoShadow"></div><div class="mwEmbedPlayer mwEmbedPlayerBlackBkg" id="kaltura_player_1_8f7qesm9" style=""><img src="https://cdnsecakmi.kaltura.com/p/506471/sp/50647100/thumbnail/entry_id/1_8f7qesm9/version/100031/width/789/height/439" class="playerPoster fill-height" alt="Video thumbnail for Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective"></div>
+</div><a tabindex="-1" href="#" role="button" class="icon-play  comp largePlayBtn  largePlayBtnBorder" aria-label="Play clip" data-order="1" data-plugin-name="largePlayBtn" style="display: block;"></a></div>
+
 
 ## 
 <iframe style="display: block; margin: 0 auto;" src="https://unav.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=1bb8b4d5-3526-4ec6-8e70-ac53010e490a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="529" width="940" allowfullscreen="" allow="autoplay"></iframe>
@@ -304,6 +308,11 @@ Sal Khan • TED2023
 <img src="https://images-na.ssl-images-amazon.com/images/I/51PPlcfk6cL._SX311_BO1,204,203,200_.jpg">
 ???
 [Vida 3.0](https://www.amazon.es/Vida-3-0-Historia-Max-Tegmark/dp/8430619623)
+
+### The Inside Story of ChatGPT’s Astonishing Potential (YouTube)
+Greg Brockman • TED2023
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/C_78DM8fG6E" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
 
 ### Questions
 ???
