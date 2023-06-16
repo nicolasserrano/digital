@@ -226,6 +226,9 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 ```  
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/7ee2de52-fd32-4d01-8b27-dfb2aefa0a28)
 
+## Excel with roles
+.width[![image](https://github.com/nicolasserrano/digital/assets/13941127/77addf75-54a3-4611-aa5c-45371e624db2)]
+
 ## JavaScript example
 ``` javascript
 // API endpoint URL
