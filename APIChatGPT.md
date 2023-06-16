@@ -22,9 +22,6 @@ Login in:
 Tools
 https://jsonformatter.org/?utm_content=cmp-true
 
-# ChatGPT for engineers (ChatGPT API) v1.04
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eUH2_n8jE70?t=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
-
 ## Content
 <pre>
 - ChatGPT        2 min
@@ -43,6 +40,9 @@ https://jsonformatter.org/?utm_content=cmp-true
                  ======  
          Total  30 min
 </pre>
+
+# ChatGPT for engineers (OpenAI API)
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/eUH2_n8jE70?t=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ## ChatGPT
 https://chat.openai.com/
@@ -104,8 +104,9 @@ http://www.nicolasserrano.com/CS/JSON
 }
 ```
 
-## ChatGPT API
+## Open AI API
 - A way to make http calls to the Chat GPT
+- [Billing and limits](https://platform.openai.com/account/billing/overview)
 - [Playground](https://platform.openai.com/playground)
 - https://platform.openai.com/playground/p/default-playful-thank-you-note
 ## API usage
