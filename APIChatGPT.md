@@ -109,6 +109,8 @@ http://www.nicolasserrano.com/CS/JSON
 - [Billing and limits](https://platform.openai.com/account/billing/overview)
 - [Playground](https://platform.openai.com/playground)
 - https://platform.openai.com/playground/p/default-playful-thank-you-note
+- ![image](https://github.com/nicolasserrano/digital/assets/13941127/f7d76073-4704-41e3-b7aa-a661c44ca77a)
+
 ## API usage
 https://platform.openai.com/account/usage
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/0fd6c479-eef3-4985-a0c8-a6ce477ecfd5)
