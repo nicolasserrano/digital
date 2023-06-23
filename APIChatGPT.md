@@ -106,9 +106,8 @@ http://www.nicolasserrano.com/CS/JSON
 
 ## Open AI API
 - A way to make http calls to the Chat GPT
-- [Billing and limits](https://platform.openai.com/account/billing/overview)
-- [Playground](https://platform.openai.com/playground)
-- https://platform.openai.com/playground/p/default-playful-thank-you-note
+- [Billing and limits](https://platform.openai.com/account/billing/overview) - [Pricing](https://openai.com/pricing)
+- [Playground](https://platform.openai.com/playground) - [Example](https://platform.openai.com/playground/p/default-playful-thank-you-note)
 
 .width[![image](https://github.com/nicolasserrano/digital/assets/13941127/f7d76073-4704-41e3-b7aa-a661c44ca77a)]
 
