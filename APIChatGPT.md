@@ -117,6 +117,9 @@ https://platform.openai.com/account/usage
 ## API parameters
 https://platform.openai.com/docs/api-reference/chat
 .width[![image](https://github.com/nicolasserrano/digital/assets/13941127/51b9f961-d1c3-43ed-b1f1-dbe0adc04cef)]
+## API model
+![image](https://github.com/nicolasserrano/digital/assets/13941127/1d70e380-3eef-4732-ab49-9c122e253444)
+
 
 ### Tokens  
 https://platform.openai.com/tokenizer
