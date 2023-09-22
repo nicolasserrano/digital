@@ -279,17 +279,14 @@ The second place in the 2020 World Series was the Tampa Bay Rays.
 
 ## Jupyter Notebook example (Python)
 [https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
-[horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
 
-
-### Example of use: Auto-GPT
-[https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://www.wired.com/story/fast-forward-chatgpt-my-new-chatbot-friend-get-things-done/)
+## Example of use: Auto-GPT
+[https://www.wired.com/story/fast-forward-chatgpt-my-new-chatbot-friend-get-things-done/](https://www.wired.com/story/fast-forward-chatgpt-my-new-chatbot-friend-get-things-done/)
 ![image](https://github.com/nicolasserrano/digital/assets/13941127/34ae8a79-2e94-472c-bd1d-b163f513ff1f)
 
 ???
-https://autogpt.net/
 https://github.com/Significant-Gravitas/Auto-GPT
-
 
 ---
 
