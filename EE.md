@@ -1,41 +1,42 @@
-name: "project-presentation"
-author: "Your Name"
+name: "project presentation"
+author: "MENTOR Group"
 
-# Slide 1: Title
-## AI in Education
-### Objectives
+## Study of the use of Artificial Intelligence to reduce the carbon footprint of transportation in the education sector
 
 ---
 
-# Slide 2: Goals
-## Objectives
+#  Objectives
 
-- Study AI
-- Adapt chatbot
-- Develop materials
+- Study AI to optimize learning
+- Prototype of chatbot
+- Materials develop methologies
 - Evaluate usability
-- Create guides
-- Open source
+- Create  godo practices guides
+- Prototype in Open source
 
 ---
 
-# Slide 3: Background
-## Previous Work
+#  Previous Work
 
 - Learning tools
-- AI materials
+- Projects in learning materiales
+- AI prototypes
 - Open source
 
 ---
 
-# Slide 4: Methodology & Results
-## Methodology & Results
+#  Methodology
 
 - Literature review
 - Surveys & interviews
-- Adaptation
-- Analysis
-- Study results
-- Open source
-- Application to fields
+- Adaptation of prototype and methodologies
+- Analysis of impact of use AI
+
+---
+
+#  Results
+
+- Study how AI can be used in learning
+- Open source of prototype and methodologies
+- Relation with other fields
 - AI observatory
