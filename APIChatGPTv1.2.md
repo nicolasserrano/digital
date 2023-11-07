@@ -77,7 +77,7 @@ https://developer.marvel.com/docs
 <video controls="" name="media"><source src="https://synthesia-results.s3.eu-west-1.amazonaws.com/website_demos/Avatars-Page/white-bkg/Jason.mp4" type="video/mp4"></video>
 ## JSON
 http://www.nicolasserrano.com/CS/JSON
-<iframe style="display: block; margin: 0 auto;" src="https://nicolasserrano.github.io/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" data-fixed-url="1" src="https://nicolasserrano.github.io/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
 ## JSON
 ```
 {
