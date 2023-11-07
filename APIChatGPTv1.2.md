@@ -62,7 +62,7 @@ https://www.nbcnews.com/tech/tech-news/twitter-will-start-charging-developers-ap
 Otra noticia, sobre reddit: https://www.theverge.com/2023/4/18/23688463/reddit-developer-api-terms-change-monetization-ai
 ## APIs
 http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
-<iframe style="display: block; margin: 0 auto;" data-fixed-url="1" src="https://nicolasserrano.com/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" data-fixed-url="1" src="https://www.nicolasserrano.com/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
 ## APIs
 https://developer.marvel.com/docs
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com" height="520" width="1024" allowfullscreen="" ></iframe>
