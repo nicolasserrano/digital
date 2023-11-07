@@ -174,6 +174,15 @@ Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pu
 <h3>Tactic 1: Specify the steps required to complete a task
 <h3>Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion
 
+## Other examples
+<h3>Nasa-petal
+https://github.com/nasa-petal/discord_bot
+<h3>One Useful Thing of Ethan Mollick
+https://www.oneusefulthing.org/i/138388046/structured-prompting
+<h3>Empowering Learners.AI Keynote: Aneesha Bakharia</h3>
+https://www.youtube.com/watch?v=QlchAKC_w8g&t=9s
+
+
 ## Excel example 1. Set the data
 
 ``` vbscript    
