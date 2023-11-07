@@ -313,6 +313,9 @@ https://github.com/Significant-Gravitas/Auto-GPT
 - Same prompt for a list of items
 - Permanent assistant (server mode)
 - Chatbot for existing application
+- The Batch (Andrew Ng) about [LLM APIs](https://info.deeplearning.ai/ais-new-power-couple-movie-industry-limits-ai-youtube-goes-generative-more-web-data-more-bias-1)
+- ![image](https://github.com/nicolasserrano/digital/assets/13941127/447f612b-3725-49fc-9d65-4f62ba0fc175)
+
 ## References
 <span></span>
 - [The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
@@ -321,6 +324,7 @@ https://github.com/Significant-Gravitas/Auto-GPT
 - [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
 
 ## Questions
+https://www.wooclap.com/
 
 ### The Inside Story of ChatGPT’s Astonishing Potential
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/lang/en/greg_brockman_the_inside_story_of_chatgpt_s_astonishing_potential" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
