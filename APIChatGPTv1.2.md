@@ -62,7 +62,7 @@ https://www.nbcnews.com/tech/tech-news/twitter-will-start-charging-developers-ap
 Otra noticia, sobre reddit: https://www.theverge.com/2023/4/18/23688463/reddit-developer-api-terms-change-monetization-ai
 ## APIs
 http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
-<iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https:/nicolasserrano.github.io/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
 ## APIs
 https://developer.marvel.com/docs
 <iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com" height="520" width="1024" allowfullscreen="" ></iframe>
@@ -77,7 +77,7 @@ https://developer.marvel.com/docs
 <video controls="" name="media"><source src="https://synthesia-results.s3.eu-west-1.amazonaws.com/website_demos/Avatars-Page/white-bkg/Jason.mp4" type="video/mp4"></video>
 ## JSON
 http://www.nicolasserrano.com/CS/JSON
-<iframe style="display: block; margin: 0 auto;" src="//nicolasserrano.github.io/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
+<iframe style="display: block; margin: 0 auto;" src="https://nicolasserrano.github.io/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
 ## JSON
 ```
 {
