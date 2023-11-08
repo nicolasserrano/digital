@@ -103,6 +103,8 @@ http://www.nicolasserrano.com/CS/JSON
   ]
 }
 ```
+## JSON as Output format
+Please provide the different selectors of CSS, with the name, syntax, brief explanation, and an example. Provide it in JSON format.
 
 ## Open AI API
 - A way to make http calls to the Chat GPT
