@@ -60,22 +60,8 @@ https://jsonformatter.org/?utm_content=cmp-true
 
 ---
 background-image: url(https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
+background-size: contain;
 
-### Transistores
-
-<img src="https://ourworldindata.org/uploads/2019/05/Transistor-Count-over-time-to-2018.png" width="80%"/>
-
-???
-https://ourworldindata.org/technological-progress#the-exponential-increase-of-the-number-of-transistors-on-integrated-circuits
-
-
----
-background-image: url(https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
-
-???
-IBM 305 RAMAC, first computer with a hard disk drive (HDD). weight: 1 ton . Capcity: 5 MB (1956)
-
-### Almacenamiento
 # ChatGPT
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
