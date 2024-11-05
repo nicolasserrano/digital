@@ -44,9 +44,9 @@ https://jsonformatter.org/?utm_content=cmp-true
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Sede de ChatGPT</a></div></div>
 
-# Tabla
+---
 
-<iframe width="90%"  height="90%"" src="https://www.impromptubook.com/" allowfullscreen></iframe>
+<iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
 
 ## Tabla html
 <table border=1>
