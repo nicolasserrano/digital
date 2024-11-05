@@ -54,7 +54,7 @@ but for work? To help us do less—or do more? Until now it has
 always been the latter. I hope it continues to be the latter, not
 just for a few of us, but for most of us.
 
-## Tabla html
+## Students work
 <table border=1>
 <tbody>
 <tr>
@@ -70,7 +70,9 @@ just for a few of us, but for most of us.
 </tbody>
 <tr>
 <th></th>
-<th>Profesor No</th>
+<th> <td><img src="(https://github.com/user-attachments/assets/70e4284c-7a69-4d7e-80a7-34085a2c3a53" width="300" alt="image">
+ <td><img src="https://github.com/user-attachments/assets/446fb270-d9c1-49ec-980b-f3564e254d3e" width="300" alt="image">
+Profesor No</th>
 <th>Profesor Sí</th>
 </tr>
 </table>
