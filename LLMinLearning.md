@@ -44,6 +44,12 @@ https://jsonformatter.org/?utm_content=cmp-true
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Sede de ChatGPT</a></div></div>
 
+# Tabla
+|                | Profesor No                     | Profesor Sí |
+|----------------|--------------------------------|-------------|
+| Estudiante Sí  | Hace menos                     | Hace más    |
+| Estudiante No  | <img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><BR>Han estado debajo de una roca  | ![image](https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820) <BR> No Existe  |
+
 ## ChatGPT
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
