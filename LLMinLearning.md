@@ -58,7 +58,7 @@ https://jsonformatter.org/?utm_content=cmp-true
 ## slide 3
 
 
---- 
+---
 background-image: url(https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
 
 ### Transistores
@@ -70,7 +70,7 @@ https://ourworldindata.org/technological-progress#the-exponential-increase-of-th
 
 
 ---
-background-image: url(https://i.imgur.com/oQzZ1F4.jpg)
+background-image: url(https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
 
 ???
 IBM 305 RAMAC, first computer with a hard disk drive (HDD). weight: 1 ton . Capcity: 5 MB (1956)
