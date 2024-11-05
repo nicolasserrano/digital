@@ -52,13 +52,6 @@ https://jsonformatter.org/?utm_content=cmp-true
 
 ## Tabla html
 <table border=1>
-<thead>
-<tr>
-<th></th>
-<th>Profesor No</th>
-<th>Profesor Sí</th>
-</tr>
-</thead>
 <tbody>
 <tr>
 <td>Estudiante Sí</td>
@@ -71,6 +64,13 @@ https://jsonformatter.org/?utm_content=cmp-true
 <td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
 </tr>
 </tbody>
+<thead>
+<tr>
+<th></th>
+<th>Profesor No</th>
+<th>Profesor Sí</th>
+</tr>
+</thead>
 </table>
 
 ## slide 2
