@@ -47,6 +47,12 @@ https://jsonformatter.org/?utm_content=cmp-true
 ---
 
 <iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
+## Main quote
+
+Or is technology’s ultimate goal to free oneself not from work,
+but for work? To help us do less—or do more? Until now it has
+always been the latter. I hope it continues to be the latter, not
+just for a few of us, but for most of us.
 
 ## Tabla html
 <table border=1>
