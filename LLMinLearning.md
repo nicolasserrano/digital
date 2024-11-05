@@ -58,22 +58,19 @@ just for a few of us, but for most of us.
 <table border=1>
 <tbody>
 <tr>
-<td>Estudiante Sí</td>
-<td>Hace menos</td>
-<td>Hace más</td>
+<td>Estudiant use</td>
+<td><img src="(https://github.com/user-attachments/assets/70e4284c-7a69-4d7e-80a7-34085a2c3a53" width="300" alt="image"><BR>Do more</td>
+<td><img src="https://github.com/user-attachments/assets/446fb270-d9c1-49ec-980b-f3564e254d3e" width="300" alt="image"><BR>Do more</td>
 </tr>
 <tr>
-<td>Estudiante No</td>
+<td>Estudiante don't use</td>
 <td><img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><br>Han estado debajo de una roca</td>
- <td><img src="https://github.com/user-attachments/assets/597a0eb0-a35a-4997-8de1-cfd67889ba3b" width="300" alt="image"> <br> No Existe</td>
+ <td><img src="https://github.com/user-attachments/assets/597a0eb0-a35a-4997-8de1-cfd67889ba3b" width="300" alt="image"> <br>It does not exist</td>
 </tr>
 </tbody>
 <tr>
-<th></th>
-<th> <td><img src="(https://github.com/user-attachments/assets/70e4284c-7a69-4d7e-80a7-34085a2c3a53" width="300" alt="image">
- <td><img src="https://github.com/user-attachments/assets/446fb270-d9c1-49ec-980b-f3564e254d3e" width="300" alt="image">
-Profesor No</th>
-<th>Profesor Sí</th>
+<th>the teacher does **not** require it</th>
+<th>the teacher requires it</th>
 </tr>
 </table>
 
