@@ -41,8 +41,8 @@ https://jsonformatter.org/?utm_content=cmp-true
          Total  30 min
 </pre>
 
-# ChatGPT for engineers (OpenAI API)
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://youtube.com/shorts/yx1suJcivws?si=nQP3wX4MBzQH1XeL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+# Sede de ChatGPT
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Sede de ChatGPT</a></div></div>
 
 ## ChatGPT
 https://chat.openai.com/
