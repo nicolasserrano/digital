@@ -65,7 +65,7 @@ just for a few of us, but for most of us.
 <tr>
 <td>Estudiante No</td>
 <td><img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><br>Han estado debajo de una roca</td>
-<td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
+ <td><img src="https://github.com/user-attachments/assets/597a0eb0-a35a-4997-8de1-cfd67889ba3b" width="300" alt="image"> <br> No Existe</td>
 </tr>
 </tbody>
 <tr>
@@ -74,6 +74,9 @@ just for a few of us, but for most of us.
 <th>Profesor Sí</th>
 </tr>
 </table>
+
+???
+ <td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
 
 ## slide 2
 
