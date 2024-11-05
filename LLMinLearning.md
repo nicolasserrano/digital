@@ -50,6 +50,8 @@ https://jsonformatter.org/?utm_content=cmp-true
 | Estudiante Sí  | Hace menos                     | Hace más    |
 | Estudiante No  | <img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><BR>Han estado debajo de una roca  | ![image](https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820) <BR> No Existe  |
 
+<iframe width="840"  height="472"" src="https://www.impromptubook.com/" allowfullscreen></iframe>
+
 ## Tabla html
 <table border=1>
 <tbody>
@@ -64,13 +66,11 @@ https://jsonformatter.org/?utm_content=cmp-true
 <td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
 </tr>
 </tbody>
-<thead>
 <tr>
 <th></th>
 <th>Profesor No</th>
 <th>Profesor Sí</th>
 </tr>
-</thead>
 </table>
 
 ## slide 2
