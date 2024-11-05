@@ -77,14 +77,13 @@ just for a few of us, but for most of us.
 ???
  <td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
 
-## slide 2
-
-## slide 3
-
-
 ---
 background-image: url(https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
 background-size: contain
+
+## Students use
+- Fist illusion
+- Policies
 
 # ChatGPT
 https://chat.openai.com/
