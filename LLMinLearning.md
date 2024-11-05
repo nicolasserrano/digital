@@ -50,8 +50,28 @@ https://jsonformatter.org/?utm_content=cmp-true
 | Estudiante Sí  | Hace menos                     | Hace más    |
 | Estudiante No  | <img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><BR>Han estado debajo de una roca  | ![image](https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820) <BR> No Existe  |
 
-#
-![image](https://github.com/user-attachments/assets/5a826abe-d2f3-489b-8672-d2d8bf223622)
+## Tabla html
+<table border=1>
+<thead>
+<tr>
+<th></th>
+<th>Profesor No</th>
+<th>Profesor Sí</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estudiante Sí</td>
+<td>Hace menos</td>
+<td>Hace más</td>
+</tr>
+<tr>
+<td>Estudiante No</td>
+<td><img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="300"><br>Han estado debajo de una roca</td>
+<td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
+</tr>
+</tbody>
+</table>
 
 ## slide 2
 
