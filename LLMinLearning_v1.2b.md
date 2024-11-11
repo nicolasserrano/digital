@@ -137,6 +137,13 @@ background-size: contain
 <iframe width="100%" height="100%" src="https://hbr.org/2023/09/were-all-programmers-now" allowfullscreen></iframe>
 
 ---
+https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-andrew-ng-and-andrea-pasinetti/
+
+<iframe width="100%" height="100%" src="https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-andrew-ng-and-andrea-pasinetti/"></iframe>
+
+---
+
+
 
 ## We Are All Programmers Now
 
@@ -149,143 +156,9 @@ https://chatgpt.com/share/672ba72f-b124-8004-9f3d-b8e31f425e89
 
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
-## ChatGPT Plus 
-![image](https://github.com/nicolasserrano/digital/assets/13941127/c1605491-db27-4d85-ac44-1335f0d181a5)
-## OpenAI API
-[OpenAI API](https://platform.openai.com/overview) 
-![image](https://github.com/nicolasserrano/digital/assets/13941127/51120153-c33a-4386-8726-f776dfda79a5)
+##
 
-## HTTP
-![](//nicolasserrano.github.io/CS/images/digital_50.jpg)
-## APIs
-![image](https://github.com/nicolasserrano/digital/assets/13941127/9edcb4c0-ca8a-4968-8be9-7709d0b4ae73)
-???
-https://www.nbcnews.com/tech/tech-news/twitter-will-start-charging-developers-api-access-rcna68905
-Otra noticia, sobre reddit: https://www.theverge.com/2023/4/18/23688463/reddit-developer-api-terms-change-monetization-ai
-## APIs
-http://www.nicolasserrano.com/CS/AJAX/bookForm2.html
-<iframe style="display: block; margin: 0 auto;" data-fixed-url="1" src="https://www.nicolasserrano.com/CS/AJAX/bookForm2.html" height="520" width="1024" allowfullscreen="" ></iframe>
-## APIs
-https://developer.marvel.com/docs
-<iframe style="display: block; margin: 0 auto;" src="https://developer.marvel.com" height="520" width="1024" allowfullscreen="" ></iframe>
-
-## JSON
-```
-{
-  "nombre": "Juan Pérez",
-  "edad": 30
-}
-```
-<video controls="" name="media"><source src="https://synthesia-results.s3.eu-west-1.amazonaws.com/website_demos/Avatars-Page/white-bkg/Jason.mp4" type="video/mp4"></video>
-## JSON
-http://www.nicolasserrano.com/CS/JSON
-<iframe style="display: block; margin: 0 auto;" data-fixed-url="1" src="https://www.nicolasserrano.com/CS/JSON" height="420" width="1024" allowfullscreen="" ></iframe>
-## JSON
-```
-{
-  "nombre": "Juan Pérez",
-  "edad": 30,
-  "ciudad": "Ciudad de México",
-  "intereses": ["programación", "viajes", "lectura"],
-  "educación": {
-    "universidad": "Universidad Nacional Autónoma de México",
-    "carrera": "Ingeniería de Software"
-  },
-  "experiencia_laboral": [
-    {
-      "puesto": "Desarrollador de software",
-      "empresa": "ABC Software",
-      "años": 3
-    },
-    {
-      "puesto": "Analista de datos",
-      "empresa": "XYZ Analytics",
-      "años": 2
-    }
-  ]
-}
-```
-## JSON as Output format
-Please provide the different selectors of CSS, with the name, syntax, brief explanation, and an example. Provide it in JSON format.
-
-## Open AI API
-- A way to make http calls to the Chat GPT
-- [Billing and limits](https://platform.openai.com/account/billing/overview) - [Pricing](https://openai.com/pricing)
-- [Playground](https://platform.openai.com/playground) - [Example](https://platform.openai.com/playground/p/default-playful-thank-you-note)
-
-.width[![image](https://github.com/nicolasserrano/digital/assets/13941127/f7d76073-4704-41e3-b7aa-a661c44ca77a)]
-
-## API usage
-https://platform.openai.com/account/usage
-.width[![image](https://github.com/nicolasserrano/digital/assets/13941127/0fd6c479-eef3-4985-a0c8-a6ce477ecfd5)]
-## API parameters
-https://platform.openai.com/docs/api-reference/chat
-.width[![image](https://github.com/nicolasserrano/digital/assets/13941127/51b9f961-d1c3-43ed-b1f1-dbe0adc04cef)]
-## API model
-![image](https://github.com/nicolasserrano/digital/assets/13941127/1d70e380-3eef-4732-ab49-9c122e253444)
-
-
-### Tokens  
-https://platform.openai.com/tokenizer
-
---
-
-- English use less tokens
-
---
-
-- Tokens are english words
-
---
-
-- You can set instructions in English and request output in another language
-
---
-
-![image](https://github.com/nicolasserrano/digital/assets/13941127/666817d4-60e6-43bc-a96f-5df70f0d96fd)
-
-???
-Utiliar primer párrafo de la página de Tolenizer, o el siguiente texto:
-
-English: 
-The GPT family of models process text using tokens, which are common sequences of characters found in text. The models understand the statistical relationships between these tokens, and excel at producing the next token in a sequence of tokens.
-
-Spanish:
-
-La familia de modelos GPT procesa texto mediante tokens, que son secuencias comunes de caracteres que se encuentran en el texto. Los modelos comprenden las relaciones estadísticas entre estos tokens y sobresalen en la producción del siguiente token en una secuencia de tokens.
-
-Example of the "Show example" translated:
-
-Muchas palabras se asignan a un token, pero otras no: indivisible.
-
-Los caracteres Unicode, como los emojis, pueden dividirse en varios tokens que contengan los bytes subyacentes: 🤚🏾.
-
-Las secuencias de caracteres que se encuentran comúnmente unas junto a otras pueden agruparse: 1234567890
-
-## Prompting Principles
-<h3>Principle 1: Write clear and specific instructions
-<h3>Principle 2: Give the model time to “think”
-
-## Principle 1: Write clear and specific instructions
-<h3>Tactic 1: Use delimiters to clearly indicate distinct parts of the input  
-  
-    Delimiters can be anything like: ```, """, < >, <tag> </tag>,
-<h3>Tactic 2: Ask for a structured output
-<h3>Tactic 3: Ask the model to check whether conditions are satisfied
-<h3>Tactic 4: "Few-shot" prompting
-
-## Principle 2: Give the model time to “think”
-<h3>Tactic 1: Specify the steps required to complete a task
-<h3>Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion
-
-## Other examples
-<h3>Nasa-petal
-https://github.com/nasa-petal/discord_bot
-<h3>One Useful Thing of Ethan Mollick
-https://www.oneusefulthing.org/i/138388046/structured-prompting
-<h3>Empowering Learners.AI Keynote: Aneesha Bakharia</h3>
-https://www.youtube.com/watch?v=QlchAKC_w8g&t=9s
-
+# Examples
 
 ## Excel example 1. Set the data
 
