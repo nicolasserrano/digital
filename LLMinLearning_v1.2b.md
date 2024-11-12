@@ -122,8 +122,8 @@ background-size: contain
 <table border="1" cellpadding="1" cellspacing="1">
 	<tbody>
 		<tr>
-			<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/220px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg" style="height:180px; width:147px" /></td>
 			<td><img alt="Nvidia CEO Jensen Huang" src="https://cdn.mos.cms.futurecdn.net/BWPBQYAy2DjS4ABFS4QZCT-320-80.jpg" style="height:180px; width:320px" /></td>
+			<td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/220px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg" style="height:180px; width:147px" /></td>
 		</tr>
 	</tbody>
 </table>
@@ -141,13 +141,13 @@ https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-a
 
 <iframe width="100%" height="100%" src="https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-andrew-ng-and-andrea-pasinetti/"></iframe>
 
----
-
-
-
 ## We Are All Programmers Now
 
 https://hbr.org/2023/09/were-all-programmers-now
+
+## The Batch. Andrew Ng blog.
+
+https://info.deeplearning.ai/ais-new-power-couple-movie-industry-limits-ai-youtube-goes-generative-more-web-data-more-bias-1
 
 ## Example of code:
 
