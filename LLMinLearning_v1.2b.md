@@ -24,6 +24,8 @@ https://jsonformatter.org/?utm_content=cmp-true
 
 Others
 https://edition.cnn.com/2023/11/22/tech/openai-cast-of-characters-altman
+Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
+
 
 ## Content
 <pre>
