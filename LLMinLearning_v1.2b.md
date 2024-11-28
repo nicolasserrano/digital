@@ -22,6 +22,9 @@ Login in:
 Tools
 https://jsonformatter.org/?utm_content=cmp-true
 
+Others
+https://edition.cnn.com/2023/11/22/tech/openai-cast-of-characters-altman
+
 ## Content
 <pre>
 - ChatGPT        2 min
