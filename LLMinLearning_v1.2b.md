@@ -1,6 +1,7 @@
-<h2>LLMs in Learning v1.2b</h2>
+  
 
-<div class=""><img src="https://q-server.tecnun.es/codex/images/login/image9.jpeg" height="600px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
+<div class=""><img src="https://q-server.tecnun.es/codex/images/login/image9.jpeg" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
+<h2>LLMs in Learning - Tecnun - 15-01-2025</h2>
 
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/LLMinLearning_v1.2b.md)
@@ -51,17 +52,20 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
-# Futuro del trabajo
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
-
 ---
 <iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
-## Main quote
+
+---
+
+class: background-image-impromptu
+
+<h2> Main quote</h2>
 
 Or is technology’s ultimate goal to free oneself not from work,
 but for work? To help us do less—or do more? Until now it has
 always been the latter. I hope it continues to be the latter, not
 just for a few of us, but for most of us.
+
 
 --
 
@@ -158,6 +162,7 @@ https://hbr.org/2023/09/were-all-programmers-now
 
 https://info.deeplearning.ai/ais-new-power-couple-movie-industry-limits-ai-youtube-goes-generative-more-web-data-more-bias-1
 
+
 ## Example of code:
 
 https://chatgpt.com/share/672ba72f-b124-8004-9f3d-b8e31f425e89
@@ -165,123 +170,6 @@ https://chatgpt.com/share/672ba72f-b124-8004-9f3d-b8e31f425e89
 
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
-##
-
-# Examples
-
-## Excel example 1. Set the data
-
-``` vbscript    
-    ' Set the data
-    ' Set your OpenAI API key here
-    apiKey = "sk-" + Range("Conf!A2")
-    
-    ' Set OpenAI API endpoint URL
-    apiUrl = "https://api.openai.com/v1/chat/completions"
-    max_tokens = 200
-    
-    jsonBody = "{""messages"": [{""role"": ""system"", ""content"": ""You are a helpful assistant.""}," & _
-      "{""role"": ""user"", ""content"": """ & userInput & """}]," & _
-      "  ""max_tokens"":" & max_tokens & ",""n"": 1, ""temperature"": 0, ""model"":""gpt-3.5-turbo""}"
-    
-    Range("E2").Value = jsonBody
-```    
-
-## Excel example 2. Call the API
-
-```  vbscript  
-    ' Call API
-    ' Create an HTTP object
-    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    
-    ' Send the request to OpenAI API
-    With objHTTP
-        .Open "POST", apiUrl, False
-        .setRequestHeader "Content-Type", "application/json"
-        .setRequestHeader "Authorization", "Bearer " & apiKey
-        .send jsonBody
-        jsonResponse = .responseText
-    End With
-    Range("D2").Value = jsonResponse
-```
-
-## Excel example 3. Parse JSON
-
-``` vbscript
-    ' Parse JSON
-    Dim objResponse
-    Set objResponse = ParseJSON(jsonResponse)
-    Debug.Print ListPaths(objResponse)
-    
-    Dim totalTokens As String
-    totalTokens = objResponse("obj.usage.total_tokens")
-    Range("C2").Value = totalTokens
-    
-    response = objResponse("obj.choices(0).message.content")
-    response = Replace(response, "\n", vbCrLf)
-    GetOpenAIResponse = response
-```  
-![image](https://github.com/nicolasserrano/digital/assets/13941127/7ee2de52-fd32-4d01-8b27-dfb2aefa0a28)
-
-## Excel with roles
-.width[![image](https://github.com/nicolasserrano/digital/assets/13941127/77addf75-54a3-4611-aa5c-45371e624db2)]
-
-## JavaScript example
-``` javascript
-// API endpoint URL
-const apiUrl = 'https://api.openai.com/v1/chat/completions';
-// API parameters
-const data = {
-  messages: [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Who won the world series in 2020?' },
-    { role: 'assistant', content: 'The Los Angeles Dodgers won the World Series in 2020.' },
-    { role: 'user', content: 'Where was it played?' },
-    { role: 'assistant', content: 'The 2020 World Series was played in Arlington, Texas at the Globe Life Field, which was the new home stadium for the Texas Rangers.' },
-    { role: 'user', content: 'Who was the second one.' }
-  ],
-  model:'gpt-3.5-turbo'
-};
-
-// API request options
-const requestOptions = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + api_key // Replace with your OpenAI API key
-  },
-  body: JSON.stringify(data)
-};
-
-// Function to handle the API response
-async function handleApiResponse() {
-  try {
-    const response = await fetch(apiUrl, requestOptions);
-    const json = await response.json();
-    console.log(json.choices[0].message.content); // Output the assistant's response
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-// Make the API call
-handleApiResponse();
-```
-### Javascript console response:
-
-Promise {<pending>}
-The second place in the 2020 World Series was the Tampa Bay Rays.
-
-## Jupyter Notebook example (Python)
-[https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/2/guidelines)
-.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/e0d31e15-dbe6-4ae5-a190-fe4b267aa4ed)]
-
-## Example of use: Auto-GPT
-[https://www.wired.com/story/fast-forward-chatgpt-my-new-chatbot-friend-get-things-done/](https://www.wired.com/story/fast-forward-chatgpt-my-new-chatbot-friend-get-things-done/)
-![image](https://github.com/nicolasserrano/digital/assets/13941127/34ae8a79-2e94-472c-bd1d-b163f513ff1f)
-
-???
-https://github.com/Significant-Gravitas/Auto-GPT
 
 ---
 
@@ -294,6 +182,10 @@ https://github.com/Significant-Gravitas/Auto-GPT
 ---
 
 .horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
+
+# Futuro del trabajo
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
 
 ## Applications / Suggestions
 - Same prompt for a list of items
@@ -339,3 +231,17 @@ Greg Brockman • TED2023
 ???
 Pending:
 Referencias a documentación y videos
+
+
+<style>
+.background-image-impromptu {
+    background: url('https://www.impromptubook.com/wp-content/uploads/2023/05/cover-impromptu.jpg') no-repeat;
+    background-position: 100% center;
+    background-size: auto 80%;
+    background-color: #fff;
+}
+
+.background-image-impromptu p {
+    margin-right: 35%;
+}
+</style>
