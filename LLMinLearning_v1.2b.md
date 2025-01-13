@@ -28,23 +28,10 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 
 
 ## Content
-<pre>
-- ChatGPT        2 min
-- APIs           4 min
-- Formats        5 min
-- Open AI API    
-  - Use          2 min
-  - Tokens       2 min 30 s
-  - Principles   2 min
-- Examples
-  - Excel        6 min
-  - Brobwer      1 min 30 s
-  - Jupyter      1 min 30 s
-  - Codex        1 min 30 s
-- Applications   2 min
-                 ======  
-         Total  30 min
-</pre>
+- Policies
+- Experiences
+- To code or not to code
+- Newsletters to Follow
 
 # Sede de ChatGPT (link)
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Video de Marisa</a></div></div>
@@ -146,10 +133,6 @@ background-size: contain
 
 
 ---
-
-<iframe width="100%" height="100%" src="https://hbr.org/2023/09/were-all-programmers-now" allowfullscreen></iframe>
-
----
 https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-andrew-ng-and-andrea-pasinetti/
 
 <iframe width="100%" height="100%" src="https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-andrew-ng-and-andrea-pasinetti/"></iframe>
@@ -158,7 +141,7 @@ https://venturebeat.com/ai/schools-should-teach-ai-to-every-child-according-to-a
 
 https://hbr.org/2023/09/were-all-programmers-now
 
-## The Batch. Andrew Ng blog.
+## Andrew Ng blog
 
 https://info.deeplearning.ai/ais-new-power-couple-movie-industry-limits-ai-youtube-goes-generative-more-web-data-more-bias-1
 
@@ -170,6 +153,12 @@ https://chatgpt.com/share/672ba72f-b124-8004-9f3d-b8e31f425e89
 
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
+
+## Experiences with a middle application
+
+---
+
+![](codex_architecture.svg)
 
 ---
 
@@ -186,6 +175,9 @@ https://chat.openai.com/
 # Futuro del trabajo
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
+# Newsletters to Follow
+- [Letters from Andrew Ng (The Batch)](https://www.deeplearning.ai/the-batch/)
+- [One Useful Thing, from Ethan Mollick](https://www.oneusefulthing.org/archive?sort=new)
 
 ## Applications / Suggestions
 - Same prompt for a list of items
