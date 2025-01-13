@@ -46,11 +46,14 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
          Total  30 min
 </pre>
 
-# Sede de ChatGPT
+# Sede de ChatGPT (link)
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Video de Marisa</a></div></div>
 
----
+# Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
+# Futuro del trabajo
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ---
 <iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
