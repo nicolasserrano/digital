@@ -1,7 +1,7 @@
  black
 <h2>LLMs in Learning v1.2b</h2>
 
-<div style="background-color: black;" class=""><img src="https://images.openai.com/blob/b11fba8c-c51f-41c1-95b8-cc55db89af49/gpt-4-motif.svg?width=10&amp;height=10&amp;quality=50" width="100%" height="400px" alt="GPT-4 Line Motif" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
+<div class=""><img src="https://q-server.tecnun.es/codex/images/login/image9.jpeg" width="100%" height="600px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/LLMinLearning_v1.2b.md)
