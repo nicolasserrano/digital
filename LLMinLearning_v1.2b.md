@@ -50,7 +50,9 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Video de Marisa</a></div></div>
 
 ---
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
+---
 <iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
 ## Main quote
 
