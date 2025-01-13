@@ -6,7 +6,7 @@
 ???
 Play: [https://www.nicolasserrano.com/r?https://www.nicolasserrano.com/digital/APIChatGPT.md](http://www.nicolasserrano.com/r?http://www.nicolasserrano.com/digital/LLMinLearning_v1.2b.md)
 
-[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md) v1.05
+[Edit](https://github.com/nicolasserrano/digital/edit/master/APIChatGPT.md) v1.06 (2025-01-13)
 
 breakTitlesWith#  // to crate a new slide with each title defined with #
 
