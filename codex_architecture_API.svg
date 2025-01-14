@@ -31,13 +31,12 @@
     </g>
 
     <!-- Servidor OpenAI -->
-        <!-- 
     <g transform="translate(550,220)">
+        <!-- Nube -->
         <path d="M25,60 Q0,60 0,40 Q0,20 20,20 Q20,0 40,0 Q60,0 60,20 Q80,20 80,40 Q80,60 55,60" 
               fill="#99cc99" stroke="#339933" stroke-width="2"/>
         <text x="40" y="90" text-anchor="middle" font-family="Arial">API OpenAI</text>
     </g>
-        -->
 
     <!-- Flechas de conexión -->
     <!-- Cliente a Servidor -->
@@ -45,9 +44,8 @@
         <path d="M170,180 L300,180" marker-end="url(#arrowhead)"/>
         <!-- Servidor a DB -->
         <path d="M380,180 L450,130" marker-end="url(#arrowhead)"/>
-        <!-- Servidor 
+        <!-- Servidor a OpenAI -->
         <path d="M380,200 L550,250" marker-end="url(#arrowhead)"/>
-        a OpenAI -->
     </g>
 
     <!-- Definición de la flecha -->

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      
+      h2+p a {
+        float: right;
+        margin-top: -6em;
+        font-size: small;
+        background-color: lightblue;
+        text-decoration: none;
+        padding: 0.3em;
+    }
+    .remark-slide .remark-slide-content h2{margin-bottom: 0.5em;}
+      
+    span.horizontal img {
+        width: 100%;
+    }
+      
+    code.javascript.hljs.remark-code {
+        font-size: 14px;
+    }
+    
+    .remark-slide-content.black.hljs-default {
+        background-color: #000000;
+        color: white;
+    }
+    .remark-slide-content .width IMG {
+        width: 100%;
+    }
+
+    </style>
+    <script>
+    var slideshow
+    function createDocument() {
+      var xmlhttp =new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            str =  xmlhttp.responseText;
+            if (str.search("breakTitlesWith#") != -1 || window.location.href.search("breakTitlesWith#") != -1) {
+              str = str.replace(/^#/gm, "---\n#");
+            }
+            document.getElementById("source").innerHTML = "class: center, middle" + str;
+            //slideshow = remark.create();
+            //slideshow = remark.create({ratio: '4:3'});
+            slideshow = remark.create({ratio: '16:9'});
+            
+            // change target of links
+            var links = document.getElementsByTagName('a');
+            var len = links.length;
+            for(var i=0; i<len; i++) {
+               links[i].target = "_blank";
+            }
+            
+            parser = document.createElement('a');
+            parser.href = document.baseURI
+            initialUrl = parser.protocol + parser.port + "//" + parser.host + parser.pathname.substring(0,parser.pathname.lastIndexOf('/'));
+            parser.href=parser.search.substring(1);
+            finalUrl   = parser.protocol + parser.port + "//" + parser.host + parser.pathname.substring(0,parser.pathname.lastIndexOf('/'));
+            
+            //change url of images
+            images=document.getElementsByTagName('img');
+            for (i=0;i<images.length;i++) {
+              el = images[i];
+              if (el.getAttribute('data-fixed-url') != "1") { // don't replace with data-fixed-url="1"
+                el.src =el.src.replace(initialUrl,finalUrl);
+              }
+            }
+            //change src of iframes
+            iframes=document.getElementsByTagName('iframe');
+            for (i=0;i<iframes.length;i++) {
+              el = iframes[i];
+              if (el.getAttribute('data-fixed-url') != "1") { // don't replace with data-fixed-url="1"
+                el.src =el.src.replace(initialUrl,finalUrl);
+              }
+            }
+          }
+      }
+      var urlSearch = window.location.search.substring(1);
+      if (urlSearch == null || urlSearch.length == 0) {
+        urlSearch = "https://raw.githubusercontent.com/nicolasserrano/CS/master/JDBC.md";
+      }
+      
+      if (urlSearch.endsWith('.md')) {
+        title =  urlSearch.slice(0, -3); // Remove the last 3 characters (".md")
+      } else {
+        title =  urlSearch
+      }
+      document.title = title;
+      xmlhttp.open("GET",urlSearch,true);
+      // via Cache-Control header:
+      xmlhttp.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0");
+      // fallbacks for IE and older browsers:
+      xmlhttp.setRequestHeader("Expires", "Tue, 01 Jan 1980 1:00:00 GMT");
+      xmlhttp.setRequestHeader("Pragma", "no-cache");
+      
+      xmlhttp.send();
+    }
+
+    </script>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+    </textarea>
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+      createDocument();
+    </script>
+    <script>
+      function reloadIframes() {
+        iframes = document.getElementsByTagName("iframe")
+        for (i=0;i<iframes.length;i++){
+          iframes[i].src = iframes[i].src;
+        }
+      }
+    </script>
+  </body>
+</html>

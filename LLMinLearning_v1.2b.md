@@ -33,11 +33,10 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 - To code or not to code
 - Newsletters to Follow
 
-# Sede de ChatGPT (link)
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Video de Marisa</a></div></div>
-
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><a href="https://www.youtube.com/shorts/yx1suJcivws">Video</a></div></div>
 
 ---
 <iframe width="100%" height="100%" src="https://www.impromptubook.com/" allowfullscreen></iframe>
@@ -112,7 +111,50 @@ background-size: contain
 <p style="margin-left:48px; text-align:left"><span style="font-size:14.0pt"><span style="font-family:Arial"><span style="color:#4d4d4d">See </span></span></span><span style="font-size:14.0pt"><span style="font-family:Arial"><span style="color:#4d4d4d"><a href="https://research-and-innovation.ec.europa.eu/news/all-research-and-innovation-news/guidelines-responsible-use-generative-ai-research-developed-european-research-area-forum-2024-03-20_en&amp;pk_campaign=whatsnew_newsletter">&quot;Guidelines on the responsible use of generative AI&quot;</a></span></span></span><span style="font-size:14.0pt"><span style="font-family:Arial"><span style="color:#4d4d4d"> developed by European Research Area Forum to support the responsible use of generative AI.</span></span></span></p>
 
 
+# Example of ADI statement: 
 
+**Normativa de uso de asistentes y ayuda externa**  
+
+Los test y el examen se realizarán de forma individual (salvo los test en equipo) y sin conexión a internet.
+
+Para la realización de los trabajos se puede utilizar la ayuda externa que se desee.  
+La incorporación al trabajo del resultado de dicha ayuda es responsabilidad del/os autor/es del trabajo por lo que deben ser conocedores de forma completa de dicho contenido y justificar su contenido como autor.  
+
+En el caso de código de programación, además, se debe poder explicar qué hace dicho código a nivel de cada término y de algoritmo.
+
+## Experiences with a middle application
+
+---
+
+![](codex_architecture.svg)
+
+---
+
+![](codex_architecture_API.svg)
+
+---
+
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/f9b2bd3c-9bec-4406-bc64-70975d49ca77)]
+
+---
+
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/c394107b-54f5-403d-9a14-741c667818b6)]
+
+---
+
+.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
+
+# Demo
+[Demo](https://q-server.tecnun.es/codex/Login?demo=s1&nid=5530)  
+[Java example](https://q-server.tecnun.es/codex/NoteBookInstance?nid=5530#17969)  
+[HTML example](https://q-server.tecnun.es/codex/NoteBookInstance?nid=5530#17971)  
+[Assistant example](https://q-server.tecnun.es/codex/NoteBookInstance?nid=5530#17970)  
+[Requirements]()  
+
+# Proyectos
+[EIMA](https://codex.tecnun.es/birtuala/) - [demo](https://codex.tecnun.es/codex/Login?demo=ikasle2024b&nid=5247)  
+[Estrategia 2025](https://www.unav.edu/conoce-la-universidad/estrategia-2025/investigacion/sostenibilidad/trabajo#c)  
+[Generación de conocimiento 2024](https://aplicaciones.ciencia.gob.es/proyectosid/)
 
 # To code or not to code
 
@@ -154,30 +196,17 @@ https://chatgpt.com/share/672ba72f-b124-8004-9f3d-b8e31f425e89
 https://chat.openai.com/
 ![](pres-images/ChatGPT/ChatGPT.png)
 
-## Experiences with a middle application
-
----
-
-![](codex_architecture.svg)
-
----
-
-.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/f9b2bd3c-9bec-4406-bc64-70975d49ca77)]
-
----
-
-.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/c394107b-54f5-403d-9a14-741c667818b6)]
-
----
-
-.horizontal[![image](https://github.com/nicolasserrano/digital/assets/13941127/7a56fdb8-c3ad-4c70-b5c9-847bb670ae91)]
+# Futuro del trabajo
 
 # Futuro del trabajo
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+<div><div style="position:relative;height:0;"><iframe src="https://www.youtube.com/embed/pdP-O8sRdag?si=hKQKZjDwbuER4xZ_" width="1210px"  style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 # Newsletters to Follow
 - [Letters from Andrew Ng (The Batch)](https://www.deeplearning.ai/the-batch/)
 - [One Useful Thing, from Ethan Mollick](https://www.oneusefulthing.org/archive?sort=new)
+
+---
+<div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 ## Applications / Suggestions
 - Same prompt for a list of items
@@ -233,6 +262,9 @@ Referencias a documentación y videos
     background-color: #fff;
 }
 
+.remark-slide-number {
+  display: none;
+}
 .background-image-impromptu p {
     margin-right: 35%;
 }
