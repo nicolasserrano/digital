@@ -32,7 +32,6 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 - Policies
 - Experiences
 - Newsletters to Follow
-
 - To code or not to code
 - Future of work
 
@@ -63,32 +62,7 @@ just for a few of us, but for most of us.
 
 <h3>A partner that can help us unlock our full potential as human beings</h3>
 
-
 ## Students work
-<table border=1 style="text-align: center;">
-<tbody>
-<tr>
-<td width=30%>Students use it</td>
-<td width=35%><img src="https://github.com/user-attachments/assets/70e4284c-7a69-4d7e-80a7-34085a2c3a53" width="150" alt="image"><BR>Do less</td>
-<td width=35%><img src="https://github.com/user-attachments/assets/446fb270-d9c1-49ec-980b-f3564e254d3e" width="150" alt="image"><BR>Do more</td>
-</tr>
-<tr>
-<td>Students don't use it</td>
-<td><img src="https://github.com/user-attachments/assets/e2121bdc-e6f9-4860-bdf2-ed12c95fd4aa" width="200"><br>Han estado debajo de una roca</td>
- <td><img src="https://github.com/user-attachments/assets/597a0eb0-a35a-4997-8de1-cfd67889ba3b" width="100" alt="image"> <br>It does not exist</td>
-</tr>
-</tbody>
-<tr>
-<td></td>
-<th>the teacher does <big>not</big> require it</th>
-<th>the teacher requires it</th>
-</tr>
-</table>
-
-???
- <td><img src="https://github.com/user-attachments/assets/4094952e-9629-4336-9d10-626168f79820" alt="image"> <br> No Existe</td>
-
-## Students work 2
 <table border=1 style="text-align: center;">
 <tbody>
 <tr>
