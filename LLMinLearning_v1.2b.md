@@ -214,7 +214,7 @@ Mateo 20: 1 'El Reino de los Cielos es como un hombre, dueño de una propiedad, 
 
 <p><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-huang-advises-against-learning-to-code-leave-it-up-to-ai" rel="noopener noreferrer" tabindex="0">Nvidia CEO Jensen Huang</a> vs <a href="https://en.wikipedia.org/wiki/Andrew_Ng" rel="noopener noreferrer" tabindex="0">AI expert Andrew Ng</a></p>
 
-???  
+???
 [Learn the Language of Software](https://info.deeplearning.ai/deepseek-r1-uncensored-qwq-32b-puts-reasoning-in-smaller-model-phi-4-multimodal-takes-spoken-input-training-ai-may-not-be-fair-use-1)  
 [Speaking things into existence](https://www.oneusefulthing.org/p/speaking-things-into-existence)  
 ---
