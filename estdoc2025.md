@@ -1,7 +1,7 @@
   
 
 <div class=""><img src="https://q-server.tecnun.es/codex/images/login/image2.jpeg" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
-<h2>LLMs in Learning - Tecnun - 15-01-2025</h2>
+<h2>Sesión de estrategia (docencia) - Tecnun - 11-12-2025</h2>
 
 ???
 Play: [https://www.nicolasserrano.com/r?//www.nicolasserrano.com/digital/LLMinLearning_v1.2b.md](https://www.nicolasserrano.com/r?//www.nicolasserrano.com/digital/LLMinLearning_v1.2b.md)  
@@ -28,12 +28,28 @@ https://edition.cnn.com/2023/11/22/tech/openai-cast-of-characters-altman
 Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 
 
-## Content
-- Policies
-- Experiences
-- Newsletters to Follow
-- To code or not to code
-- Future of work
+## Contenido
+- Metodologías activas
+- Evolución de los LLM
+- Experiencias en docencia
+- Impacto en el curriculum
+
+# Metodologías activas
+
+Contenidos más fáciles de crear
+
+# Evolución de los LLM
+
+Evolución de los distintos modelos
+
+# Experiencias en docencia
+
+Asistente, generador, ayuda, compañero, examinador,
+
+# Impacto en el curriculum
+
+Ejemplo de consultoras
+
 
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
