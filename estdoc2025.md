@@ -44,11 +44,28 @@ Evolución de los distintos modelos
 
 # Experiencias en docencia
 
-Asistente, generador, ayuda, compañero, examinador,
+<div class=""><img src="https://substackcdn.com/image/fetch/$s_!qio3!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe1e83c8d-ea24-42a7-ae8c-2559340721d5_1249x1023.png" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
 # Impacto en el curriculum
 
-Ejemplo de consultoras
+**Invierte en :**
+
+- **estudiar algo que realmente aumente tu pensamiento crítico,**
+- **tu capacidad de adaptarte**
+- **y tu habilidad para resolver problemas.**
+
+Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierde el suelo bajo los pies](https://www.enriquedans.com/2025/12/cuando-la-consultoria-pierde-el-suelo-bajo-los-pies.html)
+
+# References
+<span></span>
+- [The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
+- [DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
+- [How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
+- [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
+
+# Veo 3
+
+<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://aistudio.google.com/models/veo-3" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 
 # Sede de ChatGPT
@@ -283,13 +300,6 @@ https://chat.openai.com/
 - Chatbot for existing application
 - The Batch (Andrew Ng) about [LLM APIs](https://info.deeplearning.ai/ais-new-power-couple-movie-industry-limits-ai-youtube-goes-generative-more-web-data-more-bias-1)
 - ![image](https://github.com/nicolasserrano/digital/assets/13941127/447f612b-3725-49fc-9d65-4f62ba0fc175)
-
-## References
-<span></span>
-- [The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
-- [DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
-- [How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
-- [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
 
 ## Questions
 https://www.wooclap.com/
