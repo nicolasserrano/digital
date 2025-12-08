@@ -78,6 +78,10 @@ Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierd
 ---
 <div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
+# Actualidad del tema
+
+https://www.amazon.es/s?k=ai+teaching&i=digital-text&__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1UGMX6T14BC9H&sprefix=ai+teaching%2Cdigital-text%2C355&ref=nb_sb_noss
+
 # Conclusiones
 
 - Como usarla nosotros
