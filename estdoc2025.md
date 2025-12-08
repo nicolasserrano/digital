@@ -44,7 +44,13 @@ Contenidos más fáciles de crear
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8m6ycd603Q?si=0PKxYRkyRcFUGL7X&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-# Evolución de los LLM
+# Evolución
+
+[leaderboard](https://arcprize.org/leaderboard)
+
+# Críticas
+Percepción
+Burbuja
 
 <div class=""><img src="https://info.deeplearning.ai/hs-fs/hubfs/2025.12.03%20LETTER%203.png?upscale=true&width=1200&upscale=true&name=2025.12.03%20LETTER%203.png" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
 
@@ -53,6 +59,10 @@ Evolución de los distintos modelos
 # Experiencias en docencia
 
 <div class=""><img src="https://substackcdn.com/image/fetch/$s_!qio3!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe1e83c8d-ea24-42a7-ae8c-2559340721d5_1249x1023.png" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
+
+# Aplicación
+
+[Diagramas](https://dbdiagram.io/d/69374cb785d373de45ec7f37)
 
 # Impacto en el curriculum
 
