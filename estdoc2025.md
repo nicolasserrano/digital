@@ -29,6 +29,7 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 
 
 ## Contenido
+
 - Metodologías activas
 - Evolución de los LLM
 - Experiencias en docencia
@@ -37,6 +38,11 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 # Metodologías activas
 
 Contenidos más fáciles de crear
+[Veo3](https://aistudio.google.com/models/veo-3)
+
+# Importancia de la IA
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u8m6ycd603Q?si=0PKxYRkyRcFUGL7X&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 # Evolución de los LLM
 
@@ -55,6 +61,7 @@ Evolución de los distintos modelos
 - **estudiar algo que realmente aumente tu pensamiento crítico,**
 - **tu capacidad de adaptarte**
 - **y tu habilidad para resolver problemas.**
+[Entrevista Gustavo Entrala a Karen Hao](https://youtu.be/U36BocbXJs8?si=gK9WYvWHkt2V1NAU&t=3494)
 
 Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierde el suelo bajo los pies](https://www.enriquedans.com/2025/12/cuando-la-consultoria-pierde-el-suelo-bajo-los-pies.html)
 
@@ -62,8 +69,6 @@ Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierd
 <div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 # Veo 3
-
-[Veo3](https://aistudio.google.com/models/veo-3)
 
 # Conclusiones
 
