@@ -38,7 +38,10 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 # Metodologías activas
 
 Contenidos más fáciles de crear
-[Veo3](https://aistudio.google.com/models/veo-3)
+- Generación de video, ej.[Veo3](https://aistudio.google.com/models/veo-3)
+- Generación de contenido teórico
+- Generación de ejercicios evaluables
+- Generación de juegos, simuladores, visualizaciónes, etc.
 
 # Importancia de la IA
 
