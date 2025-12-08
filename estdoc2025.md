@@ -68,14 +68,12 @@ Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierd
 ---
 <div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
-# Veo 3
-
 # Conclusiones
 
 - Como usarla nosotros
-- QUé enseñar
+- Qué enseñar
+- Como evaluar
 - Como enseñar a usarlas
-
 
 # Preguntas
 
