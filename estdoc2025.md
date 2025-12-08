@@ -40,6 +40,8 @@ Contenidos más fáciles de crear
 
 # Evolución de los LLM
 
+<div class=""><img src="https://info.deeplearning.ai/hs-fs/hubfs/2025.12.03%20LETTER%203.png?upscale=true&width=1200&upscale=true&name=2025.12.03%20LETTER%203.png" height="570px" loading="lazy" data-nuxt-img="" aria-hidden="false" class="w-full"></div>
+
 Evolución de los distintos modelos
 
 # Experiencias en docencia
@@ -56,17 +58,21 @@ Evolución de los distintos modelos
 
 Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierde el suelo bajo los pies](https://www.enriquedans.com/2025/12/cuando-la-consultoria-pierde-el-suelo-bajo-los-pies.html)
 
-# References
-<span></span>
-- [The Inside Story of ChatGPT’s Astonishing Potential | Greg Brockman | TED](https://www.youtube.com/watch?v=C_78DM8fG6E)  
-- [DeepLearning.AI Short Courses](https://learn.deeplearning.ai/)  
-- [How AI could save (not destroy) education](https://embed.ted.com/talks/lang/en/sal_khan_how_ai_could_save_not_destroy_education)  
-- [Seminar HBSP: Unlocking the Power of AI: How Tools Like ChatGPT Can Make Teaching Easier and More Effective](https://hbsp.harvard.edu/webinars/unlocking-the-power-of-ai)  
+---
+<div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 # Veo 3
 
-<div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://aistudio.google.com/models/veo-3" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+[Veo3](https://aistudio.google.com/models/veo-3)
 
+# Conclusiones
+
+- Como usarla nosotros
+- QUé enseñar
+- Como enseñar a usarlas
+
+
+# Preguntas
 
 # Sede de ChatGPT
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/yx1suJcivws?si=vTxPpcberCRBquUl" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
@@ -227,8 +233,6 @@ Mateo 20: 1 'El Reino de los Cielos es como un hombre, dueño de una propiedad, 
 - [One Useful Thing, from Ethan Mollick](https://www.oneusefulthing.org/archive?sort=new)
 - [Harvard Business Publishing Education](https://hbsp.harvard.edu/inspiring-minds/categories/artificial-intelligence)
 
----
-<div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 # To code or not to code
 
