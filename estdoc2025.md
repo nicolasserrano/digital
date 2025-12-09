@@ -31,11 +31,13 @@ Why to code (Sam Altman): https://www.youtube.com/shorts/OK0YhF3NMpQ
 ## Contenido
 
 - Metodologías activas
+- Actualización de temas / nuevas áreas de docencia
+- Coordinación entre profesores
 - Evolución de los LLM
 - Experiencias en docencia
 - Impacto en el curriculum
 
-# Metodologías activas
+# Metodologías activas y contenidos
 
 Contenidos más fáciles de crear
 - Generación de video, ej.[Veo3](https://aistudio.google.com/models/veo-3)
@@ -87,6 +89,7 @@ https://www.amazon.es/s?k=ai+teaching&i=digital-text&__mk_es_ES=%C3%85M%C3%85%C5
 
 # Conclusiones
 
+- Creación y gestión de contenidos
 - Como usarla nosotros
 - Qué enseñar
 - Como evaluar
