@@ -45,6 +45,10 @@ Contenidos más fáciles de crear
 - Generación de ejercicios evaluables
 - Generación de juegos, simuladores, visualizaciónes, etc.
 
+---
+
+![image](https://raw.githubusercontent.com/nicolasserrano/digital/refs/heads/master/images/estdoc2025/GeneracionContenidos.png)
+
 # Importancia de la IA
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u8m6ycd603Q?si=0PKxYRkyRcFUGL7X&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -89,9 +93,6 @@ Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierd
 ---
 
 .horizontal[![image](https://raw.githubusercontent.com/nicolasserrano/digital/refs/heads/master/images/estdoc2025/EscuelaRoma.png)]
----
-
-.horizontal[![image](https://raw.githubusercontent.com/nicolasserrano/digital/refs/heads/master/images/estdoc2025/GeneracionContenidos.png)]
 ---
 
 
