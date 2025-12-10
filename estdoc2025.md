@@ -88,10 +88,10 @@ Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierd
 
 ---
 
-.horizontal[![image](https://github.com/nicolasserrano/digital/images/estdoc2025/EscuelaRoma.png)]
+.horizontal[![image](https://raw.githubusercontent.com/nicolasserrano/digital/refs/heads/master/images/estdoc2025/EscuelaRoma.png)]
 ---
 
-.horizontal[![image](https://github.com/nicolasserrano/digital/images/estdoc2025/GeneracionContenidos.png)]
+.horizontal[![image](https://raw.githubusercontent.com/nicolasserrano/digital/refs/heads/master/images/estdoc2025/GeneracionContenidos.png)]
 ---
 
 
