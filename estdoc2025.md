@@ -87,6 +87,11 @@ Ejemplo de Tecnologías de la Información:
 - **y tu habilidad para resolver problemas.**
 [Entrevista Gustavo Entrala a Karen Hao](https://youtu.be/U36BocbXJs8?si=gK9WYvWHkt2V1NAU&t=3494)
 
+[Should we let students use ChatGPT? ](https://youtu.be/ogcSQ-cFRVM?si=9Ab_PjtUtIQ0UV3Y&t=574)
+I think most educators would agree that the goal of education
+- is to help our students learn how to think critically and problem-solve.
+AI technology can be incorporated into the classroom in ways that actually engage students in critical thinking.
+
 Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierde el suelo bajo los pies](https://www.enriquedans.com/2025/12/cuando-la-consultoria-pierde-el-suelo-bajo-los-pies.html)
 
 
