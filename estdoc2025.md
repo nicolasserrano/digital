@@ -67,7 +67,12 @@ Evolución de los distintos modelos
 
 # Aplicación
 
-[Diagramas](https://dbdiagram.io/d/69374cb785d373de45ec7f37)
+Ejemplo de Tecnologías de la Información:
+- Generar requirimientos
+- Feedback sobre requerimientos
+- [Diagramas](https://dbdiagram.io/d/69374cb785d373de45ec7f37)
+- Creación de tablas y datos
+- Programación en cualquier entorno
 
 # Impacto en el curriculum
 
@@ -80,7 +85,16 @@ Evolución de los distintos modelos
 
 Ejemplo de consultoras: [Artículo de Enrique Dans: Cuando la consultoría pierde el suelo bajo los pies](https://www.enriquedans.com/2025/12/cuando-la-consultoria-pierde-el-suelo-bajo-los-pies.html)
 
+
 ---
+
+.horizontal[![image](https://github.com/nicolasserrano/digital/images/estdoc2025/EscuelaRoma.png)]
+---
+
+.horizontal[![image](https://github.com/nicolasserrano/digital/images/estdoc2025/GeneracionContenidos.png)]
+---
+
+
 <div><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="LLMBooksTable.html" width="1210" height="680" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
 # Actualidad del tema
