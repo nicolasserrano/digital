@@ -221,7 +221,7 @@ style: |
 
 **Fase 1**: Formación peronsal _[Completar]_
 
-**Fase 2**: _[Completar]_
+**Fase 2**: Ärea del conocimiento _[Completar]_
 
 **Fase 3**: _[Completar]_
 
