@@ -219,7 +219,7 @@ style: |
 
 ## Esquema de Fases
 
-**Fase 1**: _[Completar]_
+**Fase 1**: Formación peronsal _[Completar]_
 
 **Fase 2**: _[Completar]_
 
