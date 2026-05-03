@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Visor Marp Universal</title>
+  <script>
+    console.log('window.marpCore:', window.marpCore);
+  </script>
+  <script src="./marp-browser.js"></script>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; background: #111; overflow: hidden; }
+    #presentation { height: 100vh; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <div id="presentation">Cargando...</div>
+
+  <script>
+    async function init() {
+      const params = new URLSearchParams(window.location.search);
+      const mdUrl = params.get('md');
+      const styleParam = params.get('style'); // Puede ser un nombre de tema o una URL
+
+      if (!mdUrl) {
+        document.getElementById('presentation').innerHTML = "<h1>Falta ?md=URL</h1>";
+        return;
+      }
+
+      try {
+        // 1. Obtener contenido Markdown
+        const mdRes = await fetch(mdUrl);
+        const markdown = await mdRes.text();
+
+        // 2. Configurar el motor Marp
+        const marp = new window.marpCore.Marp({
+          container: { tag: 'div', id: 'marp-container' },
+          // Si styleParam no es una URL, asumimos que es un tema (gaia, uncover, etc)
+          inlineSVG: true
+        });
+
+        // 3. Lógica de Estilo Dual (Tema oficial vs CSS Externo)
+        let extraCss = "";
+        if (styleParam) {
+          if (styleParam.startsWith('http')) {
+            // Es una URL: Cargamos CSS externo
+            const cssRes = await fetch(styleParam);
+            extraCss = await cssRes.text();
+          } else {
+            // Es un nombre: Forzamos el tema en el Markdown si no lo tiene
+            // Esto asegura que el parámetro de la URL mande sobre el archivo
+            const themeDirective = `\n`;
+            marp.markdown = themeDirective + markdown; 
+          }
+        }
+
+        // 4. Renderizado
+        const { html, css } = marp.render(styleParam && !styleParam.startsWith('http') ? marp.markdown : markdown);
+
+        // 5. Inyección
+        document.getElementById('presentation').innerHTML = `
+          <style>${css}</style>
+          <style>${extraCss}</style>
+          ${html}
+        `;
+        
+        window.marpCore.browser();
+        
+      } catch (e) {
+        console.log('Error:', e);
+        document.getElementById('presentation').innerHTML = "<h1>Error de carga</h1>";
+      }
+    }
+    init();
+  </script>
+</body>
+</html>

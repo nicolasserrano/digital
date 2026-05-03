@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Vista previa del demo del robot</title>
+  <desc id="desc">Portada para abrir el ejemplo interactivo del brazo robotico.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06131a"/>
+      <stop offset="55%" stop-color="#0a1f2b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.16" stroke="#22d3ee" stroke-width="2">
+    <path d="M0 740 H1600"/>
+    <path d="M0 620 H1600"/>
+    <path d="M0 500 H1600"/>
+    <path d="M0 380 H1600"/>
+    <path d="M0 260 H1600"/>
+    <path d="M150 0 V900"/>
+    <path d="M350 0 V900"/>
+    <path d="M550 0 V900"/>
+    <path d="M750 0 V900"/>
+    <path d="M950 0 V900"/>
+    <path d="M1150 0 V900"/>
+    <path d="M1350 0 V900"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="90" width="420" height="560" rx="28" fill="#020617" fill-opacity="0.78" stroke="#1e293b"/>
+    <text x="120" y="160" fill="#67e8f9" font-size="34" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Control de Posicion (XYZ)</text>
+    <g fill="#e2e8f0" font-size="26" font-family="Segoe UI, Arial, sans-serif">
+      <text x="120" y="235">Eje X (Lateral)</text>
+      <text x="120" y="315">Eje Y (Altura)</text>
+      <text x="120" y="395">Eje Z (Profundidad)</text>
+      <text x="120" y="475">Rotacion Punta</text>
+    </g>
+    <g stroke="url(#cyan)" stroke-width="10" stroke-linecap="round">
+      <path d="M120 255 H410"/>
+      <path d="M120 335 H355"/>
+      <path d="M120 415 H385"/>
+      <path d="M120 495 H300"/>
+    </g>
+    <g fill="#22d3ee">
+      <circle cx="340" cy="255" r="13"/>
+      <circle cx="280" cy="335" r="13"/>
+      <circle cx="360" cy="415" r="13"/>
+      <circle cx="245" cy="495" r="13"/>
+    </g>
+    <rect x="120" y="545" width="340" height="62" rx="14" fill="#082f49" stroke="#22d3ee"/>
+    <text x="290" y="585" text-anchor="middle" fill="#cffafe" font-size="28" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Resetear a Home</text>
+  </g>
+
+  <g transform="translate(830 160)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="34" fill="#0ea5e9"/>
+    <rect x="-18" y="18" width="36" height="170" rx="18" fill="#38bdf8"/>
+    <circle cx="0" cy="205" r="30" fill="#7dd3fc"/>
+
+    <g transform="translate(8 212) rotate(-34)">
+      <rect x="-16" y="0" width="32" height="220" rx="16" fill="#22d3ee"/>
+      <circle cx="0" cy="222" r="28" fill="#67e8f9"/>
+    </g>
+
+    <g transform="translate(118 392) rotate(40)">
+      <rect x="-14" y="0" width="28" height="170" rx="14" fill="#38bdf8"/>
+      <circle cx="0" cy="175" r="24" fill="#a5f3fc"/>
+    </g>
+
+    <g transform="translate(225 516) rotate(-18)">
+      <rect x="-10" y="0" width="20" height="120" rx="10" fill="#67e8f9"/>
+      <path d="M-26 126 L0 90 L26 126" fill="none" stroke="#e0f2fe" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <g>
+    <circle cx="1240" cy="450" r="110" fill="#0f172a" stroke="#22d3ee" stroke-width="10"/>
+    <polygon points="1210,390 1210,510 1315,450" fill="#e0f2fe"/>
+  </g>
+
+  <text x="800" y="760" text-anchor="middle" fill="#f8fafc" font-size="60" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Abrir demo interactiva del robot</text>
+  <text x="800" y="815" text-anchor="middle" fill="#94a3b8" font-size="30" font-family="Segoe UI, Arial, sans-serif">Haz clic en la imagen para cargar el iframe en la exportacion HTML</text>
+</svg>

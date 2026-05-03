@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Marp Universal Viewer</title>
+    <style>
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background: #111; overflow: hidden; 
+            font-family: -apple-system, sans-serif; 
+        }
+
+        #presentation { 
+            height: 100vh; width: 100vw; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
+        /* Contenedores de Slides */
+        svg[data-marpit-svg] {
+            display: none;
+            width: 90vw; height: 90vh;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7));
+        }
+        svg.active { display: block; }
+
+        /* --- ARREGLO DE TABLAS --- */
+        section table {
+            display: table !important;
+            border-collapse: collapse !important;
+            width: 100% !important;
+            margin: 20px 0 !important;
+            border: 2px solid #666 !important;
+        }
+        section th, section td {
+            border: 1px solid #999 !important;
+            padding: 12px !important;
+            text-align: left !important;
+            background: white !important;
+            color: black !important;
+        }
+        section th { background: #eee !important; font-weight: bold; }
+
+        /* --- INTERFAZ DE ÍNDICE (Tecla O) --- */
+        #overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 100;
+            overflow-y: auto; padding: 40px; box-sizing: border-box;
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .thumb {
+            background: #333; border: 2px solid #555; border-radius: 4px;
+            cursor: pointer; position: relative; aspect-ratio: 16/9;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .thumb:hover { border-color: #09c; }
+        .thumb span { color: white; font-size: 24px; font-weight: bold; }
+
+        section {
+            background: white !important; color: black !important;
+            width: 1280px; height: 720px;
+            padding: 40px; box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="presentation">
+        <div style="color:white;">Cargando...</div>
+    </div>
+
+    <div id="overlay" onclick="this.style.display='none'">
+        <h2 style="color:white; margin-top:0;">Índice de Diapositivas (Esc para salir)</h2>
+        <div id="grid"></div>
+    </div>
+
+    <script type="module">
+        // Importamos Marpit y el plugin de tablas GFM
+        import { Marpit } from 'https://cdn.skypack.dev/@marp-team/marpit';
+
+        let currentSlide = 0;
+        let slideContainers = [];
+
+        async function init() {
+            const params = new URLSearchParams(window.location.search);
+            const mdUrl = params.get('md');
+
+            if (!mdUrl) return;
+
+            try {
+                const res = await fetch(mdUrl);
+                const markdown = await res.text();
+
+                // Configuramos Marpit para que sea más permisivo con el Markdown
+                const marpit = new Marpit({ 
+                    inlineSVG: true,
+                    markdown: { html: true, breaks: true, linkify: true }
+                });
+                
+                const { html, css } = marpit.render(markdown);
+
+                const container = document.getElementById('presentation');
+                container.innerHTML = `<style>${css}</style>${html}`;
+
+                slideContainers = Array.from(container.querySelectorAll('svg[data-marpit-svg]'));
+
+                // Generar miniaturas para el índice (O)
+                const grid = document.getElementById('grid');
+                slideContainers.forEach((_, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'thumb';
+                    div.innerHTML = `<span>${i + 1}</span>`;
+                    div.onclick = (e) => { e.stopPropagation(); showSlide(i); document.getElementById('overlay').style.display='none'; };
+                    grid.appendChild(div);
+                });
+
+                if (slideContainers.length > 0) showSlide(0);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        window.showSlide = (index) => {
+            if (index >= 0 && index < slideContainers.length) {
+                slideContainers[currentSlide].classList.remove('active');
+                currentSlide = index;
+                slideContainers[currentSlide].classList.add('active');
+            }
+        };
+
+        // --- ATAJOS TECLADO ---
+        document.addEventListener('keydown', e => {
+            const key = e.key.toLowerCase();
+
+            if (key === 'arrowright' || key === ' ') showSlide(currentSlide + 1);
+            if (key === 'arrowleft') showSlide(currentSlide - 1);
+            
+            // Fullscreen (f)
+            if (key === 'f') {
+                if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+                else document.exitFullscreen();
+            }
+
+            // Índice (o)
+            if (key === 'o') {
+                const ov = document.getElementById('overlay');
+                ov.style.display = ov.style.display === 'block' ? 'none' : 'block';
+            }
+
+            // Salir de todo (escape)
+            if (key === 'escape') {
+                document.getElementById('overlay').style.display = 'none';
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>

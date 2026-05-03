@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Marp Universal Viewer</title>
+    <style>
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background: #111; 
+            overflow: hidden; 
+            font-family: sans-serif; 
+        }
+
+        #presentation { 
+            height: 100vh; 
+            width: 100vw; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        /* 1. OCULTAR LOS SVG POR DEFECTO */
+        /* Marpit envuelve cada slide en un svg con este atributo */
+        svg[data-marpit-svg] {
+            display: none;
+            width: 90vw;
+            height: 90vh;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+        }
+
+        /* 2. MOSTRAR SOLO EL SVG ACTIVO */
+        svg.active {
+            display: block;
+        }
+
+        /* 3. Asegurar que el contenido interno del SVG sea visible */
+        section {
+            background: white !important;
+            color: black !important;
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .error-msg { color: white; text-align: center; font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div id="presentation">
+        <div id="status" class="error-msg">Cargando presentación...</div>
+    </div>
+
+    <script type="module">
+        import { Marpit } from 'https://cdn.skypack.dev/@marp-team/marpit';
+
+        let currentSlide = 0;
+        let slideContainers = [];
+
+        async function init() {
+            const params = new URLSearchParams(window.location.search);
+            const mdUrl = params.get('md');
+
+            if (!mdUrl) {
+                document.getElementById('status').innerHTML = "Error: Añade ?md=archivo.md";
+                return;
+            }
+
+            try {
+                const res = await fetch(mdUrl);
+                if (!res.ok) throw new Error("No se pudo leer el archivo Markdown");
+                const markdown = await res.text();
+
+                const marpit = new Marpit({ inlineSVG: true });
+                const { html, css } = marpit.render(markdown);
+
+                const container = document.getElementById('presentation');
+                
+                // Inyectamos el CSS y el HTML. 
+                // HTML contendrá una serie de <svg data-marpit-svg>...</svg>
+                container.innerHTML = `<style>${css}</style>${html}`;
+
+                // IMPORTANTE: Ahora buscamos los SVG, que son los contenedores reales
+                slideContainers = Array.from(container.querySelectorAll('svg[data-marpit-svg]'));
+
+                if (slideContainers.length > 0) {
+                    showSlide(0);
+                } else {
+                    container.innerHTML = "<div class='error-msg'>No se generaron diapositivas.</div>";
+                }
+
+            } catch (e) {
+                console.error(e);
+                document.getElementById('status').innerHTML = `Error: ${e.message}`;
+            }
+        }
+
+        window.showSlide = (index) => {
+            if (index >= 0 && index < slideContainers.length) {
+                // Quitamos la clase active de la diapositiva anterior
+                if (slideContainers[currentSlide]) {
+                    slideContainers[currentSlide].classList.remove('active');
+                }
+                
+                currentSlide = index;
+                
+                // Añadimos active a la nueva
+                slideContainers[currentSlide].classList.add('active');
+                console.log(`Slide actual: ${currentSlide + 1} de ${slideContainers.length}`);
+            }
+        };
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') window.showSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') window.showSlide(currentSlide - 1);
+        });
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor Marp Dinámico</title>
+  <script src="https://cdn.jsdelivr.net/npm/@marp-team/marp-core@4.3.0/lib/browser.min.js"></script>
+  <style>
+    body { margin: 0; padding: 0; background: #222; }
+  </style>
+</head>
+<body>
+
+  <div id="presentation-container">Cargando presentación...</div>
+
+  <script>
+    async function cargarPresentacion() {
+      const params = new URLSearchParams(window.location.search);
+      const mdFile = params.get('md') || 'presentacion.md';
+      const cssFile = params.get('css') || 'estilo.css';
+
+      try {
+        // 1. Fetch de los recursos
+        const [mdRes, cssRes] = await Promise.all([
+          fetch(mdFile),
+          fetch(cssFile)
+        ]);
+
+        const markdown = await mdRes.text();
+        const customCss = await cssRes.text();
+
+        // 2. Configurar motor
+        const { Marp } = window.MarpCore;
+        const marp = new Marp({ inlineSVG: true });
+
+        // 3. Renderizar
+        const { html, css } = marp.render(markdown);
+
+        // 4. Inyectar todo en el DOM
+        // El CSS de Marp + tu CSS personalizado
+        document.getElementById('presentation-container').innerHTML = `
+          <style>${css}</style>
+          <style>${customCss}</style>
+          ${html}
+        `;
+
+        // 5. Inicializar navegabilidad (teclas flechas, etc.)
+        window.MarpCore.browser();
+
+      } catch (err) {
+        console.error("Error al cargar:", err);
+        document.getElementById('presentation-container').innerHTML = "<h1>Error al cargar los archivos</h1>";
+      }
+    }
+
+    cargarPresentacion();
+  </script>
+</body>
+</html>

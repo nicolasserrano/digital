@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazo Robótico 6-DOF - Cinemática Inversa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        #ui-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #444;
+            backdrop-filter: blur(8px);
+            width: 300px;
+            user-select: none;
+            z-index: 100;
+        }
+
+        h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            color: #00e5ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .control-group {
+            margin-bottom: 18px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #ddd;
+        }
+
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #00e5ff;
+        }
+
+        .value-display {
+            float: right;
+            color: #00e5ff;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .info-panel {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+            line-height: 1.5;
+        }
+
+        #reset-btn {
+            width: 100%;
+            background: #222;
+            color: #00e5ff;
+            border: 1px solid #00e5ff;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #reset-btn:hover {
+            background: #00e5ff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-container">
+        <h2>Control de Posición (XYZ)</h2>
+        
+        <div class="control-group">
+            <label>Eje X (Lateral) <span id="vx" class="value-display">2.0</span></label>
+            <input type="range" id="posX" min="-6" max="6" step="0.1" value="2">
+        </div>
+
+        <div class="control-group">
+            <label>Eje Y (Altura) <span id="vy" class="value-display">4.0</span></label>
+            <input type="range" id="posY" min="0.5" max="8" step="0.1" value="4">
+        </div>
+
+        <div class="control-group">
+            <label>Eje Z (Profundidad) <span id="vz" class="value-display">2.0</span></label>
+            <input type="range" id="posZ" min="-6" max="6" step="0.1" value="2">
+        </div>
+
+        <div class="control-group">
+            <label>Rotación Punta (Giro) <span id="vRot" class="value-display">0°</span></label>
+            <input type="range" id="rotEnd" min="-180" max="180" step="1" value="0">
+        </div>
+
+        <button id="reset-btn">Resetear a Home</button>
+
+        <div class="info-panel">
+            <strong>Modo: Cinemática Inversa (IK)</strong><br>
+            Calculando ángulos J1-J6 automáticamente para alcanzar el objetivo rojo.<br>
+            <br>
+            • Arrastrar: Rotar cámara<br>
+            • Rueda: Zoom
+        </div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, controls;
+        let targetMesh, endEffector;
+        
+        // Estructura para IK
+        const robotJoints = []; // Array de huesos para el algoritmo CCD
+        const settings = {
+            targetPos: new THREE.Vector3(2, 4, 2),
+            targetRot: 0
+        };
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a0a);
+            scene.fog = new THREE.Fog(0x0a0a0a, 15, 60);
+
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(12, 10, 12);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.shadowMap.enabled = true;
+            document.body.appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.target.set(0, 2, 0);
+
+            // Luces
+            scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(10, 20, 10);
+            light.castShadow = true;
+            scene.add(light);
+
+            // Suelo técnico
+            const grid = new THREE.GridHelper(20, 20, 0x00e5ff, 0x222222);
+            scene.add(grid);
+
+            // Objetivo (Target)
+            const targetGeo = new THREE.SphereGeometry(0.2, 16, 16);
+            const targetMat = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
+            targetMesh = new THREE.Mesh(targetGeo, targetMat);
+            scene.add(targetMesh);
+
+            buildRobot();
+            setupUI();
+            animate();
+        }
+
+        function createPart(geometry, color, metal = 0.6) {
+            const material = new THREE.MeshStandardMaterial({ 
+                color: color, metalness: metal, roughness: 0.3 
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            return mesh;
+        }
+
+        function buildRobot() {
+            const blue = 0x00e5ff;
+            const dark = 0x222222;
+
+            // 1. BASE
+            const base = createPart(new THREE.CylinderGeometry(1.2, 1.4, 0.6, 32), dark);
+            base.position.y = 0.3;
+            scene.add(base);
+
+            // 2. J1 - Cintura (Giro Y)
+            const j1 = new THREE.Group();
+            j1.position.y = 0.3;
+            base.add(j1);
+            j1.add(createPart(new THREE.CylinderGeometry(0.8, 0.8, 0.6, 32), blue));
+            
+            // 3. J2 - Hombro (Giro Z)
+            const j2 = new THREE.Group();
+            j2.position.y = 0.6;
+            j1.add(j2);
+            const arm1 = createPart(new THREE.BoxGeometry(0.5, 3, 0.5), blue);
+            arm1.position.y = 1.5;
+            j2.add(arm1);
+
+            // 4. J3 - Codo (Giro Z)
+            const j3 = new THREE.Group();
+            j3.position.y = 3;
+            j2.add(j3);
+            const arm2 = createPart(new THREE.BoxGeometry(0.4, 2.5, 0.4), blue);
+            arm2.position.y = 1.25;
+            j3.add(arm2);
+
+            // 5. J4 - Muñeca (Giro Y)
+            const j4 = new THREE.Group();
+            j4.position.y = 2.5;
+            j3.add(j4);
+            j4.add(createPart(new THREE.CylinderGeometry(0.3, 0.3, 0.5, 16), dark));
+
+            // 6. J5 - Muñeca (Giro Z)
+            const j5 = new THREE.Group();
+            j5.position.y = 0.5;
+            j4.add(j5);
+            j5.add(createPart(new THREE.SphereGeometry(0.3, 16, 16), blue));
+
+            // 7. J6 - Punta (Giro Y)
+            const j6 = new THREE.Group();
+            j6.position.y = 0.3;
+            j5.add(j6);
+            const tool = createPart(new THREE.CylinderGeometry(0.1, 0.25, 0.4, 16), 0xffffff);
+            tool.position.y = 0.2;
+            j6.add(tool);
+
+            // Extremo final (Punto para el cálculo)
+            endEffector = new THREE.Object3D();
+            endEffector.position.y = 0.4;
+            j6.add(endEffector);
+
+            // Lista de huesos para IK (del final a la base)
+            robotJoints.push({ group: j1, axis: new THREE.Vector3(0, 1, 0) }); // Base rotate
+            robotJoints.push({ group: j2, axis: new THREE.Vector3(0, 0, 1) }); // Shoulder
+            robotJoints.push({ group: j3, axis: new THREE.Vector3(0, 0, 1) }); // Elbow
+            robotJoints.push({ group: j4, axis: new THREE.Vector3(0, 1, 0) }); // Wrist twist
+            robotJoints.push({ group: j5, axis: new THREE.Vector3(0, 0, 1) }); // Wrist bend
+            robotJoints.push({ group: j6, axis: new THREE.Vector3(0, 1, 0) }); // Tool
+        }
+
+        function solveIK() {
+            const targetPos = settings.targetPos;
+            targetMesh.position.copy(targetPos);
+
+            // Algoritmo CCD (Cyclic Coordinate Descent)
+            // Realizamos varias iteraciones para suavizar el movimiento
+            for (let i = 0; i < 5; i++) {
+                // Iteramos desde la muñeca hacia la base
+                for (let j = robotJoints.length - 1; j >= 0; j--) {
+                    const joint = robotJoints[j].group;
+                    const axis = robotJoints[j].axis;
+
+                    // 1. Obtener posición actual del efector y de la articulación en espacio mundial
+                    const endPos = new THREE.Vector3();
+                    endEffector.getWorldPosition(endPos);
+
+                    const jointPos = new THREE.Vector3();
+                    joint.getWorldPosition(jointPos);
+
+                    // 2. Vectores desde la articulación al efector y al target
+                    const vEnd = endPos.clone().sub(jointPos).normalize();
+                    const vTarget = targetPos.clone().sub(jointPos).normalize();
+
+                    // 3. Calcular ángulo necesario
+                    let dot = vEnd.dot(vTarget);
+                    dot = Math.max(-1, Math.min(1, dot)); // Clamp
+                    const angle = Math.acos(dot);
+
+                    if (angle < 0.0001) continue;
+
+                    // 4. Dirección de rotación (producto cruzado)
+                    const cross = new THREE.Vector3().crossVectors(vEnd, vTarget).normalize();
+                    
+                    // Proyectar sobre el eje permitido de la articulación
+                    // En este modelo simplificado, rotamos directamente sobre el eje definido
+                    const localAxis = axis.clone();
+                    
+                    // Aplicar rotación suave
+                    if (axis.y === 1) {
+                        joint.rotation.y += angle * (cross.y > 0 ? 1 : -1) * 0.5;
+                    } else if (axis.z === 1) {
+                        // Para ejes laterales usamos la componente de dirección del plano
+                        const worldAxisZ = new THREE.Vector3(0, 0, 1).applyQuaternion(joint.parent.getWorldQuaternion(new THREE.Quaternion()));
+                        const direction = cross.dot(worldAxisZ) > 0 ? 1 : -1;
+                        joint.rotation.z += angle * direction * 0.5;
+                    }
+                }
+            }
+            
+            // J6 (Orientación manual del slider)
+            robotJoints[5].group.rotation.y = settings.targetRot;
+        }
+
+        function setupUI() {
+            const inputs = ['posX', 'posY', 'posZ', 'rotEnd'];
+            inputs.forEach(id => {
+                const el = document.getElementById(id);
+                el.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    if (id === 'posX') settings.targetPos.x = val;
+                    if (id === 'posY') settings.targetPos.y = val;
+                    if (id === 'posZ') settings.targetPos.z = val;
+                    if (id === 'rotEnd') settings.targetRot = val * (Math.PI / 180);
+                    
+                    document.getElementById('v' + id.slice(3) || 'vRot').innerText = 
+                        id === 'rotEnd' ? val + '°' : val.toFixed(1);
+                });
+            });
+
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                settings.targetPos.set(2, 4, 2);
+                settings.targetRot = 0;
+                inputs.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.value = (id === 'posY' ? 4 : (id === 'rotEnd' ? 0 : 2));
+                    el.dispatchEvent(new Event('input'));
+                });
+            });
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            solveIK();
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.onload = init;
+    </script>
+</body>
+</html>
