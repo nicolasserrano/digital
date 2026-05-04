@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Marp Universal Viewer Pro+</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; font-family: -apple-system, sans-serif; }
+        #presentation { height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background: #000; }
+        
+        /* Visor principal */
+        svg[data-marpit-svg] { display: none; width: 100vw; height: 100vh; object-fit: contain; }
+        svg.active { display: block; }
+
+        section { background: white !important; color: black !important; width: 1280px; height: 720px; padding: 40px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
+        
+        /* Tablas */
+        section table { display: table !important; border-collapse: collapse !important; width: 100% !important; margin: 15px 0 !important; border: 1px solid #ddd !important; font-size: 0.85em !important; }
+        section th, section td { border: 1px solid #ddd !important; padding: 8px 12px !important; background: white !important; color: black !important; }
+        section th { background-color: #f5f5f5 !important; font-weight: bold; }
+
+        /* Overlay */
+        #overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.98); z-index: 100; padding: 40px; box-sizing: border-box;
+            backdrop-filter: blur(10px); overflow-y: auto;
+        }
+        #grid {
+            display: grid; 
+            gap: 20px; 
+            justify-content: center;
+            width: 100%;
+            padding-bottom: 100px; /* Espacio extra para que la última fila no pegue abajo */
+        }
+        .thumb {
+            background: #000; border: 2px solid #444; border-radius: 4px;
+            cursor: pointer; position: relative; aspect-ratio: 16/9;
+            overflow: hidden; transition: transform 0.1s;
+        }
+        .thumb.current { border-color: #00bcd4; box-shadow: 0 0 15px rgba(0,188,212,0.5); }
+        .thumb.focus { border-color: #ffeb3b; transform: scale(1.05); z-index: 10; outline: none; }
+        .thumb svg { display: block !important; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+        .thumb-no { position: absolute; bottom: 2px; right: 5px; color: rgba(255,255,255,0.5); font-size: 10px; }
+
+        /* Botones de Zoom en Overlay */
+        #zoom-controls {
+            position: fixed; top: 20px; right: 40px; display: flex; gap: 10px; z-index: 110;
+        }
+        .zoom-btn {
+            background: #333; color: white; border: 1px solid #666; width: 40px; height: 40px;
+            border-radius: 5px; cursor: pointer; font-size: 20px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+        }
+        .zoom-btn:hover { background: #555; border-color: #00bcd4; }
+
+        #go-to-indicator { position: fixed; top: 20px; right: 20px; background: #00bcd4; color: white; padding: 10px 20px; border-radius: 30px; font-size: 24px; font-weight: bold; display: none; z-index: 200; }
+
+        /* Menú de control inferior */
+        #bottom-menu {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
+            color: white; padding: 15px 20px; border-radius: 30px;
+            display: none; z-index: 200; border: 1px solid #00bcd4;
+            gap: 20px;
+        }
+        #bottom-menu.show { display: flex; }
+        .menu-btn {
+            background: transparent; color: white; border: 1px solid #00bcd4;
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 14px; font-weight: bold; transition: all 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .menu-btn:hover { background: #00bcd4; color: black; }
+        .menu-btn-key {
+            background: #00bcd4; color: black; padding: 2px 6px; border-radius: 4px;
+            font-size: 12px; font-weight: bold; min-width: 20px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="presentation"><div style="color:white;">Cargando motor...</div></div>
+    
+    <div id="go-to-indicator"></div>
+
+    <div id="bottom-menu">
+        <button class="menu-btn" onclick="toggleFullscreen(event)" title="Pantalla completa">
+            <span>Pantalla completa</span>
+            <span class="menu-btn-key">F</span>
+        </button>
+        <button class="menu-btn" onclick="toggleOverlay(undefined, event)" title="Ver índice">
+            <span>Índice</span>
+            <span class="menu-btn-key">O</span>
+        </button>
+    </div>
+
+    <div id="overlay">
+        <div id="zoom-controls">
+            <button class="zoom-btn" onclick="adjustZoom(-1)" title="Reducir (tecla -)">−</button>
+            <button class="zoom-btn" onclick="adjustZoom(1)" title="Aumentar (tecla +)">+</button>
+        </div>
+        <div id="grid"></div>
+    </div>
+
+    <script type="module">
+        import { Marpit } from 'https://cdn.skypack.dev/@marp-team/marpit';
+
+        let currentSlide = 0;
+        let overlayFocusIndex = 0;
+        let slideContainers = [];
+        let inputBuffer = "";
+        let bufferTimeout;
+        
+        // Configuración de zoom (anchos de columna en px)
+        const zoomLevels = [80, 105, 130, 160, 190, 220, 250, 285, 320, 360, 400, 450, 500, 600, 700];
+        let currentZoomIdx = 6; // Empezamos en un punto medio (250px) 
+
+
+        async function init() {
+            const params = new URLSearchParams(window.location.search);
+            const mdUrl = params.get('md');
+            if (!mdUrl) return;
+
+            try {
+                const res = await fetch(mdUrl);
+                const markdown = await res.text();
+                const marpit = new Marpit({ inlineSVG: true, markdown: { html: true } });
+                const { html, css } = marpit.render(markdown);
+
+                document.getElementById('presentation').innerHTML = `<style>${css}</style>${html}`;
+                slideContainers = Array.from(document.querySelectorAll('svg[data-marpit-svg]'));
+
+                // CALCULO DE ZOOM INICIAL ÓPTIMO
+                const total = slideContainers.length;
+                if (total > 60) currentZoomIdx = 1;      // 105px
+                else if (total > 30) currentZoomIdx = 3; // 160px
+                else if (total > 15) currentZoomIdx = 5; // 220px
+                else currentZoomIdx = 7;                 // 285px
+                renderGrid();
+                showSlide(0);
+            } catch (e) { console.error(e); }
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            
+            // Aplicamos el nivel de zoom actual
+            grid.style.gridTemplateColumns = `repeat(auto-fill, minmax(${zoomLevels[currentZoomIdx]}px, 1fr))`;
+
+            slideContainers.forEach((svg, i) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumb';
+                thumb.id = `thumb-${i}`;
+                const clone = svg.cloneNode(true);
+                clone.classList.remove('active');
+                thumb.appendChild(clone);
+                const no = document.createElement('span');
+                no.className = 'thumb-no';
+                no.innerText = i + 1;
+                thumb.appendChild(no);
+                thumb.onclick = (e) => { e.stopPropagation(); showSlide(i); toggleOverlay(false); };
+                grid.appendChild(thumb);
+            });
+        }
+        /*
+        window.adjustZoom = (delta) => {
+            currentZoomIdx = Math.max(0, Math.min(zoomLevels.length - 1, currentZoomIdx + delta));
+            document.getElementById('grid').style.gridTemplateColumns = `repeat(auto-fill, minmax(${zoomLevels[currentZoomIdx]}px, 1fr))`;
+        };
+        */
+        window.adjustZoom = (delta) => {
+            // El cambio de índice es de 1 en 1, pero como hay más niveles, el efecto es suave
+            currentZoomIdx = Math.max(0, Math.min(zoomLevels.length - 1, currentZoomIdx + delta));
+            const grid = document.getElementById('grid');
+            if (grid) {
+                grid.style.gridTemplateColumns = `repeat(auto-fill, minmax(${zoomLevels[currentZoomIdx]}px, 1fr))`;
+            }
+        };
+        window.showSlide = (index) => {
+            if (index >= 0 && index < slideContainers.length) {
+                slideContainers[currentSlide].classList.remove('active');
+                document.getElementById(`thumb-${currentSlide}`)?.classList.remove('current');
+                currentSlide = index;
+                slideContainers[currentSlide].classList.add('active');
+                document.getElementById(`thumb-${currentSlide}`)?.classList.add('current');
+                overlayFocusIndex = index;
+            }
+        };
+
+        window.toggleOverlay = function(force, event) {
+            if (event) event.stopPropagation();
+            const ov = document.getElementById('overlay');
+            const show = force !== undefined ? force : ov.style.display !== 'block';
+            ov.style.display = show ? 'block' : 'none';
+            if (show) {
+                overlayFocusIndex = currentSlide;
+                updateOverlayFocus();
+            }
+        }
+
+        window.toggleFullscreen = function(event) {
+            if (event) event.stopPropagation();
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function updateOverlayFocus() {
+            document.querySelectorAll('.thumb').forEach((t, i) => {
+                t.classList.toggle('focus', i === overlayFocusIndex);
+            });
+            document.getElementById(`thumb-${overlayFocusIndex}`)?.scrollIntoView({ block: 'center' });
+        }
+
+        document.addEventListener('keydown', e => {
+            const key = e.key;
+            const isOverlay = document.getElementById('overlay').style.display === 'block';
+
+            if (isOverlay) {
+                if (key === '+' || key === '=') { adjustZoom(1); return; }
+                if (key === '-' || key === '_') { adjustZoom(-1); return; }
+                
+                const grid = document.getElementById('grid');
+                const cols = parseInt(getComputedStyle(grid).gridTemplateColumns.split(' ').length);
+                
+                if (key === 'ArrowRight') overlayFocusIndex = Math.min(overlayFocusIndex + 1, slideContainers.length - 1);
+                if (key === 'ArrowLeft') overlayFocusIndex = Math.max(overlayFocusIndex - 1, 0);
+                if (key === 'ArrowDown') overlayFocusIndex = Math.min(overlayFocusIndex + cols, slideContainers.length - 1);
+                if (key === 'ArrowUp') overlayFocusIndex = Math.max(overlayFocusIndex - cols, 0);
+                if (key === 'Enter') { showSlide(overlayFocusIndex); toggleOverlay(false); return; }
+                if (key === 'Escape' || key.toLowerCase() === 'o') { toggleOverlay(false); return; }
+                updateOverlayFocus();
+                return;
+            }
+
+            // Atajos modo visor
+            if (/^[0-9]$/.test(key)) {
+                clearTimeout(bufferTimeout);
+                inputBuffer += key;
+                const ind = document.getElementById('go-to-indicator');
+                ind.innerText = "Ir a: " + inputBuffer; ind.style.display = "block";
+                bufferTimeout = setTimeout(() => { inputBuffer = ""; ind.style.display = "none"; }, 2000);
+            }
+            if (key === 'Enter' && inputBuffer !== "") {
+                showSlide(parseInt(inputBuffer) - 1); inputBuffer = "";
+                document.getElementById('go-to-indicator').style.display = "none";
+            }
+            if (key.toLowerCase() === 'arrowright' || key === ' ') showSlide(currentSlide + 1);
+            if (key.toLowerCase() === 'arrowleft') showSlide(currentSlide - 1);
+            if (key.toLowerCase() === 'f') toggleFullscreen();
+            if (key.toLowerCase() === 'o') toggleOverlay();
+        });
+
+        // Navegación con clicks en izquierda o derecha
+        document.addEventListener('click', e => {
+            const isOverlay = document.getElementById('overlay').style.display === 'block';
+            const menu = document.getElementById('bottom-menu');
+            // Si el overlay está activo o el click fue dentro del menú, no navegar
+            if (isOverlay) return;
+            if (menu && (menu === e.target || menu.contains(e.target))) return;
+
+            const clickX = e.clientX;
+            const screenWidth = window.innerWidth;
+            const midpoint = screenWidth / 2;
+
+            if (clickX < midpoint) {
+                // Click en la izquierda - ir a diapositiva anterior
+                showSlide(currentSlide - 1);
+            } else {
+                // Click en la derecha - ir a diapositiva siguiente
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        // Evitar propagación de click en el menú inferior y sus botones (asegurar que el DOM está cargado)
+        function setupMenuClickPropagation() {
+            const bottomMenu = document.getElementById('bottom-menu');
+            if (bottomMenu) {
+                bottomMenu.addEventListener('click', e => {
+                    e.stopPropagation();
+                });
+                bottomMenu.querySelectorAll('button').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.stopPropagation();
+                    });
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupMenuClickPropagation);
+        } else {
+            setupMenuClickPropagation();
+        }
+
+        // Mostrar menú de control al acercar el ratón al octavo inferior
+        let menuTimeout;
+        document.addEventListener('mousemove', e => {
+            const screenHeight = window.innerHeight;
+            const bottomEighth = screenHeight * (7/8); // 87.5% de la pantalla
+            const menu = document.getElementById('bottom-menu');
+            const isOverlay = document.getElementById('overlay').style.display === 'block';
+
+            if (e.clientY > bottomEighth && !isOverlay) {
+                menu.classList.add('show');
+                clearTimeout(menuTimeout);
+                menuTimeout = setTimeout(() => {
+                    menu.classList.remove('show');
+                }, 3000); // Se oculta después de 3 segundos de inactividad
+            }
+        });
+
+        // Mantener visible el menú cuando está sobre él
+        document.getElementById('bottom-menu').addEventListener('mouseenter', () => {
+            clearTimeout(menuTimeout);
+        });
+
+        document.getElementById('bottom-menu').addEventListener('mouseleave', () => {
+            menuTimeout = setTimeout(() => {
+                document.getElementById('bottom-menu').classList.remove('show');
+            }, 1000);
+        });
+
+        init();
+    </script>
+</body>
+</html>
