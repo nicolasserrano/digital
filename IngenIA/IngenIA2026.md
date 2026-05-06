@@ -14,7 +14,8 @@ style: |
     position: relative !important; /* Necesario para que el footer se ancle aquí */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 80px;
   }
 
   /* Estilo para el footer de Marpit */
@@ -29,11 +30,12 @@ style: |
     padding-top: 10px !important;
     height: auto !important;
   }
-  h1 {
+  section h1:first-of-type {
     color: #0f172a;
     border-left: 8px solid #0ea5e9;
     padding-left: 20px;
     font-size: 50px;
+    margin-top: 20px;
   }
   .columns {
     display: grid;
@@ -113,19 +115,27 @@ style: |
     border: 2px solid #0ea5e9;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
   }
-  .demo-frame {
+  .demo-frame-wrapper {
     width: 100%;
     height: 500px;
-    border: 0;
+    overflow: hidden;
     border-radius: 18px;
-    background: #000;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  }
+  .demo-frame {
+    width: 133.333%;
+    height: 666.667px;
+    transform: scale(0.75);
+    transform-origin: top left;
+    border: 0;
+    background: #000;
+    display: block;
   }
   section.course-table {
     background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
   }
   section.course-table h1 {
-    margin-top: -10px;
+    margin-top: 0;
     margin-bottom: 4px;
     font-size: 44px;
   }
@@ -215,17 +225,10 @@ style: |
 
 ---
 
-# Fases de Adopción de la IA
 
-## Esquema de Fases
+# Fases de IngenIA
+![Fases](fases.svg)
 
-**Fase 1**: Formación peronsal _[Completar]_
-
-**Fase 2**: Área del conocimiento _[Completar]_
-
-**Fase 3**: _[Completar]_
-
-**Fase 4**: _[Completar]_
 
 ---
 
@@ -234,21 +237,49 @@ style: |
 ## Aplicaciones Prácticas
 
 - **Tabla de amortización** - _[Completar descripción]_
-- **Elementos finitos** - _[Completar descripción]_
-- **Cuadrilátero articulado** - _[Completar descripción]_
-- **Robot** [Abrir ejemplo →](https://gemini.google.com/share/aa59742a602b)
+- **Elementos finitos** [Abrir ejemplo](https://claude.ai/public/artifacts/7e49d32c-3563-4b0f-a412-e19ee1b865ba)]
+- **Cuadrilátero articulado** -[Abrir ejemplo](https://claude.ai/public/artifacts/e68a37d4-1484-45f6-9d1e-bac8ab7a5d65) _
+- **Robot** [Abrir ejemplo](https://gemini.google.com/share/aa59742a602b)
 
-- **Puente grúa** - _[Completar descripción]_
+- **Puente grúa** 
 
 ---
 
-# Ejemplo: Robot interactivo 2a1
+## Ejemplo: Curva de Gauss
 
 <div class="demo-swap">
   <button
     class="demo-launch"
     type="button"
-    onclick="this.parentElement.innerHTML='&lt;iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/robot.html&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;'"
+    onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/CurvaGauss.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
+  >
+    <img src="./ejemplos/CurvaGauss.png" alt="Abrir demo interactiva del Curva de Gauss" />
+  </button>
+</div>
+
+---
+
+## Ejemplo: Elementos Finitos
+
+<div class="demo-swap">
+  <button
+    class="demo-launch"
+    type="button"
+    onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/ElementosFinitos.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
+  >
+    <img src="./ejemplos/ElementosFinitos.png" alt="Abrir demo interactiva del Curva de Gauss" />
+  </button>
+</div>
+
+---
+
+## Ejemplo: Robot interactivo
+
+<div class="demo-swap">
+  <button
+    class="demo-launch"
+    type="button"
+    onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/robot.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
   >
     <img src="./ejemplos/robot-preview.png" alt="Abrir demo interactiva del robot" />
   </button>
@@ -315,33 +346,27 @@ style: |
 
 # Grupos de Trabajo
 
-## Áreas de Enfoque
-
-### 🎓 Formación
+### Formación
 Conocimientos de IA y LLMs para estudiantes y profesores
 
-### 📚 Currículum
+### Currículum
 Áreas de conocimiento en Ingeniería
 - Resultado del área: Perfil de salida o conocimientos para otra área
 - Cual es la base necesaria, metodologías, herramientas
 - Qué debe saber y poder hacer
 
-### 📋 Plan de Estudios
+### Plan de Estudios
 Consideraciones a nivel de plan de estudios en la era de la IA (humanidades, business, competencias)
 
 ---
 
-# Componentes de Cada Grupo y Plan de Trabajo
-
 ## ¿Cómo participar?
 
-Invitamos a incorporarse como:
+### Interesado
+Para mantenerse informado sobre el progreso y resultados, con newsletter mensual.
 
-### 👀 Interesado
-Mantenerme informado sobre el progreso y resultados
-
-### 🤝 Participante en Grupo de Trabajo
-Me gustaría participar activamente en las discusiones y propuestas
+### Participante en Grupo de Trabajo
+Formar parte de alguno de los grupos de trabajo o particpar ocasionalmente.
 
 ---
 

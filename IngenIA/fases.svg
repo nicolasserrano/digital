@@ -1,0 +1,58 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="100%" viewBox="0 0 680 210" role="img" style="max-width: 680px; display: block; margin-inline: auto;"><defs><mask id="imagine-text-gaps-rcvtyt" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="680" height="210" fill="white"></rect><rect x="53.317710876464844" y="13.666666984558105" width="61.364585876464844" height="116.66667175292969" fill="black" rx="2"></rect><rect x="52.54166793823242" y="170.6666717529297" width="62.91666793823242" height="18.666666984558105" fill="black" rx="2"></rect><rect x="203.31771850585938" y="13.666666984558105" width="61.364585876464844" height="116.66667175292969" fill="black" rx="2"></rect><rect x="214.875" y="170" width="37.67724609375" height="19.33333396911621" fill="black" rx="2"></rect><rect x="353.3177185058594" y="13.666666984558105" width="61.364585876464844" height="116.66667175292969" fill="black" rx="2"></rect><rect x="353.2708435058594" y="170.6666717529297" width="61.5126953125" height="18.666666984558105" fill="black" rx="2"></rect><rect x="503.3177185058594" y="13.666666984558105" width="61.364585876464844" height="116.66667175292969" fill="black" rx="2"></rect><rect x="505.43231201171875" y="170.6666717529297" width="58.07177734375" height="18.666666984558105" fill="black" rx="2"></rect></mask></defs>
+  <title>Niveles de alcance: personal, área, facultad, exterior</title>
+  <desc>Diagrama de flechas horizontales con cuatro niveles de alcance numerados del 1 al 4</desc>
+
+  <!-- Arrow 1: Personal — gray -->
+  <polygon points="0,10 148,10 168,105 148,200 0,200 20,105" fill="#D3D1C7" stroke="#888780" stroke-width="1.5"></polygon>
+  <text x="84" y="72" text-anchor="middle" dominant-baseline="central" font-family="Arial Black, Arial, sans-serif" font-size="80" font-weight="900" fill="none" stroke="#7a7970" stroke-width="2.5" opacity="0.6">1</text>
+  <circle cx="84" cy="136" r="10" fill="#5F5E5A"></circle>
+  <path d="M66,158 Q84,144 102,158 Z" fill="#5F5E5A"></path>
+  <text x="84" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#444441">Personal</text>
+
+  <!-- Arrow 2: Área — blue -->
+  <polygon points="150,10 298,10 318,105 298,200 150,200 170,105" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"></polygon>
+  <text x="234" y="72" text-anchor="middle" dominant-baseline="central" font-family="Arial Black, Arial, sans-serif" font-size="80" font-weight="900" fill="none" stroke="#185FA5" stroke-width="2.5" opacity="0.5">2</text>
+  <!-- 3 people: heads close to bodies, lowered -->
+  <g transform="translate(0, 10)">
+  <circle cx="218" cy="130" r="7" fill="#185FA5"></circle>
+  <path d="M206,150 Q218,141 230,150 Z" fill="#185FA5"></path>
+  <circle cx="234" cy="126" r="7" fill="#185FA5"></circle>
+  <path d="M222,147 Q234,137 246,147 Z" fill="#185FA5"></path>
+  <circle cx="250" cy="130" r="7" fill="#185FA5"></circle>
+  <path d="M238,150 Q250,141 262,150 Z" fill="#185FA5"></path>
+  </g>
+  <text x="234" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0C447C">Área</text>
+
+  <!-- Arrow 3: Facultad — amber (smaller) -->
+  <polygon points="300,10 448,10 468,105 448,200 300,200 320,105" fill="#FAC775" stroke="#BA7517" stroke-width="1.5"></polygon>
+  <text x="384" y="72" text-anchor="middle" dominant-baseline="central" font-family="Arial Black, Arial, sans-serif" font-size="80" font-weight="900" fill="none" stroke="#BA7517" stroke-width="2.5" opacity="0.5">3</text>
+  <!-- building smaller, lowered -->
+  <polygon points="366,132 384,116 402,132" fill="#633806"></polygon>
+  <rect x="370" y="132" width="28" height="24" fill="#854F0B"></rect>
+  <rect x="375" y="140" width="7" height="10" fill="#FAC775"></rect>
+  <rect x="386" y="140" width="7" height="10" fill="#FAC775"></rect>
+  <text x="384" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#633806">Facultad</text>
+
+  <!-- Arrow 4: Exterior — green -->
+  <polygon points="450,10 618,10 648,105 618,200 450,200 470,105" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"></polygon>
+  <text x="534" y="72" text-anchor="middle" dominant-baseline="central" font-family="Arial Black, Arial, sans-serif" font-size="80" font-weight="900" fill="none" stroke="#3B6D11" stroke-width="2.5" opacity="0.5">4</text>
+  <!-- Globe: more realistic with landmass shapes, lowered -->
+  <circle cx="534" cy="141" r="19" fill="#1565C0"></circle>
+  <!-- equator and meridian lines -->
+  <ellipse cx="534" cy="141" rx="19" ry="7" fill="none" stroke="#90CAF9" stroke-width="0.8" opacity="0.7"></ellipse>
+  <ellipse cx="534" cy="141" rx="10" ry="19" fill="none" stroke="#90CAF9" stroke-width="0.8" opacity="0.5"></ellipse>
+  <line x1="534" y1="122" x2="534" y2="160" stroke="#90CAF9" stroke-width="0.8" opacity="0.5" mask="url(#imagine-text-gaps-rcvtyt)"></line>
+  <!-- landmass approximations -->
+  <!-- Europe/Africa blob -->
+  <path d="M528,124 Q533,122 536,126 Q538,132 536,138 Q533,143 530,140 Q527,135 527,130 Q527,126 528,124 Z" fill="#4CAF50" opacity="0.9"></path>
+  <!-- Americas blob -->
+  <path d="M520,130 Q522,127 524,130 Q525,136 523,141 Q521,144 519,141 Q518,136 519,131 Z" fill="#66BB6A" opacity="0.9"></path>
+  <!-- Asia blob -->
+  <path d="M537,124 Q542,123 545,127 Q547,131 544,135 Q541,137 538,134 Q536,130 537,126 Z" fill="#4CAF50" opacity="0.9"></path>
+  <!-- Australia -->
+  <path d="M542,140 Q545,139 547,141 Q547,144 544,145 Q541,144 541,141 Z" fill="#66BB6A" opacity="0.9"></path>
+  <!-- clip to circle -->
+  <circle cx="534" cy="141" r="19" fill="none" stroke="#27500A" stroke-width="1.5"></circle>
+  <text x="534" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#27500A">Exterior</text>
+</svg></svg>
