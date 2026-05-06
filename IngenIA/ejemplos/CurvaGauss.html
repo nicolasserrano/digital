@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curva de Gauss — Explorador interactivo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --ink: #1a1a18;
+    --ink-muted: #6b6b65;
+    --ink-faint: #b0afa8;
+    --blue: #2563c4;
+    --blue-light: rgba(37,99,196,0.12);
+    --pink: #c4254a;
+    --pink-light: rgba(196,37,74,0.13);
+    --green: #1a7a4a;
+    --border: rgba(26,26,24,0.1);
+    --radius: 12px;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Instrument Serif', Georgia, serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  header {
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  header p {
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 1rem;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 560px) { .controls { grid-template-columns: 1fr; } }
+
+  .control-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .param-name {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .param-name strong {
+    font-size: 18px;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    margin-right: 4px;
+  }
+
+  .param-value {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    background: var(--bg);
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    min-width: 52px;
+    text-align: center;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--surface);
+    box-shadow: 0 0 0 1.5px var(--ink);
+    transition: transform 0.15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type=range]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--surface);
+    box-shadow: 0 0 0 1.5px var(--ink);
+  }
+
+  #mu-slider::-webkit-slider-thumb { background: var(--blue); box-shadow: 0 0 0 1.5px var(--blue); }
+  #sigma-slider::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 0 0 1.5px var(--pink); }
+
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 300px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .leg-line { width: 22px; height: 3px; border-radius: 2px; }
+  .leg-area { width: 14px; height: 14px; border-radius: 3px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 820px;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 560px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .stat-value {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+
+  .formula-card {
+    background: var(--ink);
+    color: #e8e6df;
+    border-radius: var(--radius);
+    padding: 1.25rem 1.75rem;
+    width: 100%;
+    max-width: 820px;
+    font-size: 13px;
+    line-height: 2;
+    letter-spacing: 0.02em;
+  }
+
+  .formula-card .f-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(232,230,223,0.45);
+    margin-bottom: 6px;
+  }
+
+  .formula-card code {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: #ffd97d;
+  }
+
+  .mu-val { color: #74b3ff; }
+  .sigma-val { color: #ff8fab; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Distribución de <em>Gauss</em></h1>
+  <p>Explorador interactivo de parámetros</p>
+</header>
+
+<div class="card">
+  <div class="controls">
+    <div class="control-group">
+      <label>
+        <span class="param-name"><strong>μ</strong> Media — centro</span>
+        <span class="param-value" id="mu-out">0.0</span>
+      </label>
+      <input type="range" id="mu-slider" min="-4" max="4" step="0.5" value="0">
+    </div>
+    <div class="control-group">
+      <label>
+        <span class="param-name"><strong>σ</strong> Desv. típica — ancho</span>
+        <span class="param-value" id="sigma-out">1.0</span>
+      </label>
+      <input type="range" id="sigma-slider" min="0.3" max="3" step="0.1" value="1">
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="chart" role="img" aria-label="Curva de Gauss interactiva"></canvas>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="leg-line" style="background:#2563c4;"></div>
+      <span>f(x) — curva</span>
+    </div>
+    <div class="legend-item">
+      <div class="leg-area" style="background:rgba(196,37,74,0.18); border:1px solid rgba(196,37,74,0.4);"></div>
+      <span>Área ±1σ (68.3%)</span>
+    </div>
+    <div class="legend-item">
+      <div class="leg-line" style="background:#1a7a4a; height:2px; border-top:2px dashed #1a7a4a;"></div>
+      <span>μ — centro</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-label">Pico f(μ)</div>
+    <div class="stat-value" id="s-peak">0.3989</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">μ − σ</div>
+    <div class="stat-value" id="s-left">−1.0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">μ + σ</div>
+    <div class="stat-value" id="s-right">1.0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Área ±1σ</div>
+    <div class="stat-value">68.3%</div>
+  </div>
+</div>
+
+<div class="formula-card">
+  <div class="f-label">Fórmula — f(x)</div>
+  <div>
+    1 / (<span class="sigma-val" id="f-sigma">σ=1.0</span> · √(2π)) · e<sup>−(x − <span class="mu-val" id="f-mu">μ=0.0</span>)² / (2 · <span class="sigma-val" id="f-sigma2">σ²=1.0</span>)</sup>
+  </div>
+  <div style="margin-top:8px; color:rgba(232,230,223,0.5); font-size:11px;">
+    Excel: <code>=DISTR.NORM(x; <span id="f-mu-xl">0</span>; <span id="f-sigma-xl">1</span>; FALSO)</code>
+  </div>
+</div>
+
+<script>
+const N = 400, xMin = -8, xMax = 8;
+
+function gauss(x, mu, sigma) {
+  return (1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-Math.pow(x - mu, 2) / (2 * sigma * sigma));
+}
+
+function buildData(mu, sigma) {
+  const main = [], fill = [];
+  for (let i = 0; i <= N; i++) {
+    const x = xMin + (xMax - xMin) * i / N;
+    const y = gauss(x, mu, sigma);
+    main.push({ x, y });
+    fill.push({ x, y: (x >= mu - sigma && x <= mu + sigma) ? y : 0 });
+  }
+  return { main, fill };
+}
+
+let mu = 0, sigma = 1;
+let d = buildData(mu, sigma);
+
+const chart = new Chart(document.getElementById('chart'), {
+  type: 'line',
+  data: {
+    datasets: [
+      {
+        label: '±1σ',
+        data: d.fill,
+        borderColor: 'transparent',
+        backgroundColor: 'rgba(196,37,74,0.15)',
+        fill: true,
+        pointRadius: 0,
+        tension: 0.4,
+        parsing: false,
+        order: 2
+      },
+      {
+        label: 'f(x)',
+        data: d.main,
+        borderColor: '#2563c4',
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        pointRadius: 0,
+        tension: 0.4,
+        parsing: false,
+        order: 1
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 100 },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: c => `f(${parseFloat(c.raw.x).toFixed(2)}) = ${c.raw.y.toFixed(4)}`
+        }
+      }
+    },
+    scales: {
+      x: {
+        type: 'linear', min: xMin, max: xMax,
+        ticks: { stepSize: 1, font: { family: "'DM Mono', monospace", size: 11 } },
+        grid: { color: 'rgba(26,26,24,0.06)' },
+        border: { color: 'rgba(26,26,24,0.15)' }
+      },
+      y: {
+        min: 0,
+        ticks: { callback: v => v.toFixed(2), font: { family: "'DM Mono', monospace", size: 11 } },
+        grid: { color: 'rgba(26,26,24,0.06)' },
+        border: { color: 'rgba(26,26,24,0.15)' }
+      }
+    }
+  }
+});
+
+function refresh() {
+  const d2 = buildData(mu, sigma);
+  chart.data.datasets[0].data = d2.fill;
+  chart.data.datasets[1].data = d2.main;
+  chart.options.scales.y.max = parseFloat((gauss(mu, mu, sigma) * 1.18).toFixed(3));
+  chart.update();
+
+  document.getElementById('mu-out').textContent = mu.toFixed(1);
+  document.getElementById('sigma-out').textContent = sigma.toFixed(1);
+  document.getElementById('s-peak').textContent = gauss(mu, mu, sigma).toFixed(4);
+  document.getElementById('s-left').textContent = (mu - sigma).toFixed(1);
+  document.getElementById('s-right').textContent = (mu + sigma).toFixed(1);
+  document.getElementById('f-mu').textContent = `μ=${mu.toFixed(1)}`;
+  document.getElementById('f-mu-xl').textContent = mu.toFixed(1);
+  document.getElementById('f-sigma').textContent = `σ=${sigma.toFixed(1)}`;
+  document.getElementById('f-sigma2').textContent = `σ²=${(sigma*sigma).toFixed(2)}`;
+  document.getElementById('f-sigma-xl').textContent = sigma.toFixed(1);
+}
+
+document.getElementById('mu-slider').addEventListener('input', e => { mu = parseFloat(e.target.value); refresh(); });
+document.getElementById('sigma-slider').addEventListener('input', e => { sigma = parseFloat(e.target.value); refresh(); });
+
+refresh();
+</script>
+</body>
+</html>
