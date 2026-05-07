@@ -30,12 +30,12 @@ style: |
     padding-top: 10px !important;
     height: auto !important;
   }
-  section h1:first-of-type {
+  h1 {
     color: #0f172a;
     border-left: 8px solid #0ea5e9;
     padding-left: 20px;
     font-size: 50px;
-    margin-top: 20px;
+    margin: 0 0 0.4em 0;
   }
   .columns {
     display: grid;
@@ -115,6 +115,42 @@ style: |
     border: 2px solid #0ea5e9;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
   }
+  .image-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 20px;
+  }
+  .image-row img {
+    width: auto;
+    max-width: 320px;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    max-height:86%;
+  }
+  .image-row .left {
+    grid-column: 1;
+  }
+  .image-row .center {
+    grid-column: 2;
+  }
+  .image-row .right {
+    grid-column: 3;
+  }
+  .image-text {
+    max-width: 280px;
+    text-align: center;
+    font-size: 28px;
+    color: #0f172a;
+    font-weight: 700;
+    padding: 18px 22px;
+    border-radius: 18px;
+    background: rgba(14, 165, 233, 0.1);
+    border: 2px solid rgba(14, 165, 233, 0.18);
+  }
   .demo-frame-wrapper {
     width: 100%;
     height: 500px;
@@ -180,7 +216,7 @@ style: |
   }
   section.full-image-slide h1 {
     position: absolute;
-    top: 32px;
+    top: 80px;
     left: 32px;
     z-index: 1;
     margin: 0;
@@ -202,6 +238,43 @@ style: |
     height: 100%;
     object-fit: cover;
   }
+  section.hle-slide {
+    padding: 40px 40px 60px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8fbff;
+  }
+  section.hle-slide h1 {
+    width: 100%;
+    text-align: left;
+    align-self: flex-start;
+    margin: 0 0 20px 0;
+  }
+  .hle-container {
+    width: 100%;
+    max-width: 1080px;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  }
+  .hle-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: 18px;
+  }
+  .hle-caption {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 20px;
+    color: #475569;
+    opacity: 0.9;
+  }
 ---
 
 
@@ -222,6 +295,23 @@ style: |
 - [Stanford Benchmarks](https://epoch.ai/benchmarks/hle?view=graph&tab=release-date)
 - Progreso en capacidades de los modelos
 - Métricas de rendimiento
+
+---
+
+<!-- _class: hle-slide -->
+# Humanity's Last Exam
+<div class="hle-container">
+  <img src="images/difficulty_comparison_new.webp" alt="Humanity's Last Exam comparison" />
+  <p class="hle-caption"><a href="https://agi.safe.ai/">Humanity's Last Exam</a></p>
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Humanity's Last Exam
+<div class="hle-container">
+  <img src="images/HLE_May.png" alt="Humanity's Last Exam May" />
+</div>
 
 ---
 
@@ -296,6 +386,41 @@ style: |
 | :--- | :--- |
 | **Formatos**<br>◦ JSON<br>◦ HTML, SVG, Mermaid,…<br>◦ Markdown, csv | **Scripting**<br>◦ Python<br>◦ JavaScript, Three.js<br>◦ [VBA, PowerShell, Blender] |
 
+
+---
+
+# Fase 2: Áreas de conocimiento
+
+## Qué saber, hacer y ser
+## Cómo evaluar
+## Cómo impartir
+
+---
+
+# Fase 3: Formación integral
+
+<div class="image-row">
+  <img class="left" src="images/Robot_proof_2017.jpg" alt="Robot proof 2017" />
+</div>
+
+---
+
+# Fase 3: Formación integral
+
+<div class="image-row">
+  <img class="left" src="images/Robot_proof_2017.jpg" alt="Robot proof 2017" />
+  <div class="center image-text">Resumen de la Universidad de la Sábana</div>
+</div>
+
+---
+
+# Fase 3: Formación integral
+
+<div class="image-row">
+  <img class="left" src="images/Robot_proof_2017.jpg" alt="Robot proof 2017" />
+  <div class="center image-text">Resumen de la Universidad de la Sábana</div>
+  <img class="right" src="images/Robot_proof_2024.jpg" alt="Robot proof 2024" />
+</div>
 
 ---
 
