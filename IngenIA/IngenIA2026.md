@@ -3,7 +3,7 @@ marp: true
 theme: default
 paginate: true
 html: true
-footer: 'IngenIA: Inteligenia Artificial en la Ingeniería'
+footer: 'Una educación integral en la era de la Inteligenia Artificial'
 backgroundColor: #fff
 style: |
   section {
@@ -42,6 +42,28 @@ style: |
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     margin-top: 20px;
+  }
+  .image-compare-row,
+  .image-compare-single {
+    display: grid;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  .image-compare-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .image-compare-single {
+    grid-template-columns: 1fr;
+  }
+  .image-compare-row img,
+  .image-compare-single img {
+    width: 100%;
+    height: 420px;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
   }
   .card {
     background: #f8fafc;
@@ -278,25 +300,27 @@ style: |
 ---
 
 
-# IngenIA: Inteligenia Artificial en la Ingeniería
+# Una educación integral en la era de la Inteligenia Artificial
 
-## Tecnun. Escuela de Ingeniería. Universidad de Navarra
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## GID IngenIA: Inteligenia Artificial en la Ingeniería<br> Tecnun. Escuela de Ingeniería. Universidad de Navarra
 
 ----
-
-## Noticias para la introducción
-
-[Ver noticias](https://www.notion.so/Noticias-para-la-introducci-n-2f839c23f0168051a94bf33676dc1475?pvs=21)
-
-----
-
-## Evolución de los tests
-
-- [Stanford Benchmarks](https://epoch.ai/benchmarks/hle?view=graph&tab=release-date)
-- Progreso en capacidades de los modelos
-- Métricas de rendimiento
-
----
 
 <!-- _class: hle-slide -->
 # La era de la Inteligencia Artificial
@@ -308,25 +332,12 @@ style: |
 
 # Noticias del impacto de la IA
 
-![left w:50%](images/nytimes_1-5.png)
-![right w:50%](images/nytimes_6-10.png)
-![right w:50%](images/nytimes_footer.png)
-
----
-
-# Previo (***)
-
-<div class="columns">
-
-<div class="card alt">
-  <img src="images/nytimes_1-5.png" />
+<div class="image-compare-row">
+  <img src="images/nytimes_1-5.png" alt="NYTimes 1-5" />
+  <img src="images/nytimes_6-10.png" alt="NYTimes 6-10" />
 </div>
-
-<div class="card">
-  <img src="images/nytimes_6-10.png" />
-  <img src="images/nytimes_footer.png" />
-</div>
-
+<div class="image-compare-row">
+  <img src="images/nytimes_footer.png" alt="NYTimes footer" />
 </div>
 
 ---
@@ -382,11 +393,19 @@ style: |
 
 ---
 
-
 # Curso IngenIA
-![Curso](cursoIngenIA.svg)
+<!-- _class: curso-slide -->
+<div class="curso-slide">
+  <img src="cursoIngenIA.svg" alt="Curso IngenIA" />
+</div>
 
-
+<style>
+  div.curso-slide img {
+    height: 161%;
+    margin-top: -14em;
+    margin-left: 4em;
+  }
+</style>
 
 ---
 
@@ -446,22 +465,11 @@ style: |
 
 ---  
 
-<!-- _class: course-table -->
-
-# Fase 1: Curso IngenIA
-
-| **Modelos**<br>◦ Empresas y modelos<br>◦ Multimedia y plataformas<br>◦ Chat y API (Tokens, Playground)<br>◦ Bases teóricas de los modelos | **Herramientas**<br>◦ GPTs, Gems, Proyectos, NotebookLM, tools, Hugging Face<br>◦ IDE (VSC, Copilot, skills, Cowork<br>◦ CLI, Agentes, entornos agénticos, MCP |
-| :--- | :--- |
-| **Formatos**<br>◦ JSON<br>◦ HTML, SVG, Mermaid,…<br>◦ Markdown, csv | **Scripting**<br>◦ Python<br>◦ JavaScript, Three.js<br>◦ [VBA, PowerShell, Blender] |
-
-
----
-
 # Fase 2: Áreas de conocimiento
 
-## Qué saber, hacer y ser
-## Cómo evaluar
-## Cómo impartir
+## Qué saber, hacer y ser en la era de la IA
+## Cómo evaluar en la era de la IA
+## Cómo impartir en la era de la IA
 
 ---
 
@@ -564,5 +572,32 @@ Formar parte de alguno de los grupos de trabajo o particpar ocasionalmente.
 ---
 
 _[Contacto o próximos pasos]_---
+
+---
+
+
+## Noticias para la introducción
+
+[Ver noticias](https://www.notion.so/Noticias-para-la-introducci-n-2f839c23f0168051a94bf33676dc1475?pvs=21)
+
+----
+
+## Evolución de los tests
+
+- [Stanford Benchmarks](https://epoch.ai/benchmarks/hle?view=graph&tab=release-date)
+- Progreso en capacidades de los modelos
+- Métricas de rendimiento
+
+---
+
+
+<!-- _class: course-table -->
+
+# Fase 1: Curso IngenIA
+
+| **Modelos**<br>◦ Empresas y modelos<br>◦ Multimedia y plataformas<br>◦ Chat y API (Tokens, Playground)<br>◦ Bases teóricas de los modelos | **Herramientas**<br>◦ GPTs, Gems, Proyectos, NotebookLM, tools, Hugging Face<br>◦ IDE (VSC, Copilot, skills, Cowork<br>◦ CLI, Agentes, entornos agénticos, MCP |
+| :--- | :--- |
+| **Formatos**<br>◦ JSON<br>◦ HTML, SVG, Mermaid,…<br>◦ Markdown, csv | **Scripting**<br>◦ Python<br>◦ JavaScript, Three.js<br>◦ [VBA, PowerShell, Blender] |
+
 
 ---
