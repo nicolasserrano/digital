@@ -189,6 +189,21 @@ style: |
     background: #000;
     display: block;
   }
+  .video-container {
+    width: 100%;
+    margin: 12px 0;
+    height: auto;
+    background: #000;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
   section.course-table {
     background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
   }
@@ -545,6 +560,15 @@ style: |
 
 ---
 
+<div class="video-container">
+  <video controls preload="metadata">
+    <source src="images/Atenas.mp4" type="video/mp4" />
+    Tu navegador no soporta reproducir video.
+  </video>
+</div>
+
+---
+
 # Grupos de Trabajo
 
 ### Formación
@@ -601,3 +625,13 @@ _[Contacto o próximos pasos]_---
 
 
 ---
+
+---
+
+<div class="video-container">
+  <video controls preload="metadata">
+    <source src="images/IndependenceSpaceship720.mp4" type="video/mp4" />
+    Tu navegador no soporta reproducir video.
+  </video>
+</div>
+
