@@ -22,7 +22,7 @@
   <circle cx="250" cy="130" r="7" fill="#185FA5"></circle>
   <path d="M238,150 Q250,141 262,150 Z" fill="#185FA5"></path>
   </g>
-  <text x="234" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0C447C">Área</text>
+  <text x="234" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0C447C">Departamento</text>
 
   <!-- Arrow 3: Facultad — amber (smaller) -->
   <polygon points="300,10 448,10 468,105 448,200 300,200 320,105" fill="#FAC775" stroke="#BA7517" stroke-width="1.5"></polygon>
@@ -54,5 +54,5 @@
   <path d="M542,140 Q545,139 547,141 Q547,144 544,145 Q541,144 541,141 Z" fill="#66BB6A" opacity="0.9"></path>
   <!-- clip to circle -->
   <circle cx="534" cy="141" r="19" fill="none" stroke="#27500A" stroke-width="1.5"></circle>
-  <text x="534" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#27500A">Exterior</text>
+  <text x="534" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#27500A">Universidad</text>
 </svg></svg>
