@@ -299,6 +299,55 @@ style: |
 ---
 
 <!-- _class: hle-slide -->
+# La era de la Inteligencia Artificial
+<div class="hle-container">
+  <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
+</div>
+
+---
+
+# Noticias del impacto de la IA
+
+<div class="columns">
+
+<div class="card alt">
+  <img src="images/nytimes_1-5.png" />
+</div>
+
+<div class="card">
+  <img src="images/nytimes_6-10.png" />
+  <img src="images/nytimes_footer.png" />
+</div>
+
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Rangings de MBA 2025 y 2026
+<div class="hle-container">
+  <img src="images/FinancialTimes_2025_2026.png" alt="Rangings de MBA 2025 y 2026" />
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Cambio en el MBA del IESE
+<div class="hle-container">
+  <img src="images/Campus_IESE_IA.jpg" alt="IESE adapata su MBA a la era de la IA" />
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Noticia en IESE
+<div class="hle-container">
+  <img src="images/IESE_IA.jpg" alt="Centrado en la inteligencia artificial" />
+</div>
+
+---
+
+<!-- _class: hle-slide -->
 # Humanity's Last Exam
 <div class="hle-container">
   <img src="images/difficulty_comparison_new.webp" alt="Humanity's Last Exam comparison" />
@@ -318,6 +367,13 @@ style: |
 
 # Fases de IngenIA
 ![Fases](fases.svg)
+
+---
+
+
+# Curso IngenIA
+![Curso](fases.svg)
+
 
 
 ---
