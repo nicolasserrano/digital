@@ -308,6 +308,14 @@ style: |
 
 # Noticias del impacto de la IA
 
+![left w:50%](images/nytimes_1-5.png)
+![right w:50%](images/nytimes_6-10.png)
+![right w:50%](images/nytimes_footer.png)
+
+---
+
+# Previo (***)
+
 <div class="columns">
 
 <div class="card alt">
@@ -372,7 +380,7 @@ style: |
 
 
 # Curso IngenIA
-![Curso](fases.svg)
+![Curso](cursoIngenIA.svg)
 
 
 
