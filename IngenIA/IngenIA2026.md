@@ -421,8 +421,8 @@ style: |
 
 ---
 
-# enciclica_Magnifica_humanitas
-![enciclica Magnifica humanitas](enciclica_Magnifica_humanitas.jpg)
+# Encíclica Magnifica humanitas
+![enciclica Magnifica humanitas](images/enciclica_Magnifica_humanitas.jpg)
 
 ---
 
