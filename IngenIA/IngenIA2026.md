@@ -537,7 +537,7 @@ style: |
 </div>
 
 <div class="full-image-slide-image">
-  <img src="Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
+  <img src="images/Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
 </div>
 
 
