@@ -343,6 +343,42 @@ style: |
   <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
 </div>
 
+
+---
+
+<div class="video-container">
+  <video controls preload="metadata">
+    <source src="images/IndependenceSpaceship720.mp4" type="video/mp4" />
+    Tu navegador no soporta reproducir video.
+  </video>
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Evolución de las capacidades de los LLMs
+<div class="hle-container">
+  <img src="images/IA_tests.png" alt="IA tests" />
+  <p class="hle-caption"><a href="[https://agi.safe.ai](https://www.oneusefulthing.org/p/the-shape-of-the-thing)/">The Shape of the Thing</a></p>
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Humanity's Last Exam
+<div class="hle-container">
+  <img src="images/difficulty_comparison_new.webp" alt="Humanity's Last Exam comparison" />
+  <p class="hle-caption"><a href="https://agi.safe.ai/">Humanity's Last Exam</a></p>
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# Humanity's Last Exam
+<div class="hle-container">
+  <img src="images/HLE_May.png" alt="Humanity's Last Exam May" />
+</div>
+
 ---
 
 # Noticias del impacto de la IA
@@ -384,24 +420,6 @@ style: |
 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uiZB4-Gh-t0?si=B0-wKDZSAx86Z2WR&amp;start=172" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
-
-<!-- _class: hle-slide -->
-# Humanity's Last Exam
-<div class="hle-container">
-  <img src="images/difficulty_comparison_new.webp" alt="Humanity's Last Exam comparison" />
-  <p class="hle-caption"><a href="https://agi.safe.ai/">Humanity's Last Exam</a></p>
-</div>
-
----
-
-<!-- _class: hle-slide -->
-# Humanity's Last Exam
-<div class="hle-container">
-  <img src="images/HLE_May.png" alt="Humanity's Last Exam May" />
-</div>
-
----
-
 
 # Fases de IngenIA
 ![Fases](fases.svg)
@@ -625,13 +643,4 @@ _[Contacto o próximos pasos]_---
 
 
 ---
-
----
-
-<div class="video-container">
-  <video controls preload="metadata">
-    <source src="images/IndependenceSpaceship720.mp4" type="video/mp4" />
-    Tu navegador no soporta reproducir video.
-  </video>
-</div>
 
