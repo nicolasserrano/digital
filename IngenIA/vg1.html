@@ -138,6 +138,20 @@
                 else currentZoomIdx = 7;                 // 285px
                 renderGrid();
                 showSlide(0);
+
+                // Prevenir que los clics en elementos interactivos dentro de las diapositivas
+                // propaguen el evento y activen la navegación de diapositivas.
+                slideContainers.forEach(slideSvg => {
+                    // Selecciona todos los elementos interactivos que no deben activar la navegación.
+                    // Esto incluye botones, enlaces, elementos de video y los contenedores demo-swap.
+                    // Los clics dentro de un iframe no se propagan al documento padre,
+                    // pero los clics en el contenedor del iframe sí lo harían si no se detienen.
+                    const interactiveElements = slideSvg.querySelectorAll('button, a, video, .demo-swap');
+
+                    interactiveElements.forEach(element => {
+                        element.addEventListener('click', e => e.stopPropagation());
+                    });
+                });
             } catch (e) { console.error(e); }
         }
 
