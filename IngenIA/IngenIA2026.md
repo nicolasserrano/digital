@@ -507,10 +507,6 @@ style: |
 
 # Fase 2: Áreas de conocimiento
 
-## Qué saber, hacer y ser en la era de la IA
-## Cómo evaluar en la era de la IA
-## Cómo impartir en la era de la IA
-
 <div class="full-image-slide-image">
   <img src="images/Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
 </div>
