@@ -536,6 +536,12 @@ style: |
   <img class="right" src="images/Robot_proof_2024.jpg" alt="Robot proof 2024" />
 </div>
 
+<div class="full-image-slide-image">
+  <img src="Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
+</div>
+
+
+
 ---
 
 <!-- _class: full-image-slide -->
@@ -543,7 +549,7 @@ style: |
 # Hacer menos
 
 <div class="full-image-slide-image">
-  <img src="https://media.licdn.com/dms/image/v2/C4E12AQHUz8KfSlvsmw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520210091555?e=1779321600&v=beta&t=BDxKGnUf4-eyP0Cbm6IbH8VrsPx_57gkHScrRW2sfsQ" alt="Hacer menos" />
+  <img src="images/WallEHumans.avif" alt="Hacer menos" />
 </div>
 
 ---
@@ -563,7 +569,7 @@ style: |
 <div class="columns">
 
 <div class="card alt">
-  <img src="https://media.licdn.com/dms/image/v2/C4E12AQHUz8KfSlvsmw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520210091555?e=1779321600&v=beta&t=BDxKGnUf4-eyP0Cbm6IbH8VrsPx_57gkHScrRW2sfsQ" />
+  <img src="images/WallEHumans.avif" />
   <div class="card-text">
     <h2>Hacer menos</h2>
     <p>El riesgo de la atrofia cognitiva y la pérdida de autonomía al delegar nuestro futuro.</p>
