@@ -421,6 +421,11 @@ style: |
 
 ---
 
+# enciclica_Magnifica_humanitas
+![enciclica Magnifica humanitas](enciclica_Magnifica_humanitas.jpg)
+
+---
+
 # Fases de IngenIA
 ![Fases](fases.svg)
 
