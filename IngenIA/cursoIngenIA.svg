@@ -25,10 +25,10 @@
             /* Definimos un patrón de guiones: 12px línea, 8px espacio */
             stroke-dasharray: 12, 8;
             /* Animamos el desplazamiento del guión */
-            animation: flowAnimation 0.8s linear infinite;
+            animation: flowAnimation 0.5s linear infinite;
             stroke: #00f2ff;
             filter: drop-shadow(0 0 5px #00f2ff);
-            stroke-width: 8;
+            stroke-width: 6px;
             stroke-linecap: round;
             fill: none;
         }
