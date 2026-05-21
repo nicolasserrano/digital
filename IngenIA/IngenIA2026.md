@@ -503,6 +503,8 @@ style: |
 
 ---  
 
+<!-- _class: full-image-slide -->
+
 # Fase 2: Áreas de conocimiento
 
 ## Qué saber, hacer y ser en la era de la IA
