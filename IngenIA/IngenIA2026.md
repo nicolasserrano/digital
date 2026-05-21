@@ -509,6 +509,10 @@ style: |
 ## Cómo evaluar en la era de la IA
 ## Cómo impartir en la era de la IA
 
+<div class="full-image-slide-image">
+  <img src="images/Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
+</div>
+
 ---
 
 # Fase 3: Formación integral
@@ -535,12 +539,6 @@ style: |
   <div class="center image-text">Resumen de la Universidad de la Sábana</div>
   <img class="right" src="images/Robot_proof_2024.jpg" alt="Robot proof 2024" />
 </div>
-
-<div class="full-image-slide-image">
-  <img src="images/Saber_Hacer_Ser.jpg" alt="Saber Hacer Ser" />
-</div>
-
-
 
 ---
 
