@@ -22,7 +22,7 @@
   <circle cx="250" cy="130" r="7" fill="#185FA5"></circle>
   <path d="M238,150 Q250,141 262,150 Z" fill="#185FA5"></path>
   </g>
-  <text x="234" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0C447C">Departamento</text>
+  <text x="234" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0C447C">Área</text>
 
   <!-- Arrow 3: Facultad — amber (smaller) -->
   <polygon points="300,10 448,10 468,105 448,200 300,200 320,105" fill="#FAC775" stroke="#BA7517" stroke-width="1.5"></polygon>
@@ -32,7 +32,7 @@
   <rect x="370" y="132" width="28" height="24" fill="#854F0B"></rect>
   <rect x="375" y="140" width="7" height="10" fill="#FAC775"></rect>
   <rect x="386" y="140" width="7" height="10" fill="#FAC775"></rect>
-  <text x="384" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#633806">Facultad</text>
+  <text x="384" y="180" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#633806">Titulación</text>
 
   <!-- Arrow 4: Exterior — green -->
   <polygon points="450,10 618,10 648,105 618,200 450,200 470,105" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"></polygon>
