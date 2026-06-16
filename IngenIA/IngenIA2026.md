@@ -477,9 +477,11 @@ style: |
 ## Aplicaciones Prácticas
 
 - **Tabla de amortización** - _[Completar descripción]_
-- **Elementos finitos** [Abrir ejemplo](https://claude.ai/public/artifacts/7e49d32c-3563-4b0f-a412-e19ee1b865ba)]
+- **Distribución de Gauss** [Abrir ejemplo](https://claude.ai/public/artifacts/7e49d32c-3563-4b0f-a412-e19ee1b865ba)]
+- **Funciones** -[Abrir ejemplo](https://gemini.google.com/app/4c7a1bbbb504454c)
 - **Cuadrilátero articulado** -[Abrir ejemplo](https://claude.ai/public/artifacts/e68a37d4-1484-45f6-9d1e-bac8ab7a5d65) _
 - **Robot** [Abrir ejemplo](https://gemini.google.com/share/aa59742a602b)
+- **Puente grua** -[Abrir ejemplo](https://gemini.google.com/share/0244dfdbe4a5)
 
 - **Puente grúa** 
 
@@ -494,6 +496,20 @@ style: |
     onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/CurvaGauss.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
   >
     <img src="./ejemplos/CurvaGauss.png" alt="Abrir demo interactiva del Curva de Gauss" />
+  </button>
+</div>
+
+---
+
+## Ejemplo: Hola de cálculo de amortización
+
+<div class="demo-swap">
+  <button
+    class="demo-launch"
+    type="button"
+    onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/hoja_de_calculo_de_amortizacion.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
+  >
+    <img src="./ejemplos/hoja_de_calculo_de_amortizacion.png" alt="Abrir demo interactiva de hoja de calculo de amortizacion" />
   </button>
 </div>
 
