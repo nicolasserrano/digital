@@ -340,6 +340,31 @@ style: |
 <!-- _class: hle-slide -->
 # La era de la Inteligencia Artificial
 <div class="hle-container">
+  <img src="images/Usted_se_encuentra_aqui_2.jpg" alt="Cartel Usted se encuentra aqui" />
+</div>
+
+---
+
+<!-- _class: hle-slide -->
+# La era de la Inteligencia Artificial
+<div class="hle-container">
+  <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
+</div>
+
+
+---
+<!-- _class: hle-slide -->
+# La era de la Inteligencia Artificial
+<div class="hle-container">
+  <img src="images/youarehere.svg" alt="You are here" />
+  <style>
+      svg#youarehere {
+      position: fixed;
+      height: 18%;
+      top: 16%;
+      left: 21%;
+    }
+  </style>
   <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
 </div>
 
