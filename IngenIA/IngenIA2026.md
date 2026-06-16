@@ -335,12 +335,12 @@ style: |
 
 ## GID IngenIA: Inteligenia Artificial en la Ingeniería<br> Tecnun. Escuela de Ingeniería. Universidad de Navarra
 
-----
+---
 
 <!-- _class: hle-slide -->
 # La era de la Inteligencia Artificial
 <div class="hle-container">
-  <img src="images/Usted_se_encuentra_aqui_2.jpg" alt="Cartel Usted se encuentra aqui" />
+  <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
 </div>
 
 ---
@@ -348,7 +348,7 @@ style: |
 <!-- _class: hle-slide -->
 # La era de la Inteligencia Artificial
 <div class="hle-container">
-  <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
+  <img src="images/Usted_se_encuentra_aqui_2.jpg" alt="Cartel Usted se encuentra aqui" />
 </div>
 
 
@@ -358,11 +358,11 @@ style: |
 <div class="hle-container">
   <img id='youarehere' src="images/youarehere.svg" alt="You are here" />
   <style>
-      svg#youarehere {
+    img#youarehere {
       position: fixed;
       height: 18%;
-      top: 16%;
-      left: 21%;
+      top: 11%;
+      left: 27%;
     }
   </style>
   <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
