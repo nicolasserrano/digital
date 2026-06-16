@@ -356,7 +356,7 @@ style: |
 <!-- _class: hle-slide -->
 # La era de la Inteligencia Artificial
 <div class="hle-container">
-  <img src="images/youarehere.svg" alt="You are here" />
+  <img id='youarehere' src="images/youarehere.svg" alt="You are here" />
   <style>
       svg#youarehere {
       position: fixed;
