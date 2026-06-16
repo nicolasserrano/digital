@@ -359,10 +359,10 @@ style: |
   <img id='youarehere' src="images/youarehere.svg" alt="You are here" />
   <style>
     img#youarehere {
-      position: fixed;
       height: 18%;
-      top: 11%;
-      left: 27%;
+      top: 2%;
+      left: 33%;
+      position: absolute;
     }
   </style>
   <img src="images/revoluciones_industriales.png" alt="Las 4 revoluciones industriales" />
@@ -442,12 +442,12 @@ style: |
 
 ---
 
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/uiZB4-Gh-t0?si=B0-wKDZSAx86Z2WR&amp;start=172" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# Encíclica Magnifica humanitas
+![enciclica Magnifica humanitas](images/enciclica_Magnifica_humanitas.jpg)
 
 ---
 
-# Encíclica Magnifica humanitas
-![enciclica Magnifica humanitas](images/enciclica_Magnifica_humanitas.jpg)
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/uiZB4-Gh-t0?si=B0-wKDZSAx86Z2WR&amp;start=172" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
