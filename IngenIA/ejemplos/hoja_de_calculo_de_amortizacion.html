@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreadsheet - Loan Amortization</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para iconos limpios -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Estilos personalizados para emular una hoja de cálculo real */
+        .sheet-grid {
+            display: grid;
+            grid-template-columns: 40px repeat(7, minmax(120px, 1fr));
+        }
+        .cell-input {
+            border: 1px solid #e2e8f0;
+            outline: none;
+            transition: all 0.1s ease;
+        }
+        .cell-input:focus {
+            border: 2px solid #3b82f6;
+            z-index: 10;
+        }
+        .header-cell {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            user-select: none;
+        }
+        /* Ocultar barra de scroll en contenedores estéticos */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+
+    <!-- Barra de Navegación / Header -->
+    <header class="bg-indigo-900 text-white shadow-md px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <div class="bg-white p-2 rounded-lg text-indigo-900">
+                <i data-lucide="calculator" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight">Spreadsheet</h1>
+                <p class="text-xs text-indigo-200">Interactive loan amortization spreadsheet</p>
+            </div>
+        </div>
+        
+        <div class="flex gap-2">
+            <button onclick="resetToDefault()" class="flex items-center gap-2 bg-indigo-800 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-sm transition font-medium border border-indigo-700">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset to €1,000
+            </button>
+            <button onclick="exportToCSV()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-sm transition font-medium">
+                <i data-lucide="download" class="w-4 h-4"></i> Export CSV
+            </button>
+            <button onclick="window.print()" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded-lg text-sm transition font-medium">
+                <i data-lucide="printer" class="w-4 h-4"></i> Print / PDF
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 lg:p-6 max-w-[1600px] mx-auto w-full grid grid-cols-1 xl:grid-cols-4 gap-6">
+        
+        <!-- Panel de Control Lateral (Variables Rápidas) -->
+        <div class="xl:col-span-1 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col gap-6">
+            <div>
+                <h2 class="text-lg font-bold text-slate-900 mb-1 flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-5 h-5 text-indigo-600"></i> Quick Parameters
+                </h2>
+                <p class="text-sm text-slate-500">Modify these values to automatically update the corresponding cells in the sheet.</p>
+            </div>
+
+            <!-- Formulario Rápido -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Loan Principal (€)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-slate-400 font-medium">€</span>
+                        <input type="number" id="quick-amount" value="1000" step="100" class="w-full pl-8 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-slate-900 font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Annual Interest Rate (%)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-slate-400 font-medium">%</span>
+                        <input type="number" id="quick-rate" value="10" step="0.5" class="w-full pl-8 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-slate-900 font-medium">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Repayment Term (Months)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-slate-400 font-medium">📅</span>
+                        <input type="number" id="quick-term" value="12" min="1" max="18" class="w-full pl-8 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition text-slate-900 font-medium">
+                    </div>
+                </div>
+                <button onclick="applyQuickParameters()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition shadow-sm hover:shadow flex items-center justify-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4"></i> Apply Parameters
+                </button>
+            </div>
+
+            <!-- Resumen Visualizador Integrado -->
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 mt-auto space-y-3">
+                <span class="text-xs font-bold text-indigo-900 tracking-wider uppercase">Key Metrics</span>
+                <div class="grid grid-cols-2 gap-4 pt-1">
+                    <div>
+                        <span class="text-xs text-slate-500 block">Total Paid:</span>
+                        <span id="stat-total-paid" class="text-lg font-bold text-slate-800">-</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 block">Total Interest:</span>
+                        <span id="stat-total-interest" class="text-lg font-bold text-amber-600">-</span>
+                    </div>
+                </div>
+                <div class="border-t border-slate-200 pt-2">
+                    <span class="text-xs text-slate-500 block">Estimated Monthly:</span>
+                    <span id="stat-monthly" class="text-2xl font-black text-indigo-700">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- El Spreadsheet Interactiva y Gráfico -->
+        <div class="xl:col-span-3 flex flex-col gap-6">
+            
+            <!-- Barra de Fórmulas tipo Excel -->
+            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center gap-3">
+                <div class="bg-slate-100 px-3 py-1.5 rounded-lg font-mono text-sm font-semibold text-slate-600 border border-slate-200 select-none min-w-[60px] text-center" id="active-cell-indicator">
+                    -
+                </div>
+                <div class="text-slate-400 font-mono select-none font-bold">fx</div>
+                <input type="text" id="formula-bar" placeholder="Select a cell or write a formula (e.g., =B2*1.10)" class="flex-grow font-mono bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none text-slate-800" disabled>
+            </div>
+
+            <!-- Contenedor de la Hoja de Cálculo -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <!-- Toolbar de la Hoja -->
+                <div class="bg-slate-50 border-b border-slate-200 p-3 flex flex-wrap gap-2 items-center text-xs text-slate-600">
+                    <span class="font-bold border-r border-slate-200 pr-2">Cell Functions:</span>
+                    <code class="bg-slate-200 px-1.5 py-0.5 rounded text-indigo-700 font-mono">=SUM(Range)</code>
+                    <code class="bg-slate-200 px-1.5 py-0.5 rounded text-indigo-700 font-mono">=ROUND(Value, Decimals)</code>
+                    <code class="bg-slate-200 px-1.5 py-0.5 rounded text-indigo-700 font-mono">=PMT(Rate, Nper, PV)</code>
+                    <span class="ml-auto text-slate-400 font-medium">*Press F2 or double-click to edit cell. Use Arrow keys to navigate.</span>
+                </div>
+
+                <!-- Grid de Hoja de Cálculo -->
+                <div class="overflow-x-auto max-w-full no-scrollbar">
+                    <div class="min-w-[800px] bg-slate-200 p-[1px] grid" id="spreadsheet-container">
+                        <!-- El script inyectará dinámicamente las celdas aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico Dinámico de Amortización (Renderizado con SVG puro) -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-indigo-600"></i> Dynamic Amortization Chart
+                        </h3>
+                        <p class="text-xs text-slate-500">Interactive visualization of Remaining Balance and accumulated amortization over time.</p>
+                    </div>
+                    <div class="flex gap-4 text-xs font-semibold">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 bg-indigo-600 rounded-full inline-block"></span> Remaining Balance
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 bg-rose-500 rounded-full inline-block"></span> Accumulated Amortization
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor del Gráfico SVG -->
+                <div class="relative h-64 w-full bg-slate-50 rounded-xl border border-slate-100 overflow-hidden" id="chart-container">
+                    <svg id="amortization-chart" class="w-full h-full p-4" viewBox="0 0 1000 250" preserveAspectRatio="none">
+                        <!-- El gráfico se dibujará aquí dinámicamente con JavaScript -->
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Informativo -->
+    <footer class="bg-slate-100 border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <p>© 2026 Spreadsheet - Modify cells directly to experiment.</p>
+        <p class="flex items-center gap-1">Designed with <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500 fill-rose-500"></i> for dynamic finance.</p>
+    </footer>
+
+    <!-- Script de lógica de la Hoja de Cálculo -->
+    <script>
+        // Configuración de la hoja de cálculo
+        const COLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+        const ROWS = 24; // Permite filas de sobra para jugar y añadir cosas
+        
+        // Almacén de datos raw (fórmulas o valores numéricos puros)
+        let cells = {};
+        // Almacén de valores evaluados finales
+        let evaluated = {};
+        // Celda actualmente seleccionada
+        let activeCell = null;
+        // Estado de edición de celda activa
+        let isEditing = false;
+
+        // Inicializar datos del Préstamo (1000€, 12 meses, 10% interés)
+        function initData() {
+            cells = {
+                // Parámetros del préstamo
+                "A1": "LOAN CONFIGURATION",
+                "A2": "Principal Amount (€)", "B2": "1000",
+                "A3": "Annual Interest (%)",   "B3": "10",
+                "A4": "Term (months)",         "B4": "12",
+                
+                // Métricas globales resumidas
+                "D1": "LOAN SUMMARY",
+                "D2": "Total Paid (€)",      "E2": "=ROUND(SUM(B9:B20), 2)",
+                "D3": "Total Interest (€)",   "E3": "=ROUND(SUM(C9:C20), 2)",
+                "D4": "Monthly Payment (€)",  "E4": "=B9",
+                
+                // Cabeceras de tabla de amortización
+                "A7": "Month", 
+                "B7": "Monthly Payment", 
+                "C7": "Interest", 
+                "D7": "Amortization", 
+                "E7": "Remaining Balance",
+                
+                // Mes 0
+                "A8": "0", "B8": "", "C8": "", "D8": "", "E8": "=B2"
+            };
+
+            // Rellenar dinámicamente las fórmulas para los 12 meses iniciales
+            for (let i = 1; i <= 12; i++) {
+                const row = 8 + i; // Mes 1 empieza en Fila 9
+                cells[`A${row}`] = i.toString();
+                // Fórmulas financieras dinámicas:
+                // Cuota: PMT (calculado en el mes 1, los demás replican B9 para consistencia)
+                cells[`B${row}`] = i === 1 ? "=ROUND(PMT(B3/1200, B4, B2), 2)" : `=B9`;
+                // Interés del periodo actual = Capital pendiente anterior * interés mensual
+                cells[`C${row}`] = `=ROUND(E${row-1}*(B3/1200), 2)`;
+                // Capital amortizado en el periodo actual = Cuota - Interés
+                cells[`D${row}`] = `=ROUND(B${row}-C${row}, 2)`;
+                // Nuevo capital pendiente = Capital pendiente anterior - Capital amortizado actual
+                cells[`E${row}`] = `=ROUND(E${row-1}-D${row}, 2)`;
+            }
+        }
+
+        // Traducir columnas de letra a índice numérico y viceversa
+        function colToNumber(col) {
+            let num = 0;
+            for (let i = 0; i < col.length; i++) {
+                num = num * 26 + (col.charCodeAt(i) - 64);
+            }
+            return num;
+        }
+
+        function numberToCol(num) {
+            let col = '';
+            while (num > 0) {
+                let temp = (num - 1) % 26;
+                col = String.fromCharCode(65 + temp) + col;
+                num = Math.floor((num - temp) / 26);
+            }
+            return col;
+        }
+
+        // Helper para expandir rangos en fórmulas como "B9:B20" -> "B9,B10,B11...B20"
+        function expandRanges(expression) {
+            return expression.replace(/\b([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)\b/g, (match, colStart, rowStart, colEnd, rowEnd) => {
+                const startColIndex = colToNumber(colStart);
+                const endColIndex = colToNumber(colEnd);
+                const startRow = parseInt(rowStart);
+                const endRow = parseInt(rowEnd);
+                
+                let expandedCells = [];
+                for (let c = Math.min(startColIndex, endColIndex); c <= Math.max(startColIndex, endColIndex); c++) {
+                    for (let r = Math.min(startRow, endRow); r <= Math.max(startRow, endRow); r++) {
+                        expandedCells.push(numberToCol(c) + r);
+                    }
+                }
+                return expandedCells.join(',');
+            });
+        }
+
+        // Evaluar fórmula matemática/financiera de celda individual
+        function evaluateFormula(formula, cellId) {
+            if (!formula || typeof formula !== 'string' || !formula.startsWith('=')) {
+                return formula; // Retornar valores planos directos
+            }
+
+            let expr = formula.substring(1).toUpperCase();
+            
+            // Eliminar referencias absolutas de Excel ($) para simplificar parsing
+            expr = expr.replace(/\$/g, '');
+
+            // Expandir rangos de celdas (ej: B9:B20)
+            expr = expandRanges(expr);
+
+            // Reemplazar referencias a celdas individuales (ej: A1, E12) por sus valores evaluados
+            const cellRefRegex = /\b([A-Z]+)([0-9]+)\b/g;
+            expr = expr.replace(cellRefRegex, (match) => {
+                const value = evaluated[match];
+                if (value === undefined || value === '') return 0;
+                // Si la celda dependiente da un error, arrastrarlo
+                if (value === '#ERROR!' || value === '#VALUE!') return value;
+                return value;
+            });
+
+            // Si contiene errores arrastrados, propagarlos de inmediato
+            if (expr.includes('#ERROR!') || expr.includes('#VALUE!')) {
+                return '#ERROR!';
+            }
+
+            try {
+                // Entorno de ejecución seguro de fórmulas
+                const context = {
+                    ROUND: (val, dec) => {
+                        const factor = Math.pow(10, dec || 0);
+                        return Math.round(val * factor) / factor;
+                    },
+                    PMT: (rate, nper, pv) => {
+                        if (rate === 0) return pv / nper;
+                        return (pv * rate) / (1 - Math.pow(1 + rate, -nper));
+                    },
+                    SUM: (...args) => args.reduce((acc, curr) => acc + Number(curr || 0), 0),
+                    ABS: Math.abs,
+                    MAX: Math.max,
+                    MIN: Math.min
+                };
+
+                // Crear un evaluador usando funciones seguras aisladas en scope
+                const keys = Object.keys(context);
+                const vals = Object.values(context);
+                const evaluator = new Function(...keys, `return ${expr};`);
+                const result = evaluator(...vals);
+
+                if (typeof result === 'number' && isNaN(result)) return '#VALUE!';
+                return result;
+            } catch (e) {
+                return '#ERROR!';
+            }
+        }
+
+        // Motor de Recalculación Reactiva de la Hoja (Relajación iterativa para dependencias)
+        function recalculateSheet() {
+            evaluated = {};
+            let changed = true;
+            let iterations = 0;
+            const maxIterations = 15; // Evita bucles infinitos por dependencias circulares
+
+            // Limpiamos primero el mapa de evaluados con valores constantes para agilizar
+            for (const key in cells) {
+                if (!cells[key] || !cells[key].toString().startsWith('=')) {
+                    evaluated[key] = cells[key];
+                }
+            }
+
+            while (changed && iterations < maxIterations) {
+                changed = false;
+                for (const key in cells) {
+                    if (cells[key] && cells[key].toString().startsWith('=')) {
+                        const oldVal = evaluated[key];
+                        const newVal = evaluateFormula(cells[key], key);
+                        if (oldVal !== newVal) {
+                            evaluated[key] = newVal;
+                            changed = true;
+                        }
+                    }
+                }
+                iterations++;
+            }
+
+            // Actualizar interfaz visual
+            renderValues();
+            updateUIMetrics();
+            drawChart();
+        }
+
+        // Renderizar valores evaluados en el grid DOM de la tabla
+        function renderValues() {
+            for (let r = 1; r <= ROWS; r++) {
+                for (let c = 0; c < COLS.length; c++) {
+                    const cellId = COLS[c] + r;
+                    const inputElement = document.getElementById(`cell-${cellId}`);
+                    if (inputElement) {
+                        // Si la celda seleccionada está en edición, NO pisamos lo que escribe el usuario
+                        if (activeCell === cellId && isEditing) {
+                            continue;
+                        }
+
+                        const val = evaluated[cellId] !== undefined ? evaluated[cellId] : '';
+                        
+                        // Formatear visualmente números monetarios si procede
+                        if (typeof val === 'number' && !isNaN(val)) {
+                            // Si es una columna de importes, formatear de forma estética con €
+                            if (['B', 'C', 'D', 'E'].includes(COLS[c]) && r >= 2) {
+                                inputElement.value = val.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+                                continue;
+                            }
+                        }
+                        inputElement.value = val;
+                        
+                        // Colorear errores para alerta visual
+                        if (val === '#ERROR!' || val === '#VALUE!') {
+                            inputElement.classList.add('text-red-500', 'font-semibold');
+                        } else {
+                            inputElement.classList.remove('text-red-500', 'font-semibold');
+                        }
+                    }
+                }
+            }
+        }
+
+        // Crear dinámicamente el Grid de la Hoja de Cálculo en el DOM
+        function buildGridDOM() {
+            const container = document.getElementById('spreadsheet-container');
+            container.innerHTML = '';
+
+            // Definir plantilla de grid CSS de forma dinámica
+            container.style.gridTemplateColumns = `40px repeat(${COLS.length}, minmax(130px, 1fr))`;
+
+            // 1. Esquina superior izquierda vacía
+            const corner = document.createElement('div');
+            corner.className = 'header-cell flex items-center justify-center font-bold text-slate-400 text-xs border-r border-b border-slate-300';
+            corner.textContent = '';
+            container.appendChild(corner);
+
+            // 2. Cabeceras de Columnas (A, B, C...)
+            for (let c = 0; c < COLS.length; c++) {
+                const header = document.createElement('div');
+                header.className = 'header-cell flex items-center justify-center font-semibold text-slate-600 text-xs py-1.5 border-r border-b border-slate-300';
+                header.textContent = COLS[c];
+                container.appendChild(header);
+            }
+
+            // 3. Crear Filas con su índice numérico lateral y inputs de celda
+            for (let r = 1; r <= ROWS; r++) {
+                // Cabecera de Fila (Número)
+                const rowHeader = document.createElement('div');
+                rowHeader.className = 'header-cell flex items-center justify-center font-semibold text-slate-500 text-xs border-r border-b border-slate-300 select-none';
+                rowHeader.textContent = r;
+                container.appendChild(rowHeader);
+
+                // Celdas de Datos
+                for (let c = 0; c < COLS.length; c++) {
+                    const cellId = COLS[c] + r;
+                    const cellContainer = document.createElement('div');
+                    cellContainer.className = 'relative bg-white border-r border-b border-slate-200';
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = `cell-${cellId}`;
+                    input.className = 'w-full h-full px-2 py-1.5 text-sm cell-input font-medium bg-transparent transition-colors';
+                    input.readOnly = true; // Por defecto modo lectura como Excel
+                    
+                    // Alinear textos a la izquierda y números/fórmulas a la derecha
+                    if (c === 0) {
+                        input.classList.add('text-left');
+                    } else {
+                        input.classList.add('text-right');
+                    }
+
+                    // Estilizar de forma especial las celdas de configuración o cabecera interna
+                    if (r === 1 || r === 7) {
+                        input.classList.add('bg-indigo-50/40', 'font-bold', 'text-indigo-900');
+                    }
+                    if (r >= 2 && r <= 4 && c === 0) {
+                        input.classList.add('bg-slate-50/50', 'text-slate-600');
+                    }
+
+                    // Eventos interactivos de celda
+                    input.addEventListener('focus', () => selectCell(cellId));
+                    input.addEventListener('blur', () => deselectCell(cellId));
+                    input.addEventListener('dblclick', () => enterEditMode(cellId));
+                    input.addEventListener('keydown', (e) => handleCellNavigation(e, cellId));
+                    
+                    cellContainer.appendChild(input);
+                    container.appendChild(cellContainer);
+                }
+            }
+        }
+
+        // Seleccionar una celda: mostrar su valor evaluado y activar la barra de fórmulas
+        function selectCell(cellId) {
+            if (activeCell === cellId) return;
+
+            // Si cambiamos de celda estando en edición, guardamos los cambios de la anterior
+            if (activeCell && isEditing) {
+                exitEditMode(activeCell, true);
+            }
+
+            activeCell = cellId;
+            const input = document.getElementById(`cell-${cellId}`);
+            if (!input) return;
+
+            // Mostrar coordenadas en el indicador
+            document.getElementById('active-cell-indicator').textContent = cellId;
+            
+            // Cargar el valor sin evaluar en la barra de fórmulas
+            const formulaBar = document.getElementById('formula-bar');
+            formulaBar.removeAttribute('disabled');
+            const rawVal = cells[cellId] !== undefined ? cells[cellId] : '';
+            formulaBar.value = rawVal;
+
+            // Asegurarse de que esté en modo lectura (ReadOnly)
+            input.readOnly = true;
+
+            // Resaltar contenedor
+            input.parentElement.classList.add('ring-2', 'ring-indigo-500', 'z-10');
+
+            // Refrescar todos los valores para aplicar formatos monetarios adecuadamente
+            renderValues();
+        }
+
+        // Entrar a Modo Edición (F2, Doble Click, o al escribir directamente)
+        function enterEditMode(cellId, clearFirst = false) {
+            if (!cellId) return;
+            isEditing = true;
+            const input = document.getElementById(`cell-${cellId}`);
+            if (!input) return;
+
+            input.readOnly = false;
+            
+            // Mostramos la fórmula o el valor bruto para poder editar libremente
+            const rawVal = cells[cellId] !== undefined ? cells[cellId] : '';
+            input.value = clearFirst ? '' : rawVal;
+
+            // Añadir feedback visual de celda en edición activa
+            input.classList.add('bg-white');
+
+            // Asegurar foco y colocar cursor al final
+            input.focus();
+            if (!clearFirst) {
+                const len = input.value.length;
+                input.setSelectionRange(len, len);
+            }
+        }
+
+        // Salir del modo edición (Guardar o Descartar)
+        function exitEditMode(cellId, saveChanges) {
+            isEditing = false;
+            const input = document.getElementById(`cell-${cellId}`);
+            if (!input) return;
+
+            input.readOnly = true;
+            input.classList.remove('bg-white');
+
+            if (saveChanges) {
+                const newVal = input.value.trim();
+                if (newVal === '') {
+                    delete cells[cellId];
+                } else {
+                    cells[cellId] = newVal;
+                }
+            }
+
+            // Sincronizar la barra de fórmulas
+            const formulaBar = document.getElementById('formula-bar');
+            if (formulaBar) {
+                formulaBar.value = cells[cellId] !== undefined ? cells[cellId] : '';
+            }
+
+            recalculateSheet();
+        }
+
+        // Deseleccionar celda: guardar valor editado y relanzar cálculos
+        function deselectCell(cellId) {
+            const input = document.getElementById(`cell-${cellId}`);
+            if (!input) return;
+
+            if (isEditing && activeCell === cellId) {
+                exitEditMode(cellId, true);
+            }
+
+            input.parentElement.classList.remove('ring-2', 'ring-indigo-500', 'z-10');
+            
+            // Retardo para evitar conflictos al re-enfocar otra celda
+            setTimeout(() => {
+                if (activeCell === cellId) {
+                    activeCell = null;
+                    isEditing = false;
+                    document.getElementById('active-cell-indicator').textContent = '-';
+                    document.getElementById('formula-bar').setAttribute('disabled', 'true');
+                    document.getElementById('formula-bar').value = '';
+                }
+            }, 150);
+        }
+
+        // Control de teclado inteligente para selección, navegación y edición estilo Excel
+        function handleCellNavigation(e, cellId) {
+            const col = cellId.charAt(0);
+            const row = parseInt(cellId.substring(1));
+            const colIndex = COLS.indexOf(col);
+            let nextCellId = null;
+
+            if (isEditing) {
+                // --- COMPORTAMIENTO EN MODO EDICIÓN ---
+                // Dejamos que las flechas de dirección operen nativamente para mover el cursor dentro del texto de la celda.
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    return; // Retornamos y NO cambiamos de celda.
+                }
+
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    exitEditMode(cellId, true);
+                    
+                    // Mover el foco a la celda de abajo
+                    const nextRow = row < ROWS ? row + 1 : row;
+                    nextCellId = col + nextRow;
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    exitEditMode(cellId, false); // Cancelamos y descartamos los cambios
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    exitEditMode(cellId, true);
+                    const nextColIndex = e.shiftKey ? Math.max(0, colIndex - 1) : Math.min(COLS.length - 1, colIndex + 1);
+                    nextCellId = COLS[nextColIndex] + row;
+                }
+            } else {
+                // --- COMPORTAMIENTO EN MODO SELECCIÓN / LECTURA ---
+                switch (e.key) {
+                    case 'ArrowUp':
+                        if (row > 1) {
+                            e.preventDefault();
+                            nextCellId = col + (row - 1);
+                        }
+                        break;
+                    case 'ArrowDown':
+                        if (row < ROWS) {
+                            e.preventDefault();
+                            nextCellId = col + (row + 1);
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        if (colIndex > 0) {
+                            e.preventDefault();
+                            nextCellId = COLS[colIndex - 1] + row;
+                        }
+                        break;
+                    case 'ArrowRight':
+                        if (colIndex < COLS.length - 1) {
+                            e.preventDefault();
+                            nextCellId = COLS[colIndex + 1] + row;
+                        }
+                        break;
+                    case 'Enter':
+                    case 'F2':
+                        e.preventDefault();
+                        // Activar el modo de edición de la celda manteniendo su texto actual
+                        enterEditMode(cellId, false);
+                        break;
+                    case 'Backspace':
+                    case 'Delete':
+                        e.preventDefault();
+                        cells[cellId] = '';
+                        recalculateSheet();
+                        break;
+                    default:
+                        // Si el usuario empieza a escribir directamente números/letras, vaciamos la celda y entramos a editar
+                        if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                            e.preventDefault();
+                            enterEditMode(cellId, true); // Vaciar celda
+                            const inputElement = document.getElementById(`cell-${cellId}`);
+                            if (inputElement) {
+                                inputElement.value = e.key;
+                                cells[cellId] = e.key; // Guardamos provisionalmente
+                            }
+                        }
+                        break;
+                }
+            }
+
+            // Cambiar foco a la nueva celda si corresponde
+            if (nextCellId) {
+                const nextInput = document.getElementById(`cell-${nextCellId}`);
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+        }
+
+        // Sincronizar edición en tiempo real desde la barra de fórmulas
+        document.getElementById('formula-bar').addEventListener('focus', () => {
+            if (activeCell) {
+                isEditing = true;
+                const input = document.getElementById(`cell-${activeCell}`);
+                if (input) {
+                    input.value = cells[activeCell] !== undefined ? cells[activeCell] : '';
+                    input.readOnly = false;
+                }
+            }
+        });
+
+        document.getElementById('formula-bar').addEventListener('input', (e) => {
+            if (activeCell) {
+                const input = document.getElementById(`cell-${activeCell}`);
+                if (input) {
+                    input.value = e.target.value;
+                    cells[activeCell] = e.target.value;
+                }
+            }
+        });
+
+        document.getElementById('formula-bar').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && activeCell) {
+                e.preventDefault();
+                document.getElementById(`cell-${activeCell}`).focus();
+                exitEditMode(activeCell, true);
+            }
+        });
+
+        document.getElementById('formula-bar').addEventListener('blur', () => {
+            if (activeCell) {
+                const barValue = document.getElementById('formula-bar').value.trim();
+                cells[activeCell] = barValue;
+                exitEditMode(activeCell, true);
+            }
+        });
+
+        // Modificar parámetros del préstamo de forma visual rápida desde el panel lateral
+        function applyQuickParameters() {
+            const amount = document.getElementById('quick-amount').value;
+            const rate = document.getElementById('quick-rate').value;
+            const term = parseInt(document.getElementById('quick-term').value) || 12;
+
+            cells['B2'] = amount.toString();
+            cells['B3'] = rate.toString();
+            cells['B4'] = term.toString();
+
+            // Ajustar dinámicamente las filas de amortización en base al nuevo plazo
+            for (let i = 1; i <= 16; i++) {
+                const row = 8 + i;
+                cells[`A${row}`] = '';
+                cells[`B${row}`] = '';
+                cells[`C${row}`] = '';
+                cells[`D${row}`] = '';
+                cells[`E${row}`] = '';
+            }
+
+            // Inyectamos las nuevas fórmulas de amortización hasta el nuevo plazo
+            for (let i = 1; i <= term; i++) {
+                const row = 8 + i;
+                cells[`A${row}`] = i.toString();
+                cells[`B${row}`] = i === 1 ? "=ROUND(PMT(B3/1200, B4, B2), 2)" : `=B9`;
+                cells[`C${row}`] = `=ROUND(E${row-1}*(B3/1200), 2)`;
+                cells[`D${row}`] = `=ROUND(B${row}-C${row}, 2)`;
+                cells[`E${row}`] = `=ROUND(E${row-1}-D${row}, 2)`;
+            }
+
+            // Actualizar referencias del resumen para apuntar exactamente al final del nuevo plazo
+            cells['E2'] = `=ROUND(SUM(B9:B${8 + term}), 2)`;
+            cells['E3'] = `=ROUND(SUM(C9:C${8 + term}), 2)`;
+
+            recalculateSheet();
+        }
+
+        // Actualizar las métricas visuales del panel de control
+        function updateUIMetrics() {
+            const totalPaid = evaluated['E2'];
+            const totalInterest = evaluated['E3'];
+            const monthlyPayment = evaluated['E4'];
+
+            document.getElementById('stat-total-paid').textContent = typeof totalPaid === 'number' ? totalPaid.toFixed(2) + ' €' : '-';
+            document.getElementById('stat-total-interest').textContent = typeof totalInterest === 'number' ? totalInterest.toFixed(2) + ' €' : '-';
+            document.getElementById('stat-monthly').textContent = typeof monthlyPayment === 'number' ? monthlyPayment.toFixed(2) + ' €' : '-';
+        }
+
+        // Restablecer el estado inicial del préstamo por defecto de 1000€
+        function resetToDefault() {
+            document.getElementById('quick-amount').value = "1000";
+            document.getElementById('quick-rate').value = "10";
+            document.getElementById('quick-term').value = "12";
+            initData();
+            recalculateSheet();
+        }
+
+        // Exportar los datos evaluados de la hoja a formato CSV descargable
+        function exportToCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            
+            // Recorrer filas y columnas para recolectar datos evaluados
+            for (let r = 1; r <= ROWS; r++) {
+                let rowData = [];
+                for (let c = 0; c < COLS.length; c++) {
+                    const cellId = COLS[c] + r;
+                    const val = evaluated[cellId] !== undefined ? evaluated[cellId] : '';
+                    rowData.push(`"${val.toString().replace(/"/g, '""')}"`);
+                }
+                csvContent += rowData.join(",") + "\r\n";
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Spreadsheet_Amortization.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Dibujar un precioso gráfico de barras/líneas dinámico usando SVG nativo
+        function drawChart() {
+            const svg = document.getElementById('amortization-chart');
+            svg.innerHTML = ''; // Limpiar gráfico anterior
+
+            const term = parseInt(evaluated['B4']) || 12;
+            const principal = parseFloat(evaluated['B2']) || 1000;
+            
+            // Recolectar datos de capital pendiente por periodo
+            let dataPoints = [];
+            let amortizedPoints = [];
+            for (let i = 0; i <= term; i++) {
+                const row = 8 + i;
+                const capPendiente = parseFloat(evaluated[`E${row}`]);
+                if (!isNaN(capPendiente)) {
+                    dataPoints.push(capPendiente);
+                    amortizedPoints.push(principal - capPendiente);
+                }
+            }
+
+            if (dataPoints.length === 0) return;
+
+            const padding = { top: 20, right: 40, bottom: 30, left: 60 };
+            const width = 1000;
+            const height = 250;
+            const chartWidth = width - padding.left - padding.right;
+            const chartHeight = height - padding.top - padding.bottom;
+
+            // Escalas
+            const maxX = term;
+            const maxY = principal;
+
+            const getX = (index) => padding.left + (index / maxX) * chartWidth;
+            const getY = (value) => padding.top + chartHeight - (value / maxY) * chartHeight;
+
+            // 1. Dibujar líneas de cuadrícula y etiquetas del eje Y
+            const gridLines = 4;
+            for (let i = 0; i <= gridLines; i++) {
+                const val = (maxY / gridLines) * i;
+                const y = getY(val);
+                
+                // Línea de cuadrícula
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("x1", padding.left);
+                line.setAttribute("y1", y);
+                line.setAttribute("x2", width - padding.right);
+                line.setAttribute("y2", y);
+                line.setAttribute("stroke", "#f1f5f9");
+                line.setAttribute("stroke-width", "1");
+                svg.appendChild(line);
+
+                // Texto de ayuda Y
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute("x", padding.left - 10);
+                text.setAttribute("y", y + 4);
+                text.setAttribute("text-anchor", "end");
+                text.setAttribute("fill", "#64748b");
+                text.setAttribute("font-size", "10px");
+                text.setAttribute("font-family", "sans-serif");
+                text.textContent = Math.round(val) + " €";
+                svg.appendChild(text);
+            }
+
+            // 2. Dibujar etiquetas de periodos (eje X)
+            for (let i = 0; i <= term; i++) {
+                if (term > 12 && i % 2 !== 0) continue;
+                const x = getX(i);
+                
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute("x", x);
+                text.setAttribute("y", height - padding.bottom + 18);
+                text.setAttribute("text-anchor", "middle");
+                text.setAttribute("fill", "#64748b");
+                text.setAttribute("font-size", "10px");
+                text.setAttribute("font-family", "sans-serif");
+                text.textContent = `Month ${i}`;
+                svg.appendChild(text);
+            }
+
+            // 3. Crear área/polígono de Capital Pendiente (Fondo semi-transparente)
+            let pathAreaPoints = `M ${getX(0)} ${getY(0)}`;
+            for (let i = 0; i < dataPoints.length; i++) {
+                pathAreaPoints += ` L ${getX(i)} ${getY(dataPoints[i])}`;
+            }
+            pathAreaPoints += ` L ${getX(dataPoints.length - 1)} ${getY(0)} Z`;
+
+            const areaPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            areaPath.setAttribute("d", pathAreaPoints);
+            areaPath.setAttribute("fill", "url(#indigo-gradient)");
+            areaPath.setAttribute("opacity", "0.15");
+            svg.appendChild(areaPath);
+
+            // Def de gradiente para la estética premium del área de capital
+            const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+            defs.innerHTML = `
+                <linearGradient id="indigo-gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4f46e5" />
+                    <stop offset="100%" stop-color="#818cf8" stop-opacity="0" />
+                </linearGradient>
+            `;
+            svg.appendChild(defs);
+
+            // 4. Dibujar línea de Capital Pendiente
+            let pathLinePoints = "";
+            for (let i = 0; i < dataPoints.length; i++) {
+                const prefix = i === 0 ? "M" : "L";
+                pathLinePoints += `${prefix} ${getX(i)} ${getY(dataPoints[i])} `;
+            }
+
+            const polyline = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            polyline.setAttribute("d", pathLinePoints);
+            polyline.setAttribute("fill", "none");
+            polyline.setAttribute("stroke", "#4f46e5");
+            polyline.setAttribute("stroke-width", "3.5");
+            polyline.setAttribute("stroke-linecap", "round");
+            svg.appendChild(polyline);
+
+            // 5. Dibujar línea de Amortización Acumulada (Contraste)
+            let pathAmortPoints = "";
+            for (let i = 0; i < amortizedPoints.length; i++) {
+                const prefix = i === 0 ? "M" : "L";
+                pathAmortPoints += `${prefix} ${getX(i)} ${getY(amortizedPoints[i])} `;
+            }
+
+            const polylineAmort = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            polylineAmort.setAttribute("d", pathAmortPoints);
+            polylineAmort.setAttribute("fill", "none");
+            polylineAmort.setAttribute("stroke", "#f43f5e");
+            polylineAmort.setAttribute("stroke-width", "2");
+            polylineAmort.setAttribute("stroke-dasharray", "4,4");
+            polylineAmort.setAttribute("stroke-linecap", "round");
+            svg.appendChild(polylineAmort);
+
+            // 6. Añadir nodos interactivos en cada periodo
+            for (let i = 0; i < dataPoints.length; i++) {
+                const x = getX(i);
+                const y = getY(dataPoints[i]);
+
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute("cx", x);
+                circle.setAttribute("cy", y);
+                circle.setAttribute("r", "5");
+                circle.setAttribute("fill", "#fff");
+                circle.setAttribute("stroke", "#4f46e5");
+                circle.setAttribute("stroke-width", "2.5");
+                
+                // Efecto hover decorativo
+                circle.innerHTML = `<title>Month ${i}: ${dataPoints[i].toFixed(2)}€ remaining</title>`;
+                circle.style.cursor = "pointer";
+                svg.appendChild(circle);
+            }
+        }
+
+        // Ejecutar al cargar la página
+        window.onload = function() {
+            lucide.createIcons(); // Inicializar iconos visuales
+            buildGridDOM();
+            initData();
+            recalculateSheet();
+        };
+    </script>
+</body>
+</html>
