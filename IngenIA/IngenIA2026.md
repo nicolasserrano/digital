@@ -479,11 +479,9 @@ style: |
 - **Tabla de amortización** - _[Completar descripción]_
 - **Distribución de Gauss** [Abrir ejemplo](https://claude.ai/public/artifacts/7e49d32c-3563-4b0f-a412-e19ee1b865ba)]
 - **Funciones** -[Abrir ejemplo](https://gemini.google.com/app/4c7a1bbbb504454c)
-- **Cuadrilátero articulado** -[Abrir ejemplo](https://claude.ai/public/artifacts/e68a37d4-1484-45f6-9d1e-bac8ab7a5d65) _
+- **Cuadrilátero articulado** -[Abrir ejemplo](https://gemini.google.com/share/c0766efb05bd)
 - **Robot** [Abrir ejemplo](https://gemini.google.com/share/aa59742a602b)
 - **Puente grua** -[Abrir ejemplo](https://gemini.google.com/share/0244dfdbe4a5)
-
-- **Puente grúa** 
 
 ---
 
@@ -590,6 +588,14 @@ style: |
   <div class="center image-text">Resumen de la Universidad de la Sábana</div>
   <img class="right" src="images/Robot_proof_2024.jpg" alt="Robot proof 2024" />
 </div>
+
+---
+
+# Fase 3: Formación integral
+
+-[Robot-Proof : una guía unificada, de la Universidad de la Sabana](https://intellectum.unisabana.edu.co/entities/publication/8ec88d95-5922-42e4-81ad-6216f77a1847)
+-[Robot-Proof online en Unika](https://unika.unav.edu/permalink/34UNAV_INST/ho003h/alma991011788723008016)
+![](images/Robot-proof_ebsco.jpg)
 
 ---
 
