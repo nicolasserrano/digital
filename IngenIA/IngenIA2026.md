@@ -600,6 +600,7 @@ style: |
     </div>
   <img class="right" src="images/Robot-proof_ebsco.jpg" alt="Robot proof" />
 </div>
+
 ---
 
 <!-- _class: full-image-slide -->
