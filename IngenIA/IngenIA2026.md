@@ -662,7 +662,7 @@ style: |
 
 # Grupos de Trabajo
 
-[Formulario](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
+[Formulario: https://tinyurl.com/ingeniaform](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
 
 ### Formación
 Conocimientos de IA y LLMs para estudiantes y profesores
