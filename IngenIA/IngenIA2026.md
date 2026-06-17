@@ -595,8 +595,8 @@ style: |
 
 <div class="image-row">
   <div class="left image-text">
--[Robot-Proof : una guía unificada, de la Universidad de la Sabana](https://intellectum.unisabana.edu.co/entities/publication/8ec88d95-5922-42e4-81ad-6216f77a1847)  
--[Robot-Proof online en Unika](https://unika.unav.edu/permalink/34UNAV_INST/ho003h/alma991011788723008016)    
+<a href='https://intellectum.unisabana.edu.co/entities/publication/8ec88d95-5922-42e4-81ad-6216f77a1847'>Robot-Proof : una guía unificada, de la Universidad de la Sabana</a>
+<br><a href='https://unika.unav.edu/permalink/34UNAV_INST/ho003h/alma991011788723008016'>Robot-Proof online en Unika</a>    
     </div>
   <img class="right" src="images/Robot-proof_ebsco.jpg" alt="Robot proof" />
 </div>
