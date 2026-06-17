@@ -663,7 +663,7 @@ style: |
 # Grupos de Trabajo
 
 [Formulario: tinyurl.com/ingeniaform](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
-  <img src="images/ingeniaform-qr.svg" />
+<img width="200px" src="images/ingeniaform-qr.svg" style="position: absolute; right:300px;">
 
 ### Formación
 Conocimientos de IA y LLMs para estudiantes y profesores
@@ -681,19 +681,18 @@ Consideraciones a nivel de plan de estudios en la era de la IA (humanidades, bus
 
 # Actividad
 
--	Por materias,    
-  - Contenidos: ¿qué tipo de contenidos consideramos que siguen siendo necesarios y cuales habría que añadir/ sustituir?
-  - Metodologías docentes: ¿qué metodologías siguen siendo válidas y cuales deberíamos adoptar?
-  - Métodos de evaluación ¿cómo deberíamos adaptarlos?
-- ¿Cuál es nuestro valor añadido como docentes en este nuevo contexto?
+##	Por materias,    
+  ### - Contenidos: ¿qué tipo de contenidos consideramos que siguen siendo necesarios y cuales habría que añadir/ sustituir?
+  ### - Metodologías docentes: ¿qué metodologías siguen siendo válidas y cuales deberíamos adoptar?
+  ### - Métodos de evaluación ¿cómo deberíamos adaptarlos?
+## ¿Cuál es nuestro valor añadido como docentes en este nuevo contexto?
 
 ---
 
 # Url de presentación
 
 [Presentación: tinyurl.com/ingenia26](https://tinyurl.com/ingenia26)
-  <img src="images/ingenia26-qr.svg" />
-
+<img width="200px" src="images/ingenia26-qr.svg" style="position: absolute; right:300px;">
 ---
 
 ## ¿Cómo participar?
