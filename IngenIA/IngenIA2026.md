@@ -606,15 +606,6 @@ style: |
 
 ---
 
-
-<!-- _class: image-compare-single -->
-
-<div class="image-compare-single">
-  <img src="images/Robot-proof_ebsco.jpg" alt="Robot proof" />
-</div>
-
----
-
 <!-- _class: full-image-slide -->
 
 # Hacer menos
