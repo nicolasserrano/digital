@@ -693,45 +693,8 @@ Consideraciones a nivel de plan de estudios en la era de la IA (humanidades, bus
 
 [Presentación: tinyurl.com/ingenia26](https://tinyurl.com/ingenia26)
 <img width="200px" src="images/ingenia26-qr.svg" style="position: absolute; right:300px;">
----
-
-## ¿Cómo participar?
-
-### Interesado
-Para mantenerse informado sobre el progreso y resultados, con newsletter mensual.
-
-### Participante en Grupo de Trabajo
-Formar parte de alguno de los grupos de trabajo o particpar ocasionalmente.
 
 ---
-
-_[Contacto o próximos pasos]_---
-
----
-
-
-## Noticias para la introducción
-
-[Ver noticias](https://www.notion.so/Noticias-para-la-introducci-n-2f839c23f0168051a94bf33676dc1475?pvs=21)
-
-----
-
-## Evolución de los tests
-
-- [Stanford Benchmarks](https://epoch.ai/benchmarks/hle?view=graph&tab=release-date)
-- Progreso en capacidades de los modelos
-- Métricas de rendimiento
-
----
-
-
-<!-- _class: course-table -->
-
-# Fase 1: Curso IngenIA
-
-| **Modelos**<br>◦ Empresas y modelos<br>◦ Multimedia y plataformas<br>◦ Chat y API (Tokens, Playground)<br>◦ Bases teóricas de los modelos | **Herramientas**<br>◦ GPTs, Gems, Proyectos, NotebookLM, tools, Hugging Face<br>◦ IDE (VSC, Copilot, skills, Cowork<br>◦ CLI, Agentes, entornos agénticos, MCP |
-| :--- | :--- |
-| **Formatos**<br>◦ JSON<br>◦ HTML, SVG, Mermaid,…<br>◦ Markdown, csv | **Scripting**<br>◦ Python<br>◦ JavaScript, Three.js<br>◦ [VBA, PowerShell, Blender] |
 
 
 ---
