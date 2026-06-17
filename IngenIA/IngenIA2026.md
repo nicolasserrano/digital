@@ -593,8 +593,16 @@ style: |
 
 # Fase 3: Formación integral
 
-<br><a href='https://unika.unav.edu/permalink/34UNAV_INST/ho003h/alma991011788723008016'>Robot-Proof online en Unika</a>    
-<br><a href='https://intellectum.unisabana.edu.co/entities/publication/8ec88d95-5922-42e4-81ad-6216f77a1847'>Robot-Proof : una guía unificada, de la Universidad de la Sabana</a>
+<br><a target='_blank' href='https://unika.unav.edu/permalink/34UNAV_INST/ho003h/alma991011788723008016'>Robot-Proof online en Unika</a>    
+<br><a target='_blank' href='https://intellectum.unisabana.edu.co/entities/publication/8ec88d95-5922-42e4-81ad-6216f77a1847'>Robot-Proof : una guía unificada, de la Universidad de la Sabana</a>
+
+
+---
+
+<!-- _class: hle-slide -->
+<div class="hle-container">
+  <img src="images/Robot-proof_ebsco.jpg" alt="Robot proof" />
+</div>
 
 ---
 
