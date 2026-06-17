@@ -679,6 +679,14 @@ Consideraciones a nivel de plan de estudios en la era de la IA (humanidades, bus
 
 ---
 
+# Actividad
+
+-	Por materias,    
+  - Contenidos: ¿qué tipo de contenidos consideramos que siguen siendo necesarios y cuales habría que añadir/ sustituir?
+  - Metodologías docentes: ¿qué metodologías siguen siendo válidas y cuales deberíamos adoptar?
+  - Métodos de evaluación ¿cómo deberíamos adaptarlos?
+- ¿Cuál es nuestro valor añadido como docentes en este nuevo contexto?
+
 ---
 
 # Url de presentación
