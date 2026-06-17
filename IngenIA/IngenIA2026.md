@@ -663,7 +663,7 @@ style: |
 # Grupos de Trabajo
 
 [Formulario: tinyurl.com/ingeniaform](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
-[Presentación: tinyurl.com/ingenia26](https://tinyurl.com/ingenia26)
+  <img src="images/ingeniaform-qr.svg" />
 
 ### Formación
 Conocimientos de IA y LLMs para estudiantes y profesores
@@ -676,6 +676,15 @@ Conocimientos de IA y LLMs para estudiantes y profesores
 
 ### Plan de Estudios
 Consideraciones a nivel de plan de estudios en la era de la IA (humanidades, business, competencias)
+
+---
+
+---
+
+# Url de presentación
+
+[Presentación: tinyurl.com/ingenia26](https://tinyurl.com/ingenia26)
+  <img src="images/ingenia26-qr.svg" />
 
 ---
 
