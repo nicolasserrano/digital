@@ -662,7 +662,8 @@ style: |
 
 # Grupos de Trabajo
 
-[Formulario: https://tinyurl.com/ingeniaform](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
+[Formulario: tinyurl.com/ingeniaform](https://docs.google.com/forms/d/e/1FAIpQLSdaIkDa-HKG3XSVZp81ImbLzS0K6hEbIIJb50lceAJ-5azRiQ/viewform?usp=publish-editor)
+[Presentación: tinyurl.com/ingenia26](https://tinyurl.com/ingenia26)
 
 ### Formación
 Conocimientos de IA y LLMs para estudiantes y profesores
