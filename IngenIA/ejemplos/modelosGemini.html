@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenRouter Model Explorer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for a premium look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-full font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-8 mb-8 border-b border-gray-800 gap-4">
+            <div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-brand-500/10 p-2.5 rounded-xl border border-brand-500/20 text-brand-500">
+                        <i data-lucide="cpu" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-brand-500 bg-clip-text text-transparent">
+                            OpenRouter Explorer
+                        </h1>
+                        <p class="text-gray-400 text-sm mt-0.5">Catálogo interactivo de modelos de Inteligencia Artificial por API</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection Status -->
+            <div class="flex items-center gap-3 bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 self-start md:self-auto">
+                <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <div class="text-xs">
+                    <p id="status-text" class="font-semibold text-gray-300">Cargando modelos...</p>
+                    <p id="status-source" class="text-gray-500 mt-0.5">Esperando respuesta de API</p>
+                </div>
+                <button onclick="fetchModels(true)" class="ml-2 p-1.5 hover:bg-gray-800 rounded-lg text-gray-400 hover:text-white transition-colors" title="Forzar recarga">
+                    <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Filters Grid -->
+        <section class="bg-gray-900/50 border border-gray-800/80 rounded-2xl p-6 mb-8 backdrop-blur-sm">
+            <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Filtros y Búsqueda
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Search by name -->
+                <div class="lg:col-span-2 relative">
+                    <label class="block text-xs font-medium text-gray-400 mb-1.5">Buscar Modelo</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </span>
+                        <input type="text" id="filter-name" placeholder="Ej: gemini, llama, cohere..." 
+                               class="w-full pl-10 pr-4 py-2 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-gray-200 placeholder-gray-600 transition-all text-sm">
+                    </div>
+                </div>
+
+                <!-- Input modality -->
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1.5">Entrada (Input)</label>
+                    <select id="filter-input" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-200 transition-all text-sm cursor-pointer">
+                        <option value="all">Todas</option>
+                    </select>
+                </div>
+
+                <!-- Output modality -->
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1.5">Salida (Output)</label>
+                    <select id="filter-output" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-200 transition-all text-sm cursor-pointer">
+                        <option value="all">Todas</option>
+                    </select>
+                </div>
+
+                <!-- Pricing Plan Toggle -->
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 mb-1.5">Precio / Plan</label>
+                    <select id="filter-price" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-gray-200 transition-all text-sm cursor-pointer">
+                        <option value="all">Todos los modelos</option>
+                        <option value="free">Solo Gratuitos ($0.00)</option>
+                        <option value="paid">Solo de Pago</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Active counters and resetting -->
+            <div class="mt-4 pt-4 border-t border-gray-800/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div class="text-sm text-gray-400">
+                    Mostrando <span id="count-visible" class="text-brand-500 font-bold">0</span> de <span id="count-total" class="text-gray-200 font-bold">0</span> modelos cargados.
+                </div>
+                <button onclick="resetFilters()" class="text-xs font-semibold text-gray-400 hover:text-white flex items-center gap-1.5 py-1 px-2.5 hover:bg-gray-800 rounded-lg transition-all border border-transparent hover:border-gray-700">
+                    <i data-lucide="x" class="w-3.5 h-3.5"></i> Restablecer filtros
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Display / Table Card -->
+        <main class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+            <!-- Table Header Toolbar -->
+            <div class="px-6 py-4 bg-gray-900/80 border-b border-gray-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h3 class="font-bold text-lg text-white flex items-center gap-2">
+                    <i data-lucide="list" class="w-5 h-5 text-brand-500"></i> Listado de Modelos
+                </h3>
+                
+                <!-- Sorting dropdown -->
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <span class="text-xs text-gray-400 whitespace-nowrap">Ordenar por:</span>
+                    <select id="sort-field" onchange="applyFiltersAndSort()" class="px-3 py-1.5 bg-gray-950 border border-gray-800 rounded-lg focus:outline-none text-xs text-gray-200 cursor-pointer w-full sm:w-auto">
+                        <option value="name-asc">Nombre (A-Z)</option>
+                        <option value="name-desc">Nombre (Z-A)</option>
+                        <option value="created-desc">Fecha: Más reciente</option>
+                        <option value="created-asc">Fecha: Más antiguo</option>
+                        <option value="price-asc">Precio Prompt: Menor a Mayor</option>
+                        <option value="price-desc">Precio Prompt: Mayor a Menor</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Responsive Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-950/50 border-b border-gray-800 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                            <th class="px-6 py-4">Nombre del Modelo</th>
+                            <th class="px-6 py-4 hidden md:table-cell">Lanzamiento / ID</th>
+                            <th class="px-6 py-4">Modalidades</th>
+                            <th class="px-6 py-4 text-right">Precio por M/Tokens</th>
+                            <th class="px-6 py-4 text-center">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="models-table-body" class="divide-y divide-gray-800/50 text-sm">
+                        <!-- Trs will be dynamically rendered here -->
+                        <tr>
+                            <td colspan="5" class="text-center py-20 text-gray-400">
+                                <div class="flex flex-col items-center justify-center gap-3">
+                                    <div class="animate-spin rounded-full h-8 w-8 border-2 border-brand-500 border-t-transparent"></div>
+                                    <p>Buscando información en el servidor...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16 px-4">
+                <i data-lucide="search-slash" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i>
+                <h4 class="text-base font-bold text-gray-300">No se encontraron modelos</h4>
+                <p class="text-sm text-gray-500 mt-1">Intenta ajustando los criterios de filtrado seleccionados.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- POPUP MODAL (FICHA COMPLETA) -->
+    <div id="model-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-950/80 backdrop-blur-md transition-opacity" aria-hidden="true" onclick="closeModal()"></div>
+
+            <!-- Element trick to center modal content -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Panel -->
+            <div class="inline-block align-bottom bg-gray-900 border border-gray-800 rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <!-- Modal Header -->
+                <div class="px-6 py-5 bg-gray-950 border-b border-gray-800 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div id="modal-header-icon" class="bg-brand-500/10 text-brand-500 p-2 rounded-xl border border-brand-500/20">
+                            <i data-lucide="info" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 id="modal-title" class="text-lg font-bold text-white">Nombre del Modelo</h3>
+                            <p id="modal-id" class="text-xs text-gray-500 font-mono mt-0.5">id-del-modelo</p>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="p-1.5 hover:bg-gray-800 rounded-xl text-gray-400 hover:text-white transition-all">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Navigation Tabs -->
+                <div class="px-6 bg-gray-950/40 border-b border-gray-800 flex gap-4 text-sm">
+                    <button onclick="setModalTab('overview')" id="tab-btn-overview" class="py-3 font-semibold border-b-2 border-brand-500 text-brand-500 transition-all">Descripción</button>
+                    <button onclick="setModalTab('pricing')" id="tab-btn-pricing" class="py-3 font-semibold border-b-2 border-transparent text-gray-400 hover:text-white transition-all">Tarificación & Parámetros</button>
+                    <button onclick="setModalTab('technical')" id="tab-btn-technical" class="py-3 font-semibold border-b-2 border-transparent text-gray-400 hover:text-white transition-all">Especificación Técnica</button>
+                    <button onclick="setModalTab('raw')" id="tab-btn-raw" class="py-3 font-semibold border-b-2 border-transparent text-gray-400 hover:text-white transition-all">JSON Completo</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6 max-h-[60vh] overflow-y-auto">
+                    
+                    <!-- TAB: OVERVIEW -->
+                    <div id="tab-overview" class="space-y-6">
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Descripción del Modelo</h4>
+                            <p id="modal-desc" class="text-gray-300 leading-relaxed text-sm bg-gray-950/40 border border-gray-800/80 p-4 rounded-2xl">Descripción no provista por el proveedor.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-gray-950/30 border border-gray-800/50 p-4 rounded-2xl">
+                                <span class="text-xs text-gray-500 block mb-1">Fecha de Publicación</span>
+                                <span id="modal-date" class="font-medium text-gray-200">Fecha formateada</span>
+                            </div>
+                            <div class="bg-gray-950/30 border border-gray-800/50 p-4 rounded-2xl">
+                                <span class="text-xs text-gray-500 block mb-1">Ventana de Contexto (Tokens)</span>
+                                <span id="modal-context" class="font-bold text-gray-200">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: PRICING -->
+                    <div id="tab-pricing" class="hidden space-y-6">
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Coste de Operación (por millón de Tokens)</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-emerald-500/5 border border-emerald-500/20 p-4 rounded-2xl flex items-center justify-between">
+                                    <div>
+                                        <span class="text-xs text-emerald-400 font-semibold block mb-0.5">Prompt / Entrada</span>
+                                        <span id="modal-price-prompt" class="text-2xl font-bold text-emerald-400">$0.00</span>
+                                    </div>
+                                    <div class="bg-emerald-500/10 p-2.5 rounded-xl text-emerald-400"><i data-lucide="arrow-down-left" class="w-6 h-6"></i></div>
+                                </div>
+
+                                <div class="bg-blue-500/5 border border-blue-500/20 p-4 rounded-2xl flex items-center justify-between">
+                                    <div>
+                                        <span class="text-xs text-blue-400 font-semibold block mb-0.5">Completion / Generación</span>
+                                        <span id="modal-price-completion" class="text-2xl font-bold text-blue-400">$0.00</span>
+                                    </div>
+                                    <div class="bg-blue-500/10 p-2.5 rounded-xl text-blue-400"><i data-lucide="arrow-up-right" class="w-6 h-6"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Parámetros Soportados</h4>
+                            <div id="modal-params" class="flex flex-wrap gap-2">
+                                <!-- Chips will go here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: TECHNICAL -->
+                    <div id="tab-technical" class="hidden space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-gray-950/50 border border-gray-800 p-4 rounded-2xl">
+                                <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Modalidades de Arquitectura</h5>
+                                <div class="space-y-3 text-sm">
+                                    <div>
+                                        <span class="text-gray-500 block text-xs">Modo Combinado</span>
+                                        <span id="modal-tech-modality" class="font-medium text-gray-200">Defecto</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-500 block text-xs">Tokenizador</span>
+                                        <span id="modal-tech-tokenizer" class="font-medium text-gray-200">Otro</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-950/50 border border-gray-800 p-4 rounded-2xl">
+                                <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Límites del Servidor Base</h5>
+                                <div class="space-y-3 text-sm">
+                                    <div>
+                                        <span class="text-gray-500 block text-xs">Máximo Tokens Generados</span>
+                                        <span id="modal-tech-max-completion" class="font-medium text-gray-200">-</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-500 block text-xs">Moderación activa en Origen</span>
+                                        <span id="modal-tech-moderated" class="font-semibold">Desconocido</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="modal-benchmarks-container" class="hidden">
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Puntuaciones / Benchmarks</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="modal-benchmarks-list">
+                                <!-- Benchmarks are rendered here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: RAW JSON -->
+                    <div id="tab-raw" class="hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Payload del Broker</h4>
+                            <button onclick="copyRawJson()" class="text-xs text-brand-500 hover:text-brand-400 flex items-center gap-1 font-semibold">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar JSON
+                            </button>
+                        </div>
+                        <pre id="modal-raw-json" class="text-xs font-mono bg-gray-950 p-4 rounded-2xl border border-gray-800 overflow-x-auto text-emerald-400 max-h-72 select-all"></pre>
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="px-6 py-4 bg-gray-950 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <span class="text-xs text-gray-500" id="modal-slug-footer">Slug: google/gemini-3.1-flash-image</span>
+                    <button type="button" onclick="closeModal()" class="w-full sm:w-auto px-5 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-800 rounded-xl text-sm font-semibold text-gray-300 transition-all">
+                        Cerrar ficha
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Section -->
+    <script>
+        // Sample Backup Data based on the user's template to ensure it works even if CORS rejects client-side fetches
+        const fallbackModels = [
+            {
+                "id": "google/gemini-3.1-flash-image",
+                "canonical_slug": "google/gemini-3.1-flash-image-20260528",
+                "name": "Google: Nano Banana 2 (Gemini 3.1 Flash Image)",
+                "created": 1781754065,
+                "description": "Gemini 3.1 Flash Image, a.k.a. \"Nano Banana 2,\" is Google’s latest state of the art image generation and editing model, delivering Pro-level visual quality at Flash speed. It combines advanced multimodal inputs with superb generation rendering.",
+                "context_length": 131072,
+                "architecture": {
+                    "modality": "text+image->text+image",
+                    "input_modalities": ["image", "text"],
+                    "output_modalities": ["image", "text"],
+                    "tokenizer": "Gemini"
+                },
+                "pricing": {
+                    "prompt": "0.0000005",
+                    "completion": "0.000003"
+                },
+                "top_provider": {
+                    "context_length": 65536,
+                    "max_completion_tokens": 65536,
+                    "is_moderated": false
+                },
+                "supported_parameters": ["include_reasoning", "max_tokens", "seed", "temperature"]
+            },
+            {
+                "id": "google/gemini-3-pro-image",
+                "canonical_slug": "google/gemini-3-pro-image-20260528",
+                "name": "Google: Nano Banana Pro (Gemini 3 Pro Image)",
+                "created": 1781754054,
+                "description": "Nano Banana Pro is Google’s most advanced image-generation and editing model, built on Gemini 3 Pro. It extends the original Nano Banana with significantly improved multimodal reasoning, real-world grounding, and exquisite composition control.",
+                "context_length": 65536,
+                "architecture": {
+                    "modality": "text+image->text+image",
+                    "input_modalities": ["image", "text"],
+                    "output_modalities": ["image", "text"],
+                    "tokenizer": "Gemini"
+                },
+                "pricing": {
+                    "prompt": "0.000002",
+                    "completion": "0.000012"
+                },
+                "top_provider": {
+                    "context_length": 65536,
+                    "max_completion_tokens": 32768,
+                    "is_moderated": false
+                },
+                "supported_parameters": ["max_tokens", "seed", "temperature", "tools"]
+            },
+            {
+                "id": "cohere/north-mini-code:free",
+                "canonical_slug": "cohere/north-mini-code-20260617",
+                "name": "Cohere: North Mini Code (free)",
+                "created": 1781723748,
+                "description": "North Mini Code is Cohere's first agentic coding model and the debut of its North family. A sparse mixture-of-experts model with 30B total parameters and 3B active, it is optimized heavily for agentic software design loops.",
+                "context_length": 256000,
+                "architecture": {
+                    "modality": "text->text",
+                    "input_modalities": ["text"],
+                    "output_modalities": ["text"],
+                    "tokenizer": "Cohere"
+                },
+                "pricing": {
+                    "prompt": "0",
+                    "completion": "0"
+                },
+                "top_provider": {
+                    "context_length": 256000,
+                    "max_completion_tokens": 64000,
+                    "is_moderated": true
+                },
+                "supported_parameters": ["temperature", "top_k", "top_p"]
+            },
+            {
+                "id": "z-ai/glm-5.2",
+                "canonical_slug": "z-ai/glm-5.2-20260616",
+                "name": "Z.ai: GLM 5.2",
+                "created": 1781631930,
+                "description": "GLM 5.2 is a large-scale reasoning model from Z.ai. It supports text input and output with a 1M-token context window, and is suited for long-horizon agent workflows, project-level software engineering, and complex science formulations.",
+                "context_length": 1048576,
+                "architecture": {
+                    "modality": "text->text",
+                    "input_modalities": ["text"],
+                    "output_modalities": ["text"],
+                    "tokenizer": "Other"
+                },
+                "pricing": {
+                    "prompt": "0.0000012",
+                    "completion": "0.0000041"
+                },
+                "top_provider": {
+                    "context_length": 1048576,
+                    "max_completion_tokens": 131072,
+                    "is_moderated": false
+                },
+                "supported_parameters": ["temperature", "top_p", "structured_outputs"]
+            }
+        ];
+
+        let modelsData = [];
+        let activeModel = null;
+        let activeTab = 'overview';
+
+        // DOM elements cache
+        const nameFilterInput = document.getElementById('filter-name');
+        const inputFilterSelect = document.getElementById('filter-input');
+        const outputFilterSelect = document.getElementById('filter-output');
+        const priceFilterSelect = document.getElementById('filter-price');
+        const sortFieldSelect = document.getElementById('sort-field');
+        const tableBody = document.getElementById('models-table-body');
+        const emptyState = document.getElementById('empty-state');
+        const countVisibleSpan = document.getElementById('count-visible');
+        const countTotalSpan = document.getElementById('count-total');
+
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const statusSource = document.getElementById('status-source');
+
+        // Initial setup
+        window.onload = function() {
+            // Setup events to auto-filter on input changes
+            nameFilterInput.addEventListener('input', applyFiltersAndSort);
+            inputFilterSelect.addEventListener('change', applyFiltersAndSort);
+            outputFilterSelect.addEventListener('change', applyFiltersAndSort);
+            priceFilterSelect.addEventListener('change', applyFiltersAndSort);
+
+            fetchModels();
+        };
+
+        // Fetch wrapper to handle fetch logic with double bypass strategy
+        async function fetchModels(isManualReload = false) {
+            updateStatus('loading', 'Consultando API...', 'Consultando openrouter.ai/api/v1/models');
+            
+            const apiUrl = 'https://openrouter.ai/api/v1/models';
+            // We use a public CORS Proxy as fallback if direct fetch fails
+            const corsProxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl);
+
+            // Attempt 1: Direct Fetch
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('API Direct response failed');
+                const result = await response.json();
+                processModels(result.data, 'Direct OpenRouter API');
+                return;
+            } catch (err) {
+                console.warn("Direct fetch failed or blocked by CORS. Trying Proxy...", err);
+            }
+
+            // Attempt 2: CORS Proxy
+            try {
+                const response = await fetch(corsProxyUrl);
+                if (!response.ok) throw new Error('CORS Proxy response failed');
+                const result = await response.json();
+                processModels(result.data, 'OpenRouter API (Proxy CORS)');
+                return;
+            } catch (err) {
+                console.error("CORS proxy fetch failed.", err);
+            }
+
+            // Attempt 3: Local Fallback
+            processModels(fallbackModels, 'Datos locales integrados (Modo Offline / CORS activado)');
+        }
+
+        function processModels(data, origin) {
+            if (!data || !Array.isArray(data)) {
+                updateStatus('error', 'Error de parsing', 'No se pudieron parsear los datos.');
+                return;
+            }
+
+            modelsData = data;
+            
+            // Populate Dynamic Modality Options
+            populateModalityDropdowns();
+
+            // Set UI counters
+            countTotalSpan.textContent = modelsData.length;
+
+            updateStatus('success', 'Modelos cargados', `Origen: ${origin}`);
+            applyFiltersAndSort();
+        }
+
+        function updateStatus(type, title, source) {
+            statusText.textContent = title;
+            statusSource.textContent = source;
+            
+            statusDot.className = 'w-2.5 h-2.5 rounded-full';
+            if (type === 'loading') {
+                statusDot.classList.add('bg-amber-500', 'animate-pulse');
+            } else if (type === 'success') {
+                statusDot.classList.add('bg-emerald-500');
+            } else {
+                statusDot.classList.add('bg-rose-500');
+            }
+        }
+
+        // Dynamically gathers modalities across all fetched models to populate dropdown filter options
+        function populateModalityDropdowns() {
+            const inputs = new Set();
+            const outputs = new Set();
+
+            modelsData.forEach(model => {
+                if (model.architecture) {
+                    if (Array.isArray(model.architecture.input_modalities)) {
+                        model.architecture.input_modalities.forEach(m => inputs.add(m));
+                    }
+                    if (Array.isArray(model.architecture.output_modalities)) {
+                        model.architecture.output_modalities.forEach(m => outputs.add(m));
+                    }
+                }
+            });
+
+            // Rebuild Inputs Dropdown
+            inputFilterSelect.innerHTML = '<option value="all">Todas</option>';
+            inputs.forEach(mod => {
+                const opt = document.createElement('option');
+                opt.value = mod;
+                opt.textContent = mod.toUpperCase();
+                inputFilterSelect.appendChild(opt);
+            });
+
+            // Rebuild Outputs Dropdown
+            outputFilterSelect.innerHTML = '<option value="all">Todas</option>';
+            outputs.forEach(mod => {
+                const opt = document.createElement('option');
+                opt.value = mod;
+                opt.textContent = mod.toUpperCase();
+                outputFilterSelect.appendChild(opt);
+            });
+        }
+
+        // Main filter & Sort Core
+        function applyFiltersAndSort() {
+            const nameSearch = nameFilterInput.value.toLowerCase().trim();
+            const inputVal = inputFilterSelect.value;
+            const outputVal = outputFilterSelect.value;
+            const priceVal = priceFilterSelect.value;
+            const sortVal = sortFieldSelect.value;
+
+            // Filter
+            let filtered = modelsData.filter(model => {
+                // Name filter (Matches in Name or ID)
+                const nameMatches = !nameSearch || 
+                    (model.name && model.name.toLowerCase().includes(nameSearch)) || 
+                    (model.id && model.id.toLowerCase().includes(nameSearch));
+
+                // Modalities filters
+                let inputMatches = true;
+                if (inputVal !== 'all') {
+                    inputMatches = model.architecture && 
+                        Array.isArray(model.architecture.input_modalities) && 
+                        model.architecture.input_modalities.includes(inputVal);
+                }
+
+                let outputMatches = true;
+                if (outputVal !== 'all') {
+                    outputMatches = model.architecture && 
+                        Array.isArray(model.architecture.output_modalities) && 
+                        model.architecture.output_modalities.includes(outputVal);
+                }
+
+                // Pricing Filter (Free: prompt === 0 && completion === 0)
+                let priceMatches = true;
+                const promptCost = parseFloat(model.pricing?.prompt || 0);
+                const completionCost = parseFloat(model.pricing?.completion || 0);
+                const isFree = promptCost === 0 && completionCost === 0;
+
+                if (priceVal === 'free') {
+                    priceMatches = isFree;
+                } else if (priceVal === 'paid') {
+                    priceMatches = !isFree;
+                }
+
+                return nameMatches && inputMatches && outputMatches && priceMatches;
+            });
+
+            // Sort
+            filtered.sort((a, b) => {
+                if (sortVal === 'name-asc') {
+                    return (a.name || '').localeCompare(b.name || '');
+                }
+                if (sortVal === 'name-desc') {
+                    return (b.name || '').localeCompare(a.name || '');
+                }
+                if (sortVal === 'created-asc') {
+                    return (a.created || 0) - (b.created || 0);
+                }
+                if (sortVal === 'created-desc') {
+                    return (b.created || 0) - (a.created || 0);
+                }
+                if (sortVal === 'price-asc') {
+                    const priceA = parseFloat(a.pricing?.prompt || 0);
+                    const priceB = parseFloat(b.pricing?.prompt || 0);
+                    return priceA - priceB;
+                }
+                if (sortVal === 'price-desc') {
+                    const priceA = parseFloat(a.pricing?.prompt || 0);
+                    const priceB = parseFloat(b.pricing?.prompt || 0);
+                    return priceB - priceA;
+                }
+                return 0;
+            });
+
+            renderTable(filtered);
+        }
+
+        // Format Date Utility
+        function formatDate(timestamp) {
+            if (!timestamp) return 'No especificado';
+            const date = new Date(timestamp * 1000);
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Format Price per 1 Million Tokens
+        function formatPrice(priceString) {
+            const num = parseFloat(priceString || 0);
+            if (num === 0) return 'Gratuito';
+            // Scale up to 1 Million tokens
+            const perMillion = num * 1000000;
+            if (perMillion < 0.01) {
+                return `$${perMillion.toFixed(4)}`;
+            }
+            return `$${perMillion.toFixed(2)}`;
+        }
+
+        // Render data to the grid table
+        function renderTable(items) {
+            countVisibleSpan.textContent = items.length;
+
+            if (items.length === 0) {
+                tableBody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            tableBody.innerHTML = items.map(model => {
+                // Extract price info
+                const promptCost = parseFloat(model.pricing?.prompt || 0);
+                const completionCost = parseFloat(model.pricing?.completion || 0);
+                const isFree = promptCost === 0 && completionCost === 0;
+
+                // Modalities layout badges
+                const inputBadges = (model.architecture?.input_modalities || [])
+                    .map(m => `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-gray-800 text-gray-300 border border-gray-700">${m.toUpperCase()}</span>`)
+                    .join(' ');
+                const outputBadges = (model.architecture?.output_modalities || [])
+                    .map(m => `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-brand-500/10 text-brand-400 border border-brand-500/20">${m.toUpperCase()}</span>`)
+                    .join(' ');
+
+                // Truncate long descriptions beautifully
+                const descriptionStr = model.description || 'Sin descripción disponible para este modelo.';
+                const shortDesc = descriptionStr.length > 90 ? descriptionStr.substring(0, 90) + '...' : descriptionStr;
+
+                return `
+                    <tr class="hover:bg-gray-800/40 transition-colors group">
+                        <!-- Model identity -->
+                        <td class="px-6 py-4 max-w-sm">
+                            <div class="font-bold text-white group-hover:text-brand-500 transition-colors">${model.name || 'Modelo Desconocido'}</div>
+                            <div class="text-xs text-gray-400 mt-1 line-clamp-2">${shortDesc}</div>
+                        </td>
+                        <!-- ID / Age -->
+                        <td class="px-6 py-4 hidden md:table-cell">
+                            <span class="font-mono text-xs text-gray-500 block truncate max-w-xs">${model.id}</span>
+                            <span class="text-xs text-gray-400 mt-1 block flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5 text-gray-600"></i> ${formatDate(model.created)}
+                            </span>
+                        </td>
+                        <!-- Modalities IO -->
+                        <td class="px-6 py-4">
+                            <div class="flex flex-col gap-1.5">
+                                <div class="flex items-center gap-1">
+                                    <span class="text-[10px] text-gray-500 uppercase font-medium mr-1">In:</span>
+                                    <div class="flex flex-wrap gap-1">${inputBadges || '-'}</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="text-[10px] text-gray-500 uppercase font-medium mr-1">Out:</span>
+                                    <div class="flex flex-wrap gap-1">${outputBadges || '-'}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- Price -->
+                        <td class="px-6 py-4 text-right whitespace-nowrap">
+                            ${isFree ? 
+                                `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Gratis
+                                </span>` : 
+                                `<div>
+                                    <div class="font-semibold text-white text-xs">P: ${formatPrice(model.pricing?.prompt)}</div>
+                                    <div class="text-[11px] text-gray-400 mt-0.5">C: ${formatPrice(model.pricing?.completion)}</div>
+                                </div>`
+                            }
+                        </td>
+                        <!-- Detail trigger -->
+                        <td class="px-6 py-4 text-center">
+                            <button onclick="openModal('${model.id}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 hover:bg-brand-500 hover:text-white border border-gray-700 hover:border-brand-600 rounded-xl text-xs font-semibold text-gray-200 transition-all">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Ficha
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Render lucide icons in the newly inserted HTML
+            lucide.createIcons();
+        }
+
+        // Reset Filter Helpers
+        function resetFilters() {
+            nameFilterInput.value = '';
+            inputFilterSelect.value = 'all';
+            outputFilterSelect.value = 'all';
+            priceFilterSelect.value = 'all';
+            sortFieldSelect.value = 'name-asc';
+            applyFiltersAndSort();
+        }
+
+        // POPUP / MODAL LOGIC
+        function openModal(modelId) {
+            const model = modelsData.find(m => m.id === modelId);
+            if (!model) return;
+
+            activeModel = model;
+            
+            // Set basic info
+            document.getElementById('modal-title').textContent = model.name || 'Modelo Desconocido';
+            document.getElementById('modal-id').textContent = model.id;
+            document.getElementById('modal-slug-footer').textContent = `Slug: ${model.canonical_slug || model.id}`;
+            document.getElementById('modal-desc').textContent = model.description || 'Este modelo no cuenta con una descripción detallada en los metadatos suministrados.';
+            document.getElementById('modal-date').textContent = formatDate(model.created);
+            
+            // Set context length formatting (adding thousands separator)
+            const contextNum = parseInt(model.context_length || 0);
+            document.getElementById('modal-context').textContent = contextNum > 0 ? contextNum.toLocaleString('es-ES') : 'Ilimitado / No informado';
+
+            // Pricing Info per million
+            const isFree = parseFloat(model.pricing?.prompt || 0) === 0 && parseFloat(model.pricing?.completion || 0) === 0;
+            if (isFree) {
+                document.getElementById('modal-price-prompt').textContent = 'Gratuito';
+                document.getElementById('modal-price-completion').textContent = 'Gratuito';
+            } else {
+                document.getElementById('modal-price-prompt').textContent = formatPrice(model.pricing?.prompt);
+                document.getElementById('modal-price-completion').textContent = formatPrice(model.pricing?.completion);
+            }
+
+            // Supported Params (chips)
+            const paramsContainer = document.getElementById('modal-params');
+            paramsContainer.innerHTML = '';
+            if (Array.isArray(model.supported_parameters) && model.supported_parameters.length > 0) {
+                model.supported_parameters.forEach(p => {
+                    const chip = document.createElement('span');
+                    chip.className = 'px-2.5 py-1 text-xs font-semibold bg-gray-950 text-gray-300 border border-gray-800 rounded-lg';
+                    chip.textContent = p;
+                    paramsContainer.appendChild(chip);
+                });
+            } else {
+                paramsContainer.innerHTML = '<span class="text-sm text-gray-500 italic">No especificados / Estándar</span>';
+            }
+
+            // Architecture properties
+            document.getElementById('modal-tech-modality').textContent = model.architecture?.modality || 'No descrita';
+            document.getElementById('modal-tech-tokenizer').textContent = model.architecture?.tokenizer || 'No descrito';
+            document.getElementById('modal-tech-max-completion').textContent = model.top_provider?.max_completion_tokens ? model.top_provider.max_completion_tokens.toLocaleString('es-ES') : 'Estándar / Dinámico';
+            
+            const moderated = document.getElementById('modal-tech-moderated');
+            if (model.top_provider && typeof model.top_provider.is_moderated !== 'undefined') {
+                moderated.textContent = model.top_provider.is_moderated ? 'Sí (Activa)' : 'No (Abierta)';
+                moderated.className = model.top_provider.is_moderated ? 'font-semibold text-rose-400' : 'font-semibold text-emerald-400';
+            } else {
+                moderated.textContent = 'No especificado';
+                moderated.className = 'font-semibold text-gray-500';
+            }
+
+            // Benchmarks list rendering if available
+            const benchContainer = document.getElementById('modal-benchmarks-container');
+            const benchList = document.getElementById('modal-benchmarks-list');
+            benchList.innerHTML = '';
+            if (model.benchmarks && typeof model.benchmarks.artificial_analysis === 'object' && model.benchmarks.artificial_analysis !== null) {
+                let hasBenchmarks = false;
+                Object.entries(model.benchmarks.artificial_analysis).forEach(([key, val]) => {
+                    if (val !== null) {
+                        hasBenchmarks = true;
+                        const box = document.createElement('div');
+                        box.className = 'bg-gray-950 p-3 rounded-xl border border-gray-800 text-center';
+                        box.innerHTML = `
+                            <span class="text-[10px] text-gray-500 block uppercase font-semibold">${key.replace('_index', '')}</span>
+                            <span class="text-lg font-bold text-brand-400 block mt-1">${parseFloat(val).toFixed(1)}%</span>
+                        `;
+                        benchList.appendChild(box);
+                    }
+                });
+
+                if (hasBenchmarks) {
+                    benchContainer.classList.remove('hidden');
+                } else {
+                    benchContainer.classList.add('hidden');
+                }
+            } else {
+                benchContainer.classList.add('hidden');
+            }
+
+            // Code JSON Block
+            document.getElementById('modal-raw-json').textContent = JSON.stringify(model, null, 2);
+
+            // Trigger reset tabs to default description
+            setModalTab('overview');
+
+            // Show popup
+            const modal = document.getElementById('model-modal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('model-modal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            activeModel = null;
+        }
+
+        // Modal Tab Switching Handler
+        function setModalTab(tabId) {
+            activeTab = tabId;
+            const tabs = ['overview', 'pricing', 'technical', 'raw'];
+            
+            tabs.forEach(t => {
+                const content = document.getElementById(`tab-${t}`);
+                const btn = document.getElementById(`tab-btn-${t}`);
+                
+                if (t === tabId) {
+                    content.classList.remove('hidden');
+                    btn.className = 'py-3 font-semibold border-b-2 border-brand-500 text-brand-500 transition-all';
+                } else {
+                    content.classList.add('hidden');
+                    btn.className = 'py-3 font-semibold border-b-2 border-transparent text-gray-400 hover:text-white transition-all';
+                }
+            });
+        }
+
+        // Copy Raw JSON to Clipboard (Using the required iframe fallback strategy)
+        function copyRawJson() {
+            if (!activeModel) return;
+            const jsonText = JSON.stringify(activeModel, null, 2);
+            
+            // Create fallback auxiliary textarea for safety inside iframes
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = jsonText;
+            tempTextArea.style.position = 'fixed';
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    const copyBtn = document.querySelector('[onclick="copyRawJson()"]');
+                    const oldHTML = copyBtn.innerHTML;
+                    copyBtn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> <span class="text-emerald-400">¡Copiado!</span>`;
+                    lucide.createIcons();
+                    
+                    setTimeout(() => {
+                        copyBtn.innerHTML = oldHTML;
+                        lucide.createIcons();
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('No se pudo copiar el JSON', err);
+            }
+            
+            document.body.removeChild(tempTextArea);
+        }
+    </script>
+</body>
+</html>

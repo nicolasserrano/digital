@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelos OpenRouter</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:20px;
+}
+
+h1{
+    margin-bottom:15px;
+}
+
+.filtros{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input,select,button{
+    padding:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:left;
+}
+
+th{
+    background:#f0f0f0;
+}
+
+tr:nth-child(even){
+    background:#fafafa;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+.modal-content{
+    background:white;
+    width:90%;
+    max-width:1000px;
+    max-height:85vh;
+    overflow:auto;
+    margin:40px auto;
+    padding:20px;
+    border-radius:8px;
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:24px;
+    font-weight:bold;
+}
+
+pre{
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+</style>
+</head>
+<body>
+
+<h1>Modelos OpenRouter</h1>
+
+<div class="filtros">
+
+    <input id="txtFiltro"
+           placeholder="Buscar nombre o id">
+
+    <label>
+        <input type="checkbox" id="gratis">
+        Solo gratuitos
+    </label>
+
+    <select id="entrada">
+        <option value="">Entrada: Todas</option>
+        <option value="text">Text</option>
+        <option value="image">Image</option>
+    </select>
+
+    <select id="salida">
+        <option value="">Salida: Todas</option>
+        <option value="text">Text</option>
+        <option value="image">Image</option>
+    </select>
+
+    <select id="orden">
+        <option value="name">Nombre</option>
+        <option value="date">Fecha</option>
+        <option value="price">Precio</option>
+    </select>
+
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>ID</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Contexto</th>
+            <th>Precio Prompt</th>
+            <th>Precio Output</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tabla"></tbody>
+</table>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" id="cerrar">&times;</span>
+        <h2>Ficha del modelo</h2>
+        <pre id="detalle"></pre>
+    </div>
+</div>
+
+<script>
+
+let modelos = [];
+
+async function cargarModelos() {
+
+    const resp = await fetch(
+        "https://openrouter.ai/api/v1/models"
+    );
+
+    const json = await resp.json();
+
+    modelos = json.data || [];
+
+    render();
+}
+
+function esGratis(m) {
+
+    const p1 = Number(m.pricing?.prompt || 0);
+    const p2 = Number(m.pricing?.completion || 0);
+
+    return p1 === 0 && p2 === 0;
+}
+
+function precioTotal(m){
+
+    return (
+        Number(m.pricing?.prompt || 0) +
+        Number(m.pricing?.completion || 0)
+    );
+}
+
+function render(){
+
+    let datos = [...modelos];
+
+    const texto =
+        document.getElementById("txtFiltro")
+        .value
+        .toLowerCase();
+
+    const gratis =
+        document.getElementById("gratis")
+        .checked;
+
+    const entrada =
+        document.getElementById("entrada")
+        .value;
+
+    const salida =
+        document.getElementById("salida")
+        .value;
+
+    const orden =
+        document.getElementById("orden")
+        .value;
+
+    datos = datos.filter(m => {
+
+        const coincideTexto =
+            !texto ||
+            (m.name || "")
+                .toLowerCase()
+                .includes(texto) ||
+            (m.id || "")
+                .toLowerCase()
+                .includes(texto);
+
+        const coincideGratis =
+            !gratis || esGratis(m);
+
+        const coincideEntrada =
+            !entrada ||
+            m.architecture?.input_modalities?.includes(entrada);
+
+        const coincideSalida =
+            !salida ||
+            m.architecture?.output_modalities?.includes(salida);
+
+        return (
+            coincideTexto &&
+            coincideGratis &&
+            coincideEntrada &&
+            coincideSalida
+        );
+    });
+
+    datos.sort((a,b)=>{
+
+        switch(orden){
+
+            case "name":
+                return (a.name || "")
+                    .localeCompare(b.name || "");
+
+            case "date":
+                return (b.created || 0)
+                    - (a.created || 0);
+
+            case "price":
+                return precioTotal(a)
+                    - precioTotal(b);
+
+            default:
+                return 0;
+        }
+    });
+
+    const tbody =
+        document.getElementById("tabla");
+
+    tbody.innerHTML = "";
+
+    datos.forEach(m => {
+
+        const tr =
+            document.createElement("tr");
+
+        const fecha =
+            m.created
+            ? new Date(m.created * 1000)
+                .toLocaleDateString()
+            : "";
+
+        tr.innerHTML = `
+            <td>${m.name || ""}</td>
+            <td>${m.id || ""}</td>
+            <td>${(m.architecture?.input_modalities || []).join(", ")}</td>
+            <td>${(m.architecture?.output_modalities || []).join(", ")}</td>
+            <td>${m.context_length || ""}</td>
+            <td>${m.pricing?.prompt || ""}</td>
+            <td>${m.pricing?.completion || ""}</td>
+            <td>${fecha}</td>
+            <td>
+                <button onclick="verFicha('${encodeURIComponent(m.id)}')">
+                    Ficha
+                </button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+function verFicha(id){
+
+    id = decodeURIComponent(id);
+
+    const modelo =
+        modelos.find(x => x.id === id);
+
+    document.getElementById("detalle")
+        .textContent =
+        JSON.stringify(modelo,null,2);
+
+    document.getElementById("modal")
+        .style.display = "block";
+}
+
+document.getElementById("cerrar")
+.addEventListener("click", ()=>{
+
+    document.getElementById("modal")
+        .style.display = "none";
+});
+
+document.getElementById("modal")
+.addEventListener("click", e => {
+
+    if(e.target.id === "modal"){
+        e.target.style.display = "none";
+    }
+});
+
+[
+ "txtFiltro",
+ "gratis",
+ "entrada",
+ "salida",
+ "orden"
+].forEach(id => {
+
+    document
+      .getElementById(id)
+      .addEventListener("input", render);
+
+    document
+      .getElementById(id)
+      .addEventListener("change", render);
+});
+
+cargarModelos();
+
+</script>
+
+</body>
+</html>

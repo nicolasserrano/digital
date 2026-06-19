@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado de Modelos · OpenRouter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #15130E;
+    --panel: #1E1B14;
+    --panel-2: #232017;
+    --hairline: #3A3526;
+    --hairline-soft: #2A271D;
+    --ink: #EDE6D6;
+    --ink-dim: #9C9482;
+    --ink-faint: #6B6555;
+    --amber: #E8A33D;
+    --amber-dim: #B97F2E;
+    --sage: #6FBF8B;
+    --sage-dim: #4D8A64;
+    --red-dim: #C0584A;
+    --radius: 3px;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Fraunces', serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    min-height: 100vh;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.012) 40px);
+  }
+
+  .wrap{ max-width: 1280px; margin: 0 auto; padding: 0 20px 64px; }
+
+  /* ---------- Header / masthead ---------- */
+  header.masthead{
+    border-bottom: 1px solid var(--hairline);
+    padding: 28px 0 18px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .masthead-left{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  h1.title{
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    margin:0;
+    color: var(--ink);
+  }
+  .title em{ font-style: italic; color: var(--amber); font-weight:400; }
+  .masthead-sub{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .masthead-right{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-dim);
+    text-align: right;
+    line-height: 1.6;
+  }
+  .masthead-right .count{ color: var(--amber); font-weight:600; }
+
+  /* ---------- Control strip ---------- */
+  .controls{
+    border-bottom: 1px solid var(--hairline);
+    padding: 16px 0;
+    display:flex;
+    gap: 22px;
+    align-items:flex-end;
+    flex-wrap: wrap;
+  }
+  .ctl-group{ display:flex; flex-direction:column; gap:6px; }
+  .ctl-label{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  input[type="text"]{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    width: 220px;
+    outline: none;
+  }
+  input[type="text"]:focus{ border-color: var(--amber-dim); }
+  input[type="text"]::placeholder{ color: var(--ink-faint); }
+
+  .chip-row{ display:flex; gap:6px; flex-wrap:wrap; max-width: 320px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 10px;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--ink-dim);
+    cursor: pointer;
+    user-select: none;
+    transition: border-color .12s, color .12s, background .12s;
+  }
+  .chip:hover{ border-color: var(--ink-faint); color: var(--ink); }
+  .chip.active{
+    background: rgba(232,163,61,0.12);
+    border-color: var(--amber-dim);
+    color: var(--amber);
+  }
+
+  .toggle{
+    display:flex; align-items:center; gap:8px;
+    font-family: var(--mono); font-size:12px; color: var(--ink-dim);
+    cursor:pointer; user-select:none; padding-bottom: 8px;
+  }
+  .toggle .box{
+    width:14px; height:14px; border:1px solid var(--hairline-soft);
+    background: var(--panel); border-radius:2px; position:relative; flex:none;
+  }
+  .toggle.checked .box{ background: var(--sage-dim); border-color: var(--sage); }
+  .toggle.checked .box::after{
+    content:''; position:absolute; left:3px; top:0px; width:5px; height:9px;
+    border-right:2px solid #0E1A12; border-bottom:2px solid #0E1A12; transform: rotate(40deg);
+  }
+  .toggle.checked{ color: var(--sage); }
+
+  select{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    outline: none;
+  }
+
+  .dir-btn{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    color: var(--ink-dim);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 11px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .dir-btn:hover{ color: var(--amber); border-color: var(--amber-dim); }
+
+  .reset-link{
+    font-family: var(--mono); font-size: 11px; color: var(--ink-faint);
+    text-decoration: underline; text-decoration-color: var(--hairline-soft);
+    cursor:pointer; background:none; border:none; padding-bottom:8px;
+  }
+  .reset-link:hover{ color: var(--amber); }
+
+  /* ---------- Status line ---------- */
+  .status{
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+    padding: 12px 0 0;
+  }
+  .status .err{ color: var(--red-dim); }
+
+  /* ---------- Table ---------- */
+  .table-wrap{ overflow-x:auto; margin-top: 8px; }
+  table{ width:100%; border-collapse: collapse; min-width: 880px; }
+  thead th{
+    text-align:left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--hairline);
+    white-space: nowrap;
+    position: sticky; top:0;
+    background: var(--bg);
+  }
+  thead th.sortable{ cursor:pointer; }
+  thead th.sortable:hover{ color: var(--ink-dim); }
+  thead th .arrow{ color: var(--amber); margin-left:4px; }
+
+  tbody tr{
+    border-bottom: 1px solid var(--hairline-soft);
+    transition: background .1s;
+  }
+  tbody tr:hover{ background: rgba(232,163,61,0.045); }
+  tbody td{
+    padding: 11px 12px;
+    font-size: 13px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  td.name-cell{ white-space: normal; max-width: 280px; }
+  .model-name{ color: var(--ink); font-weight:500; }
+  .model-id{
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint);
+    display:block; margin-top:2px;
+  }
+
+  .pill{
+    font-family: var(--mono); font-size: 10px; letter-spacing:.5px;
+    padding: 2px 7px; border-radius: 999px; border: 1px solid var(--hairline-soft);
+    color: var(--ink-dim); margin-right:4px; display:inline-block;
+  }
+  .pill.text{ color: #9CB7D8; border-color: #2E4660; }
+  .pill.image{ color: #D7A6E0; border-color: #5A3964; }
+  .pill.audio{ color: #E0C78A; border-color: #6B5A2E; }
+  .pill.file{ color: #9FCBB0; border-color: #355A41; }
+
+  .price-cell{ font-family: var(--mono); font-size: 12.5px; }
+  .price-cell .in{ color: var(--amber); }
+  .price-cell .sep{ color: var(--ink-faint); margin: 0 3px; }
+  .price-cell .out{ color: var(--amber-dim); }
+  .price-cell .unit{ color: var(--ink-faint); font-size:10.5px; margin-left:3px;}
+
+  .free-pill{
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px;
+    color: var(--sage); border: 1px solid var(--sage-dim);
+    background: rgba(111,191,139,0.08);
+    padding: 3px 8px; border-radius: 999px;
+  }
+
+  .date-cell{ font-family: var(--mono); font-size: 12px; color: var(--ink-dim); }
+  .ctx-cell{ font-family: var(--mono); font-size: 12px; color: var(--ink-dim); }
+
+  .ficha-btn{
+    font-family: var(--mono); font-size: 11px;
+    background: none; border: 1px solid var(--hairline);
+    color: var(--ink-dim); padding: 6px 11px; border-radius: var(--radius);
+    cursor:pointer;
+  }
+  .ficha-btn:hover{ border-color: var(--amber-dim); color: var(--amber); }
+
+  .empty-row td{
+    text-align:center; padding: 48px 12px; color: var(--ink-faint);
+    font-family: var(--mono); font-size: 12.5px; white-space: normal;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    position: fixed; inset:0; background: rgba(10,9,6,0.72);
+    display:none; align-items:center; justify-content:center;
+    z-index: 100; padding: 24px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    width: 100%; max-width: 640px;
+    max-height: 84vh;
+    display:flex; flex-direction:column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .modal-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding: 20px 22px 14px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .modal-head h2{
+    font-family: var(--serif); font-weight:600; font-size:21px; margin:0 0 4px;
+    color: var(--ink);
+  }
+  .modal-head .mid{ font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+  .modal-close{
+    background:none; border:1px solid var(--hairline); color: var(--ink-dim);
+    width:28px; height:28px; border-radius: var(--radius); cursor:pointer;
+    font-family: var(--mono); font-size: 14px; flex: none;
+  }
+  .modal-close:hover{ color: var(--amber); border-color: var(--amber-dim); }
+  .modal-body{ padding: 18px 22px 22px; overflow-y:auto; }
+  .modal-desc{ font-size: 13.5px; line-height:1.6; color: var(--ink-dim); margin-bottom: 18px; }
+
+  .detail-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 10px 18px;
+    font-family: var(--mono); font-size: 12px; margin-bottom: 16px;
+  }
+  .detail-grid .full{ grid-column: 1 / -1; }
+  .dt{ color: var(--ink-faint); text-transform:uppercase; font-size:10px; letter-spacing:.8px; margin-bottom:3px; }
+  .dv{ color: var(--ink); word-break: break-word; }
+  .dv.accent{ color: var(--amber); }
+
+  .params-box{
+    font-family: var(--mono); font-size: 11px; color: var(--ink-dim);
+    background: var(--panel-2); border: 1px solid var(--hairline-soft);
+    border-radius: var(--radius); padding: 10px 12px;
+    line-height: 1.7; word-break: break-word;
+  }
+
+  .section-rule{
+    border:none; border-top: 1px solid var(--hairline-soft); margin: 16px 0;
+  }
+
+  @media (max-width: 640px){
+    .detail-grid{ grid-template-columns: 1fr; }
+    .masthead{ flex-direction: column; align-items:flex-start; }
+    .masthead-right{ text-align:left; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-left">
+      <h1 class="title">Mercado de <em>Modelos</em></h1>
+      <span class="masthead-sub">Cotizaciones · OpenRouter</span>
+    </div>
+    <div class="masthead-right">
+      <div><span class="count" id="count-listed">—</span> modelos listados</div>
+      <div id="last-update">cargando…</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="ctl-group">
+      <span class="ctl-label">Buscar</span>
+      <input type="text" id="search" placeholder="parte del nombre…">
+    </div>
+
+    <div class="ctl-group">
+      <span class="ctl-label">Entrada</span>
+      <div class="chip-row" id="input-chips"></div>
+    </div>
+
+    <div class="ctl-group">
+      <span class="ctl-label">Salida</span>
+      <div class="chip-row" id="output-chips"></div>
+    </div>
+
+    <div class="toggle" id="free-toggle">
+      <span class="box"></span>
+      <span>Solo gratuitos</span>
+    </div>
+
+    <div class="ctl-group">
+      <span class="ctl-label">Ordenar por</span>
+      <select id="sort-field">
+        <option value="name">Nombre</option>
+        <option value="price">Precio (entrada)</option>
+        <option value="created" selected>Fecha</option>
+      </select>
+    </div>
+
+    <button class="dir-btn" id="sort-dir" title="Cambiar dirección">↓ desc</button>
+
+    <button class="reset-link" id="reset-filters">restablecer filtros</button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="sortable" data-sort="name">Modelo</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th class="sortable" data-sort="price">Precio / 1M tokens</th>
+          <th class="sortable" data-sort="context">Contexto</th>
+          <th class="sortable" data-sort="created">Listado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr class="empty-row"><td colspan="7">Cargando cotizaciones…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h2 id="modal-title">—</h2>
+        <div class="mid" id="modal-id">—</div>
+      </div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const API_URL = 'https://openrouter.ai/api/v1/models';
+
+let allModels = [];
+let state = {
+  search: '',
+  free: false,
+  inputs: new Set(),
+  outputs: new Set(),
+  sortField: 'created',
+  sortDir: 'desc'
+};
+
+const statusEl = document.getElementById('status');
+const tbody = document.getElementById('table-body');
+const countEl = document.getElementById('count-listed');
+const updateEl = document.getElementById('last-update');
+
+const MOD_LABELS = { text: 'texto', image: 'imagen', audio: 'audio', file: 'archivo' };
+
+function fmtMoney(v){
+  const n = parseFloat(v);
+  if (!n) return '0.00';
+  if (n < 0.01) return n.toFixed(4);
+  if (n < 1) return n.toFixed(3);
+  return n.toFixed(2);
+}
+
+function isFree(m){
+  const p = parseFloat(m.pricing?.prompt ?? '0');
+  const c = parseFloat(m.pricing?.completion ?? '0');
+  return p === 0 && c === 0;
+}
+
+function pricePromptPerM(m){
+  return parseFloat(m.pricing?.prompt ?? '0') * 1e6;
+}
+function priceCompletionPerM(m){
+  return parseFloat(m.pricing?.completion ?? '0') * 1e6;
+}
+
+function fmtDate(ts){
+  if (!ts) return '—';
+  const d = new Date(ts * 1000);
+  return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function fmtCtx(n){
+  if (!n) return '—';
+  if (n >= 1000) return (n/1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
+  return String(n);
+}
+
+function buildChips(){
+  const inputsSet = new Set();
+  const outputsSet = new Set();
+  allModels.forEach(m => {
+    (m.architecture?.input_modalities || []).forEach(x => inputsSet.add(x));
+    (m.architecture?.output_modalities || []).forEach(x => outputsSet.add(x));
+  });
+
+  const inputBox = document.getElementById('input-chips');
+  const outputBox = document.getElementById('output-chips');
+  inputBox.innerHTML = '';
+  outputBox.innerHTML = '';
+
+  [...inputsSet].sort().forEach(mod => {
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.textContent = MOD_LABELS[mod] || mod;
+    chip.onclick = () => {
+      if (state.inputs.has(mod)) state.inputs.delete(mod); else state.inputs.add(mod);
+      chip.classList.toggle('active');
+      render();
+    };
+    inputBox.appendChild(chip);
+  });
+
+  [...outputsSet].sort().forEach(mod => {
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.textContent = MOD_LABELS[mod] || mod;
+    chip.onclick = () => {
+      if (state.outputs.has(mod)) state.outputs.delete(mod); else state.outputs.add(mod);
+      chip.classList.toggle('active');
+      render();
+    };
+    outputBox.appendChild(chip);
+  });
+}
+
+function applyFilters(models){
+  return models.filter(m => {
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      const name = (m.name || '').toLowerCase();
+      const id = (m.id || '').toLowerCase();
+      if (!name.includes(q) && !id.includes(q)) return false;
+    }
+    if (state.free && !isFree(m)) return false;
+    if (state.inputs.size > 0) {
+      const mods = m.architecture?.input_modalities || [];
+      if (!mods.some(x => state.inputs.has(x))) return false;
+    }
+    if (state.outputs.size > 0) {
+      const mods = m.architecture?.output_modalities || [];
+      if (!mods.some(x => state.outputs.has(x))) return false;
+    }
+    return true;
+  });
+}
+
+function applySort(models){
+  const dir = state.sortDir === 'asc' ? 1 : -1;
+  const copy = [...models];
+  copy.sort((a, b) => {
+    let av, bv;
+    if (state.sortField === 'name') {
+      av = (a.name || a.id || '').toLowerCase();
+      bv = (b.name || b.id || '').toLowerCase();
+      return av < bv ? -1 * dir : av > bv ? 1 * dir : 0;
+    }
+    if (state.sortField === 'price') {
+      av = pricePromptPerM(a);
+      bv = pricePromptPerM(b);
+    } else if (state.sortField === 'context') {
+      av = a.context_length || 0;
+      bv = b.context_length || 0;
+    } else {
+      av = a.created || 0;
+      bv = b.created || 0;
+    }
+    return (av - bv) * dir;
+  });
+  return copy;
+}
+
+function pillsFor(mods){
+  if (!mods || mods.length === 0) return '<span class="model-id">—</span>';
+  return mods.map(m => `<span class="pill ${m}">${MOD_LABELS[m] || m}</span>`).join('');
+}
+
+function renderRow(m){
+  const free = isFree(m);
+  const priceHtml = free
+    ? `<span class="free-pill">GRATIS</span>`
+    : `<span class="in">$${fmtMoney(pricePromptPerM(m))}</span><span class="sep">/</span><span class="out">$${fmtMoney(priceCompletionPerM(m))}</span><span class="unit">por 1M tok</span>`;
+
+  return `
+    <tr>
+      <td class="name-cell">
+        <span class="model-name">${escapeHtml(m.name || m.id)}</span>
+        <span class="model-id">${escapeHtml(m.id)}</span>
+      </td>
+      <td>${pillsFor(m.architecture?.input_modalities)}</td>
+      <td>${pillsFor(m.architecture?.output_modalities)}</td>
+      <td class="price-cell">${priceHtml}</td>
+      <td class="ctx-cell">${fmtCtx(m.context_length)}</td>
+      <td class="date-cell">${fmtDate(m.created)}</td>
+      <td><button class="ficha-btn" data-id="${escapeAttr(m.id)}">ficha</button></td>
+    </tr>
+  `;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(s){ return escapeHtml(s); }
+
+function render(){
+  const filtered = applyFilters(allModels);
+  const sorted = applySort(filtered);
+
+  countEl.textContent = `${filtered.length} / ${allModels.length}`;
+
+  if (sorted.length === 0) {
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="7">Ningún modelo coincide con estos filtros. Prueba a quitar alguno.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = sorted.map(renderRow).join('');
+
+  tbody.querySelectorAll('.ficha-btn').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.id));
+  });
+}
+
+function updateSortHeaders(){
+  document.querySelectorAll('th.sortable').forEach(th => {
+    const f = th.dataset.sort;
+    const base = th.textContent.replace(/[↓↑]/g, '').trim();
+    if (f === state.sortField) {
+      th.innerHTML = `${base} <span class="arrow">${state.sortDir === 'asc' ? '↑' : '↓'}</span>`;
+    } else {
+      th.textContent = base;
+    }
+  });
+}
+
+// ---------- Modal ----------
+const overlay = document.getElementById('modal-overlay');
+const modalTitle = document.getElementById('modal-title');
+const modalId = document.getElementById('modal-id');
+const modalBody = document.getElementById('modal-body');
+
+function openModal(id){
+  const m = allModels.find(x => x.id === id);
+  if (!m) return;
+
+  modalTitle.textContent = m.name || m.id;
+  modalId.textContent = m.id;
+
+  const free = isFree(m);
+  const pricing = m.pricing || {};
+
+  let pricingRows = '';
+  Object.keys(pricing).forEach(k => {
+    const v = parseFloat(pricing[k]);
+    if (!v) return;
+    pricingRows += `<div><span class="dt">${k.replace(/_/g,' ')}</span><span class="dv accent">$${fmtMoney(v*1e6)} / 1M${k==='web_search' ? ' búsquedas' : ' tok'}</span></div>`;
+  });
+  if (!pricingRows) pricingRows = `<div><span class="dv accent">Gratuito</span></div>`;
+
+  modalBody.innerHTML = `
+    <div class="modal-desc">${escapeHtml(m.description || 'Sin descripción disponible.')}</div>
+
+    <div class="detail-grid">
+      <div><span class="dt">Estado</span><span class="dv">${free ? '<span class="free-pill">GRATIS</span>' : 'de pago'}</span></div>
+      <div><span class="dt">Listado</span><span class="dv">${fmtDate(m.created)}</span></div>
+      <div><span class="dt">Entrada</span><span class="dv">${(m.architecture?.input_modalities||[]).join(', ') || '—'}</span></div>
+      <div><span class="dt">Salida</span><span class="dv">${(m.architecture?.output_modalities||[]).join(', ') || '—'}</span></div>
+      <div><span class="dt">Contexto</span><span class="dv">${m.context_length?.toLocaleString('es-ES') || '—'} tokens</span></div>
+      <div><span class="dt">Máx. tokens completion</span><span class="dv">${m.top_provider?.max_completion_tokens?.toLocaleString('es-ES') || '—'}</span></div>
+      <div><span class="dt">Tokenizer</span><span class="dv">${m.architecture?.tokenizer || '—'}</span></div>
+      <div><span class="dt">Moderado</span><span class="dv">${m.top_provider?.is_moderated === true ? 'sí' : m.top_provider?.is_moderated === false ? 'no' : '—'}</span></div>
+      <div><span class="dt">Knowledge cutoff</span><span class="dv">${m.knowledge_cutoff || '—'}</span></div>
+      <div><span class="dt">Slug canónico</span><span class="dv">${m.canonical_slug || '—'}</span></div>
+    </div>
+
+    <hr class="section-rule">
+    <div class="dt" style="margin-bottom:8px;">Precios</div>
+    <div class="detail-grid">${pricingRows}</div>
+
+    <hr class="section-rule">
+    <div class="dt" style="margin-bottom:8px;">Parámetros soportados</div>
+    <div class="params-box">${(m.supported_parameters||[]).join(', ') || '—'}</div>
+  `;
+
+  overlay.classList.add('open');
+}
+
+document.getElementById('modal-close').onclick = () => overlay.classList.remove('open');
+overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.classList.remove('open'); });
+
+// ---------- Controls wiring ----------
+document.getElementById('search').addEventListener('input', e => {
+  state.search = e.target.value;
+  render();
+});
+
+const freeToggle = document.getElementById('free-toggle');
+freeToggle.addEventListener('click', () => {
+  state.free = !state.free;
+  freeToggle.classList.toggle('checked', state.free);
+  render();
+});
+
+document.getElementById('sort-field').addEventListener('change', e => {
+  state.sortField = e.target.value;
+  updateSortHeaders();
+  render();
+});
+
+const sortDirBtn = document.getElementById('sort-dir');
+sortDirBtn.addEventListener('click', () => {
+  state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+  sortDirBtn.textContent = state.sortDir === 'asc' ? '↑ asc' : '↓ desc';
+  updateSortHeaders();
+  render();
+});
+
+document.querySelectorAll('th.sortable').forEach(th => {
+  th.addEventListener('click', () => {
+    const f = th.dataset.sort;
+    if (state.sortField === f) {
+      state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+      state.sortField = f;
+      state.sortDir = 'desc';
+    }
+    document.getElementById('sort-field').value = f === 'context' ? 'created' : f;
+    sortDirBtn.textContent = state.sortDir === 'asc' ? '↑ asc' : '↓ desc';
+    updateSortHeaders();
+    render();
+  });
+});
+
+document.getElementById('reset-filters').addEventListener('click', () => {
+  state.search = '';
+  state.free = false;
+  state.inputs.clear();
+  state.outputs.clear();
+  state.sortField = 'created';
+  state.sortDir = 'desc';
+
+  document.getElementById('search').value = '';
+  freeToggle.classList.remove('checked');
+  document.getElementById('sort-field').value = 'created';
+  sortDirBtn.textContent = '↓ desc';
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  updateSortHeaders();
+  render();
+});
+
+// ---------- Fetch ----------
+async function loadModels(){
+  try {
+    statusEl.innerHTML = 'Conectando con OpenRouter…';
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    allModels = json.data || [];
+    statusEl.innerHTML = '';
+    updateEl.textContent = 'actualizado ' + new Date().toLocaleTimeString('es-ES');
+    buildChips();
+    updateSortHeaders();
+    render();
+  } catch (err) {
+    statusEl.innerHTML = `<span class="err">No se pudo cargar la cotización en vivo (${escapeHtml(err.message)}). Comprueba tu conexión o la configuración de red del navegador.</span>`;
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="7">Sin datos. Reintenta recargando la página.</td></tr>`;
+  }
+}
+
+loadModels();
+</script>
+
+</body>
+</html>
