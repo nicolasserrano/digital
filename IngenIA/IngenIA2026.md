@@ -3,7 +3,7 @@ marp: true
 theme: default
 paginate: true
 html: true
-footer: 'Una educación integral en la era de la Inteligenia Artificial'
+footer: 'Una educación integral en la era de la Inteligencia Artificial'
 backgroundColor: #fff
 style: |
   section {
@@ -315,7 +315,7 @@ style: |
 ---
 
 
-# Una educación integral en la era de la Inteligenia Artificial
+# Una educación integral en la era de la Inteligencia Artificial
 
 <br>
 <br>
@@ -333,7 +333,7 @@ style: |
 <br>
 <br>
 
-## GID IngenIA: Inteligenia Artificial en la Ingeniería<br> Tecnun. Escuela de Ingeniería. Universidad de Navarra
+## GID IngenIA: Inteligencia Artificial en la Ingeniería<br> Tecnun. Escuela de Ingeniería. Universidad de Navarra
 
 ---
 
