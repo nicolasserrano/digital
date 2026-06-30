@@ -451,6 +451,14 @@ style: |
 
 ---
 
+<!-- _class: hle-slide -->
+# La era de la Inteligencia Artificial
+<div class="hle-slide">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Escudo_Ingenier%C3%ADa_Industrial_Espa%C3%B1a.svg" alt="Escudo Ingenieros Industriales" />
+</div>
+
+---
+
 # Fases de IngenIA
 ![Fases](fases.svg)
 
