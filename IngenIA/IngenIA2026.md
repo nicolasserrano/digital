@@ -476,6 +476,7 @@ style: |
 
 ## Aplicaciones Prácticas
 
+- **Listado de ejemplos** [Listado](https://www.nicolasserrano.com/digital/IngenIA/ejemplos/)]
 - **Tabla de amortización** - _[Completar descripción]_
 - **Distribución de Gauss** [Abrir ejemplo](https://claude.ai/public/artifacts/7e49d32c-3563-4b0f-a412-e19ee1b865ba)]
 - **Funciones** -[Abrir ejemplo](https://gemini.google.com/app/4c7a1bbbb504454c)
