@@ -1,0 +1,244 @@
+<style>
+body{margin:0;font-family:var(--font-sans)}
+.panel{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 16px;margin-bottom:10px}
+label{font-size:13px;color:var(--color-text-secondary)}
+.row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.row input[type=range]{flex:1}
+.val{font-size:13px;font-weight:500;min-width:38px;text-align:right;color:var(--color-text-primary)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+canvas{width:100%;display:block;border-radius:var(--border-radius-md);background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary)}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px}
+.metric .lbl{font-size:11px;color:var(--color-text-secondary)}
+.metric .num{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.btn-row{display:flex;gap:8px;margin-top:8px}
+button{background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:6px 14px;font-size:13px;cursor:pointer;color:var(--color-text-primary)}
+button:hover{background:var(--color-background-secondary)}
+button.active{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+.warn{font-size:12px;color:var(--color-text-danger);margin-top:4px;min-height:16px}
+</style>
+
+<div style="padding:1rem 0">
+<canvas id="cv" height="340"></canvas>
+
+<div class="metrics" id="metrics">
+  <div class="metric"><div class="lbl">φ manivela</div><div class="num" id="m0">0°</div></div>
+  <div class="metric"><div class="lbl">ψ balancín</div><div class="num" id="m1">0°</div></div>
+  <div class="metric"><div class="lbl">θ acoplador</div><div class="num" id="m2">0°</div></div>
+  <div class="metric"><div class="lbl">estado</div><div class="num" id="m3">—</div></div>
+</div>
+<div class="warn" id="warn"></div>
+
+<div class="panel" style="margin-top:12px">
+  <div class="row">
+    <label style="min-width:100px">Manivela (r₁)</label>
+    <input type="range" id="L1" min="30" max="150" step="1" value="60">
+    <span class="val" id="L1v">60</span>
+  </div>
+  <div class="row">
+    <label style="min-width:100px">Acoplador (r₂)</label>
+    <input type="range" id="L2" min="50" max="220" step="1" value="130">
+    <span class="val" id="L2v">130</span>
+  </div>
+  <div class="row">
+    <label style="min-width:100px">Balancín (r₃)</label>
+    <input type="range" id="L3" min="50" max="200" step="1" value="110">
+    <span class="val" id="L3v">110</span>
+  </div>
+  <div class="row">
+    <label style="min-width:100px">Bastidor (r₄)</label>
+    <input type="range" id="L4" min="80" max="250" step="1" value="160">
+    <span class="val" id="L4v">160</span>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="row">
+    <label style="min-width:100px">Ángulo φ</label>
+    <input type="range" id="phi" min="0" max="359" step="1" value="45">
+    <span class="val" id="phiv">45°</span>
+  </div>
+  <div class="row">
+    <label style="min-width:100px">Velocidad anim.</label>
+    <input type="range" id="spd" min="1" max="60" step="1" value="20">
+    <span class="val" id="spdv">20 °/s</span>
+  </div>
+  <div class="btn-row">
+    <button id="btnPlay">▶ Animar</button>
+    <button id="btnStop">■ Detener</button>
+    <button id="btnTrace">Traza: ON</button>
+    <button id="btnCfg">Config: abierta</button>
+  </div>
+</div>
+</div>
+
+<script>
+const cv=document.getElementById('cv');
+const ctx=cv.getContext('2d');
+let W,H,CX,CY,SCALE;
+let traceOn=true, config=1;
+let animating=false, animRAF=null, lastT=null;
+let phi=45, spd=20;
+let L=[0,60,130,110,160];
+let tracePoints=[];
+let isDark=false;
+
+function resize(){
+  const r=cv.getBoundingClientRect();
+  W=cv.width=r.width*window.devicePixelRatio||r.width;
+  H=cv.height=340*window.devicePixelRatio||340;
+  ctx.scale(window.devicePixelRatio,window.devicePixelRatio);
+  W=r.width; H=340;
+  CX=W*0.45; CY=H*0.52;
+  SCALE=1;
+}
+
+function detectDark(){
+  const c=getComputedStyle(document.documentElement).getPropertyValue('--color-text-primary').trim();
+  isDark=c.startsWith('#f')||c.startsWith('rgb(25')||c.startsWith('rgb(24');
+}
+
+function solve(phi_deg){
+  const ph=phi_deg*Math.PI/180;
+  const [r1,r2,r3,r4]=[L[1],L[2],L[3],L[4]];
+  const A2x=r1*Math.cos(ph), A2y=r1*Math.sin(ph);
+  let psi=config*(Math.PI/3);
+  for(let it=0;it<200;it++){
+    const A4x=r4+r3*Math.cos(psi), A4y=r3*Math.sin(psi);
+    const dx=A2x-A4x, dy=A2y-A4y;
+    const F=dx*dx+dy*dy-r2*r2;
+    const dFdpsi=-2*dx*(-r3*Math.sin(psi))-2*dy*(r3*Math.cos(psi));
+    if(Math.abs(dFdpsi)<1e-12) break;
+    const dp=-F/dFdpsi;
+    psi+=dp;
+    if(Math.abs(dp)<1e-9) break;
+  }
+  const A2=[A2x,A2y];
+  const A4=[r4+r3*Math.cos(psi),r3*Math.sin(psi)];
+  const ok=Math.abs((A2[0]-A4[0])**2+(A2[1]-A4[1])**2-r2**2)<1;
+  return {ok,A1:[0,0],A2,A3:[r4,0],A4,psi};
+}
+
+function angle(dx,dy){return Math.atan2(dy,dx)*180/Math.PI}
+
+function draw(){
+  detectDark();
+  ctx.clearRect(0,0,W,H);
+  const {ok,A1,A2,A3,A4,psi}=solve(phi);
+  document.getElementById('warn').textContent=ok?'':'⚠ Configuración no alcanzable';
+
+  const tx=p=>CX+p[0]*SCALE, ty=p=>CY-p[1]*SCALE;
+
+  const textC=isDark?'#e8e6df':'#2c2c2a';
+  const grayC=isDark?'#888780':'#b4b2a9';
+
+  if(traceOn&&ok){
+    tracePoints.push([...A4]);
+    if(tracePoints.length>500) tracePoints.shift();
+    if(tracePoints.length>1){
+      ctx.beginPath();
+      ctx.strokeStyle=isDark?'rgba(127,119,221,0.5)':'rgba(83,74,183,0.4)';
+      ctx.lineWidth=1.5;
+      ctx.moveTo(tx(tracePoints[0]),ty(tracePoints[0]));
+      for(let i=1;i<tracePoints.length;i++) ctx.lineTo(tx(tracePoints[i]),ty(tracePoints[i]));
+      ctx.stroke();
+    }
+  }
+
+  if(!ok) return;
+
+  const bars=[
+    {p:A1,q:A2,col:isDark?'#7f77dd':'#533ab7',lbl:'r₁'},
+    {p:A2,q:A4,col:isDark?'#1d9e75':'#0f6e56',lbl:'r₂'},
+    {p:A3,q:A4,col:isDark?'#d4537e':'#993556',lbl:'r₃'},
+    {p:A1,q:A3,col:grayC,lbl:'r₄'},
+  ];
+  bars.forEach(b=>{
+    ctx.beginPath();
+    ctx.moveTo(tx(b.p),ty(b.p));
+    ctx.lineTo(tx(b.q),ty(b.q));
+    ctx.strokeStyle=b.col;
+    ctx.lineWidth=b.lbl==='r₄'?2:3;
+    ctx.setLineDash(b.lbl==='r₄'?[6,4]:[]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const mx=(tx(b.p)+tx(b.q))/2, my=(ty(b.p)+ty(b.q))/2;
+    ctx.fillStyle=b.col;
+    ctx.font='500 12px var(--font-sans)';
+    ctx.fillText(b.lbl,mx+4,my-4);
+  });
+
+  [[A1,'A'],[A2,'B'],[A3,'D'],[A4,'C']].forEach(([p,n])=>{
+    ctx.beginPath();
+    ctx.arc(tx(p),ty(p),5,0,2*Math.PI);
+    ctx.fillStyle=n==='B'?'#7f77dd':n==='C'?'#d4537e':'#888780';
+    ctx.fill();
+    ctx.strokeStyle=isDark?'rgba(255,255,255,0.25)':'rgba(0,0,0,0.2)';
+    ctx.lineWidth=1;
+    ctx.stroke();
+    ctx.fillStyle=textC;
+    ctx.font='500 12px var(--font-sans)';
+    ctx.fillText(n,tx(p)+7,ty(p)-5);
+  });
+
+  const psiDeg=((psi*180/Math.PI)%360+360)%360;
+  const thetaDeg=((angle(A4[0]-A2[0],A4[1]-A2[1]))%360+360)%360;
+  document.getElementById('m0').textContent=phi.toFixed(1)+'°';
+  document.getElementById('m1').textContent=psiDeg.toFixed(1)+'°';
+  document.getElementById('m2').textContent=thetaDeg.toFixed(1)+'°';
+  document.getElementById('m3').textContent=config>0?'abierta':'cruzada';
+}
+
+function bindSlider(id,fn){
+  const el=document.getElementById(id);
+  el.addEventListener('input',()=>{fn(parseFloat(el.value));draw()});
+}
+
+bindSlider('L1',v=>{L[1]=v;tracePoints=[];document.getElementById('L1v').textContent=v});
+bindSlider('L2',v=>{L[2]=v;tracePoints=[];document.getElementById('L2v').textContent=v});
+bindSlider('L3',v=>{L[3]=v;tracePoints=[];document.getElementById('L3v').textContent=v});
+bindSlider('L4',v=>{L[4]=v;tracePoints=[];document.getElementById('L4v').textContent=v});
+bindSlider('phi',v=>{phi=v;document.getElementById('phiv').textContent=v+'°'});
+bindSlider('spd',v=>{spd=v;document.getElementById('spdv').textContent=v+' °/s'});
+
+document.getElementById('btnPlay').addEventListener('click',()=>{
+  if(animating) return;
+  animating=true; lastT=null;
+  function step(t){
+    if(!animating) return;
+    if(lastT){
+      const dt=(t-lastT)/1000;
+      phi=(phi+spd*dt)%360;
+      document.getElementById('phi').value=phi;
+      document.getElementById('phiv').textContent=phi.toFixed(0)+'°';
+      draw();
+    }
+    lastT=t;
+    animRAF=requestAnimationFrame(step);
+  }
+  animRAF=requestAnimationFrame(step);
+});
+
+document.getElementById('btnStop').addEventListener('click',()=>{
+  animating=false;
+  if(animRAF) cancelAnimationFrame(animRAF);
+});
+
+document.getElementById('btnTrace').addEventListener('click',()=>{
+  traceOn=!traceOn;
+  document.getElementById('btnTrace').textContent='Traza: '+(traceOn?'ON':'OFF');
+  if(!traceOn) tracePoints=[];
+  draw();
+});
+
+document.getElementById('btnCfg').addEventListener('click',()=>{
+  config=-config;
+  tracePoints=[];
+  document.getElementById('btnCfg').textContent='Config: '+(config>0?'abierta':'cruzada');
+  draw();
+});
+
+window.addEventListener('resize',()=>{resize();draw()});
+resize();
+draw();
+</script>

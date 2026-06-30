@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Cuadrilátero Articulado por Coordenadas Naturales</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX para renderizar matemáticas bellamente -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <style>
+        /* Deshabilitar selección de texto al arrastrar elementos en el canvas */
+        canvas {
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .tab-btn.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0'z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Cuadrilátero Articulado</h1>
+                    <p class="text-xs text-slate-400">Método de Coordenadas Naturales (Formulación Multicuerpo)</p>
+                </div>
+            </div>
+            <!-- Badges de Estado -->
+            <div class="flex gap-2 text-xs">
+                <span id="badge-grashof" class="px-3 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Grashof clase I</span>
+                <span id="badge-assembly" class="px-3 py-1 rounded-full font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30">Montaje: Abierto</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Columna Izquierda: Canvas de Simulación e Información Rápida (7 columnas) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+            
+            <!-- Canvas Card -->
+            <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-xl overflow-hidden flex flex-col flex-1 min-h-[450px]">
+                <div class="bg-slate-850 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-xs text-slate-300 font-mono">
+                    <span class="flex items-center gap-1">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-ping"></span> 
+                        Simulador Interactivo
+                    </span>
+                    <span>Arrastra el nodo de entrada (A) para interactuar</span>
+                </div>
+                <!-- El contenedor de canvas se adaptará dinámicamente -->
+                <div class="relative flex-1 bg-slate-950 flex items-center justify-center p-2 min-h-[350px]">
+                    <canvas id="canvas" class="w-full h-full rounded-lg cursor-grab active:cursor-grabbing"></canvas>
+                    
+                    <!-- Mensaje de error/geometría imposible -->
+                    <div id="error-overlay" class="absolute inset-0 bg-slate-950/95 flex flex-col items-center justify-center p-6 text-center hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-rose-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-rose-400 mb-1">Configuración Geométrica Imposible</h3>
+                        <p id="error-msg" class="text-sm text-slate-300 max-w-md">Las longitudes especificadas para las barras impiden ensamblar el cuadrilátero bajo este ángulo de entrada.</p>
+                        <button onclick="resetMechanism()" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-semibold transition shadow-md">
+                            Restablecer Dimensiones
+                        </button>
+                    </div>
+                </div>
+                <!-- Controles Rápidos de Simulación -->
+                <div class="bg-slate-850 p-4 border-t border-slate-700 flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <button id="btn-play" class="p-3 bg-blue-600 hover:bg-blue-500 active:scale-95 rounded-lg text-white transition shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="play-icon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                        <button id="btn-reset-angle" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-xs rounded-lg transition">
+                            $\theta = 0$
+                        </button>
+                        <button id="btn-toggle-trace" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-xs rounded-lg transition">
+                            Limpiar Trayectoria
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 text-xs text-slate-400 font-mono">
+                        <div>$\theta$: <span id="val-angle" class="text-slate-100 font-bold">0.0°</span></div>
+                        <div>$\mu$: <span id="val-transmission" class="text-slate-100 font-bold">0.0°</span></div>
+                        <div>Error NR: <span id="val-error" class="text-slate-100 font-bold">0.0000</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico / Histograma de Esfuerzos / Ángulo de transmisión en Vivo -->
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-4 shadow-xl">
+                <h3 class="text-sm font-semibold mb-2 flex items-center gap-2 text-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+                    </svg>
+                    Historial del Ángulo de Transmisión ($\mu$)
+                </h3>
+                <div class="h-24 w-full bg-slate-900/50 rounded border border-slate-750 relative overflow-hidden flex items-end">
+                    <!-- Grid Canvas para el gráfico de transmisión -->
+                    <canvas id="chart-canvas" class="absolute inset-0 w-full h-full"></canvas>
+                </div>
+                <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+                    <span>Ángulo Óptimo: $90^\circ$</span>
+                    <span>Zona Crítica: $<45^\circ$ o $>135^\circ$</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Columna Derecha: Configuración, Parámetros y Matemáticas (5 columnas) -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+            
+            <!-- Selector de Pestañas (Tabs) -->
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-1 flex shadow-md">
+                <button id="tab-controls" class="tab-btn flex-1 py-2 text-center text-sm font-semibold rounded-lg border-b-2 border-transparent text-slate-400 hover:text-slate-100 transition active" onclick="switchTab('controls')">
+                    Controles
+                </button>
+                <button id="tab-math" class="tab-btn flex-1 py-2 text-center text-sm font-semibold rounded-lg border-b-2 border-transparent text-slate-400 hover:text-slate-100 transition" onclick="switchTab('math')">
+                    Método Matemático
+                </button>
+            </div>
+
+            <!-- Panel de Controles -->
+            <div id="panel-controls" class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl flex flex-col gap-5">
+                <div>
+                    <h2 class="text-base font-bold text-blue-400 mb-1">Dimensiones de las Barras (mm)</h2>
+                    <p class="text-xs text-slate-400">Define las longitudes de los eslabones articulados.</p>
+                </div>
+
+                <!-- Sliders de Dimensiones -->
+                <div class="space-y-4">
+                    <!-- Barra d (Bancada) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-slate-300">Bancada ($d$ - Barra Fija $O_1 O_2$)</span>
+                            <span id="label-d" class="text-blue-400 font-bold">200 mm</span>
+                        </div>
+                        <input type="range" id="slide-d" min="80" max="400" value="200" step="5" class="w-full accent-blue-500 bg-slate-700 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Barra a (Manivela / Entrada) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-slate-300">Manivela de Entrada ($a$ - $O_1 A$)</span>
+                            <span id="label-a" class="text-blue-400 font-bold">100 mm</span>
+                        </div>
+                        <input type="range" id="slide-a" min="30" max="250" value="100" step="5" class="w-full accent-blue-500 bg-slate-700 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Barra b (Acoplador) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-slate-300">Acoplador ($b$ - Barra $AB$)</span>
+                            <span id="label-b" class="text-blue-400 font-bold">250 mm</span>
+                        </div>
+                        <input type="range" id="slide-b" min="50" max="500" value="250" step="5" class="w-full accent-blue-500 bg-slate-700 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Barra c (Seguidor / Salida) -->
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-slate-300">Seguidor de Salida ($c$ - $O_2 B$)</span>
+                            <span id="label-c" class="text-blue-400 font-bold">200 mm</span>
+                        </div>
+                        <input type="range" id="slide-c" min="50" max="500" value="200" step="5" class="w-full accent-blue-500 bg-slate-700 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+
+                <hr class="border-slate-700">
+
+                <!-- Controles Cinemáticos -->
+                <div>
+                    <h2 class="text-base font-bold text-blue-400 mb-1">Cinemática y Simulación</h2>
+                    <p class="text-xs text-slate-400">Controla el movimiento y el estado cinemático.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Velocidad Angular -->
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-slate-300">Velocidad Angular Entrada ($\omega$)</span>
+                            <span id="label-speed" class="text-blue-400 font-bold">1.5 rad/s</span>
+                        </div>
+                        <input type="range" id="slide-speed" min="-5" max="5" value="1.5" step="0.1" class="w-full accent-blue-500 bg-slate-700 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Rama de Montaje (Assembly Mode) -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <span class="block text-xs text-slate-400 mb-1.5">Rama de Montaje</span>
+                            <select id="select-branch" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-2.5 py-1.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <option value="1">Abierta (Codo Arriba)</option>
+                                <option value="-1">Cruzada (Codo Abajo)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 mb-1.5">Curvas de Acoplamiento</span>
+                            <select id="select-trace-target" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-2.5 py-1.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <option value="B">Nodo de Salida (B)</option>
+                                <option value="P">Punto Acoplador (P)</option>
+                                <option value="none">Sin Trazo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Punto de Acoplamiento Placa Triangular -->
+                    <div id="coupler-point-settings" class="p-3 bg-slate-900/50 rounded-lg border border-slate-750 space-y-3">
+                        <span class="block text-xs font-semibold text-slate-300">Parámetros de la Placa Acopladora ($P$)</span>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] text-slate-400 font-mono mb-0.5">Factor Distancia ($u$)</label>
+                                <input type="range" id="slide-px" min="-1" max="2" value="0.5" step="0.05" class="w-full accent-emerald-500 bg-slate-750 h-1 rounded">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-400 font-mono mb-0.5">Desvío Perpendicular ($v$)</label>
+                                <input type="range" id="slide-py" min="-2" max="2" value="0.5" step="0.05" class="w-full accent-emerald-500 bg-slate-750 h-1 rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Matemático -->
+            <div id="panel-math" class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl hidden overflow-y-auto max-h-[580px] prose prose-invert prose-sm">
+                <h2 class="text-base font-bold text-emerald-400 mb-3">Método de Coordenadas Naturales</h2>
+                
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                    El modelado se realiza utilizando las coordenadas Cartesianas de sus nodos articulados en lugar de variables angulares relativas. Esto simplifica drásticamente el planteamiento de restricciones cinemáticas rígidas de tipo cuadrático.
+                </p>
+
+                <h3 class="text-xs font-bold text-slate-200 mt-4 mb-2">1. Vector de Coordenadas Naturales ($\mathbf{q}$)</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Definimos el sistema mediante las coordenadas de las articulaciones móviles $A(x_2, y_2)$ y $B(x_3, y_3)$. Los puntos de anclaje de la bancada $O_1(0,0)$ y $O_2(d,0)$ se consideran fijos en el origen y sobre el eje horizontal:
+                </p>
+                <div class="bg-slate-900 p-2 rounded text-xs font-mono my-2 text-center">
+                    $$\mathbf{q} = [x_2, y_2, x_3, y_3]^T$$
+                </div>
+
+                <h3 class="text-xs font-bold text-slate-200 mt-4 mb-2">2. Ecuaciones de Restricción Cinemática ($\mathbf{\Phi}(\mathbf{q}) = \mathbf{0}$)</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Las longitudes constantes de las barras imponen distancias euclídeas fijas entre los puntos, generando un sistema de ecuaciones cuadráticas algebraicas no lineales:
+                </p>
+                <div class="bg-slate-900 p-2.5 rounded text-xs font-mono my-2 space-y-1">
+                    $$\Phi_1(\mathbf{q}) = x_2^2 + y_2^2 - a^2 = 0$$
+                    $$\Phi_2(\mathbf{q}) = (x_3 - x_2)^2 + (y_3 - y_2)^2 - b^2 = 0$$
+                    $$\Phi_3(\mathbf{q}) = (d - x_3)^2 + y_3^2 - c^2 = 0$$
+                </div>
+
+                <h3 class="text-xs font-bold text-slate-200 mt-4 mb-2">3. Restricción del Motor de Entrada</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Para parametrizar el giro de la manivela bajo un ángulo de entrada $\theta$ impulsado en el tiempo:
+                </p>
+                <div class="bg-slate-900 p-2.5 rounded text-xs font-mono my-2">
+                    $$\Phi_{mot}(\mathbf{q}) = y_2 - x_2 \tan\theta = 0$$
+                </div>
+
+                <h3 class="text-xs font-bold text-slate-200 mt-4 mb-2">4. Algoritmo Numérico de Newton-Raphson</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    En cada incremento de tiempo o actualización de ángulo, resolvemos iterativamente la posición de los nodos mediante:
+                </p>
+                <div class="bg-slate-900 p-2.5 rounded text-xs font-mono my-2 text-center">
+                    $$\mathbf{q}_{k+1} = \mathbf{q}_k - \mathbf{J}^{-1} \mathbf{\Phi}(\mathbf{q}_k)$$
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Donde $\mathbf{J}$ representa la matriz Jacobiana $\left[ \frac{\partial \mathbf{\Phi}}{\partial \mathbf{q}} \right]$ de dimensiones correspondientes evaluada en cada paso. Este resolvedor numérico garantiza un acoplamiento exacto sin derivas numéricas.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-3 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            Visualizador interactivo de Mecánica Multicuerpo • Desarrollado con HTML5 Canvas y Pure JavaScript.
+        </div>
+    </footer>
+
+    <!-- Script de Simulación -->
+    <script>
+        // --- CONFIGURACIÓN DE FIREBASE E IDENTIFICADORES (SIN GUARDADO LOCAL NECESARIO) ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'cuadrilatero-articulado-default';
+
+        // --- MODELO CINEMÁTICO ---
+        const state = {
+            // Longitudes de barras (mm)
+            a: 100, // Manivela (entrada)
+            b: 250, // Acoplador
+            c: 200, // Seguidor (salida)
+            d: 200, // Bancada (distancia O1 -> O2)
+            
+            // Variables de estado cinemático
+            theta: 0.8, // Ángulo actual de la manivela (rad)
+            omega: 1.5, // Velocidad angular de la manivela (rad/s)
+            
+            // Coordenadas de los nodos
+            // O1 = (0, 0)
+            // O2 = (d, 0)
+            x1: 0, y1: 0,
+            x2: 0, y2: 0, // Punto A
+            x3: 0, y3: 0, // Punto B
+            x4: 200, y4: 0,
+
+            // Parámetros de la placa acopladora (Punto P local en barra AB)
+            u: 0.5, // Fracción longitudinal a lo largo de AB
+            v: 0.5, // Desviación perpendicular relativa al largo de AB
+
+            // Modos de simulación
+            isPlaying: true,
+            branch: 1, // 1: Abierta, -1: Cruzada
+            traceTarget: 'P', // 'B', 'P', o 'none'
+            
+            // Historial para trazar trayectorias
+            tracePoints: [],
+            maxTracePoints: 400,
+
+            // Historial para el gráfico de ángulo de transmisión
+            transmissionHistory: [],
+            maxHistoryPoints: 200,
+
+            // Estado de interacción de arrastre
+            isDragging: false,
+            lastTime: 0
+        };
+
+        // --- ELEMENTOS DEL DOM ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const chartCanvas = document.getElementById('chart-canvas');
+        const chartCtx = chartCanvas.getContext('2d');
+
+        // Sliders y Etiquetas
+        const inputs = {
+            d: { slide: document.getElementById('slide-d'), label: document.getElementById('label-d'), key: 'd' },
+            a: { slide: document.getElementById('slide-a'), label: document.getElementById('label-a'), key: 'a' },
+            b: { slide: document.getElementById('slide-b'), label: document.getElementById('label-b'), key: 'b' },
+            c: { slide: document.getElementById('slide-c'), label: document.getElementById('label-c'), key: 'c' },
+            speed: { slide: document.getElementById('slide-speed'), label: document.getElementById('label-speed'), key: 'omega' },
+            px: { slide: document.getElementById('slide-px') },
+            py: { slide: document.getElementById('slide-py') }
+        };
+
+        const elements = {
+            btnPlay: document.getElementById('btn-play'),
+            playIcon: document.getElementById('play-icon'),
+            btnResetAngle: document.getElementById('btn-reset-angle'),
+            btnToggleTrace: document.getElementById('btn-toggle-trace'),
+            selectBranch: document.getElementById('select-branch'),
+            selectTraceTarget: document.getElementById('select-trace-target'),
+            badgeGrashof: document.getElementById('badge-grashof'),
+            badgeAssembly: document.getElementById('badge-assembly'),
+            valAngle: document.getElementById('val-angle'),
+            valTransmission: document.getElementById('val-transmission'),
+            valError: document.getElementById('val-error'),
+            errorOverlay: document.getElementById('error-overlay'),
+            errorMsg: document.getElementById('error-msg')
+        };
+
+        // --- SISTEMA DE PESTAÑAS (TABS) ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            if (tabId === 'controls') {
+                document.getElementById('panel-controls').classList.remove('hidden');
+                document.getElementById('panel-math').classList.add('hidden');
+            } else {
+                document.getElementById('panel-controls').classList.add('hidden');
+                document.getElementById('panel-math').classList.remove('hidden');
+                // Forzar renderizado matemático al mostrar panel
+                if (typeof renderMathInElement === 'function') {
+                    renderMathInElement(document.getElementById('panel-math'));
+                }
+            }
+        }
+
+        // --- MATEMÁTICAS / RESUELVEDOR CINEMÁTICO (NEWTON-RAPHSON / ANALÍTICO) ---
+
+        // Verifica la condición de Grashof y actualiza la UI
+        function checkGrashof() {
+            const lengths = [state.a, state.b, state.c, state.d].sort((x, y) => x - y);
+            const s = lengths[0]; // Más corto
+            const l = lengths[3]; // Más largo
+            const p = lengths[1];
+            const q = lengths[2];
+
+            if (s + l < p + q) {
+                // Grashof Clase I: Al menos un eslabón puede realizar rotaciones completas.
+                if (state.a === s) {
+                    elements.badgeGrashof.innerText = 'Grashof Clase I (Manivela-Balancín)';
+                    elements.badgeGrashof.className = "px-3 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                } else if (state.b === s) {
+                    elements.badgeGrashof.innerText = 'Grashof Clase I (Doble Manivela)';
+                    elements.badgeGrashof.className = "px-3 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                } else {
+                    elements.badgeGrashof.innerText = 'Grashof Clase I (Doble Balancín)';
+                    elements.badgeGrashof.className = "px-3 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                }
+            } else if (s + l === p + q) {
+                elements.badgeGrashof.innerText = 'Grashof Neutro / Puntos de Cambio';
+                elements.badgeGrashof.className = "px-3 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30";
+            } else {
+                // No-Grashof (Clase II): Todas las barras realizan balanceo limitado.
+                elements.badgeGrashof.innerText = 'No-Grashof Clase II (Triple Balancín)';
+                elements.badgeGrashof.className = "px-3 py-1 rounded-full font-medium bg-orange-500/20 text-orange-300 border border-orange-500/30";
+            }
+        }
+
+        /**
+         * Resuelve analíticamente la posición de B(x3, y3) dadas las posiciones de O1, A(x2, y2) y O2(d, 0).
+         * Esto sirve para inicializar y garantizar que el Newton-Raphson comience en una rama deseada.
+         */
+        function solveAnalytically(theta, branch) {
+            const x2 = state.a * Math.cos(theta);
+            const y2 = state.a * Math.sin(theta);
+            const x4 = state.d;
+            const y4 = 0;
+
+            // Distancia entre A y O2
+            const dx = x4 - x2;
+            const dy = y4 - y2;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+
+            // Verificación de viabilidad del triángulo ABO2
+            if (dist > state.b + state.c || dist < Math.abs(state.b - state.c)) {
+                return null; // Geometría imposible para este ángulo
+            }
+
+            // Distancia del centro A al punto donde se cruza la línea perpendicular que conecta las intersecciones
+            const a_dist = (state.b*state.b - state.c*state.c + dist*dist) / (2 * dist);
+            const h = Math.sqrt(Math.max(0, state.b*state.b - a_dist*a_dist));
+
+            // Punto intermedio en la línea de centros A -> O2
+            const x5 = x2 + (a_dist * dx) / dist;
+            const y5 = y2 + (a_dist * dy) / dist;
+
+            // Coordenadas de los dos posibles puntos de cruce (ramas de montaje Abierta/Cruzada)
+            // Cambiando el signo de h según la rama elegida
+            const x3_1 = x5 + (branch * h * dy) / dist;
+            const y3_1 = y5 - (branch * h * dx) / dist;
+
+            return { x2, y2, x3: x3_1, y3: y3_1 };
+        }
+
+        /**
+         * Resuelve cinemática de posiciones con Newton-Raphson sobre las coordenadas de B(x3, y3).
+         * La posición del eslabón de entrada A se calcula de forma explícita mediante theta.
+         */
+        function solvePosition(theta, branch, tol = 1e-6, maxIterations = 50) {
+            // Actualizar O1 y O2 en base al estado actual
+            state.x4 = state.d;
+
+            // Determinar una posición inicial.
+            // Primero intentamos estimar analíticamente la solución perfecta.
+            const analyticSol = solveAnalytically(theta, branch);
+            if (!analyticSol) {
+                return false; // Error estructural (triángulo no puede cerrarse)
+            }
+
+            // Usamos la analítica directa ya que en el mecanismo de 4 barras planar nos da una solución precisa.
+            // Para el propósito demostrativo de "coordenadas naturales", refinaremos esta solución con Newton-Raphson
+            // demostrando que se satisface el sistema algebraico de restricciones rígidas.
+            let x3 = analyticSol.x3;
+            let y3 = analyticSol.y3;
+            const x2 = analyticSol.x2;
+            const y2 = analyticSol.y2;
+
+            let error = 1.0;
+            let iter = 0;
+
+            while (error > tol && iter < maxIterations) {
+                // Ecuaciones de restricción para el punto B:
+                // Phi_1: Distancia AB igual a longitud b -> (x3 - x2)^2 + (y3 - y2)^2 - b^2 = 0
+                // Phi_2: Distancia O2-B igual a longitud c -> (x3 - d)^2 + y3^2 - c^2 = 0
+                const phi1 = (x3 - x2)*(x3 - x2) + (y3 - y2)*(y3 - y2) - state.b*state.b;
+                const phi2 = (x3 - state.d)*(x3 - state.d) + y3*y3 - state.c*state.c;
+
+                const residualNorm = Math.sqrt(phi1*phi1 + phi2*phi2);
+                if (residualNorm < tol) {
+                    error = residualNorm;
+                    break;
+                }
+
+                // Matriz Jacobiana de las restricciones respecto a las incógnitas u = [x3, y3]^T:
+                // J = [ 2*(x3 - x2),  2*(y3 - y2) ]
+                //     [ 2*(x3 - d),   2*y3        ]
+                const j11 = 2 * (x3 - x2);
+                const j12 = 2 * (y3 - y2);
+                const j21 = 2 * (x3 - state.d);
+                const j22 = 2 * y3;
+
+                // Determinante de la Jacobiana
+                const det = j11 * j22 - j12 * j21;
+                
+                // Si el determinante es cercano a cero, estamos en una singularidad de bifurcación
+                if (Math.abs(det) < 1e-9) {
+                    break; 
+                }
+
+                // Incremento corrector dx = - J^-1 * Phi
+                const dx3 = -(j22 * phi1 - j12 * phi2) / det;
+                const dy3 = -(-j21 * phi1 + j11 * phi2) / det;
+
+                x3 += dx3;
+                y3 += dy3;
+
+                error = Math.sqrt(dx3*dx3 + dy3*dy3);
+                iter++;
+            }
+
+            if (iter >= maxIterations || isNaN(x3) || isNaN(y3)) {
+                return false;
+            }
+
+            // Guardamos el estado convergente en las variables de simulación
+            state.x2 = x2;
+            state.y2 = y2;
+            state.x3 = x3;
+            state.y3 = y3;
+            
+            // Ángulo de transmisión (mu) -> ángulo entre la barra acopladora (AB) y el seguidor (BO2)
+            // Se puede calcular mediante producto escalar o Teorema del Coseno en el triángulo formado
+            const dx_ab = x3 - x2;
+            const dy_ab = y3 - y2;
+            const len_ab = Math.sqrt(dx_ab*dx_ab + dy_ab*dy_ab);
+
+            const dx_bo2 = state.d - x3;
+            const dy_bo2 = -y3;
+            const len_bo2 = Math.sqrt(dx_bo2*dx_bo2 + dy_bo2*dy_bo2);
+
+            const dotProduct = dx_ab * dx_bo2 + dy_ab * dy_bo2;
+            let cosMu = dotProduct / (len_ab * len_bo2);
+            // Clamping por precisión flotante
+            cosMu = Math.max(-1, Math.min(1, cosMu));
+            let mu = Math.acos(cosMu);
+            
+            // Mostramos el ángulo agudo estándar de transmisión (siempre entre 0 y 180 deg)
+            state.transmissionAngle = mu; 
+
+            elements.valError.innerText = error.toExponential(4);
+            elements.valTransmission.innerText = `${(mu * 180 / Math.PI).toFixed(1)}°`;
+
+            // Registrar datos para el gráfico en vivo de ángulo de transmisión
+            state.transmissionHistory.push(mu * 180 / Math.PI);
+            if (state.transmissionHistory.length > state.maxHistoryPoints) {
+                state.transmissionHistory.shift();
+            }
+
+            return true;
+        }
+
+        // Calcula el punto P rígidamente ligado al acoplador AB
+        function getCouplerPoint() {
+            // Vector director de la barra AB
+            const dx = state.x3 - state.x2;
+            const dy = state.y3 - state.y2;
+            const len = Math.sqrt(dx*dx + dy*dy);
+
+            if (len === 0) return { x: state.x2, y: state.y2 };
+
+            // Versores perpendicular y paralelo
+            const ux = dx / len;
+            const uy = dy / len;
+
+            const vx = -uy;
+            const vy = ux;
+
+            // Localización del punto P
+            // u representa escala a lo largo de AB, v representa el desplazamiento perpendicular ortogonal
+            const px = state.x2 + dx * state.u + vx * (state.v * state.b);
+            const py = state.y2 + dy * state.u + vy * (state.v * state.b);
+
+            return { x: px, y: py };
+        }
+
+        // --- SISTEMA DE DIBUJO / RENDER (CANVAS) ---
+
+        // Configuración y reescalado del Canvas
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            
+            // Re-renderizar el gráfico también
+            const chartRect = chartCanvas.parentElement.getBoundingClientRect();
+            chartCanvas.width = chartRect.width * window.devicePixelRatio;
+            chartCanvas.height = chartRect.height * window.devicePixelRatio;
+            chartCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        // Borra la trayectoria histórica guardada
+        function clearTrace() {
+            state.tracePoints = [];
+        }
+
+        // Dibuja el cuadrilátero, las acotaciones y trazados en el Canvas
+        function drawMechanism() {
+            const w = canvas.width / window.devicePixelRatio;
+            const h = canvas.height / window.devicePixelRatio;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Determinar dinámicamente un factor de escala y centrado para que quepa todo el mecanismo
+            const padding = 60;
+            const maxDimension = Math.max(state.a + state.b + state.c, state.d + state.c);
+            // Escala básica calculada (pixeles por mm), multiplicada por 3.5 para hacerlo mucho más grande
+            const scale = 3.5 * Math.min((w - padding * 2) / (maxDimension * 1.5), (h - padding * 2) / (maxDimension * 1.5));
+            
+            // Centrado de la simulación
+            const offsetX = w / 2 - (state.d * scale) / 2;
+            const offsetY = h / 2 + (state.a * scale) / 3; // Ligeramente desplazado hacia abajo
+
+            // Funciones de transformación coordenadas reales -> pixeles en pantalla (con eje Y invertido)
+            const tx = (x) => offsetX + x * scale;
+            const ty = (y) => offsetY - y * scale;
+
+            // --- 1. DIBUJAR PUNTOS DE TRAYECTORIA (Trace) ---
+            if (state.tracePoints.length > 1) {
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(16, 185, 129, 0.6)'; // Verde esmeralda suave
+                ctx.lineWidth = 2.5;
+                ctx.setLineDash([3, 1]); // Línea discontinua
+                ctx.moveTo(tx(state.tracePoints[0].x), ty(state.tracePoints[0].y));
+                for (let i = 1; i < state.tracePoints.length; i++) {
+                    ctx.lineTo(tx(state.tracePoints[i].x), ty(state.tracePoints[i].y));
+                }
+                ctx.stroke();
+                ctx.setLineDash([]); // Reset de tipo de línea
+            }
+
+            // --- 2. DIBUJAR PLACA ACOPLADORA TRIANGULAR (Si está activa) ---
+            const P = getCouplerPoint();
+            if (state.traceTarget === 'P') {
+                ctx.beginPath();
+                ctx.moveTo(tx(state.x2), ty(state.y2));
+                ctx.lineTo(tx(state.x3), ty(state.y3));
+                ctx.lineTo(tx(P.x), ty(P.y));
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.15)'; // Azul translúcido
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(59, 130, 246, 0.4)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // --- 3. DIBUJAR BARRAS (Eslabones) ---
+            const drawLink = (x_start, y_start, x_end, y_end, color, width, label) => {
+                ctx.beginPath();
+                ctx.moveTo(tx(x_start), ty(y_start));
+                ctx.lineTo(tx(x_end), ty(y_end));
+                ctx.strokeStyle = color;
+                ctx.lineWidth = width;
+                ctx.lineCap = "round";
+                ctx.stroke();
+
+                // Añadir etiquetas con dimensiones
+                if (label) {
+                    const mx = tx((x_start + x_end) / 2);
+                    const my = ty((y_start + y_end) / 2) - 8;
+                    ctx.fillStyle = '#94a3b8';
+                    ctx.font = '10px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(label, mx, my);
+                }
+            };
+
+            // Bancada (Suelo) d
+            drawLink(0, 0, state.d, 0, '#475569', 5, `d = ${state.d}`);
+            // Símbolo de soporte a tierra en O1 y O2
+            const drawGroundSymbol = (cx, cy) => {
+                const size = 10;
+                ctx.beginPath();
+                ctx.moveTo(tx(cx) - size, ty(cy) + size);
+                ctx.lineTo(tx(cx) + size, ty(cy) + size);
+                ctx.lineTo(tx(cx), ty(cy));
+                ctx.closePath();
+                ctx.fillStyle = '#334155';
+                ctx.fill();
+                ctx.strokeStyle = '#64748b';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                // Sombreado de suelo
+                ctx.beginPath();
+                for (let i = -10; i <= 10; i += 4) {
+                    ctx.moveTo(tx(cx) + i, ty(cy) + size);
+                    ctx.lineTo(tx(cx) + i - 3, ty(cy) + size + 5);
+                }
+                ctx.strokeStyle = '#475569';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            };
+            drawGroundSymbol(0, 0);
+            drawGroundSymbol(state.d, 0);
+
+            // Manivela de entrada a (Gira o es arrastrada)
+            drawLink(0, 0, state.x2, state.y2, '#3b82f6', 6, `a = ${state.a}`);
+            
+            // Acoplador b
+            drawLink(state.x2, state.y2, state.x3, state.y3, '#10b981', 5, `b = ${state.b}`);
+            
+            // Seguidor c
+            drawLink(state.d, 0, state.x3, state.y3, '#ec4899', 5, `c = ${state.c}`);
+
+            // --- 4. DIBUJAR NODOS ARTICULADOS Y DETALLES ---
+            const drawJoint = (x, y, radius, color, isDraggable = false) => {
+                ctx.beginPath();
+                ctx.arc(tx(x), ty(y), radius, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#1e293b';
+                ctx.stroke();
+
+                if (isDraggable) {
+                    // Círculo concéntrico exterior para indicar interacción interactiva
+                    ctx.beginPath();
+                    ctx.arc(tx(x), ty(y), radius + 5, 0, 2 * Math.PI);
+                    ctx.strokeStyle = 'rgba(59, 130, 246, 0.4)';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                }
+            };
+
+            // Dibujar Nodos Principales
+            drawJoint(0, 0, 6, '#1e293b'); // O1 (Fijo)
+            drawJoint(state.d, 0, 6, '#1e293b'); // O2 (Fijo)
+            drawJoint(state.x2, state.y2, 7, '#3b82f6', true); // A (Articulado e interactivo)
+            drawJoint(state.x3, state.y3, 6, '#ec4899'); // B (Articulado)
+
+            // Dibujar e identificar Punto Acoplador P si se muestra
+            if (state.traceTarget === 'P') {
+                drawJoint(P.x, P.y, 5, '#f59e0b'); // Punto P (Amarillo naranja)
+                
+                // Texto indicativo para el punto P
+                ctx.fillStyle = '#f59e0b';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.fillText('P (Trazo)', tx(P.x) + 10, ty(P.y) - 6);
+            }
+
+            // --- 5. DIBUJAR ÁNGULO DE ENTRADA (Arco Theta) ---
+            const drawAngleArc = (cx, cy, radius, startAngle, endAngle, label, color) => {
+                ctx.beginPath();
+                ctx.arc(tx(cx), ty(cy), radius, -startAngle, -endAngle, startAngle > endAngle);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Etiqueta del arco
+                const midAngle = (startAngle + endAngle) / 2;
+                const lx = tx(cx) + (radius + 15) * Math.cos(midAngle);
+                const ly = ty(cy) - (radius + 15) * Math.sin(midAngle);
+                ctx.fillStyle = color;
+                ctx.font = '11px sans-serif';
+                ctx.fillText(label, lx, ly);
+            };
+            
+            // Arco de ángulo de entrada theta en O1
+            drawAngleArc(0, 0, 30, 0, state.theta, 'θ', '#60a5fa');
+        }
+
+        // --- DIBUJAR GRÁFICO HISTÓRICO DE TRANSMISIÓN ---
+        function drawTransmissionChart() {
+            const w = chartCanvas.width / window.devicePixelRatio;
+            const h = chartCanvas.height / window.devicePixelRatio;
+            
+            chartCtx.clearRect(0, 0, w, h);
+
+            if (state.transmissionHistory.length === 0) return;
+
+            // Dibujar líneas guía horizontales (45, 90, 135 grados)
+            const mapY = (val) => h - 10 - (val / 180) * (h - 20);
+
+            // Línea de 90° (Ideal)
+            chartCtx.beginPath();
+            chartCtx.moveTo(0, mapY(90));
+            chartCtx.lineTo(w, mapY(90));
+            chartCtx.strokeStyle = 'rgba(16, 185, 129, 0.4)'; // Verde tenue
+            chartCtx.lineWidth = 1;
+            chartCtx.setLineDash([5, 5]);
+            chartCtx.stroke();
+            chartCtx.setLineDash([]);
+            chartCtx.fillStyle = 'rgba(16, 185, 129, 0.7)';
+            chartCtx.font = '9px monospace';
+            chartCtx.fillText('90° (Óptimo)', 5, mapY(90) - 4);
+
+            // Líneas de límite crítico (45° y 135°)
+            [45, 135].forEach((limit) => {
+                chartCtx.beginPath();
+                chartCtx.moveTo(0, mapY(limit));
+                chartCtx.lineTo(w, mapY(limit));
+                chartCtx.strokeStyle = 'rgba(239, 68, 68, 0.3)'; // Rojo tenue
+                chartCtx.lineWidth = 1;
+                chartCtx.stroke();
+                chartCtx.fillStyle = 'rgba(239, 68, 68, 0.6)';
+                chartCtx.fillText(`${limit}°`, w - 25, mapY(limit) - 4);
+            });
+
+            // Dibujar la curva del historial
+            chartCtx.beginPath();
+            const step = w / state.maxHistoryPoints;
+            const startIdx = Math.max(0, state.maxHistoryPoints - state.transmissionHistory.length);
+            
+            chartCtx.moveTo(startIdx * step, mapY(state.transmissionHistory[0]));
+            for (let i = 1; i < state.transmissionHistory.length; i++) {
+                const x = (startIdx + i) * step;
+                const y = mapY(state.transmissionHistory[i]);
+                chartCtx.lineTo(x, y);
+            }
+            chartCtx.strokeStyle = '#3b82f6'; // Línea azul de datos
+            chartCtx.lineWidth = 2.5;
+            chartCtx.stroke();
+        }
+
+        // --- SISTEMA DE INTERACCIÓN POR ARRASTRE (MOUSE/TOUCH) ---
+
+        // Transforma coordenadas del cliente (clientX/clientY) a relativas del Canvas
+        function getCanvasCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function handleStart(e) {
+            const coords = getCanvasCoords(e);
+            const w = canvas.width / window.devicePixelRatio;
+            const h = canvas.height / window.devicePixelRatio;
+
+            // Mismos parámetros de escala y desplazamiento del render (multiplicado por 3.5 para el clic)
+            const maxDimension = Math.max(state.a + state.b + state.c, state.d + state.c);
+            const scale = 3.5 * Math.min((w - 120) / (maxDimension * 1.5), (h - 120) / (maxDimension * 1.5));
+            const offsetX = w / 2 - (state.d * scale) / 2;
+            const offsetY = h / 2 + (state.a * scale) / 3;
+
+            // Coordenadas mundiales estimadas del ratón
+            const mx = (coords.x - offsetX) / scale;
+            const my = (offsetY - coords.y) / scale;
+
+            // Distancia del ratón al nodo de entrada A(x2, y2)
+            const dist = Math.sqrt((mx - state.x2)*(mx - state.x2) + (my - state.y2)*(my - state.y2));
+            
+            // Si el ratón está cerca del nodo de entrada (radio de tolerancia de ~25 mm)
+            if (dist < 25) {
+                state.isDragging = true;
+                state.isPlaying = false;
+                updatePlayButton();
+                e.preventDefault();
+            }
+        }
+
+        function handleMove(e) {
+            if (!state.isDragging) return;
+
+            const coords = getCanvasCoords(e);
+            const w = canvas.width / window.devicePixelRatio;
+            const h = canvas.height / window.devicePixelRatio;
+
+            const maxDimension = Math.max(state.a + state.b + state.c, state.d + state.c);
+            const scale = 3.5 * Math.min((w - 120) / (maxDimension * 1.5), (h - 120) / (maxDimension * 1.5));
+            const offsetX = w / 2 - (state.d * scale) / 2;
+            const offsetY = h / 2 + (state.a * scale) / 3;
+
+            const mx = (coords.x - offsetX) / scale;
+            const my = (offsetY - coords.y) / scale;
+
+            // Calcular nuevo ángulo theta del vector O1 -> Mouse
+            let newTheta = Math.atan2(my, mx);
+            if (newTheta < 0) newTheta += 2 * Math.PI;
+
+            // Intentar resolver para el nuevo ángulo
+            const success = solvePosition(newTheta, state.branch);
+            if (success) {
+                state.theta = newTheta;
+                elements.valAngle.innerText = `${(state.theta * 180 / Math.PI).toFixed(1)}°`;
+                elements.errorOverlay.classList.add('hidden');
+                
+                // Guardar punto de trazo si aplica
+                recordTrace();
+            } else {
+                // Si falla el ensamble en este ángulo exacto, mostramos el aviso visual
+                elements.errorOverlay.classList.remove('hidden');
+            }
+
+            drawMechanism();
+            drawTransmissionChart();
+            e.preventDefault();
+        }
+
+        function handleEnd() {
+            state.isDragging = false;
+        }
+
+        // Escuchadores de eventos para arrastrar con ratón y pantallas táctiles
+        canvas.addEventListener('mousedown', handleStart);
+        canvas.addEventListener('mousemove', handleMove);
+        window.addEventListener('mouseup', handleEnd);
+
+        canvas.addEventListener('touchstart', handleStart, { passive: false });
+        canvas.addEventListener('touchmove', handleMove, { passive: false });
+        window.addEventListener('touchend', handleEnd);
+
+
+        // --- MANEJO DE HISTORIAL DE TRAYECTORIAS (TRACE) ---
+        function recordTrace() {
+            if (state.traceTarget === 'none') return;
+            
+            let pointToStore;
+            if (state.traceTarget === 'B') {
+                pointToStore = { x: state.x3, y: state.y3 };
+            } else if (state.traceTarget === 'P') {
+                pointToStore = getCouplerPoint();
+            }
+
+            if (pointToStore) {
+                state.tracePoints.push(pointToStore);
+                if (state.tracePoints.length > state.maxTracePoints) {
+                    state.tracePoints.shift();
+                }
+            }
+        }
+
+
+        // --- LOOP DE LA SIMULACIÓN Y ANIMACIÓN ---
+        function updateSimulation(timestamp) {
+            if (!state.lastTime) state.lastTime = timestamp;
+            const dt = Math.min((timestamp - state.lastTime) / 1000, 0.05); // Capado a max de 50 FPS de dt para estabilidad
+            state.lastTime = timestamp;
+
+            if (state.isPlaying && !state.isDragging) {
+                // Incrementar ángulo de la manivela según velocidad angular configurada
+                state.theta += state.omega * dt;
+                
+                // Normalizar ángulo entre 0 y 2*PI
+                if (state.theta > 2 * Math.PI) state.theta -= 2 * Math.PI;
+                if (state.theta < 0) state.theta += 2 * Math.PI;
+
+                elements.valAngle.innerText = `${(state.theta * 180 / Math.PI).toFixed(1)}°`;
+
+                // Resolver la cinemática de posiciones por Coordenadas Naturales
+                const success = solvePosition(state.theta, state.branch);
+                if (success) {
+                    elements.errorOverlay.classList.add('hidden');
+                    recordTrace();
+                } else {
+                    // Si ocurre un bloqueo de movilidad cinemático (ej. Grashof tipo II superado)
+                    // Paramos la simulación para evitar desensamble caótico
+                    state.isPlaying = false;
+                    updatePlayButton();
+                    elements.errorOverlay.classList.remove('hidden');
+                    elements.errorMsg.innerText = "La configuración de barras actual no permite dar un giro completo de 360 grados. El eslabonamiento ha chocado o alcanzado un límite físico.";
+                }
+            }
+
+            drawMechanism();
+            drawTransmissionChart();
+
+            requestAnimationFrame(updateSimulation);
+        }
+
+        // --- CONTROLADORES DE INTERFAZ DE USUARIO (GUI) ---
+
+        // Vinculación bidireccional de los sliders
+        function setupInputs() {
+            Object.values(inputs).forEach(input => {
+                if (!input.slide) return;
+                
+                input.slide.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    
+                    // Actualizar variable correspondiente en el estado
+                    if (input.key === 'omega') {
+                        state.omega = val;
+                        input.label.innerText = `${val.toFixed(1)} rad/s`;
+                    } else if (input.key) {
+                        state[input.key] = val;
+                        input.label.innerText = `${val} mm`;
+                        
+                        // Si cambiamos longitud geométrica, es probable que la trayectoria previa ya no sea válida
+                        clearTrace();
+                    } else {
+                        // Caso especial parámetros u y v de la placa
+                        if (input.slide.id === 'slide-px') state.u = val;
+                        if (input.slide.id === 'slide-py') state.v = val;
+                    }
+
+                    // Forzar resolución cinemática inmediata para actualizar gráficos
+                    const success = solvePosition(state.theta, state.branch);
+                    if (success) {
+                        elements.errorOverlay.classList.add('hidden');
+                    } else {
+                        elements.errorOverlay.classList.remove('hidden');
+                    }
+                    
+                    checkGrashof();
+                    drawMechanism();
+                    drawTransmissionChart();
+                });
+            });
+
+            // Selector de rama de montaje
+            elements.selectBranch.addEventListener('change', (e) => {
+                state.branch = parseInt(e.target.value);
+                elements.badgeAssembly.innerText = state.branch === 1 ? 'Montaje: Abierto' : 'Montaje: Cruzado';
+                clearTrace();
+                solvePosition(state.theta, state.branch);
+            });
+
+            // Selector del objetivo del trazo
+            elements.selectTraceTarget.addEventListener('change', (e) => {
+                state.traceTarget = e.target.value;
+                clearTrace();
+            });
+
+            // Botón Play / Pause
+            elements.btnPlay.addEventListener('click', () => {
+                state.isPlaying = !state.isPlaying;
+                updatePlayButton();
+            });
+
+            // Restablecer ángulo a cero
+            elements.btnResetAngle.addEventListener('click', () => {
+                state.theta = 0;
+                solvePosition(state.theta, state.branch);
+                clearTrace();
+            });
+
+            // Limpiar trayectoria
+            elements.btnToggleTrace.addEventListener('click', () => {
+                clearTrace();
+            });
+        }
+
+        function updatePlayButton() {
+            if (state.isPlaying) {
+                elements.playIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                `;
+                elements.btnPlay.className = "p-3 bg-amber-600 hover:bg-amber-500 active:scale-95 rounded-lg text-white transition shadow-md";
+            } else {
+                elements.playIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                `;
+                elements.btnPlay.className = "p-3 bg-blue-600 hover:bg-blue-500 active:scale-95 rounded-lg text-white transition shadow-md";
+            }
+        }
+
+        // Restablecer el mecanismo a un estado base estable conocido
+        function resetMechanism() {
+            state.a = 100;
+            state.b = 250;
+            state.c = 200;
+            state.d = 200;
+            state.theta = 0.8;
+            state.omega = 1.5;
+            state.branch = 1;
+            
+            // Actualizar inputs UI
+            inputs.a.slide.value = 100; inputs.a.label.innerText = "100 mm";
+            inputs.b.slide.value = 250; inputs.b.label.innerText = "250 mm";
+            inputs.c.slide.value = 200; inputs.c.label.innerText = "200 mm";
+            inputs.d.slide.value = 200; inputs.d.label.innerText = "200 mm";
+            inputs.speed.slide.value = 1.5; inputs.speed.label.innerText = "1.5 rad/s";
+            
+            elements.selectBranch.value = "1";
+            elements.badgeAssembly.innerText = 'Montaje: Abierto';
+            elements.errorOverlay.classList.add('hidden');
+
+            clearTrace();
+            state.transmissionHistory = [];
+            solvePosition(state.theta, state.branch);
+            checkGrashof();
+            state.isPlaying = true;
+            updatePlayButton();
+        }
+
+        // --- INICIALIZACIÓN ---
+        window.onload = function() {
+            // Renderizar ecuaciones matemáticas con KaTeX de forma segura una vez que el DOM está cargado
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body);
+            }
+            resizeCanvas();
+            setupInputs();
+            checkGrashof();
+            
+            // Forzar resolución cinemática inicial
+            solvePosition(state.theta, state.branch);
+            
+            // Iniciar ciclo de simulación
+            requestAnimationFrame(updateSimulation);
+        };
+    </script>
+</body>
+</html>

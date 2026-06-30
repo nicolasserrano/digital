@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Interactivo de Función Cúbica</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js para las gráficas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax para representar las fórmulas matemáticas de forma elegante -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Estilos personalizados para mejorar la experiencia de usuario y el scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Ocultar barra de scroll estética en contenedores */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans flex flex-col">
+
+    <!-- Encabezado / Navbar -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700 sticky top-0 z-50 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                <i data-lucide="line-chart" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Simulador Cúbico</h1>
+                <p class="text-xs text-slate-400">Análisis interactivo de funciones, tangentes, derivadas e integrales</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="reiniciarValores()" class="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 active:scale-95 transition rounded-lg text-sm font-semibold text-slate-200">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reiniciar
+            </button>
+            <a href="#info-section" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 transition rounded-lg text-sm font-semibold text-white shadow-lg shadow-indigo-950/20">
+                <i data-lucide="info" class="w-4 h-4"></i> Fórmulas e Info
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal (Layout de Pantalla Completa para Gráficos y Sliders) -->
+    <main class="flex-1 flex flex-col lg:flex-row p-4 sm:p-6 gap-6 max-w-[1600px] w-full mx-auto">
+        
+        <!-- COLUMNA IZQUIERDA: La gráfica principal (Debe ser lo más grande posible) -->
+        <section class="flex-1 bg-slate-800/50 rounded-2xl border border-slate-700 p-4 sm:p-6 flex flex-col min-h-[500px] lg:min-h-0 relative shadow-xl">
+            <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="inline-block w-3 h-3 rounded-full bg-indigo-500 animate-pulse"></span>
+                    <h2 class="text-lg font-bold text-slate-100">Gráfico de Visualización de Funciones</h2>
+                </div>
+                <!-- Leyenda rápida interactiva -->
+                <div class="flex flex-wrap gap-3 text-xs">
+                    <span class="flex items-center gap-1 text-indigo-400"><span class="w-2.5 h-1 bg-indigo-500 rounded"></span> f(x)</span>
+                    <span class="flex items-center gap-1 text-emerald-400"><span class="w-2.5 h-1 bg-emerald-500 rounded"></span> f'(x)</span>
+                    <span class="flex items-center gap-1 text-amber-400"><span class="w-2.5 h-1 bg-amber-500 rounded"></span> F(x)</span>
+                    <span class="flex items-center gap-1 text-rose-400"><span class="w-2.5 h-1 bg-rose-500 rounded"></span> Tangente</span>
+                </div>
+            </div>
+
+            <!-- Contenedor del Canvas para Chart.js. Se estira dinámicamente -->
+            <div class="relative flex-1 min-h-[400px] w-full bg-slate-950/40 rounded-xl border border-slate-800 p-2">
+                <canvas id="canvasGrafica" class="w-full h-full"></canvas>
+                <!-- Indicación de arrastre visual -->
+                <div class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur border border-slate-700 px-3 py-1.5 rounded-lg text-xs text-slate-400 pointer-events-none flex items-center gap-1.5 shadow-md">
+                    <i data-lucide="pointer" class="w-3.5 h-3.5 text-indigo-400"></i>
+                    <span>¡Haz clic o arrastra en la gráfica para mover el punto!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLUMNA DERECHA: Sliders de Control Avanzados -->
+        <section class="w-full lg:w-[420px] flex flex-col gap-6 shrink-0">
+            
+            <!-- Bloque 1: Parámetros de la función cúbica y punto x -->
+            <div class="bg-slate-800/50 rounded-2xl border border-slate-700 p-6 flex flex-col shadow-xl">
+                <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-700">
+                    <i data-lucide="sliders" class="w-5 h-5 text-indigo-400"></i>
+                    <h2 class="font-bold text-slate-100 text-base">Control de Parámetros</h2>
+                </div>
+
+                <!-- Expresión matemática actual simplificada -->
+                <div class="bg-slate-950/60 rounded-xl p-3 mb-6 text-center border border-slate-800/50">
+                    <div class="text-xs text-slate-400 mb-1">Función Cúbica Base f(x):</div>
+                    <div id="ecuacionMatematica" class="text-sm font-semibold text-indigo-300 tracking-wide overflow-x-auto no-scrollbar">
+                        $$f(x) = ax^3 + bx^2 + cx + d$$
+                    </div>
+                </div>
+
+                <div class="space-y-5">
+                    <!-- Slider del punto de Tangencia (Punto x) -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="sliderX" class="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                                Punto de Tangencia (x)
+                            </label>
+                            <span class="px-2 py-0.5 bg-rose-950/50 border border-rose-800/50 text-rose-300 font-mono text-sm rounded-md font-bold" id="valX">0.00</span>
+                        </div>
+                        <input type="range" id="sliderX" min="-5" max="5" step="0.05" value="0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500">
+                        <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                            <span>-5.00</span>
+                            <span>0.00</span>
+                            <span>5.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Slider a -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="sliderA" class="text-sm font-semibold text-slate-200">Coeficiente a (x³)</label>
+                            <span class="px-2 py-0.5 bg-indigo-950/50 border border-indigo-800/50 text-indigo-300 font-mono text-xs rounded-md" id="valA">1.00</span>
+                        </div>
+                        <input type="range" id="sliderA" min="-2" max="2" step="0.1" value="0.5" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                    </div>
+
+                    <!-- Slider b -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="sliderB" class="text-sm font-semibold text-slate-200">Coeficiente b (x²)</label>
+                            <span class="px-2 py-0.5 bg-indigo-950/50 border border-indigo-800/50 text-indigo-300 font-mono text-xs rounded-md" id="valB">0.00</span>
+                        </div>
+                        <input type="range" id="sliderB" min="-3" max="3" step="0.1" value="0.0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                    </div>
+
+                    <!-- Slider c -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="sliderC" class="text-sm font-semibold text-slate-200">Coeficiente c (x)</label>
+                            <span class="px-2 py-0.5 bg-indigo-950/50 border border-indigo-800/50 text-indigo-300 font-mono text-xs rounded-md" id="valC">-3.00</span>
+                        </div>
+                        <input type="range" id="sliderC" min="-5" max="5" step="0.1" value="-2.0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                    </div>
+
+                    <!-- Slider d -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="sliderD" class="text-sm font-semibold text-slate-200">Constante d</label>
+                            <span class="px-2 py-0.5 bg-indigo-950/50 border border-indigo-800/50 text-indigo-300 font-mono text-xs rounded-md" id="valD">0.00</span>
+                        </div>
+                        <input type="range" id="sliderD" min="-5" max="5" step="0.1" value="0.0" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque 2: Visibilidad de Gráficas adicionales -->
+            <div class="bg-slate-800/50 rounded-2xl border border-slate-700 p-6 flex flex-col shadow-xl">
+                <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-700">
+                    <i data-lucide="eye" class="w-5 h-5 text-emerald-400"></i>
+                    <h2 class="font-bold text-slate-100 text-base">Visibilidad de Capas</h2>
+                </div>
+                
+                <div class="space-y-3">
+                    <!-- Toggle f(x) -->
+                    <label class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/30 hover:bg-slate-900/50 cursor-pointer transition">
+                        <span class="text-sm text-slate-200 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded bg-indigo-500"></span>
+                            Función Cúbica f(x)
+                        </span>
+                        <input type="checkbox" id="checkFx" checked class="w-4 h-4 rounded text-indigo-600 bg-slate-700 border-slate-600 focus:ring-indigo-500">
+                    </label>
+
+                    <!-- Toggle Tangente -->
+                    <label class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/30 hover:bg-slate-900/50 cursor-pointer transition">
+                        <span class="text-sm text-slate-200 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded bg-rose-500"></span>
+                            Recta Tangente en f(x)
+                        </span>
+                        <input type="checkbox" id="checkTan" checked class="w-4 h-4 rounded text-rose-600 bg-slate-700 border-slate-600 focus:ring-rose-500">
+                    </label>
+
+                    <!-- Toggle Derivada -->
+                    <label class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/30 hover:bg-slate-900/50 cursor-pointer transition">
+                        <span class="text-sm text-slate-200 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded bg-emerald-500"></span>
+                            Derivada f'(x)
+                        </span>
+                        <input type="checkbox" id="checkDerivada" checked class="w-4 h-4 rounded text-emerald-600 bg-slate-700 border-slate-600 focus:ring-emerald-500">
+                    </label>
+
+                    <!-- Toggle Integral -->
+                    <label class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/30 hover:bg-slate-900/50 cursor-pointer transition">
+                        <span class="text-sm text-slate-200 flex items-center gap-2">
+                            <span class="w-3 h-3 rounded bg-amber-500"></span>
+                            Integral F(x) (C=0)
+                        </span>
+                        <input type="checkbox" id="checkIntegral" checked class="w-4 h-4 rounded text-amber-600 bg-slate-700 border-slate-600 focus:ring-amber-500">
+                    </label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECCIÓN INFERIOR: Detalles matemáticos y de cálculo dinámicos (Requiere Scroll) -->
+    <section id="info-section" class="bg-slate-950 border-t border-slate-800 py-12 px-6 mt-12">
+        <div class="max-w-[1400px] mx-auto space-y-12">
+            
+            <!-- Título de la sección -->
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Expresiones Analíticas Dinámicas</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm">Fórmulas actualizadas en tiempo real según el movimiento de tus deslizadores y puntos interactivos.</p>
+            </div>
+
+            <!-- Grid de Cálculos Activos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                
+                <!-- Tarjeta 1: Función Principal -->
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-5 space-y-4 hover:border-indigo-500/50 transition duration-300">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Función Original</span>
+                        <span class="p-1 bg-indigo-950 text-indigo-300 rounded text-[10px] font-mono">f(x)</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Ecuación matemática calculada:</p>
+                        <div id="calcFx" class="text-base text-slate-100 font-semibold py-1 overflow-x-auto no-scrollbar">
+                            $$f(x) = ...$$
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
+                        <p><span class="font-bold text-indigo-300">Punto evaluado:</span></p>
+                        <p class="font-mono">x = <span id="ptX" class="text-slate-200">0.00</span></p>
+                        <p class="font-mono">y = f(x) = <span id="ptY" class="text-indigo-400 font-bold">0.00</span></p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Recta Tangente -->
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-5 space-y-4 hover:border-rose-500/50 transition duration-300">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-rose-400 tracking-wider uppercase">Recta Tangente</span>
+                        <span class="p-1 bg-rose-950 text-rose-300 rounded text-[10px] font-mono">y = mx + n</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Ecuación en el punto seleccionado:</p>
+                        <div id="calcTan" class="text-base text-slate-100 font-semibold py-1 overflow-x-auto no-scrollbar">
+                            $$y_{tan} = ...$$
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
+                        <p><span class="font-bold text-rose-300">Parámetros de la tangente:</span></p>
+                        <p class="font-mono">Pendiente (m) = <span id="valSlope" class="text-rose-400 font-bold">0.00</span></p>
+                        <p class="font-mono">Intersección (n) = <span id="valIntercept" class="text-slate-200">0.00</span></p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Derivada -->
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-5 space-y-4 hover:border-emerald-500/50 transition duration-300">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-400 tracking-wider uppercase">Derivada</span>
+                        <span class="p-1 bg-emerald-950 text-emerald-300 rounded text-[10px] font-mono">f'(x)</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Función derivada resultante (Grado 2):</p>
+                        <div id="calcDerivada" class="text-base text-slate-100 font-semibold py-1 overflow-x-auto no-scrollbar">
+                            $$f'(x) = ...$$
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
+                        <p><span class="font-bold text-emerald-300">Interpretación en el punto:</span></p>
+                        <p>La tasa de cambio instantánea de la curva cúbica en \(x\) es exactamente de <span id="valDerivadaPt" class="text-emerald-400 font-bold font-mono">0.00</span>.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Integral -->
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-5 space-y-4 hover:border-amber-500/50 transition duration-300">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">Función Integral</span>
+                        <span class="p-1 bg-amber-950 text-amber-300 rounded text-[10px] font-mono">F(x) + C</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1">Integral indefinida (Grado 4, C=0):</p>
+                        <div id="calcIntegral" class="text-base text-slate-100 font-semibold py-1 overflow-x-auto no-scrollbar">
+                            $$F(x) = ...$$
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-slate-800 text-xs text-slate-400 space-y-1">
+                        <p><span class="font-bold text-amber-300">Área bajo la curva:</span></p>
+                        <p>La integral definida de f(x) desde 0 hasta el punto x es de <span id="valIntegralArea" class="text-amber-400 font-bold font-mono">0.00</span>.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sección de Teoría Didáctica Breve -->
+            <div class="bg-slate-900/60 rounded-2xl border border-slate-800 p-6 sm:p-8 space-y-6">
+                <h3 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+                    <i data-lucide="book-open" class="text-indigo-400 w-5 h-5"></i>
+                    Entendimiento Teórico Relacionado
+                </h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-sm text-slate-300">
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-indigo-300">La Función Cúbica</h4>
+                        <p>Es un polinomio de tercer grado de la forma \(f(x) = ax^3 + bx^2 + cx + d\). Su comportamiento global se caracteriza por poseer hasta dos puntos críticos (máximos o mínimos relativos) y siempre exactamente un punto de inflexión donde la concavidad cambia de sentido.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-emerald-300">La Derivada y la Tangente</h4>
+                        <p>La derivada \(f'(x) = 3ax^2 + 2bx + c\) describe de forma analítica la pendiente de la recta tangente en cualquier punto \(x\). Puedes comprobar cómo el valor de la gráfica verde (derivada) coincide exactamente con la inclinación u orientación de la línea rosada (tangente) en cada posición.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-amber-300">La Integral Indefinida</h4>
+                        <p>Representa el proceso inverso a la diferenciación (teorema fundamental del cálculo). Su expresión analítica es \(F(x) = \frac{a}{4}x^4 + \frac{b}{3}x^3 + \frac{c}{2}x^2 + dx + C\). Su valor equivale geométricamente a la sumatoria del área signada existente bajo la curva \(f(x)\).</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 text-xs py-6 text-center">
+        <p>© 2026 Simulador de Matemáticas e Ingeniería. Creado con Chart.js, TailwindCSS y MathJax.</p>
+    </footer>
+
+    <!-- SCRIPT DE INTERACCIÓN, CÁLCULO Y GRÁFICAS -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Referencias del DOM para Sliders y visualizadores
+        const sliderX = document.getElementById('sliderX');
+        const sliderA = document.getElementById('sliderA');
+        const sliderB = document.getElementById('sliderB');
+        const sliderC = document.getElementById('sliderC');
+        const sliderD = document.getElementById('sliderD');
+
+        const valX = document.getElementById('valX');
+        const valA = document.getElementById('valA');
+        const valB = document.getElementById('valB');
+        const valC = document.getElementById('valC');
+        const valD = document.getElementById('valD');
+
+        const checkFx = document.getElementById('checkFx');
+        const checkTan = document.getElementById('checkTan');
+        const checkDerivada = document.getElementById('checkDerivada');
+        const checkIntegral = document.getElementById('checkIntegral');
+
+        // Valores analíticos inferiores
+        const ptX = document.getElementById('ptX');
+        const ptY = document.getElementById('ptY');
+        const valSlope = document.getElementById('valSlope');
+        const valIntercept = document.getElementById('valIntercept');
+        const valDerivadaPt = document.getElementById('valDerivadaPt');
+        const valIntegralArea = document.getElementById('valIntegralArea');
+
+        // Referencia del Canvas para inicializar Chart.js
+        const canvas = document.getElementById('canvasGrafica');
+        let chartInstance = null;
+
+        // Parámetros internos del modelo matemático
+        let a = parseFloat(sliderA.value);
+        let b = parseFloat(sliderB.value);
+        let c = parseFloat(sliderC.value);
+        let d = parseFloat(sliderD.value);
+        let xPunto = parseFloat(sliderX.value); // Punto elegido de la tangente
+
+        // Rango de la gráfica para el eje X
+        const xMin = -5;
+        const xMax = 5;
+        const resolucion = 150; // cantidad de puntos para la suavidad de las líneas
+
+        // Funciones matemáticas básicas para evaluación
+        function f(x) {
+            return a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d;
+        }
+
+        function derivada(x) {
+            return 3 * a * Math.pow(x, 2) + 2 * b * x + c;
+        }
+
+        function integral(x) {
+            // Evaluado con C = 0
+            return (a / 4) * Math.pow(x, 4) + (b / 3) * Math.pow(x, 3) + (c / 2) * Math.pow(x, 2) + d * x;
+        }
+
+        // Construcción de la recta tangente en un punto x0: y - f(x0) = f'(x0) * (x - x0)
+        // Por ende: y = f'(x0)*x + [ f(x0) - f'(x0)*x0 ]
+        function yTangente(x, x0) {
+            const m = derivada(x0);
+            const y0 = f(x0);
+            return m * (x - x0) + y0;
+        }
+
+        // Formateador de fórmulas para MathJax de forma limpia y legible
+        function formatearPolinomio(coefs, variables) {
+            let res = "";
+            for (let i = 0; i < coefs.length; i++) {
+                let val = coefs[i];
+                let v = variables[i];
+                if (Math.abs(val) < 0.001) continue;
+
+                let signo = val > 0 ? "+" : "-";
+                if (res === "" && val > 0) signo = ""; // Omitir el primer +
+
+                let valAbs = Math.abs(val);
+                let coeffStr = valAbs.toFixed(2);
+                
+                // Limpiar decimales redundantes .00
+                if (coeffStr.endsWith(".00")) coeffStr = coeffStr.slice(0, -3);
+                else if (coeffStr.endsWith("0")) coeffStr = coeffStr.slice(0, -1);
+
+                // No poner "1" delante de variables algebraicas
+                if (coeffStr === "1" && v !== "") coeffStr = "";
+
+                res += ` ${signo} ${coeffStr}${v}`;
+            }
+            return res === "" ? "0" : res.trim();
+        }
+
+        // Actualizar la interfaz con todas las fórmulas matemáticas dinámicas en LaTeX
+        function actualizarFormulasMatematicas() {
+            // 1. Expresión f(x)
+            const fXLatex = "f(x) = " + formatearPolinomio([a, b, c, d], ["x^3", "x^2", "x", ""]);
+            document.getElementById('ecuacionMatematica').innerHTML = `\$\$${fXLatex}\$\$`;
+            document.getElementById('calcFx').innerHTML = `\$\$${fXLatex}\$\$`;
+
+            // 2. Recta Tangente
+            const m = derivada(xPunto);
+            const n = f(xPunto) - m * xPunto;
+            const tanLatex = "y_{tan} = " + formatearPolinomio([m, n], ["x", ""]);
+            document.getElementById('calcTan').innerHTML = `\$\$${tanLatex}\$\$`;
+
+            // 3. Derivada
+            const d1 = 3 * a;
+            const d2 = 2 * b;
+            const d3 = c;
+            const derivLatex = "f'(x) = " + formatearPolinomio([d1, d2, d3], ["x^2", "x", ""]);
+            document.getElementById('calcDerivada').innerHTML = `\$\$${derivLatex}\$\$`;
+
+            // 4. Integral
+            const int1 = a / 4;
+            const int2 = b / 3;
+            const int3 = c / 2;
+            const int4 = d;
+            const intLatex = "F(x) = " + formatearPolinomio([int1, int2, int3, int4], ["x^4", "x^3", "x^2", "x"]) + " + C";
+            document.getElementById('calcIntegral').innerHTML = `\$\$${intLatex}\$\$`;
+
+            // Forzar a MathJax a reprocesar las fórmulas insertadas
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Generar arreglos de datos para representar en la gráfica
+        function generarDatosDeGrafica() {
+            const labels = [];
+            const dataFx = [];
+            const dataDerivada = [];
+            const dataIntegral = [];
+            const dataTangente = [];
+
+            const step = (xMax - xMin) / resolucion;
+
+            for (let i = 0; i <= resolucion; i++) {
+                const x = xMin + i * step;
+                labels.push(x.toFixed(2));
+
+                // Evaluar f(x)
+                dataFx.push({ x: x, y: f(x) });
+                // Evaluar derivada
+                dataDerivada.push({ x: x, y: derivada(x) });
+                // Evaluar integral
+                dataIntegral.push({ x: x, y: integral(x) });
+                // Evaluar recta tangente
+                dataTangente.push({ x: x, y: yTangente(x, xPunto) });
+            }
+
+            // Datos del punto flotante interactivo de tangencia
+            const yPunto = f(xPunto);
+            const dataPunto = [{ x: xPunto, y: yPunto }];
+
+            return { labels, dataFx, dataDerivada, dataIntegral, dataTangente, dataPunto };
+        }
+
+        // Creación e inicialización del gráfico interactivo con Chart.js
+        function inicializarGrafica() {
+            const datos = generarDatosDeGrafica();
+
+            const config = {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Punto de Tangencia',
+                            data: datos.dataPunto,
+                            backgroundColor: '#f43f5e', // rose-500
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            pointRadius: 8,
+                            pointHoverRadius: 10,
+                            showLine: false,
+                            order: 1 // Capa superior
+                        },
+                        {
+                            label: 'f(x) (Cúbica)',
+                            data: datos.dataFx,
+                            borderColor: '#6366f1', // indigo-500
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            tension: 0.1,
+                            hidden: !checkFx.checked,
+                            order: 2
+                        },
+                        {
+                            label: 'Recta Tangente',
+                            data: datos.dataTangente,
+                            borderColor: '#f43f5e', // rose-500
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            pointRadius: 0,
+                            tension: 0,
+                            hidden: !checkTan.checked,
+                            order: 3
+                        },
+                        {
+                            label: "f'(x) (Derivada)",
+                            data: datos.dataDerivada,
+                            borderColor: '#10b981', // emerald-500
+                            backgroundColor: 'transparent',
+                            borderWidth: 2.5,
+                            pointRadius: 0,
+                            tension: 0.1,
+                            hidden: !checkDerivada.checked,
+                            order: 4
+                        },
+                        {
+                            label: 'F(x) (Integral)',
+                            data: datos.dataIntegral,
+                            borderColor: '#f59e0b', // amber-500
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            tension: 0.1,
+                            hidden: !checkIntegral.checked,
+                            order: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    // Desactivar animaciones molestas durante el arrastre continuo
+                    animation: {
+                        duration: 0 
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Usamos nuestra leyenda web personalizada
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(3);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: xMin,
+                            max: xMax,
+                            grid: {
+                                color: '#334155', // slate-700
+                                borderDash: [2, 2]
+                            },
+                            ticks: {
+                                color: '#94a3b8' // slate-400
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            min: -15,
+                            max: 15,
+                            grid: {
+                                color: '#334155',
+                                borderDash: [2, 2]
+                            },
+                            ticks: {
+                                color: '#94a3b8'
+                            }
+                        }
+                    },
+                    // Eventos para poder interactuar y hacer drag/clic en la gráfica
+                    onHover: function(evt, activeElements) {
+                        // Cambiar cursor cuando pasa sobre el punto de tangencia o la línea cúbica
+                        if (activeElements && activeElements.length > 0) {
+                            canvas.style.cursor = 'pointer';
+                        } else {
+                            canvas.style.cursor = 'default';
+                        }
+                    },
+                    onClick: function(evt) {
+                        gestionarClickOGestos(evt);
+                    }
+                }
+            };
+
+            chartInstance = new Chart(canvas, config);
+        }
+
+        // Permite hacer clic o arrastrar el cursor en la gráfica para mover el punto de forma dinámica
+        function gestionarClickOGestos(evt) {
+            const rect = canvas.getBoundingClientRect();
+            const xPixel = evt.clientX - rect.left;
+            
+            // Convertir coordenadas de píxeles a unidades cartesianas del eje X
+            const xCartesiano = chartInstance.scales.x.getValueForPixel(xPixel);
+
+            if (xCartesiano >= xMin && xCartesiano <= xMax) {
+                // Actualizar el valor de xPunto
+                xPunto = parseFloat(xCartesiano);
+                sliderX.value = xPunto.toFixed(2);
+                valX.innerText = xPunto.toFixed(2);
+
+                actualizarTodo();
+            }
+        }
+
+        // Eventos para soportar arrastrar (drag) con mouse en la gráfica
+        let isDragging = false;
+
+        canvas.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            gestionarClickOGestos(e);
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                gestionarClickOGestos(e);
+            }
+        });
+
+        window.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        // Soporte de gestos táctiles para móviles y tablets
+        canvas.addEventListener('touchstart', function(e) {
+            isDragging = true;
+            if (e.touches.length > 0) {
+                gestionarClickOGestos(e.touches[0]);
+            }
+        }, { passive: true });
+
+        canvas.addEventListener('touchmove', function(e) {
+            if (isDragging && e.touches.length > 0) {
+                gestionarClickOGestos(e.touches[0]);
+            }
+        }, { passive: true });
+
+        canvas.addEventListener('touchend', function() {
+            isDragging = false;
+        });
+
+
+        // Sincronizar y recalcular todos los parámetros y actualizar gráficas
+        function actualizarTodo() {
+            // Leer valores de los sliders
+            a = parseFloat(sliderA.value);
+            b = parseFloat(sliderB.value);
+            c = parseFloat(sliderC.value);
+            d = parseFloat(sliderD.value);
+            xPunto = parseFloat(sliderX.value);
+
+            // Reflejar en la UI textual lateral
+            valA.innerText = a.toFixed(1);
+            valB.innerText = b.toFixed(1);
+            valC.innerText = c.toFixed(1);
+            valD.innerText = d.toFixed(1);
+            valX.innerText = xPunto.toFixed(2);
+
+            // Reflejar cálculos en las tarjetas del panel inferior
+            const yPt = f(xPunto);
+            ptX.innerText = xPunto.toFixed(2);
+            ptY.innerText = yPt.toFixed(2);
+
+            const m = derivada(xPunto);
+            const n = yPt - m * xPunto;
+            valSlope.innerText = m.toFixed(2);
+            valIntercept.innerText = n.toFixed(2);
+
+            valDerivadaPt.innerText = m.toFixed(2);
+
+            // Integral definida de f(x) evaluada de 0 a xPunto
+            const area = integral(xPunto) - integral(0);
+            valIntegralArea.innerText = area.toFixed(2);
+
+            // Regenerar y refrescar datasets del Chart.js
+            if (chartInstance) {
+                const nuevosDatos = generarDatosDeGrafica();
+                
+                chartInstance.data.datasets[0].data = nuevosDatos.dataPunto;
+                chartInstance.data.datasets[1].data = nuevosDatos.dataFx;
+                chartInstance.data.datasets[2].data = nuevosDatos.dataTangente;
+                chartInstance.data.datasets[3].data = nuevosDatos.dataDerivada;
+                chartInstance.data.datasets[4].data = nuevosDatos.dataIntegral;
+
+                // Toggles de visibilidad
+                chartInstance.data.datasets[1].hidden = !checkFx.checked;
+                chartInstance.data.datasets[2].hidden = !checkTan.checked;
+                chartInstance.data.datasets[3].hidden = !checkDerivada.checked;
+                chartInstance.data.datasets[4].hidden = !checkIntegral.checked;
+
+                chartInstance.update();
+            }
+
+            // Actualizar expresiones LaTeX analíticas
+            actualizarFormulasMatematicas();
+        }
+
+        // Botón de restablecimiento de valores a su estado inicial idóneo
+        function reiniciarValores() {
+            sliderA.value = 0.5;
+            sliderB.value = 0.0;
+            sliderC.value = -2.0;
+            sliderD.value = 0.0;
+            sliderX.value = 0.0;
+
+            checkFx.checked = true;
+            checkTan.checked = true;
+            checkDerivada.checked = true;
+            checkIntegral.checked = true;
+
+            actualizarTodo();
+        }
+
+        // Suscribir escuchas de cambio a los inputs de sliders y toggles
+        const controles = [sliderX, sliderA, sliderB, sliderC, sliderD, checkFx, checkTan, checkDerivada, checkIntegral];
+        controles.forEach(input => {
+            input.addEventListener('input', actualizarTodo);
+            input.addEventListener('change', actualizarTodo);
+        });
+
+        // Inicio por defecto de la aplicación en la carga del DOM
+        window.onload = function() {
+            inicializarGrafica();
+            actualizarTodo();
+        };
+
+        // Escucha ante cambios de tamaño de ventana para ajustar el lienzo
+        window.addEventListener('resize', function() {
+            if (chartInstance) {
+                chartInstance.resize();
+            }
+        });
+    </script>
+</body>
+</html>
