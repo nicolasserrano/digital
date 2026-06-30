@@ -508,6 +508,20 @@ style: |
 
 ---
 
+## Ejemplo: Función cúbica
+
+<div class="demo-swap">
+  <button
+    class="demo-launch"
+    type="button"
+    onclick="this.parentElement.innerHTML='<div class=&quot;demo-frame-wrapper&quot;><iframe class=&quot;demo-frame&quot; src=&quot;./ejemplos/simulador_funcion_cubica.html&quot; loading=&quot;lazy&quot;></iframe></div>'"
+  >
+    <img src="./ejemplos/simulador_funcion_cubica.jpg" alt="Abrir demo Función cúbica" />
+  </button>
+</div>
+
+---
+
 ## Ejemplo: Hola de cálculo de amortización
 
 <div class="demo-swap">
