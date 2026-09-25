@@ -1,5 +1,5 @@
 ---
-marp: false
+marp: true
 theme: default
 paginate: true
 header: ""
@@ -361,7 +361,8 @@ Adaptación del patrón clásico del software (CRUD) al flujo de trabajo con IA 
 <!-- slide 17 -->
 # Ejemplo Práctico: Simulador de Elementos Finitos
 
-Un ejemplo de aplicación trimembre avanzada generada mediante prompt:
+Un ejemplo de aplicación html avanzada generada mediante prompt:
+[Conversación](https://share.gemini.google/aJWg3uyZBkdi) [Canvas](https://share.gemini.google/y2oUlxO1TnL6)
 
 * **HTML**: Define el contenedor de la malla y los paneles de control.
 * **CSS (Tailwind CSS)**: Aplica diseño profesional moderno importando la librería en una sola línea (`<script src="https://cdn.tailwindcss.com"></script>`).
@@ -498,9 +499,9 @@ for (let i = 0; i < filas; i++) {
 * `Ctrl + S` -> Guardar cambios en Notepad o VS Code.
 
 ### Enlaces de Referencia:
-* **Web del Curso**: `nicolasserrano.com` (Sección *Publicación Web*).
-* **Primera Web de la Historia**: CERN 1991 (`info.cern.ch`).
-* **Pasarela API**: OpenRouter (`openrouter.ai`).
+* **Web del Curso**: [`nicolasserrano.com`](https://www.nicolasserrano.com) (Sección *Publicación Web*).
+* **Primera Web de la Historia**: CERN 1991 ([`info.cern.ch`](https://info.cern.ch/hypertext/WWW/WhatIs.html)).
+* **Pasarela API OpenRouter**: Modelos ([`openrouter.ai`](https://openrouter.ai/models)).
 
 ---
 
@@ -515,3 +516,27 @@ for (let i = 0; i < filas; i++) {
 [ ] Diseñar el Cuaderno Digital con los 5 simuladores interactivos.
 
 **¡Y probar mucho!**
+
+
+---
+
+<!-- slide 27 -->
+# Ejemplos
+
+- Tabla de amortización: [Conversación](https://share.gemini.google/THbYX2NwVr1q) [Canvas](https://share.gemini.google/y9rfSYp0bp7c)
+- [VBA para enviar correos](https://gemini.google.com/app/8159a27d7795dfe3)
+
+
+
+- Corrección SE
+- Correción con VBA de access
+    
+    Correccion_v1.8_aula_anonimo.xlsm
+    
+- Crear presentaciones PPT
+- Crear presentación a partir de audio 
+  fichero MP3 → Panopto → transcript → NotebookLM → marp → VSCode
+
+Formatos
+
+- Página de TI en formato github o presentación: https://www.nicolasserrano.com/CS/ADSI/
