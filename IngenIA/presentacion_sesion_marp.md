@@ -3,7 +3,7 @@ marp: false
 theme: default
 paginate: true
 header: ""
-footer: "Curso GID. Formatos y simuladores"
+footer: "Curso GID. LLMs: Formatos y simuladores"
 style: |
   section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +39,7 @@ style: |
     font-size: 88%;
   }
   pre {
-    background-color: #1e1e1e;
+    //background-color: #1e1e1e;
     color: #d4d4d4;
     padding: 12px;
     border-radius: 6px;
@@ -81,10 +81,13 @@ style: |
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
+  footer {
+    margin-top: auto;
+  }
 ---
 
 <!-- slide 1 -->
-# Curso GID. Formatos y simuladores
+# Curso GID. LLMs: Formatos y simuladores
 
 ---
 
@@ -135,7 +138,7 @@ style: |
 * **¿Qué es un Token?**
   * Un token es un fragmento de palabra (sub-palabra) o carácter que el modelo convierte en números para su procesamiento vectorial.
 * **Regla empírica de conversión**:
-  $$\text{Número de Tokens} \approx \text{Número de Palabras} \times \frac{4}{3}$$
+  Número de Tokens (approx) = Número de palabras * 4/3
 * **Procesamiento de costes en APIs**:
   * Las llamadas a modelos se tarifan en relación con el número de tokens de entrada (*input*) y salida (*output*).
   * Las palabras cortas equivalen a 1 token; las palabras largas o compuestas se dividen en 2 o más tokens.
@@ -159,14 +162,13 @@ style: |
 
 ### ¿Por qué utilizar herramientas de programadores sin ser programador?
 * Referencia al artículo de **MIT Sloan School of Management**:
-  * [*¿Por qué los directivos deben conocer las herramientas de desarrollo aunque no vayan a programar?*](https://sloanreview.mit.edu/article/ai-coding-tools-for-knowledge-work-what-executives-need-to-know/)
+  * [*AI Coding Tools for Knowledge Work: What Executives Need to Know*](https://sloanreview.mit.edu/article/ai-coding-tools-for-knowledge-work-what-executives-need-to-know/)
 
 ```
-   +-----------------------------------------------------------------------+
+  +-----------------------------------------------------------------------+
    |  El código de software es TEXTO PLANO.                                |
    |  Los LLMs entienden y generan TEXTO PLANO con máxima precisión.       |
-   |  --> Ergo: Los docentes pueden actuar como arquitectos de software    |
-   |      escribiendo instrucciones en lenguaje natural.                    |
+   |  --> La mayoría de documentos se puede tratar como texto plano.       |
    +-----------------------------------------------------------------------+
 ```
 
@@ -174,8 +176,6 @@ style: |
 
 <!-- slide 8 -->
 # Formatos Digitales de Salida para LLMs
-
-Para estructurar las respuestas de la IA en artefactos funcionales, utilizamos 6 formatos universales:
 
 *WEB*
 - **HTML (`.html`)**: Lenguaje de marcado que define la **estructura y contenidos** web.
@@ -270,11 +270,11 @@ Todo archivo web estándar sigue esta estructura jerárquica obligatoria:
    > *"Crea una rúbrica de evaluación para un trabajo académico en formato HTML5 con Doctype."*
 2. **Copiar el Código**: Selecciona desde `<!DOCTYPE html>` hasta `</html>`.
 3. **Crear en Notepad (Bloc de Notas)**:
-   * Abre Notepad (`Win + R` $\rightarrow$ `notepad`).
+   * Abre Notepad (`Win + R` -> `notepad`).
    * Pega el código HTML.
 4. **Guardar Correctamente**:
-   * Menú *Archivo* $\rightarrow$ *Guardar como...*
-   * Tipo: **Todos los archivos (*.***)**.
+   * Menú *Archivo* -> *Guardar como...*
+   * Tipo: **Todos los archivos (*.*)**.
    * Nombre: `mi_rubrica.html` (imprescindible la extensión `.html`).
 5. **Ejecutar**: Haz doble clic sobre el archivo en el escritorio para abrirlo en tu navegador.
 
@@ -304,6 +304,7 @@ Todo archivo web estándar sigue esta estructura jerárquica obligatoria:
 Cualquier aplicación interactiva web integra tres capas en un solo archivo o en archivos vinculados:
 
 ```
+
                   +-----------------------------------+
                   |        ESTRUCTURA (HTML)          |
                   |  Etiquetas, texto, tablas, divs   |
@@ -327,10 +328,10 @@ Cualquier aplicación interactiva web integra tres capas en un solo archivo o en
 
 ### Markdown (`.md`)
 Sintaxis simplificada ideal para documentación y apuntes rápidos:
-* `# Título 1` $\rightarrow$ Equivale a `<h1>`
-* `## Título 2` $\rightarrow$ Equivale a `<h2>`
-* `- Elemento de lista` $\rightarrow$ Equivale a `<li>`
-* `` `código` `` $\rightarrow$ Equivale a `<code>`
+* `# Título 1` -> Equivale a `<h1>`
+* `## Título 2` -> Equivale a `<h2>`
+* `- Elemento de lista` -> Equivale a `<li>`
+* `` `código` `` -> Equivale a `<code>`
 
 ### SVG (Scalable Vector Graphics)
 * Gráficos vectoriales definidos mediante código XML (coordenadas, líneas, polígonos).
@@ -340,14 +341,14 @@ Sintaxis simplificada ideal para documentación y apuntes rápidos:
 ---
 
 <!-- slide 16 -->
-# Metodología CRUD para Interactivos Educativos
+# Metodología CRUD para simuladores
 
 Adaptación del patrón clásico del software (CRUD) al flujo de trabajo con IA docente:
 
 ```
   [ CREATE ]  --->  [ READ ]  --->  [ UPDATE ]  --->  [ DEPLOY ]
-  Generar con       Interpretar    Modificar y       Publicar en
-  Prompts.          el Código.     Ajustar.          GitHub Pages.
+  Generar con       Interpretar    Modificar y       Publicar en la Web
+  Prompts.          el Código.     Ajustar.          (ej.: GitHub Pages)
 ```
 
 1. **CREATE**: Pedir el artefacto a la IA (ej. *"Crea un simulador de la ley de Ohm en HTML/JS"*).
@@ -399,11 +400,11 @@ for (let i = 0; i < filas; i++) {
 ### Trabajar con Carpetas Locales (*Open Folder*)
 
 * En lugar de abrir archivos sueltos, trabajamos sobre un directorio contenedor:
-  1. *File* $\rightarrow$ *Open Folder...* (o crear `Pruebas_24`).
-  2. Crear archivo nuevo: clic en el icono de nuevo archivo $\rightarrow$ `inicio.md` o `index.html`.
+  1. *File* -> *Open Folder...* (o crear `Pruebas_25`).
+  2. Crear archivo nuevo: clic en el icono de nuevo archivo -> `inicio.md` o `index.html`.
 
 ```
-  MI_PROYECTO_EDUCATIVO/
+  MI_PROYECTO_1
   ├── index.html        (Página principal)
   ├── estilos.css       (Estilos CSS)
   ├── simulador.js      (Lógica del simulador)
@@ -421,7 +422,7 @@ for (let i = 0; i < filas; i++) {
   * Servicio que unifica el acceso a **más de 300 modelos de IA** (OpenAI, Anthropic, DeepSeek, Google) mediante una única **API Key**.
 * **Control Transparente de Costes**:
   * Permite seleccionar el modelo evaluando su precio exacto por millón de tokens:
-    * Ej. *DeepSeek Flash*: ~0.10$ / M tokens de entrada (extremadamente económico).
+    * Ej. *DeepSeek Flash*: ~0.10$ / M tokens de entrada (económico).
 
 ---
 
@@ -436,7 +437,7 @@ for (let i = 0; i < filas; i++) {
 4. **Configurar Proveedor**:
    * Seleccionar **OpenRouter** en el desplegable de proveedores.
    * Pegar la **API Key** personal proporcionada.
-5. **Seleccionar Modelo**: Elegir un modelo económico (ej. `DeepSeek V3` o `DeepSeek Flash`).
+5. **Seleccionar Modelo**: Elegir un modelo económico (ej.  `deepseek/deepseek-v4-flash`).
 
 ---
 
@@ -456,9 +457,8 @@ for (let i = 0; i < filas; i++) {
 ---
 
 <!-- slide 23 -->
-# Despliegue e Independencia: GitHub Pages
+# Despliegue: GitHub Pages
 
-### Autonomía docente sin barreras corporativas
 
 ```
   [ Archivo HTML en local ]  --->  [ Subir a GitHub Repository ]  --->  [ Activar GitHub Pages ]
@@ -468,23 +468,23 @@ for (let i = 0; i < filas; i++) {
 ```
 
 * **Ventajas pedagógicas**:
-  * Sin dependencia de cambios de versión o caídas de plataformas LMS (Blackboard/Moodle).
-  * Sin marcas de agua ni publicidad.
-  * Control de versión e independencia completa de tus materiales educativos.
+  * Sin dependencia de cambios de versión o gestión externa de plataformas LMS (Blackboard/Moodle).
+  * Control completo de la visualización.
+  * Control de versión e independencia completa de los materiales.
 
 ---
 
 <!-- slide 24 -->
-# Encargo Práctico: Tu Cuaderno Digital de Simuladores
+# Práctica: Cuaderno Digital de Simuladores
 
-### Estructura de la Tarea Práctica para los Participantes:
+### Estructura de la práctica:
 
-1. **Crear 4 Simuladores Sencillos**:
-   * Generar con prompts directos 4 interactivos breves (ej. Leyes de Newton, suma de vectores, circuito eléctrico, cilindro neumático).
-2. **Crear 1 Simulador Complejo**:
-   * Diseñar un simulador avanzado adaptado a tu asignatura específica (ej. elementos finitos, cinemática de un robot, modelo macroeconómico).
+1. **Crear 4 Simuladores simples**:
+   * Generar con prompts directos 4 simuladores simples (ej. Leyes de Newton, suma de vectores, circuito eléctrico, cilindro neumático).
+2. **Crear 1 Simulador más complejo**:
+   * Diseñar un simulador avanzado adaptado a una asignatura específica (ej. elementos finitos, cinemática de un robot, modelo macroeconómico).
 3. **Ensamblar la Página Principal HTML**:
-   * Crear un archivo `cuaderno.html` que incruste los 4 simuladores pequeños en un panel superior de 2x2 y el simulador complejo en la sección inferior principal.
+   * Crear un archivo `cuaderno.html` que incluye los 4 simuladores simples en un panel superior de 2x2 y el simulador complejo en la sección inferior principal. (Pedírselo al asistente)
 
 ---
 
@@ -492,10 +492,10 @@ for (let i = 0; i < filas; i++) {
 # Resumen de Comandos, Atajos y Recursos
 
 ### Comandos de Teclado Clave:
-* `Win + R` $\rightarrow$ Ejecutar comandos (`notepad`, `code`).
-* `F5` / `Ctrl + R` $\rightarrow$ Recargar página en el navegador.
-* `F12` / `Ctrl + Shift + I` $\rightarrow$ Abrir Herramientas de Desarrollador (DOM / Inspeccionar).
-* `Ctrl + S` $\rightarrow$ Guardar cambios en Notepad o VS Code.
+* `Win + R` -> Ejecutar comandos (`notepad`, `code`).
+* `F5` / `Ctrl + R` -> Recargar página en el navegador.
+* `F12` / `Ctrl + Shift + I` -> Abrir Herramientas de Desarrollador (DOM / Inspeccionar).
+* `Ctrl + S` -> Guardar cambios en Notepad o VS Code.
 
 ### Enlaces de Referencia:
 * **Web del Curso**: `nicolasserrano.com` (Sección *Publicación Web*).
@@ -507,12 +507,11 @@ for (let i = 0; i < filas; i++) {
 <!-- slide 26 -->
 # Cierre y Próximos Pasos
 
-> **"El código no es una barrera insuperable, sino el lenguaje de comunicación directa con los LLMs para construir el futuro de tus clases."**
 
 ### Tareas inmediatas:
-* [ ] Explorar los vídeos de soporte de 30 minutos (HTML, CSS, JavaScript).
-* [ ] Probar la creación de un archivo HTML local y editarlo con `F12`.
-* [ ] Configurar VS Code + Cline con tu API Key de OpenRouter.
-* [ ] Diseñar el Cuaderno Digital con los 5 simuladores interactivos.
+[ ] Explorar los vídeos de soporte de 30 minutos (HTML, CSS, JavaScript).  
+[ ] Probar la creación de un archivo HTML local y editarlo con `F12`.  
+[ ] Configurar VS Code + Cline con tu API Key de OpenRouter.  
+[ ] Diseñar el Cuaderno Digital con los 5 simuladores interactivos.
 
-**¡Nos vemos en la siguiente fase para revisar vuestras creaciones!**
+**¡Y probar mucho!**
