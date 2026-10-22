@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Formatos y herramientas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=block" rel="stylesheet">
+<style>
+/* Estilo de explicación animada sobre fondo oscuro, a petición de Adrián (referencia: las
+   animaciones de Dot CSV): contornos finos azules, rótulos monoespaciados, acento fucsia. */
+:root { color-scheme: dark;
+  --bg: #060a13; --bg2: #0a1222; --panel: rgba(11, 20, 37, .82); --panel2: rgba(16, 28, 50, .9);
+  --line: #1b2d4b; --line2: #2a4674; --azul: #4ea8ff; --cian: #62e3ff; --fucsia: #ff4fa3;
+  --texto: #e9f0fb; --gris: #8ea3c0; --tenue: #4c607d; --verde: #45e0a0; --rojo: #ff6b7a; --ambar: #ffc857;
+  --sans: "Plus Jakarta Sans", "Helvetica Neue", sans-serif; --mono: "JetBrains Mono", Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+body { font-family: var(--sans); color: var(--texto); -webkit-font-smoothing: antialiased; }
+#todo { position: absolute; inset: 0; }
+
+/* Fondo común: rejilla de puntos que deriva, brillo y viñeta */
+#fondo { position: absolute; inset: -60px; background-image: radial-gradient(rgba(78,168,255,.16) 1.3px, transparent 1.6px); background-size: 44px 44px; }
+#brillo { position: absolute; inset: 0; background: radial-gradient(900px 600px at 70% 30%, rgba(78,168,255,.10), transparent 70%), radial-gradient(700px 500px at 20% 80%, rgba(255,79,163,.06), transparent 70%); }
+#vineta { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.72) 100%); pointer-events: none; z-index: 900; }
+#grano { position: absolute; left: -40px; top: -40px; width: 2000px; height: 1160px; opacity: .06; z-index: 901; pointer-events: none; image-rendering: pixelated; }
+
+.escena { position: absolute; inset: 0; display: none; transform-origin: 50% 50%; }
+.lbl { font-family: var(--mono); font-size: 20px; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); }
+.lbl.az { color: var(--azul); }
+.lbl.fu { color: var(--fucsia); }
+.h { position: absolute; left: 120px; top: 132px; font-size: 64px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; }
+.h .az { color: var(--azul); text-shadow: 0 0 28px rgba(78,168,255,.45); }
+.h .fu { color: var(--fucsia); text-shadow: 0 0 28px rgba(255,79,163,.45); }
+.cabeza { position: absolute; left: 120px; top: 92px; }
+.abs { position: absolute; }
+.gris { color: var(--gris); }
+.az { color: var(--azul); } .fu { color: var(--fucsia); } .ci { color: var(--cian); } .ve { color: var(--verde); }
+.glow { text-shadow: 0 0 24px currentColor; }
+
+.panel { position: absolute; background: var(--panel); border: 1.5px solid var(--line2); border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(78,168,255,.04), 0 0 60px rgba(78,168,255,.07), inset 0 1px 0 rgba(255,255,255,.03); overflow: hidden; }
+.panel.activo { border-color: var(--azul); box-shadow: 0 0 0 1px rgba(78,168,255,.25), 0 0 50px rgba(78,168,255,.25); }
+.panel.fu { border-color: var(--fucsia); box-shadow: 0 0 0 1px rgba(255,79,163,.25), 0 0 50px rgba(255,79,163,.22); }
+.cab { height: 46px; border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 18px; gap: 9px; font-family: var(--mono); font-size: 18px; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+.cab i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--tenue); display: inline-block; }
+.cab .der { margin-left: auto; color: var(--azul); }
+.cuerpo { position: relative; padding: 22px 26px; }
+
+pre.code { font-family: var(--mono); font-size: 27px; line-height: 44px; color: #cfe0f7; white-space: pre; }
+pre.code .nl { display: inline-block; width: 44px; color: var(--tenue); font-size: 20px; }
+pre.code .tg { color: var(--azul); }
+pre.code .at { color: var(--cian); }
+pre.code .st { color: #ffd58a; }
+pre.code .mk { color: var(--fucsia); font-weight: 700; }
+pre.code .cm { color: var(--tenue); }
+.caret { display: inline-block; width: 13px; height: 30px; background: var(--azul); vertical-align: -6px; margin-left: 2px; box-shadow: 0 0 12px var(--azul); }
+
+.chipl { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 22px; letter-spacing: .12em; text-transform: uppercase;
+  border: 1.5px solid var(--line2); border-radius: 999px; padding: 8px 18px; color: var(--gris); background: rgba(11,20,37,.8); }
+.chipl.az { border-color: var(--azul); color: var(--azul); box-shadow: 0 0 20px rgba(78,168,255,.3); }
+.chipl.fu { border-color: var(--fucsia); color: var(--fucsia); box-shadow: 0 0 20px rgba(255,79,163,.3); }
+.estado { position: absolute; left: 0; right: 0; bottom: 64px; text-align: center; font-family: var(--mono); font-size: 22px; color: var(--gris); letter-spacing: .06em; }
+.fuente { position: absolute; left: 120px; bottom: 40px; font-family: var(--mono); font-size: 17px; color: var(--tenue); letter-spacing: .04em; }
+
+.nodo { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.nodo .caja { border: 1.5px solid var(--line2); background: var(--panel2); border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 34px; box-shadow: 0 0 40px rgba(78,168,255,.12); }
+.nodo .t { font-family: var(--mono); font-size: 20px; letter-spacing: .18em; text-transform: uppercase; color: var(--gris); text-align: center; }
+.neuronas { display: grid; gap: 14px; }
+.neuronas i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--line2); display: block; }
+
+.paquete { position: absolute; font-family: var(--mono); font-size: 22px; letter-spacing: .06em; border: 1.5px solid var(--azul); color: var(--azul);
+  background: rgba(8,16,30,.95); border-radius: 999px; padding: 7px 16px; white-space: nowrap; box-shadow: 0 0 22px rgba(78,168,255,.5); }
+.paquete.vuelta { border-color: var(--fucsia); color: var(--fucsia); box-shadow: 0 0 22px rgba(255,79,163,.5); }
+
+.gran { font-size: 116px; font-weight: 800; letter-spacing: -3px; line-height: 1; }
+.prompt { position: absolute; display: flex; align-items: center; gap: 16px; height: 76px; padding: 0 26px; border: 1.5px solid var(--line2); border-radius: 16px;
+  background: var(--panel2); font-size: 30px; box-shadow: 0 0 40px rgba(78,168,255,.1); }
+.prompt .sig { font-family: var(--mono); color: var(--azul); }
+.prompt .env { margin-left: auto; width: 44px; height: 44px; border-radius: 12px; background: var(--azul); box-shadow: 0 0 22px var(--azul); display: flex; align-items: center; justify-content: center; color: #041022; font-weight: 800; }
+.web92 { font-family: "Times New Roman", Times, serif; color: #111; }
+.web92 h1 { font-size: 50px; margin-bottom: 16px; }
+.web92 p { font-size: 30px; line-height: 1.4; }
+.web92 a { color: #0000ee; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="todo">
+<div id="fondo"></div><div id="brillo"></div>
+<canvas id="grano" width="1000" height="580"></canvas>
+<div id="vineta"></div>
+
+<!-- 1 · Portada ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="2" id="portada">
+  <div class="abs lbl az" style="left:120px; top:180px" data-b="0" data-d="-0.6" data-fx="wipe">Sesión del viernes 24 de julio de 2026</div>
+  <div class="abs" style="left:116px; top:240px; font-size:104px; font-weight:800; letter-spacing:-3px; line-height:1.02">
+    <div data-b="0" data-d="-0.4" data-fx="blur">Formatos y</div>
+    <div data-b="0" data-d="-0.2" data-fx="blur">herramientas</div>
+    <div class="az glow" style="font-size:72px; letter-spacing:-1.5px; margin-top:14px" data-b="0" data-d="0.2" data-fx="blur">para trabajar con la IA</div>
+  </div>
+  <div class="prompt" style="left:120px; top:640px; width:760px" data-b="0" data-d="1.0" data-fx="in">
+    <span class="sig">&gt;</span><span data-b="0" data-d="1.4" data-fx="type" data-cps="26">crea la rúbrica del tema… <b class="az">dámelo en HTML</b></span><span class="env">↑</span>
+  </div>
+  <div class="panel" style="left:1000px; top:170px; width:800px; height:640px" data-b="0" data-d="2.6" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>rubrica.html</span><span class="der">salida</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" data-b="0" data-d="3.2" data-fx="type" data-cps="34">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;title&gt;Rúbrica&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Rúbrica del tema&lt;/h1&gt;
+  &lt;table&gt;…&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+  </div>
+  <div class="abs" style="left:120px; top:800px; font-size:38px; font-weight:500; line-height:1.4; width:820px">
+    <span data-b="1" data-d="4.87" data-fx="fade" class="gris">Pide la salida en un formato que puedas</span>
+    <span class="az glow" data-b="1" data-d="5.17" data-fx="pop" style="display:inline-block">leer,</span>
+    <span class="az glow" data-b="1" data-d="5.72" data-fx="pop" style="display:inline-block">cambiar</span>
+    <span class="gris" data-b="1" data-d="6.12" data-fx="fade">y</span>
+    <span class="fu glow" data-b="1" data-d="6.12" data-fx="pop" style="display:inline-block">publicar.</span>
+  </div>
+</section>
+
+<!-- 2 · El curso ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="curso">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">El curso</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Tres fases, <span class="az">y hoy la base</span></h2>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <path id="cu-linea" d="M 350 560 L 1570 560" stroke="#2a4674" stroke-width="3" fill="none" data-b="0" data-d="0.2" data-fx="draw" data-dur="1.6"/>
+    <circle id="cu-pulso" r="9" fill="#62e3ff" style="filter: drop-shadow(0 0 10px #62e3ff)"/>
+  </svg>
+  <div class="panel" id="cu-f1" style="left:120px; top:400px; width:470px; height:320px" data-b="0" data-d="2.53" data-fx="blur">
+    <div class="cab"><span>fase 01</span><span class="der">entender</span></div>
+    <div class="cuerpo"><div style="font-size:38px; font-weight:700; line-height:1.15">Qué es un modelo de lenguaje</div><div class="gris" style="font-size:26px; margin-top:16px">Sesión anterior, con NotebookLM</div></div>
+  </div>
+  <div class="panel" id="cu-f2" style="left:725px; top:400px; width:470px; height:320px" data-b="1" data-d="0" data-fx="blur">
+    <div class="cab"><span>fase 02</span><span class="der">aplicar</span></div>
+    <div class="cuerpo"><div style="font-size:38px; font-weight:700; line-height:1.15">Simuladores y ejercicios</div><div class="gris" style="font-size:26px; margin-top:16px">Cada área decide qué le afecta y qué hay que repensar</div></div>
+  </div>
+  <div class="panel" id="cu-f3" style="left:1330px; top:400px; width:470px; height:320px" data-b="2" data-d="0" data-fx="blur">
+    <div class="cab"><span>fase 03</span><span class="der">repensar</span></div>
+    <div class="cuerpo"><div style="font-size:38px; font-weight:700; line-height:1.15">Educación integral</div><div class="gris" style="font-size:26px; margin-top:16px">Cómo pensarla</div></div>
+  </div>
+  <div class="abs" style="left:725px; top:770px; display:flex; gap:18px">
+    <span class="chipl az" data-b="3" data-d="3.37" data-fx="pop">1.1 formatos</span>
+    <span class="chipl az" data-b="3" data-d="4.47" data-fx="pop">1.2 herramientas</span>
+  </div>
+  <div class="abs lbl az" style="left:725px; top:350px" data-b="3" data-d="0.2" data-fx="wipe">▸ hoy preparamos esta</div>
+</section>
+
+<!-- 3 · Sección 01 ────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="1" id="sec-formatos">
+  <svg class="abs" style="left:100px; top:250px" width="700" height="420">
+    <text x="0" y="330" font-family="Plus Jakarta Sans" font-weight="800" font-size="380" fill="none" stroke="#4ea8ff" stroke-width="3" data-b="0" data-d="-0.6" data-fx="draw" data-dur="1.4" style="filter: drop-shadow(0 0 14px rgba(78,168,255,.6))">01</text>
+  </svg>
+  <div class="abs lbl az" style="left:820px; top:400px" data-b="0" data-d="-0.2" data-fx="wipe">Primera parte</div>
+  <div class="abs gran" style="left:814px; top:450px" data-b="0" data-d="0" data-fx="blur">Formatos</div>
+  <div class="abs gris" style="left:820px; top:600px; font-size:34px" data-b="0" data-d="0.4" data-fx="in">Lo que la IA escribe bien y tú puedes reutilizar</div>
+  <div class="abs" id="sf-scan" style="left:0; width:1920px; height:2px; background:linear-gradient(90deg,transparent,#62e3ff,transparent); box-shadow:0 0 20px #62e3ff"></div>
+</section>
+
+<!-- 4 · Tokens ────────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="tokens">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Tokenización</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Un modelo de lenguaje <span class="az">lee tokens</span></h2>
+  <div class="panel" style="left:120px; top:260px; width:1680px; height:330px" data-b="0" data-d="4.55" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>entrada</span><span class="der" id="tk-modo">texto</span></div>
+  </div>
+  <div class="abs" id="tk-frase" style="left:0; right:0; top:370px; text-align:center; font-size:78px; font-weight:500; white-space:nowrap" data-b="0" data-d="4.95" data-fx="fade"></div>
+  <svg class="abs" id="tk-svg" style="left:0; top:0" width="1920" height="1080"></svg>
+  <div class="nodo" style="left:850px; top:668px" data-b="2" data-d="2.9" data-fx="pop">
+    <div class="caja" style="width:220px; height:190px"><div class="neuronas" id="tk-neur" style="grid-template-columns:repeat(6,14px)"></div></div>
+    <div class="t">modelo</div>
+  </div>
+  <div class="abs" style="left:120px; top:670px" data-b="2" data-d="6.01" data-fx="slide">
+    <div class="lbl">palabras</div><div style="font-family:var(--mono); font-size:92px; font-weight:700" data-b="2" data-d="6.01" data-fx="count" data-to="5">0</div>
+  </div>
+  <div class="abs" style="left:420px; top:670px" data-b="2" data-d="6.89" data-fx="slide">
+    <div class="lbl az">tokens</div><div class="az glow" style="font-family:var(--mono); font-size:92px; font-weight:700" data-b="2" data-d="6.89" data-fx="count" data-to="8">0</div>
+  </div>
+  <div class="panel" style="left:1180px; top:660px; width:620px; height:250px" data-b="3" data-d="0" data-fx="blur">
+    <div class="cab"><span>regla aproximada</span><span class="der">openai</span></div>
+    <div class="cuerpo" style="font-size:30px; line-height:1.45">
+      <div><b style="font-family:var(--mono)">100 tokens ≈ 75 palabras</b> <span class="gris">en inglés</span></div>
+      <div class="gris" data-b="3" data-d="4.8" data-fx="in">en español, algo más de tokens</div>
+      <div class="fu" data-b="3" data-d="8.73" data-fx="in" style="font-weight:700">se paga por token</div>
+    </div>
+  </div>
+  <div class="fuente" data-b="1" data-d="1" data-fx="fade">corte real · tokenizador o200k_base (GPT-4o) con tiktoken · cada modelo corta distinto</div>
+</section>
+
+<!-- 5 · Por qué texto ─────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="texto">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Por qué texto</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Cómodo <span class="gris">frente a</span> <span class="az">libre</span></h2>
+  <div class="panel" id="tx-izq" style="left:120px; top:270px; width:800px; height:520px" data-b="0" data-d="3.81" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>notebooklm · presentación</span><span class="der" style="color:var(--fucsia)" data-b="0" data-d="11.32" data-fx="pop">imagen</span></div>
+    <canvas id="tx-pix" class="abs" width="640" height="340" style="left:80px; top:90px"></canvas>
+    <div class="abs lbl fu" style="left:80px; top:450px" data-b="0" data-d="13.1" data-fx="wipe">✕ no se puede editar el texto</div>
+  </div>
+  <div class="panel" id="tx-der" style="left:1000px; top:270px; width:800px; height:520px" data-b="1" data-d="0" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>rubrica.md</span><span class="der">texto</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="md" style="font-size:28px"># <span id="tx-edit">Rúbrica</span>
+
+## Criterios
+- Claridad
+- Rigor
+- Presentación</pre></div>
+    <div class="abs lbl az" style="left:30px; top:450px" data-b="1" data-d="5.24" data-fx="wipe">✓ lo cambias tú, línea a línea</div>
+  </div>
+  <div class="panel" style="left:120px; top:830px; width:1680px; height:130px" data-b="2" data-d="0.29" data-fx="blur">
+    <div class="cuerpo" style="display:flex; gap:30px; align-items:center; padding-top:30px">
+      <div class="lbl az" style="width:420px; flex:none; line-height:1.4">mit sloan management review<br><span class="gris">ramakrishnan · feb. 2026</span></div>
+      <div style="font-size:29px; line-height:1.35">Las herramientas de programación sirven a quien no programa, <b class="az">porque trabajan sobre sus ficheros.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Mapa de formatos ──────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="mapa">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Los formatos de la sesión</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Cuatro formatos, <span class="az">todos texto</span></h2>
+  <div class="panel" style="left:120px; top:280px; width:400px; height:470px" data-b="0" data-d="2.83" data-fx="blur">
+    <div class="cab"><span>html · css · js</span><span class="der">web</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" data-num="no" style="font-size:24px; line-height:38px">&lt;button&gt;
+  Simular
+&lt;/button&gt;</pre>
+      <div class="abs" id="mp-boton" style="left:26px; top:170px; width:346px; height:84px; border-radius:12px; font-size:30px; font-weight:700; display:flex; align-items:center; justify-content:center">Simular</div>
+      <div class="abs lbl" style="left:26px; top:290px; line-height:1.6"><span data-b="0" data-d="2.83" data-fx="fade">estructura</span><br><span class="az" data-b="0" data-d="4.03" data-fx="fade">+ estilo</span><br><span class="fu" data-b="0" data-d="4.76" data-fx="fade">+ comportamiento</span></div>
+    </div>
+  </div>
+  <div class="panel" style="left:547px; top:280px; width:400px; height:470px" data-b="1" data-d="0.05" data-fx="blur">
+    <div class="cab"><span>markdown</span><span class="der">texto</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="md" data-num="no" style="font-size:24px; line-height:38px"># Tema 3
+- Idea clave</pre>
+      <div class="abs" style="left:26px; top:150px" data-b="1" data-d="0.85" data-fx="in"><div style="font-size:44px; font-weight:800">Tema 3</div><div style="font-size:28px; margin-top:8px">• Idea clave</div></div>
+      <div class="abs lbl" style="left:26px; top:340px">texto con estructura</div>
+    </div>
+  </div>
+  <div class="panel" style="left:974px; top:280px; width:400px; height:470px" data-b="1" data-d="3.03" data-fx="blur">
+    <div class="cab"><span>svg</span><span class="der">gráficos</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" data-num="no" style="font-size:24px; line-height:38px">&lt;circle r="60"/&gt;</pre>
+      <svg class="abs" style="left:26px; top:110px" width="346" height="190"><circle cx="173" cy="95" r="60" fill="none" stroke="#62e3ff" stroke-width="4" data-b="1" data-d="3.63" data-fx="draw" style="filter:drop-shadow(0 0 10px #62e3ff)"/></svg>
+      <div class="abs lbl" style="left:26px; top:340px">gráficos y esquemas</div>
+    </div>
+  </div>
+  <div class="panel" style="left:1401px; top:280px; width:400px; height:470px" data-b="2" data-d="0" data-fx="blur">
+    <div class="cab"><span>json</span><span class="der" style="color:var(--fucsia)">septiembre</span></div>
+    <div class="cuerpo" style="opacity:.55"><pre class="code" data-num="no" style="font-size:24px; line-height:38px">{ "nota": 8.5 }</pre>
+      <div class="abs lbl" style="left:26px; top:340px">datos</div>
+    </div>
+  </div>
+  <div class="prompt" style="left:560px; top:810px; width:800px" data-b="3" data-d="6.7" data-fx="in">
+    <span class="sig">&gt;</span><span data-b="3" data-d="6.88" data-fx="type" data-cps="22">…y al final: <b class="az">dámelo en HTML</b></span><span class="env" id="mp-env">↑</span>
+  </div>
+</section>
+
+<!-- 7 · Historia ──────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="historia">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Tres minutos de historia</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Internet <span class="gris">no es</span> <span class="az">la web</span></h2>
+  <div class="abs" id="hi-anyo" style="right:120px; top:100px; font-family:var(--mono); font-size:150px; font-weight:700; color:transparent; -webkit-text-stroke:2px #4ea8ff; filter:drop-shadow(0 0 16px rgba(78,168,255,.5))">1965</div>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <line x1="160" y1="520" x2="1760" y2="520" stroke="#2a4674" stroke-width="3" data-b="0" data-d="0" data-fx="draw" data-dur="1.4"/>
+    <g id="hi-marcas"></g>
+    <line x1="373" y1="600" x2="1760" y2="600" stroke="#8ea3c0" stroke-width="10" stroke-linecap="round" data-b="0" data-d="4.56" data-fx="draw" data-dur="1.8"/>
+    <line x1="1440" y1="636" x2="1760" y2="636" stroke="#4ea8ff" stroke-width="10" stroke-linecap="round" data-b="1" data-d="0.25" data-fx="draw" style="filter:drop-shadow(0 0 10px #4ea8ff)"/>
+    <line id="hi-cabezal" x1="0" y1="470" x2="0" y2="660" stroke="#62e3ff" stroke-width="2" style="filter:drop-shadow(0 0 8px #62e3ff)"/>
+  </svg>
+  <div class="abs lbl" style="left:160px; top:588px; font-size:18px" data-b="0" data-d="4.56" data-fx="fade">internet</div>
+  <div class="abs lbl az" style="left:1290px; top:624px; font-size:18px" data-b="1" data-d="0.25" data-fx="fade">la web ▸</div>
+  <div class="abs" style="left:373px; top:370px; width:420px" data-b="0" data-d="5.54" data-fx="in"><div style="font-family:var(--mono); font-size:44px; font-weight:700">1969</div><div class="gris" style="font-size:26px">ARPANET, origen de Internet</div></div>
+  <div class="abs" style="left:1066px; top:340px; width:374px; text-align:right" data-b="1" data-d="2.22" data-fx="in"><div class="az" style="font-family:var(--mono); font-size:44px; font-weight:700">1989</div><div class="gris" style="font-size:26px">marzo · Berners-Lee la propone en el CERN</div></div>
+  <div class="abs" style="left:1120px; top:690px; width:374px; text-align:right" data-b="2" data-d="0.22" data-fx="in"><div class="az" style="font-family:var(--mono); font-size:44px; font-weight:700">1990</div><div class="gris" style="font-size:26px">fin de año · primer servidor y navegador</div></div>
+  <div class="abs" style="left:1493px; top:340px; width:300px" data-b="2" data-d="7.07" data-fx="in"><div class="az" style="font-family:var(--mono); font-size:44px; font-weight:700">1991</div><div class="gris" style="font-size:26px">agosto · se anuncia fuera del CERN</div></div>
+  <div class="abs" style="left:1546px; top:690px; width:260px" data-b="2" data-d="10.24" data-fx="in"><div class="fu" style="font-family:var(--mono); font-size:44px; font-weight:700">1993</div><div class="gris" style="font-size:26px">abril · libre para todos</div></div>
+  <div class="estado" data-b="1" data-d="5.35" data-fx="fade">la web: un servicio sobre Internet para compartir documentos entre ordenadores distintos</div>
+  <div class="fuente" data-b="2" data-d="0" data-fx="fade">fechas: CERN, «A short history of the Web» y timeline.web.cern.ch</div>
+</section>
+
+<!-- 8 · HTTP ──────────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="http">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Cómo funciona la web</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Petición <span class="gris">y</span> <span class="az">respuesta</span></h2>
+  <div class="abs" style="left:760px; top:250px; width:400px; text-align:center" data-b="0" data-d="2.65" data-fx="pop">
+    <div class="chipl az" style="font-size:26px">http</div>
+    <div class="lbl" style="margin-top:14px; border-top:1px solid var(--line2); padding-top:12px">sobre tcp/ip · internet</div>
+  </div>
+  <div class="panel" id="ht-cli" style="left:120px; top:330px; width:560px; height:470px" data-b="0" data-d="10.77" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>cliente · navegador</span></div>
+    <div class="abs" style="left:20px; top:62px; right:20px; height:48px; border:1.5px solid var(--line2); border-radius:10px; font-family:var(--mono); font-size:22px; padding:10px 14px; color:var(--gris)"><span data-b="1" data-d="2.78" data-fx="type" data-cps="24">https://www.ejemplo.edu/</span></div>
+    <div class="abs" id="ht-pag" style="left:20px; top:128px; right:20px; bottom:20px; border-radius:10px; overflow:hidden"></div>
+  </div>
+  <div class="panel" id="ht-srv" style="left:1240px; top:330px; width:560px; height:470px" data-b="0" data-d="11.4" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>servidor · centro de datos</span></div>
+    <div class="cuerpo" style="font-family:var(--mono); font-size:26px; line-height:64px">
+      <div id="ht-f0">▤ index.html</div><div id="ht-f1">▤ estilo.css</div><div id="ht-f2">▤ script.js</div><div id="ht-f3">▣ foto.jpg</div>
+    </div>
+  </div>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <line x1="690" y1="500" x2="1230" y2="500" stroke="#2a4674" stroke-width="2" stroke-dasharray="6 10" id="ht-l1" data-b="0" data-d="9.39" data-fx="fade"/>
+    <line x1="690" y1="630" x2="1230" y2="630" stroke="#2a4674" stroke-width="2" stroke-dasharray="6 10" id="ht-l2" data-b="0" data-d="9.89" data-fx="fade"/>
+  </svg>
+  <div class="abs lbl az" style="left:700px; top:452px" data-b="0" data-d="9.39" data-fx="fade">petición ▸</div>
+  <div class="abs lbl fu" style="left:1060px; top:648px" data-b="0" data-d="9.89" data-fx="fade">◂ respuesta</div>
+  <div id="ht-paquetes"></div>
+  <div class="estado" id="ht-estado"></div>
+</section>
+
+<!-- 9 · La primera web ────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="primera-web">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">info.cern.ch · copia de 1992</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">La primera web, <span class="az">por dentro</span></h2>
+  <div class="panel" style="left:120px; top:260px; width:1000px; height:560px" data-b="0" data-d="8.76" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>theproject.html</span><span class="der">código</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" id="pw-code" style="font-size:23px; line-height:42px">&lt;HEADER&gt;
+&lt;TITLE&gt;The World Wide Web project&lt;/TITLE&gt;
+&lt;NEXTID N="55"&gt;
+&lt;/HEADER&gt;
+&lt;BODY&gt;
+&lt;H1&gt;World Wide Web&lt;/H1&gt;The WorldWideWeb (W3) is a wide-area&lt;A
+NAME=0 HREF="WhatIs.html"&gt;
+hypermedia&lt;/A&gt; information retrieval
+initiative aiming to give universal
+access to a large universe of documents.&lt;P&gt;</pre></div>
+  </div>
+  <div class="panel" style="left:1180px; top:260px; width:620px; height:560px" data-b="0" data-d="9.16" data-fx="blur">
+    <div class="cab" style="padding-left:12px"><span id="pw-tab" style="border:1.5px solid var(--line2); border-bottom:none; border-radius:8px 8px 0 0; padding:6px 12px; margin-top:12px; text-transform:none; letter-spacing:0; font-size:18px; color:var(--texto)">The World Wide Web project</span><span class="der">lo que se ve</span></div>
+    <div class="abs web92" style="left:16px; top:62px; right:16px; bottom:16px; background:#f4f1e8; border-radius:8px; padding:24px 26px">
+      <h1 id="pw-h1" style="display:inline-block">World Wide Web</h1>
+      <p>The WorldWideWeb (W3) is a wide-area <a id="pw-a">hypermedia</a> information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+    </div>
+  </div>
+  <svg class="abs" id="pw-svg" style="left:0; top:0; pointer-events:none" width="1920" height="1080"></svg>
+  <div class="estado" data-b="1" data-d="0.29" data-fx="fade" data-out="2"><span class="fu">TITLE</span> va en la cabecera: es la pestaña · <span class="az">H1</span> es el titular</div>
+  <div class="estado" data-b="2" data-d="1.49" data-fx="fade" data-out="3"><span class="ci">&lt;A HREF="…"&gt;</span>texto<span class="ci">&lt;/A&gt;</span> · href: a dónde lleva el enlace</div>
+  <div class="estado" data-b="3" data-d="0.9" data-fx="fade">HyperText <span class="az glow">Markup</span> Language · <span class="az">&lt;H1&gt;</span> abre, <span class="az">&lt;/H1&gt;</span> cierra</div>
+</section>
+
+<!-- 10 · Anatomía HTML5 ───────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="anatomia">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">html5</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Del código <span class="az">al árbol</span></h2>
+  <div class="panel" style="left:120px; top:250px; width:800px; height:710px" data-b="0" data-d="0" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>rubrica.html</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" id="an-code" style="font-size:26px; line-height:45px" data-b="0" data-d="6.41" data-fx="type" data-cps="24">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Rúbrica&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Rúbrica&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Claridad&lt;/li&gt;
+      &lt;li&gt;Rigor
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <div class="abs" id="an-fant" style="font-family:var(--mono); font-size:26px; color:var(--fucsia); border:1.5px dashed var(--fucsia); border-radius:6px; padding:0 8px; box-shadow:0 0 18px rgba(255,79,163,.5)" data-b="3" data-d="3.87" data-fx="pop">&lt;/li&gt;</div>
+    </div>
+  </div>
+  <svg class="abs" id="an-arbol" style="left:0; top:0" width="1920" height="1080"></svg>
+  <div class="abs lbl az" style="left:1000px; top:260px" data-b="0" data-d="8.98" data-fx="wipe">&lt;!DOCTYPE html&gt; → versión html5</div>
+  <div class="estado" style="left:920px" data-b="2" data-d="4.68" data-fx="fade" data-out="3">espacios y saltos de línea: el navegador los ignora</div>
+  <div class="estado" style="left:920px" data-b="3" data-d="3.87" data-fx="fade"><span class="fu">falta un cierre</span> → el navegador lo completa</div>
+</section>
+
+<!-- 11 · Práctica ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="practica">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">La práctica</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Del chat <span class="az">al navegador</span></h2>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <path d="M 290 360 L 1630 360" stroke="#2a4674" stroke-width="3" stroke-dasharray="8 10" fill="none" data-b="0" data-d="0" data-fx="fade"/>
+  </svg>
+  <div id="pr-estaciones"></div>
+  <div class="abs" id="pr-doc" style="width:46px; height:58px; border:2px solid var(--cian); border-radius:6px; box-shadow:0 0 18px var(--cian); background:rgba(8,16,30,.9)"></div>
+  <div class="panel" style="left:260px; top:600px; width:1400px; height:320px" data-b="0" data-d="3.55" data-fx="blur" data-out="1" data-outd="-0.2">
+    <div class="cab"><i></i><i></i><i></i><span>notebooklm</span></div>
+    <div class="cuerpo"><div class="prompt" style="position:relative; width:100%; margin-top:50px"><span class="sig">&gt;</span><span data-b="0" data-d="4.05" data-fx="type" data-cps="24">Crea la rúbrica de este tema. <b class="az">Dámelo en HTML.</b></span></div></div>
+  </div>
+  <div class="panel" style="left:260px; top:600px; width:1400px; height:320px" data-b="1" data-d="0" data-fx="blur" data-out="2" data-outd="-0.2">
+    <div class="cab"><i></i><i></i><i></i><span>bloc de notas · guardar como</span></div>
+    <div class="cuerpo" style="font-size:30px; line-height:2.1">
+      <div>Nombre&nbsp;&nbsp;<span style="font-family:var(--mono); border:1.5px solid var(--line2); border-radius:8px; padding:4px 14px">rubrica<b class="az">.html</b></span></div>
+      <div data-b="1" data-d="8.59" data-fx="in">Tipo&nbsp;&nbsp;<span style="font-family:var(--mono); border:1.5px solid var(--azul); border-radius:8px; padding:4px 14px; box-shadow:0 0 16px rgba(78,168,255,.4)">Todos los archivos (*.*)</span> <span class="gris" style="font-size:24px">si no, añade .txt</span></div>
+    </div>
+  </div>
+  <div class="panel" style="left:260px; top:600px; width:1400px; height:320px" data-b="2" data-d="0" data-fx="blur" data-out="3" data-outd="-0.2">
+    <div class="cab"><i></i><i></i><i></i><span>rubrica.html · inspeccionar</span><span class="der" data-b="2" data-d="8.51" data-fx="pop">f5 = volver al fichero</span></div>
+    <div class="abs" style="left:26px; top:72px; width:600px; height:220px; background:#f4f1e8; border-radius:8px; color:#111; padding:18px 24px"><div id="pr-h1" style="font-size:40px; font-weight:800">Rúbrica</div><div style="font-size:26px; margin-top:10px">• Claridad &nbsp; • Rigor</div></div>
+    <div class="abs" style="left:660px; top:72px; right:26px; height:220px; font-family:var(--mono); font-size:22px; line-height:38px; color:#cfe0f7">
+      <div class="lbl" style="font-size:16px">elementos</div>&lt;body&gt;<br><span id="pr-linea" style="padding:2px 6px; border-radius:6px">&nbsp;&nbsp;&lt;h1&gt;<span id="pr-ed">Rúbrica</span>&lt;/h1&gt;</span><br>&nbsp;&nbsp;&lt;ul&gt;…&lt;/ul&gt;<br>&lt;/body&gt;
+    </div>
+  </div>
+  <div class="panel" style="left:260px; top:600px; width:1400px; height:320px" data-b="3" data-d="0" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>gemini · chatgpt · claude</span></div>
+    <div class="abs" style="left:26px; top:80px; width:420px"><div class="prompt" style="position:relative; font-size:24px; height:64px">Simulador de una función, en HTML</div></div>
+    <div class="abs" style="left:480px; top:64px; right:26px; bottom:22px; border:1.5px solid var(--azul); border-radius:12px; box-shadow:0 0 24px rgba(78,168,255,.3)" data-b="3" data-d="4.04" data-fx="wipe">
+      <div class="cab" style="height:40px"><span>canvas / artefacto</span><span class="der" id="pr-copiar">copiar ⧉</span></div>
+      <svg width="880" height="180"><path d="M 20 150 C 150 0, 260 0, 360 90 S 600 200, 860 40" fill="none" stroke="#62e3ff" stroke-width="4" data-b="3" data-d="4.44" data-fx="draw" style="filter:drop-shadow(0 0 8px #62e3ff)"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Tres capas ───────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="capas">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Ejemplo de clase · panel de temperaturas</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Estructura, estilo <span class="az">y comportamiento</span></h2>
+  <div class="panel" id="ca-l0" style="left:120px; top:270px; width:720px; height:190px" data-b="0" data-d="4.17" data-fx="slide">
+    <div class="cab"><span>html</span><span class="der">estructura</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" data-num="no" style="font-size:25px; line-height:40px">&lt;div class="celda"&gt;&lt;/div&gt; × 140</pre></div>
+  </div>
+  <div class="panel" id="ca-l1" style="left:120px; top:490px; width:720px; height:190px" data-b="1" data-d="1.41" data-fx="slide">
+    <div class="cab"><span>css · &lt;style&gt; o fichero aparte</span><span class="der">estilo</span></div>
+    <div class="cuerpo"><pre class="code" data-num="no" style="font-size:25px; line-height:40px"><span style="color:#62e3ff">.celda</span> { border-radius: 8px;
+         background: <span style="color:#ffd58a">var(--T)</span> }</pre></div>
+  </div>
+  <div class="panel" id="ca-l2" style="left:120px; top:710px; width:720px; height:230px" data-b="2" data-d="2.67" data-fx="slide">
+    <div class="cab"><span>javascript · &lt;script&gt;</span><span class="der">comportamiento</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="js" data-num="no" style="font-size:25px; line-height:40px">for (const c of celdas)
+  c.T = media(c.vecinas) // Jacobi</pre></div>
+  </div>
+  <div class="panel" style="left:900px; top:270px; width:900px; height:670px" data-b="0" data-d="4.47" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>simulador.html</span><span class="der" id="ca-it"></span></div>
+    <div class="abs" id="panel-calor" style="left:40px; top:80px; width:820px; height:500px"></div>
+    <div class="abs" style="left:40px; top:600px; width:820px" data-b="2" data-d="8.97" data-fx="fade">
+      <div id="ca-ley" style="height:14px; border-radius:7px"></div>
+      <div style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:20px; color:var(--gris); margin-top:6px"><span>0 °C</span><span>borde superior a 100 °C</span><span>100 °C</span></div>
+    </div>
+  </div>
+  <div class="abs chipl fu" style="left:1200px; top:190px; font-size:24px" data-b="3" data-d="5.86" data-fx="pop">¿react? → «dámelo en html»</div>
+</section>
+
+<!-- 13 · CRUD ─────────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="crud">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Sistemas de información</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">CRUD, <span class="az">con una D distinta</span></h2>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <g font-family="Plus Jakarta Sans" font-weight="800" font-size="260" fill="none" stroke-width="3">
+      <text id="cr-C" x="130" y="560" stroke="#4ea8ff" data-b="0" data-d="2.39" data-fx="draw">C</text>
+      <text id="cr-R" x="560" y="560" stroke="#4ea8ff" data-b="0" data-d="3.02" data-fx="draw">R</text>
+      <text id="cr-U" x="990" y="560" stroke="#4ea8ff" data-b="0" data-d="3.62" data-fx="draw">U</text>
+      <text id="cr-D" x="1420" y="560" stroke="#4ea8ff" data-b="0" data-d="4.22" data-fx="draw">D</text>
+    </g>
+  </svg>
+  <div class="abs" style="left:130px; top:600px; width:380px" data-b="1" data-d="0.05" data-fx="in"><div class="lbl az">create · crear</div><div style="font-size:28px; margin-top:12px; line-height:1.35">Pedir el artefacto: «un simulador de esta función»</div></div>
+  <div class="abs" style="left:560px; top:600px; width:380px" data-b="1" data-d="6.1" data-fx="in"><div class="lbl az">read · leer</div><div style="font-size:28px; margin-top:12px; line-height:1.35">Ver qué te ha dado y entenderlo, más o menos</div></div>
+  <div class="abs" style="left:990px; top:600px; width:380px" data-b="2" data-d="0" data-fx="in"><div class="lbl az">update · actualizar</div><div style="font-size:28px; margin-top:12px; line-height:1.35">Modificarlo o integrarlo, por partes</div></div>
+  <div class="abs" style="left:1420px; top:600px; width:400px" data-b="0" data-d="4.22" data-fx="in" data-out="3" data-outd="1.31"><div class="lbl" id="cr-del">delete · borrar</div></div>
+  <div class="abs" style="left:1420px; top:600px; width:400px" data-b="3" data-d="1.31" data-fx="blur"><div class="lbl fu glow">deploy · desplegar</div><div style="font-size:28px; margin-top:12px; line-height:1.35">Publicarlo para tus estudiantes</div></div>
+  <div class="prompt" style="left:1180px; top:800px; width:620px; font-family:var(--mono); font-size:24px" data-b="3" data-d="3.58" data-fx="in"><span class="sig">https://</span><span data-b="3" data-d="3.88" data-fx="type" data-cps="26">usuario.github.io/simulador.html</span></div>
+  <div class="estado" data-b="3" data-d="7.06" data-fx="fade">publicado por ti: cada píxel lo decides tú, no la plataforma</div>
+</section>
+
+<!-- 14 · Sección 02 ───────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="1" id="sec-herramientas">
+  <svg class="abs" style="left:100px; top:250px" width="700" height="420">
+    <text x="0" y="330" font-family="Plus Jakarta Sans" font-weight="800" font-size="380" fill="none" stroke="#ff4fa3" stroke-width="3" data-b="0" data-d="-0.6" data-fx="draw" data-dur="1.4" style="filter: drop-shadow(0 0 14px rgba(255,79,163,.6))">02</text>
+  </svg>
+  <div class="abs lbl fu" style="left:820px; top:400px" data-b="0" data-d="-0.2" data-fx="wipe">Segunda parte</div>
+  <div class="abs gran" style="left:814px; top:450px" data-b="0" data-d="0" data-fx="blur">Herramientas</div>
+  <div class="abs gris" style="left:820px; top:600px; font-size:34px" data-b="0" data-d="0.4" data-fx="in">VS Code, Roo Code y OpenRouter</div>
+</section>
+
+<!-- 15 · Editores ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="editores">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Editores</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Un editor <span class="az">que trabaja con carpetas</span></h2>
+  <div class="abs" style="left:120px; top:300px; width:430px; font-size:32px; line-height:1">
+    <div id="ed-p0" style="padding:22px 0; border-bottom:1px solid var(--line)"><span class="lbl">01</span>&nbsp;&nbsp;Bloc de notas</div>
+    <div id="ed-p1" style="padding:22px 0; border-bottom:1px solid var(--line)"><span class="lbl">02</span>&nbsp;&nbsp;Notepad++</div>
+    <div id="ed-p2" style="padding:22px 0; border-bottom:1px solid var(--line)"><span class="lbl">03</span>&nbsp;&nbsp;Visual Studio Code</div>
+  </div>
+  <div class="panel" id="ed-ven" style="left:600px; top:270px; width:1200px; height:680px" data-b="0" data-d="1.05" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span id="ed-tit">sin título · bloc de notas</span></div>
+    <div class="abs" id="ed-lat" style="left:0; top:46px; bottom:0; width:0; border-right:1px solid var(--line); background:rgba(6,10,19,.6); overflow:hidden; font-family:var(--mono); font-size:22px; line-height:46px; padding:18px 0">
+      <div style="padding:0 20px; white-space:nowrap" class="lbl">▾ pruebas-24</div>
+      <div id="ed-f0" style="padding:0 40px; white-space:nowrap">inicio.md</div>
+      <div id="ed-f1" style="padding:0 40px; white-space:nowrap">rubrica.html</div>
+      <div id="ed-f2" style="padding:0 40px; white-space:nowrap; color:var(--verde)">capitulo-1.md <b>U</b></div>
+      <div id="ed-f3" style="padding:0 40px; white-space:nowrap; color:var(--verde)">capitulo-2.md <b>U</b></div>
+      <div id="ed-f4" style="padding:0 40px; white-space:nowrap; color:var(--verde)">simulador.html <b>U</b></div>
+    </div>
+    <div class="abs" id="ed-cod" style="left:0; top:46px; right:0; bottom:0; padding:24px 30px">
+      <pre class="code" id="ed-pre" data-num="no" style="font-size:26px; line-height:44px">&lt;h1&gt;Rúbrica&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Claridad&lt;/li&gt;
+  &lt;li&gt;Rigor&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    </div>
+    <div class="abs" id="ed-ia" style="top:46px; right:0; bottom:0; width:0; border-left:1px solid var(--line); background:rgba(6,10,19,.6); overflow:hidden; padding:18px 0">
+      <div style="padding:0 20px; white-space:nowrap" class="lbl az">asistente</div>
+      <div style="margin:16px 20px; border:1.5px solid var(--line2); border-radius:12px; padding:14px; font-size:22px; width:290px; line-height:1.4">Crea un fichero por capítulo</div>
+      <div style="margin:0 20px; font-family:var(--mono); font-size:20px; color:var(--verde); width:290px; line-height:1.6">+ capitulo-1.md<br>+ capitulo-2.md</div>
+    </div>
+  </div>
+  <div class="estado" style="bottom:40px" data-b="2" data-d="5.07" data-fx="fade">los ficheros los editas tú o los crea el asistente · y sigues pidiendo sobre ellos</div>
+</section>
+
+<!-- 16 · Agente ───────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="agente">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Roo Code · extensión de VS Code</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Un agente: <span class="az">un programa que consulta al modelo</span></h2>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <path d="M 330 520 L 640 520" stroke="#2a4674" stroke-width="3" fill="none" data-b="0" data-d="2.5" data-fx="draw"/>
+    <path id="ag-bucle" d="M 1000 470 C 1110 360, 1260 360, 1360 470 C 1260 580, 1110 580, 1000 470" stroke="#2a4674" stroke-width="3" fill="none" data-b="1" data-d="6.4" data-fx="draw"/>
+    <path d="M 820 630 L 820 760" stroke="#2a4674" stroke-width="3" fill="none" data-b="1" data-d="9.8" data-fx="draw"/>
+    <circle id="ag-p1" r="8" fill="#62e3ff" style="filter:drop-shadow(0 0 10px #62e3ff)"/>
+    <circle id="ag-p2" r="8" fill="#ff4fa3" style="filter:drop-shadow(0 0 10px #ff4fa3)"/>
+  </svg>
+  <div class="abs lbl" style="left:1120px; top:350px" data-b="1" data-d="6.4" data-fx="fade">pregunta</div>
+  <div class="abs lbl" style="left:1120px; top:590px" data-b="1" data-d="7.98" data-fx="fade">responde</div>
+  <div class="abs lbl" style="left:840px; top:680px" data-b="1" data-d="9.8" data-fx="fade">lee · escribe</div>
+  <div class="nodo" style="left:170px; top:450px" data-b="0" data-d="0" data-fx="pop"><div class="caja" style="width:150px; height:140px">Tú</div><div class="t">pides</div></div>
+  <div class="nodo" style="left:650px; top:410px" data-b="0" data-d="6.68" data-fx="pop"><div class="caja" id="ag-agente" style="width:340px; height:210px; flex-direction:column; gap:10px"><span class="lbl az">agente</span>Roo Code</div></div>
+  <div class="nodo" style="left:1370px; top:380px" data-b="1" data-d="4.26" data-fx="pop"><div class="caja" style="width:230px; height:180px"><div class="neuronas" id="ag-neur" style="grid-template-columns:repeat(7,14px)"></div></div><div class="t">llm</div></div>
+  <div class="abs" style="left:740px; top:770px; font-family:var(--mono); font-size:26px; border:1.5px solid var(--line2); border-radius:10px; padding:10px 20px; background:var(--panel2)" data-b="1" data-d="9.8" data-fx="pop">inicio.md</div>
+  <div class="abs" style="left:1180px; top:740px; display:flex; gap:14px" data-b="2" data-d="0" data-fx="in" data-out="3" data-outd="-0.3">
+    <span class="chipl" id="ag-m1">architect · planifica</span><span class="chipl" id="ag-m2">code · escribe</span>
+  </div>
+  <div class="abs" style="left:1180px; top:820px; font-family:var(--mono); font-size:26px" data-b="2" data-d="5.98" data-fx="in" data-out="3" data-outd="-0.3"><span class="fu">@inicio.md</span> escribe la estructura…</div>
+  <div class="panel" style="left:1180px; top:720px; width:620px; height:210px" data-b="3" data-d="0" data-fx="blur">
+    <div class="cab"><span>inicio.md · cambios propuestos</span></div>
+    <div style="font-family:var(--mono); font-size:24px; line-height:40px; padding:10px 0">
+      <div style="background:rgba(69,224,160,.12); color:var(--verde); padding:0 18px" data-b="3" data-d="1.31" data-fx="wipe">+ ## 1. Primeros pasos</div>
+      <div style="background:rgba(69,224,160,.12); color:var(--verde); padding:0 18px" data-b="3" data-d="1.61" data-fx="wipe">+ - Qué es HTML</div>
+      <div style="background:rgba(255,107,122,.12); color:var(--rojo); padding:0 18px; text-decoration:line-through" data-b="3" data-d="2.96" data-fx="wipe">- (borrador)</div>
+    </div>
+  </div>
+  <div class="abs chipl" style="left:1180px; top:955px" data-b="3" data-d="5.29" data-fx="pop">aprobación automática: <b class="fu">off</b></div>
+</section>
+
+<!-- 17 · OpenRouter ───────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="4" id="openrouter">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">El modelo detrás del agente</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Una clave, <span class="az">cientos de modelos</span></h2>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <path d="M 470 420 L 700 420" stroke="#2a4674" stroke-width="3" fill="none" data-b="0" data-d="6.8" data-fx="draw"/>
+    <g stroke="#2a4674" stroke-width="3" fill="none">
+      <path id="or-p0" d="M 1000 420 C 1090 420, 1090 290, 1180 290" data-b="0" data-d="8.67" data-fx="draw"/>
+      <path id="or-p1" d="M 1000 420 C 1090 420, 1090 375, 1180 375" data-b="0" data-d="8.82" data-fx="draw"/>
+      <path id="or-p2" d="M 1000 420 C 1090 420, 1090 465, 1180 465" data-b="0" data-d="8.97" data-fx="draw"/>
+      <path id="or-p3" d="M 1000 420 C 1090 420, 1090 550, 1180 550" data-b="0" data-d="9.12" data-fx="draw"/>
+    </g>
+    <circle id="or-d0" r="7" fill="#62e3ff" style="filter:drop-shadow(0 0 8px #62e3ff)"/><circle id="or-d1" r="7" fill="#62e3ff" style="filter:drop-shadow(0 0 8px #62e3ff)"/>
+    <circle id="or-d2" r="7" fill="#62e3ff" style="filter:drop-shadow(0 0 8px #62e3ff)"/><circle id="or-d3" r="7" fill="#62e3ff" style="filter:drop-shadow(0 0 8px #62e3ff)"/>
+  </svg>
+  <div class="abs chipl az" style="left:150px; top:396px; font-size:24px" data-b="0" data-d="9.86" data-fx="pop">clave · sk-or-••••</div>
+  <div class="abs" style="left:150px; top:470px; font-family:var(--mono); font-size:22px" data-b="1" data-d="1.94" data-fx="in"><span class="gris">límite:</span> <b class="fu">2 €</b> por participante</div>
+  <div class="nodo" style="left:700px; top:360px" data-b="0" data-d="6.8" data-fx="pop"><div class="caja" style="width:300px; height:120px; border-color:var(--azul); box-shadow:0 0 40px rgba(78,168,255,.35)">OpenRouter</div></div>
+  <div class="abs" style="left:1200px; top:268px; font-size:30px; line-height:85px" data-b="0" data-d="9.17" data-fx="fade">OpenAI<br>Anthropic<br>Google<br>DeepSeek</div>
+  <div class="abs lbl" style="left:1420px; top:540px" data-b="0" data-d="11.03" data-fx="wipe">+ cientos más</div>
+  <div class="panel" style="left:120px; top:640px; width:760px; height:300px" data-b="2" data-d="1.56" data-fx="blur">
+    <div class="cab"><span>precio en la sesión</span><span class="der">por millón de tokens</span></div>
+    <div class="cuerpo" style="font-family:var(--mono)">
+      <div style="font-size:30px; font-weight:700">DeepSeek V3.2</div>
+      <div style="display:flex; gap:60px; margin-top:20px">
+        <div><div class="lbl">entrada</div><div class="az glow" style="font-size:58px; font-weight:700" data-b="2" data-d="8.55" data-fx="count" data-to="0.27" data-dec="2" data-suf=" $">0</div></div>
+        <div><div class="lbl">salida</div><div class="fu glow" style="font-size:58px; font-weight:700" data-b="2" data-d="9.43" data-fx="count" data-to="0.40" data-dec="2" data-suf=" $">0</div></div>
+      </div>
+      <div class="gris" style="font-size:18px; margin-top:14px">los precios cambian</div>
+    </div>
+  </div>
+  <div class="panel" style="left:920px; top:640px; width:880px; height:300px" data-b="2" data-d="10.29" data-fx="blur">
+    <div class="cab"><span>una consulta</span><span class="der">2.000 entrada + 1.000 salida</span></div>
+    <div class="cuerpo" style="font-family:var(--mono); font-size:26px; line-height:1.7">
+      <div class="gris">2.000 × 0,27/10⁶ + 1.000 × 0,40/10⁶</div>
+      <div style="font-size:64px; font-weight:700" class="ci glow" data-b="2" data-d="11.09" data-fx="count" data-to="0.00094" data-dec="5" data-suf=" $">0</div>
+      <div class="gris" style="font-size:22px">décimas de céntimo</div>
+    </div>
+  </div>
+  <div class="estado" style="bottom:40px" data-b="3" data-d="0.76" data-fx="fade">la suscripción de la universidad <span class="fu">no cubre la API</span>: se paga aparte, por uso</div>
+</section>
+
+<!-- 18 · Markdown ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="markdown">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Primera prueba con el agente</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Markdown: <span class="az">HTML simplificado</span></h2>
+  <div class="prompt" style="left:120px; top:250px; width:1680px; font-size:26px" data-b="0" data-d="4.74" data-fx="in"><span class="sig fu">@inicio.md</span><span data-b="0" data-d="5.04" data-fx="type" data-cps="30">Escribe la estructura de un curso de cuatro capítulos sobre HTML para principiantes, del inicio a las tablas.</span></div>
+  <div class="panel" style="left:120px; top:360px; width:800px; height:590px" data-b="1" data-d="-0.2" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>inicio.md</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="md" id="md-code" style="font-size:26px; line-height:44px" data-b="1" data-d="0.1" data-fx="type" data-cps="24"># Curso de HTML para principiantes
+
+## 1. Primeros pasos
+- Qué es HTML
+- Tu primer fichero .html
+## 2. Texto y enlaces
+## 3. Imágenes y listas
+## 4. Tablas</pre></div>
+  </div>
+  <div class="panel" style="left:1000px; top:360px; width:800px; height:590px" data-b="2" data-d="0.37" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>vista previa</span></div>
+    <div class="cuerpo">
+      <div id="md-h1" style="font-size:40px; font-weight:800; display:inline-block">Curso de HTML para principiantes</div>
+      <div><div id="md-h2" style="font-size:32px; font-weight:700; color:var(--azul); margin-top:22px; display:inline-block">1. Primeros pasos</div></div>
+      <div><div id="md-li" style="font-size:27px; line-height:1.6; margin-top:6px; display:inline-block">• Qué es HTML<br>• Tu primer fichero .html</div></div>
+      <div style="font-size:32px; font-weight:700; color:var(--azul); margin-top:12px"><span data-b="2" data-d="8.73" data-fx="fade" style="text-decoration:underline; text-underline-offset:6px">2. Texto y enlaces</span></div>
+      <div style="font-size:32px; font-weight:700; color:var(--azul); margin-top:8px">3. Imágenes y listas</div>
+      <div style="font-size:32px; font-weight:700; color:var(--azul); margin-top:8px">4. Tablas</div>
+    </div>
+  </div>
+  <svg class="abs" id="md-svg" style="left:0; top:0" width="1920" height="1080"></svg>
+  <div class="fuente" data-b="1" data-d="2" data-fx="fade">ejemplo ilustrativo · la salida de cada modelo varía</div>
+</section>
+
+<!-- 19 · SVG ──────────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="svg">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Gráficos vectoriales</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">SVG: <span class="az">un dibujo escrito en texto</span></h2>
+  <div class="panel" style="left:120px; top:270px; width:820px; height:500px" data-b="0" data-d="0" data-fx="blur">
+    <div class="cab"><i></i><i></i><i></i><span>esquema.svg</span></div>
+    <div class="cuerpo"><pre class="code" data-hl="html" id="svg-code" style="font-size:24px; line-height:48px" data-b="0" data-d="0.4" data-fx="type" data-cps="30">&lt;svg viewBox="0 0 600 300"&gt;
+  &lt;rect x="60" y="100"
+        width="<span id="sv-w">200</span>" height="100"
+        fill="<span id="sv-f">#4ea8ff</span>"/&gt;
+  &lt;circle cx="450" cy="150" r="70"/&gt;
+&lt;/svg&gt;</pre></div>
+  </div>
+  <div class="panel" style="left:1000px; top:270px; width:800px; height:500px" data-b="0" data-d="6.02" data-fx="blur">
+    <div class="cab"><span>lienzo 600 × 300</span><span class="der" id="sv-coord"></span></div>
+    <svg class="abs" id="sv-lienzo" style="left:40px; top:80px" width="720" height="380" viewBox="-40 -30 680 380"></svg>
+  </div>
+  <div class="estado" style="bottom:230px" data-b="1" data-d="2.27" data-fx="fade">cambias <span class="az">fill</span> o <span class="az">width</span> en el código → el dibujo cambia</div>
+  <div class="abs" style="left:120px; top:880px; display:flex; gap:18px">
+    <span class="chipl az" data-b="1" data-d="6.49" data-fx="pop">✓ esquemas y diagramas</span>
+    <span class="chipl" data-b="1" data-d="8.05" data-fx="pop">✕ fotos</span>
+    <span class="chipl fu" data-b="2" data-d="8.69" data-fx="pop">json → septiembre</span>
+  </div>
+</section>
+
+<!-- 20 · Sección 03 ───────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="1" id="sec-tarea">
+  <svg class="abs" style="left:100px; top:250px" width="700" height="420">
+    <text x="0" y="330" font-family="Plus Jakarta Sans" font-weight="800" font-size="380" fill="none" stroke="#62e3ff" stroke-width="3" data-b="0" data-d="-0.6" data-fx="draw" data-dur="1.4" style="filter: drop-shadow(0 0 14px rgba(98,227,255,.6))">03</text>
+  </svg>
+  <div class="abs lbl ci" style="left:820px; top:400px" data-b="0" data-d="-0.2" data-fx="wipe">Para terminar</div>
+  <div class="abs gran" style="left:814px; top:450px" data-b="0" data-d="0" data-fx="blur">La tarea</div>
+  <div class="abs gris" style="left:820px; top:600px; font-size:34px" data-b="0" data-d="0.4" data-fx="in">Cinco simuladores y una página que los reúne</div>
+</section>
+
+<!-- 21 · Tarea ────────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="3" id="tarea">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">La tarea</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Cinco simuladores <span class="az">en HTML</span></h2>
+  <div class="panel" id="ta-marco" style="left:540px; top:230px; width:1280px; height:790px" data-b="2" data-d="1.32" data-fx="fade">
+    <div class="cab"><i></i><i></i><i></i><span>cuaderno.html</span><span class="der">4 + 1</span></div>
+  </div>
+  <canvas id="ta-canvas" class="abs" width="1920" height="1080" style="left:0; top:0"></canvas>
+  <div class="abs" style="left:120px; top:290px; width:380px; font-size:30px; line-height:1.4" data-b="0" data-d="2.98" data-fx="slide"><div class="lbl az">4 sencillos</div><div style="margin-top:10px">Salen a la primera: <span class="gris">para perderle el miedo</span></div></div>
+  <div class="abs" style="left:120px; top:640px; width:380px; font-size:30px; line-height:1.4" data-b="1" data-d="0.28" data-fx="slide"><div class="lbl fu">1 de tu asignatura</div><div style="margin-top:10px">Más pensado; <span class="gris">el prompt, unas pocas líneas</span></div></div>
+</section>
+
+<!-- 22 · Material ─────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="2" id="material">
+  <div class="cabeza lbl" data-b="0" data-d="-0.5" data-fx="wipe">Material del curso</div>
+  <h2 class="h" data-b="0" data-d="-0.3" data-fx="blur">Dónde está <span class="az">todo</span></h2>
+  <div class="prompt" style="left:120px; top:270px; width:1000px; font-family:var(--mono); font-size:30px" data-b="0" data-d="0.71" data-fx="in"><span class="sig">https://</span><span data-b="0" data-d="1.01" data-fx="type" data-cps="18">nicolasserrano.com</span></div>
+  <svg class="abs" style="left:0; top:0" width="1920" height="1080">
+    <path d="M 170 346 L 170 430 L 220 430" stroke="#2a4674" stroke-width="3" fill="none" data-b="0" data-d="2.68" data-fx="draw" data-dur="0.5"/>
+    <path d="M 250 460 L 250 540 L 300 540" stroke="#2a4674" stroke-width="3" fill="none" data-b="0" data-d="4.82" data-fx="draw" data-dur="0.5"/>
+  </svg>
+  <div class="abs" style="left:240px; top:410px; font-size:32px" data-b="0" data-d="2.68" data-fx="slide">Creación de contenido digital</div>
+  <div class="abs az glow" style="left:320px; top:520px; font-size:34px; font-weight:700" data-b="0" data-d="4.82" data-fx="slide">Publicación web</div>
+  <div class="abs" style="left:320px; top:600px; display:grid; grid-template-columns:repeat(4, 340px); gap:20px">
+    <div class="panel" style="position:relative; height:170px" data-b="0" data-d="5.85" data-fx="pop"><div class="cuerpo"><div style="font-size:38px; font-weight:800">HTML</div><div class="lbl" style="margin-top:12px">≈ 30 min de vídeo</div></div></div>
+    <div class="panel" style="position:relative; height:170px" data-b="0" data-d="6.91" data-fx="pop"><div class="cuerpo"><div style="font-size:38px; font-weight:800">CSS</div><div class="lbl" style="margin-top:12px">≈ 30 min de vídeo</div></div></div>
+    <div class="panel" style="position:relative; height:170px" data-b="0" data-d="7.67" data-fx="pop"><div class="cuerpo"><div style="font-size:38px; font-weight:800">JavaScript</div><div class="lbl" style="margin-top:12px">≈ 30 min de vídeo</div></div></div>
+    <div class="panel fu" style="position:relative; height:170px" data-b="0" data-d="12.09" data-fx="pop"><div class="cuerpo"><div style="font-size:38px; font-weight:800">GitHub</div><div class="lbl fu" style="margin-top:12px">paso a paso</div></div></div>
+  </div>
+  <div class="abs" style="left:120px; top:850px; font-size:40px; font-weight:700" data-b="1" data-d="0" data-fx="blur">No se trata de programar: <span class="az glow">se trata de reconocer lo que te da la IA.</span></div>
+</section>
+
+<!-- 23 · Cierre ───────────────────────────────────────────────────────────── -->
+<section class="escena" data-pasos="1" id="cierre">
+  <div class="abs lbl az" style="left:120px; top:330px" data-b="0" data-d="-0.4" data-fx="wipe">En resumen</div>
+  <div class="abs" style="left:116px; top:380px; width:1700px; font-size:92px; font-weight:800; line-height:1.08; letter-spacing:-2px">
+    <span data-b="0" data-d="-0.2" data-fx="blur" style="display:inline-block">Pide la salida en un formato</span>
+    <span data-b="0" data-d="2.54" data-fx="blur" style="display:inline-block">que puedas</span>
+    <span class="az glow" data-b="0" data-d="2.84" data-fx="pop" style="display:inline-block">leer,</span>
+    <span class="az glow" data-b="0" data-d="3.39" data-fx="pop" style="display:inline-block">cambiar</span>
+    <span data-b="0" data-d="3.71" data-fx="fade" style="display:inline-block">y</span>
+    <span class="fu glow" data-b="0" data-d="3.81" data-fx="pop" style="display:inline-block">publicar.</span>
+  </div>
+  <div class="abs lbl" style="left:120px; top:720px" data-b="0" data-d="4.61" data-fx="wipe">sesión del 24 de julio de 2026 · formatos y herramientas</div>
+</section>
+</div>
+
+<script>
+// Motor de animación de la presentación. Cada escena tiene pasos (data-pasos); un elemento con
+// data-b="n" se anima cuando se llega al paso n, con data-d segundos de retraso.
+// data-fx: in | fade | pop | blur | slide | grow | growY | wipe | wipeY | draw | type | count
+// data-out / data-outd: paso (y retraso) en que el elemento se va.
+
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const easeOut = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const easeIO = (x) => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const easeBack = (x) => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, p) => a + (b - a) * p;
+const hex = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
+const mix = (c1, c2, p) => "#" + hex(c1).map((v, i) => Math.round(lerp(v, hex(c2)[i], clamp(p))).toString(16).padStart(2, "0")).join("");
+const rampa = (stops, x) => { x = clamp(x) * (stops.length - 1); const k = Math.min(stops.length - 2, Math.floor(x)); return mix(stops[k], stops[k + 1], x - k); };
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+// Generador pseudoaleatorio con semilla (mulberry32)
+const azar = (semilla) => () => { semilla |= 0; semilla = (semilla + 0x6D2B79F5) | 0; let t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const numES = (v, dec = 0, sep = true) => { const [e, d] = v.toFixed(dec).split("."); const ent = sep ? e.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : e; return d ? `${ent},${d}` : ent; };
+
+const items = {}; const hooks = {};
+
+// Resaltado de código (HTML, Markdown, JS) con números de línea
+function resaltar(pre) {
+  const lang = pre.dataset.hl;
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const guard = []; const html = pre.innerHTML.replace(/<span id="[^"]+">[^<]*<\/span>/g, (m) => { guard.push(m); return `\u0001${guard.length - 1}\u0001`; });
+  const txt = new DOMParser().parseFromString(`<pre>${html}</pre>`, "text/html").body.textContent;
+  let out;
+  if (lang === "html") {
+    out = esc(txt).replace(/(&lt;\/?)([!A-Za-z0-9]+)((?:.|\n)*?)(\/?&gt;)/g, (m, a, tag, attrs, z) =>
+      `<span class="tg">${a}${tag}</span>` + attrs.replace(/([A-Za-z0-9-]+)(=)("[^"]*"|[^\s"&]+)/g, '<span class="at">$1$2</span><span class="st">$3</span>') + `<span class="tg">${z}</span>`);
+  } else if (lang === "md") {
+    out = esc(txt).split("\n").map((l) => l.replace(/^(#+|-)(\s)/, '<span class="mk">$1</span>$2')).join("\n");
+  } else if (lang === "js") {
+    out = esc(txt).replace(/\b(for|const|let|return|function)\b/g, '<span class="tg">$1</span>').replace(/(\/\/.*)/g, '<span class="cm">$1</span>');
+  } else out = esc(txt);
+  out = out.replace(/\u0001(\d+)\u0001/g, (m, i) => guard[+i]);
+  const num = pre.dataset.num !== "no";
+  pre.innerHTML = out.split("\n").map((l, i) => (num ? `<span class="nl">${i + 1}</span>` : "") + `<span class="ln">${l}</span>`).join("\n");
+}
+
+function preparar() {
+  $$("pre[data-hl]").forEach(resaltar);
+  $$(".escena").forEach((sc) => {
+    items[sc.id] = $$("[data-b]", sc).map((el) => {
+      const fx = el.dataset.fx || "in";
+      const it = { el, fx, b: +el.dataset.b, d: +(el.dataset.d || 0),
+        dur: +(el.dataset.dur || ({ draw: 1.1, count: 1.4, grow: 0.9, growY: 0.9, wipe: 0.8 }[fx] || 0.7)),
+        out: el.dataset.out != null ? +el.dataset.out : null, outd: +(el.dataset.outd || 0) };
+      if (fx === "type") {
+        const nodes = []; const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        while (w.nextNode()) nodes.push([w.currentNode, w.currentNode.nodeValue]);
+        it.nodes = nodes; it.total = nodes.reduce((s, [, v]) => s + v.length, 0); it.cps = +(el.dataset.cps || 30);
+        it.caret = document.createElement("span"); it.caret.className = "caret";
+      }
+      if (fx === "draw") { it.len = el.getTotalLength ? el.getTotalLength() : 1000; el.style.strokeDasharray = it.len; }
+      if (fx === "count") { it.to = +el.dataset.to; it.from = +(el.dataset.from || 0); it.dec = +(el.dataset.dec || 0); it.suf = el.dataset.suf || ""; it.pre = el.dataset.pre || ""; it.sep = el.dataset.sep !== "no"; }
+      return it;
+    });
+  });
+}
+
+// Cuánto dura un paso: hasta que acaba la última animación que empieza en él
+function finDelPaso(id, k) {
+  let fin = 0;
+  for (const it of items[id]) if (it.b === k) fin = Math.max(fin, it.d + (it.fx === "type" ? it.total / it.cps : it.dur));
+  return fin;
+}
+
+function aplicar(it, tl, cue) {
+  const t0 = cue(it.b) + it.d; const s = it.el.style;
+  const raw = (tl - t0) / it.dur; const p = easeOut(raw);
+  let op = 1, tr = "", fi = "";
+  switch (it.fx) {
+    case "in": op = p; tr = `translateY(${(1 - p) * 22}px)`; break;
+    case "fade": op = p; break;
+    case "pop": op = p; tr = `scale(${lerp(0.82, 1, easeBack(raw))})`; break;
+    case "blur": op = p; fi = `blur(${(1 - p) * 14}px)`; tr = `scale(${lerp(1.06, 1, p)})`; break;
+    case "slide": op = p; tr = `translateX(${(1 - p) * -60}px)`; break;
+    case "grow": s.transformOrigin = s.transformOrigin || "left center"; tr = `scaleX(${easeIO(raw)})`; op = tl >= t0 ? 1 : 0; break;
+    case "growY": s.transformOrigin = "center bottom"; tr = `scaleY(${easeIO(raw)})`; op = tl >= t0 ? 1 : 0; break;
+    case "wipe": s.clipPath = `inset(0 ${(1 - easeIO(raw)) * 100}% 0 0)`; break;
+    case "wipeY": s.clipPath = `inset(${(1 - easeIO(raw)) * 100}% 0 0 0)`; break;
+    case "draw": s.strokeDashoffset = it.len * (1 - easeIO(raw)); op = tl >= t0 ? 1 : 0; break;
+    case "count": { op = tl >= t0 - 0.05 ? 1 : 0; const v = lerp(it.from, it.to, easeOut(raw)); it.el.textContent = it.pre + numES(v, it.dec, it.sep) + it.suf; break; }
+    case "type": {
+      op = tl >= t0 - 0.01 ? 1 : 0;
+      let n = Math.floor(Math.max(0, tl - t0) * it.cps);
+      for (const [node, v] of it.nodes) { node.nodeValue = v.slice(0, Math.max(0, n)); n -= v.length; }
+      const escribiendo = tl >= t0 && (tl - t0) * it.cps < it.total;
+      if (escribiendo) { const last = it.nodes.find(([node, v]) => node.nodeValue.length < v.length) || it.nodes.at(-1); if (last[0].parentNode) last[0].parentNode.insertBefore(it.caret, last[0].nextSibling); }
+      else if (it.caret.parentNode) it.caret.remove();
+      break;
+    }
+  }
+  if (it.out != null) { const q = easeOut((tl - (cue(it.out) + it.outd)) / 0.5); op *= 1 - q; if (q > 0 && !fi) fi = `blur(${q * 8}px)`; }
+  s.opacity = op; if (tr) s.transform = tr; if (fi || s.filter) s.filter = fi;
+}
+
+</script>
+<script>
+// Animaciones propias de cada escena. Cada hook recibe (tl, cue, root): tiempo dentro de la
+// escena, inicio de cada frase y el <section>. Todo depende solo de tl: fotogramas deterministas.
+
+// ─── Fondo común: la rejilla deriva y el grano cambia en cada fotograma ─────
+{
+  const cv = $("#grano"), g = cv.getContext("2d"), img = g.createImageData(1000, 580), r = azar(7);
+  for (let i = 0; i < img.data.length; i += 4) { const v = r() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+  g.putImageData(img, 0, 0);
+}
+window.fondo = (t) => {
+  $("#fondo").style.transform = `translate(${(t * 6) % 44}px, ${(t * 3) % 44}px)`;
+  // El grano queda fijo: si cambiara en cada fotograma, el vídeo no se podría comprimir (pesaba 2,2 GB).
+};
+
+// ─── Utilidades ─────────────────────────────────────────────────────────
+const svgNS = "http://www.w3.org/2000/svg";
+function neuronas(el, n) { el.innerHTML = "<i></i>".repeat(n); }
+function encender(el, t, activo, semilla, color = "#62e3ff") {
+  const r = azar(semilla + Math.floor(t * 9));
+  $$("i", el).forEach((i) => { const on = activo && r() < 0.35; i.style.background = on ? color : "transparent"; i.style.borderColor = on ? color : "#2a4674"; i.style.boxShadow = on ? `0 0 10px ${color}` : "none"; });
+}
+function punto(el, path, d) { const L = path.getTotalLength(); const P = path.getPointAtLength(((d % L) + L) % L); el.setAttribute("cx", P.x); el.setAttribute("cy", P.y); }
+function linea(svg, d, color, ancho = 2.5) {
+  const p = document.createElementNS(svgNS, "path");
+  p.setAttribute("d", d); p.setAttribute("stroke", color); p.setAttribute("stroke-width", ancho); p.setAttribute("fill", "none");
+  p.style.filter = `drop-shadow(0 0 6px ${color})`; svg.appendChild(p);
+  const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; return p;
+}
+const trazar = (p, prog) => { const L = parseFloat(p.style.strokeDasharray); p.style.strokeDashoffset = L * (1 - easeIO(prog)); };
+// Posición de un elemento en coordenadas de la escena (1920 × 1080), aunque la cámara esté escalada.
+function enEscena(root, el) {
+  const r0 = root.getBoundingClientRect(), r = el.getBoundingClientRect(), k = r0.width / 1920;
+  return { x: (r.left - r0.left) / k, y: (r.top - r0.top) / k, w: r.width / k, h: r.height / k };
+}
+
+// ─── 2 · curso: un pulso recorre las fases; la de hoy se enciende ─────────
+hooks.curso = (tl, cue) => {
+  const p = $("#cu-pulso"), path = $("#cu-linea"), L = path.getTotalLength();
+  if (tl < 1.8) p.style.opacity = 0; else { p.style.opacity = 1; const P = path.getPointAtLength(((tl - 1.8) * 260) % L); p.setAttribute("cx", P.x); p.setAttribute("cy", P.y); }
+  const act = tl >= cue(3);
+  $("#cu-f2").classList.toggle("activo", act);
+  $("#cu-f1").style.filter = act ? "brightness(.55)" : ""; $("#cu-f3").style.filter = act ? "brightness(.55)" : "";
+};
+
+// ─── 3 · sección: una línea barre la pantalla ─────────────────────────────
+hooks["sec-formatos"] = (tl) => { const s = $("#sf-scan"); s.style.top = `${lerp(160, 920, easeIO(tl / 2.2))}px`; s.style.opacity = tl < 2.4 ? 1 : 0; };
+
+// ─── 4 · tokens: la frase se parte en sus tokens reales y cada uno recibe su número ─
+const TOKS = [["Los", 16593], [" agit", 109598], ["adores", 7151], [" m", 284], ["ue", 466], ["ven", 1066], [" el", 650], [" líquido", 94998]];
+$("#tk-frase").innerHTML = TOKS.map(([t], i) => `<span class="tok" style="display:inline-block; position:relative; white-space:pre; border-radius:10px; border:2px solid transparent"><span class="ix" style="position:absolute; left:50%; top:-40px; transform:translateX(-50%); font-family:var(--mono); font-size:20px; color:var(--gris)">${i}</span>${t}<span class="id" style="position:absolute; left:50%; top:122px; transform:translateX(-50%); font-family:var(--mono); font-size:28px; color:var(--cian)"></span></span>`).join("");
+neuronas($("#tk-neur"), 36);
+const tkLineas = [];
+hooks.tokens = (tl, cue, root) => {
+  const pSplit = easeIO((tl - cue(1) - 0.83) / 1.2);
+  const tn = cue(2) + 1.62, tc = cue(2) + 2.9;
+  const toks = $$(".tok", root);
+  toks.forEach((c, i) => {
+    c.style.margin = `0 ${pSplit * 12}px`; c.style.padding = `0 ${pSplit * 10}px`;
+    c.style.borderColor = `rgba(78,168,255,${pSplit})`; c.style.background = `rgba(78,168,255,${0.08 * pSplit})`;
+    c.style.boxShadow = pSplit > 0 ? `0 0 ${18 * pSplit}px rgba(78,168,255,${0.35 * pSplit})` : "none";
+    c.querySelector(".ix").style.opacity = pSplit;
+    const q = (tl - tn - i * 0.16) / 0.9, id = c.querySelector(".id");
+    id.style.opacity = clamp(q * 3); id.textContent = q > 0 ? String(Math.round(TOKS[i][1] * easeOut(q))) : "";
+  });
+  $("#tk-modo").textContent = pSplit > 0.5 ? "tokens" : "texto";
+  const svg = $("#tk-svg");
+  if (!tkLineas.length && tl > tn) {   // la frase ya está partida: se trazan las líneas al modelo
+    toks.forEach((c) => { const b = enEscena(root, c); const x = b.x + b.w / 2; tkLineas.push(linea(svg, `M ${x} 540 C ${x} 620, 960 610, 960 668`, "#62e3ff", 1.8)); });
+  }
+  tkLineas.forEach((p, i) => trazar(p, (tl - tc - i * 0.08) / 0.8));
+  encender($("#tk-neur"), tl, tl > tc + 0.8, 11);
+};
+
+// ─── 5 · texto: una diapositiva que es una imagen frente a un texto que se edita ─
+{
+  const g = $("#tx-pix").getContext("2d"), r = azar(3);
+  for (let y = 0; y < 340; y += 20) for (let x = 0; x < 640; x += 20) {
+    const titulo = y >= 40 && y < 100 && x >= 40 && x < 460;
+    const renglon = (y === 160 || y === 220 || y === 280) && x >= 40 && x < 40 + 20 * Math.floor(12 + r() * 6);
+    const fig = x >= 480 && x < 600 && y >= 140 && y < 300;
+    g.fillStyle = titulo ? "#e9f0fb" : renglon ? "#8ea3c0" : fig ? (r() < 0.5 ? "#ff4fa3" : "#4ea8ff") : r() < 0.08 ? "#1b2d4b" : "#0d1830";
+    g.fillRect(x + 1, y + 1, 18, 18);
+  }
+}
+hooks.texto = (tl, cue) => {
+  const t0 = cue(1) + 5.24, orig = "Rúbrica", nuevo = "Rúbrica del tema 3";
+  $("#tx-edit").firstChild.nodeValue = tl < t0 ? orig : nuevo.slice(0, Math.max(orig.length, Math.min(nuevo.length, Math.floor((tl - t0) * 14))));
+  $("#tx-der").classList.toggle("activo", tl > cue(1) + 0.5);
+  $("#tx-izq").classList.toggle("fu", tl > cue(0) + 11.32 && tl < cue(1) + 0.5);
+};
+
+// ─── 6 · mapa: el botón se estructura, se estiliza y responde ─────────────
+hooks.mapa = (tl, cue) => {
+  const b = $("#mp-boton");
+  const pc = easeOut((tl - cue(0) - 4.03) / 0.7), pj = tl - cue(0) - 4.76;
+  b.style.border = `1.5px solid ${pc > 0 ? mix("#8ea3c0", "#4ea8ff", pc) : "#8ea3c0"}`;
+  b.style.background = `rgba(78,168,255,${0.18 * pc})`; b.style.color = mix("#e9f0fb", "#62e3ff", pc);
+  b.style.boxShadow = pc > 0 ? `0 0 ${26 * pc}px rgba(78,168,255,.45)` : "none";
+  const clic = pj > 0 ? (pj % 1.6) / 1.6 : -1;
+  const pulsado = clic >= 0 && clic < 0.12;
+  b.style.transform = pulsado ? "scale(.94)" : "scale(1)"; if (pulsado) b.style.background = "rgba(255,79,163,.35)";
+  $("#mp-env").style.transform = `scale(${1 + 0.12 * Math.max(0, Math.sin(tl * 5))})`;
+};
+
+// ─── 7 · historia: un cabezal recorre los años ────────────────────────────
+const X = (a) => 160 + (a - 1965) * (1600 / 30);
+{
+  const g = $("#hi-marcas");
+  for (let a = 1965; a <= 1995; a += 5) g.insertAdjacentHTML("beforeend", `<line x1="${X(a)}" y1="508" x2="${X(a)}" y2="532" stroke="#2a4674" stroke-width="2"/><text x="${X(a)}" y="560" text-anchor="middle" font-family="JetBrains Mono" font-size="18" fill="#4c607d">${a}</text>`);
+  [[1969, "#8ea3c0"], [1989.2, "#4ea8ff"], [1990.95, "#4ea8ff"], [1991.6, "#4ea8ff"], [1993.33, "#ff4fa3"]].forEach(([a, c], i) =>
+    g.insertAdjacentHTML("beforeend", `<circle id="hi-p${i}" cx="${X(a)}" cy="520" r="0" fill="${c}" style="filter:drop-shadow(0 0 8px ${c})"/>`));
+}
+hooks.historia = (tl, cue) => {
+  const k = [[0, 1965], [cue(0) + 5.54, 1969], [cue(1) + 2.22, 1989.2], [cue(2) + 0.22, 1990.95],
+    [cue(2) + 7.07, 1991.6], [cue(2) + 10.24, 1993.33]];
+  let a = 1965;
+  for (let i = 1; i < k.length; i++) if (tl >= k[i][0] - 1.2) a = lerp(k[i - 1][1], k[i][1], easeIO((tl - k[i][0] + 1.2) / 1.2));
+  $("#hi-anyo").textContent = Math.floor(a);
+  const c = $("#hi-cabezal"); c.setAttribute("x1", X(a)); c.setAttribute("x2", X(a)); c.style.opacity = tl > 1.2 ? 1 : 0;
+  k.slice(1).forEach(([t0], i) => $(`#hi-p${i}`).setAttribute("r", 9 * clamp(easeBack((tl - t0) / 0.5), 0, 1.3)));
+};
+
+// ─── 8 · HTTP: paquetes que van y vuelven; la página se pinta ─────────────
+const RECURSOS = [["GET /", "index.html"], ["GET estilo.css", "estilo.css"], ["GET script.js", "script.js"], ["GET foto.jpg", "foto.jpg"]];
+RECURSOS.forEach(([ida, vuelta], i) => $("#ht-paquetes").insertAdjacentHTML("beforeend", `<div class="paquete" id="pq${i}">${ida}</div><div class="paquete vuelta" id="pr${i}">${vuelta}</div>`));
+$("#ht-pag").innerHTML = `<div id="hp-txt" style="position:absolute; inset:0; padding:14px; font-family:'Times New Roman',serif; font-size:24px; color:#111; background:#fff"><div id="hp-h1" style="font-size:36px; font-weight:700">Departamento</div><div>Asignaturas · Horarios · Contacto</div></div><div id="hp-img" style="position:absolute; right:18px; bottom:18px; width:170px; height:130px; border-radius:10px; background:linear-gradient(135deg,#4ea8ff,#ff4fa3)"></div><div id="hp-btn" style="position:absolute; left:18px; bottom:18px; width:190px; height:52px; border-radius:10px; background:#4ea8ff; color:#041022; font-weight:800; font-size:24px; display:flex; align-items:center; justify-content:center">Simular</div>`;
+function viaje(el, tl, t0, dur, ida, y) {
+  const p = (tl - t0) / dur;
+  if (p < 0 || p > 1.05) { el.style.opacity = 0; return p > 1; }
+  const e = easeIO(p), x = ida ? lerp(700, 1080, e) : lerp(1080, 700, e);
+  el.style.opacity = clamp(Math.min(p * 8, (1.05 - p) * 8)); el.style.left = x + "px"; el.style.top = y + "px";
+  return false;
+}
+hooks.http = (tl, cue) => {
+  const t0 = cue(1) + 4.17, t1 = cue(1) + 11.1;
+  viaje($("#pq0"), tl, t0, 1.6, true, 478);
+  const llego = viaje($("#pr0"), tl, t1, 1.6, false, 608);
+  const tq = cue(2) + 3.85, tr = cue(2) + 6.34;
+  const ok = [1, 2, 3].map((k) => { viaje($("#pq" + k), tl, tq + (k - 1) * 0.55, 1.3, true, 478); return viaje($("#pr" + k), tl, tr + (k - 1) * 0.55, 1.3, false, 608); });
+  const fichero = (k, on) => { const f = $("#ht-f" + k); f.style.color = on ? "#62e3ff" : ""; f.style.textShadow = on ? "0 0 14px #62e3ff" : "none"; };
+  fichero(0, tl > t0 + 1.4 && tl < t1 + 1.6);
+  [1, 2, 3].forEach((k) => fichero(k, tl > tq + (k - 1) * 0.55 + 1.2 && tl < tr + (k - 1) * 0.55 + 1.3));
+  const txt = $("#hp-txt"), h1 = $("#hp-h1");
+  txt.style.opacity = llego ? 1 : 0;
+  if (ok[0]) { txt.style.fontFamily = "Plus Jakarta Sans"; txt.style.background = "#0e1a30"; txt.style.color = "#e9f0fb"; h1.style.color = "#4ea8ff"; }
+  else { txt.style.fontFamily = "Times New Roman"; txt.style.background = "#fff"; txt.style.color = "#111"; h1.style.color = "#111"; }
+  $("#hp-btn").style.opacity = ok[1] ? 1 : 0; $("#hp-img").style.opacity = ok[2] ? 1 : 0;
+  $("#ht-l1").style.strokeDashoffset = -tl * 30; $("#ht-l2").style.strokeDashoffset = tl * 30;
+  const est = tl < t1 ? "" : !llego ? "respuesta: index.html" : tl < tq ? "el html llega primero y dice qué más falta" : !ok[2] ? "pidiendo estilos, scripts e imágenes…" : "página completa";
+  $("#ht-estado").textContent = tl > cue(3) ? "lo primero que llega es el html: es el que manda" : est;
+};
+
+// ─── 9 · primera web: conexiones entre el código y lo que se ve ───────────
+const pwL = {};
+hooks["primera-web"] = (tl, cue, root) => {
+  if (!pwL.t) {
+    const svg = $("#pw-svg"), lns = $$("#pw-code .ln");
+    const fin = (ln, maxw) => { const b = enEscena(root, ln); return [b.x + Math.min(b.w, maxw) + 12, b.y + b.h / 2]; };
+    const izq = (el) => { const b = enEscena(root, el); return [b.x - 8, b.y + b.h / 2]; };
+    const con = ([x1, y1], [x2, y2], color) => linea(svg, `M ${x1} ${y1} C ${x1 + 140} ${y1}, ${x2 - 140} ${y2}, ${x2} ${y2}`, color, 2.5);
+    pwL.t = con(fin(lns[1], 9e9), izq($("#pw-tab")), "#ff4fa3");
+    pwL.h = con(fin(lns[5], 330), izq($("#pw-h1")), "#4ea8ff");
+    pwL.a = con(fin(lns[7], 190), izq($("#pw-a")), "#62e3ff");
+    pwL.m = [[1, "#ff4fa3"], [5, "#4ea8ff"], [6, "#62e3ff"], [7, "#62e3ff"]].map(([i, c]) => {
+      const b = enEscena(root, lns[i]), m = document.createElement("div");
+      Object.assign(m.style, { position: "absolute", left: b.x - 10 + "px", top: b.y - 2 + "px", width: Math.min(b.w + 20, 960) + "px", height: b.h + 4 + "px", border: `1.5px solid ${c}`, borderRadius: "6px", boxShadow: `0 0 16px ${c}66`, opacity: 0 });
+      root.appendChild(m); return m;
+    });
+  }
+  const vis = (a, b) => clamp((tl - a) / 0.4) * (1 - clamp((tl - b) / 0.4));
+  const tT = cue(1) + 0.29, tH = cue(1) + 6.32, tA = cue(2) + 1.49;
+  trazar(pwL.t, (tl - tT - 0.2) / 0.8); pwL.t.style.opacity = 1 - clamp((tl - cue(2)) / 0.4);
+  trazar(pwL.h, (tl - tH) / 0.8); pwL.h.style.opacity = 1 - clamp((tl - cue(2)) / 0.4);
+  trazar(pwL.a, (tl - tA) / 0.8); pwL.a.style.opacity = 1 - clamp((tl - cue(3)) / 0.4);
+  pwL.m[0].style.opacity = vis(tT, cue(2));
+  pwL.m[1].style.opacity = Math.max(vis(tH, cue(2)), vis(cue(3) + 5.88, 1e9));
+  pwL.m[2].style.opacity = pwL.m[3].style.opacity = vis(tA, cue(3));
+};
+
+// ─── 10 · anatomía: el árbol del documento crece con el código ─────────────
+const AN = { nodos: [["html", 1350, 350], ["head", 1090, 500], ["body", 1570, 500], ["title", 1090, 650], ["h1", 1430, 650], ["ul", 1680, 650], ["li", 1590, 800], ["li", 1760, 800]],
+  aristas: [[0, 1], [0, 2], [1, 3], [2, 4], [2, 5], [5, 6], [5, 7]] };
+const anL = [];
+{
+  const svg = $("#an-arbol");
+  AN.aristas.forEach(([a, b]) => { const [, x1, y1] = AN.nodos[a], [, x2, y2] = AN.nodos[b]; anL.push(linea(svg, `M ${x1} ${y1 + 28} C ${x1} ${y1 + 80}, ${x2} ${y2 - 80}, ${x2} ${y2 - 28}`, "#2a4674", 2.5)); });
+  AN.nodos.forEach(([n, x, y], i) => svg.insertAdjacentHTML("beforeend", `<g id="an-n${i}" transform="translate(${x} ${y}) scale(0)"><rect x="-68" y="-28" width="136" height="56" rx="12" fill="#0e1a30" stroke="${i >= 6 ? "#62e3ff" : "#4ea8ff"}" stroke-width="2"/><text text-anchor="middle" y="9" font-family="JetBrains Mono" font-size="26" fill="#e9f0fb">${n}</text></g>`));
+}
+hooks.anatomia = (tl, cue, root) => {
+  const tH = cue(1) + 0.05, tC = cue(1) + 5.77, tB = cue(1) + 9.97, tL = cue(2) + 0.33;
+  const aparece = [tH, tC, tB, tC + 1.2, tB + 1.2, tL, tL + 0.8, tL + 1.2];
+  AN.nodos.forEach((n, i) => { const p = easeBack((tl - aparece[i]) / 0.5), g = $(`#an-n${i}`); g.style.opacity = clamp(p * 2); g.setAttribute("transform", `translate(${n[1]} ${n[2]}) scale(${clamp(p, 0, 1.2)})`); });
+  AN.aristas.forEach(([, b], i) => trazar(anL[i], (tl - aparece[b] + 0.3) / 0.5));
+  const ghost = tl > cue(3) + 3.87, li = $("#an-n7 rect");
+  li.setAttribute("stroke", ghost ? "#ff4fa3" : "#62e3ff"); li.style.filter = ghost ? "drop-shadow(0 0 10px #ff4fa3)" : "none";
+  if (!root.dataset.fant && tl >= cue(3)) {
+    root.dataset.fant = 1;
+    const l = enEscena(root, $$("#an-code .ln")[9]), c = enEscena(root, $("#an-code").parentNode);
+    Object.assign($("#an-fant").style, { left: l.x + l.w - c.x + 10 + "px", top: l.y - c.y + 2 + "px" });
+  }
+};
+
+// ─── 11 · práctica: un documento recorre las cuatro estaciones ────────────
+const EST = [["chat", "pide en html", 290], ["copiar", "de doctype a /html", 737], ["rubrica.html", "guardar y abrir", 1183], ["navegador", "inspeccionar", 1630]];
+EST.forEach(([n, s, x], i) => $("#pr-estaciones").insertAdjacentHTML("beforeend", `<div class="nodo" id="pr-e${i}" style="left:${x - 130}px; top:300px; width:260px"><div class="caja" style="width:260px; height:120px; font-size:26px; font-family:var(--mono)">${n}</div><div class="t">${s}</div></div>`));
+hooks.practica = (tl, cue) => {
+  const paso = tl < cue(1) ? 0 : tl < cue(2) ? 1 : tl < cue(3) ? 2 : 3;
+  EST.forEach((e, i) => {
+    const c = $(`#pr-e${i} .caja`), on = i === paso, p = easeOut((tl - (i === 0 ? 0.3 : cue(i) - 0.2)) / 0.6);
+    $(`#pr-e${i}`).style.opacity = i <= paso ? clamp(p) : 0.25;
+    c.style.borderColor = on ? "#4ea8ff" : i < paso ? "#2a4674" : "#1b2d4b"; c.style.boxShadow = on ? "0 0 40px rgba(78,168,255,.45)" : "none"; c.style.color = on ? "#62e3ff" : "";
+  });
+  const x = lerp(EST[Math.max(0, paso - 1)][2], EST[paso][2], easeIO((tl - (paso ? cue(paso) : 0)) / 1.0));
+  Object.assign($("#pr-doc").style, { left: x - 23 + "px", top: "220px", opacity: tl > 0.5 ? 1 : 0 });
+  const t0 = cue(2) + 6.48, orig = "Rúbrica", nuevo = "Rúbrica del tema 3";
+  const s = tl < t0 ? orig : nuevo.slice(0, Math.max(orig.length, Math.min(nuevo.length, Math.floor((tl - t0) * 14))));
+  $("#pr-h1").textContent = s; $("#pr-ed").textContent = s;
+  $("#pr-linea").style.background = tl > t0 - 0.6 ? "rgba(78,168,255,.22)" : "transparent";
+  $("#pr-copiar").style.textShadow = Math.sin(tl * 6) > 0.6 ? "0 0 16px #4ea8ff" : "none";
+};
+
+// ─── 12 · capas: panel de temperaturas (HTML → CSS → JavaScript, Jacobi de verdad) ─
+const NX = 14, NY = 10, celdas = [];
+{
+  const p = $("#panel-calor"), w = 820 / NX, h = 500 / NY;
+  for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
+    const c = document.createElement("div"); Object.assign(c.style, { position: "absolute", left: i * w + "px", top: j * h + "px", width: w + "px", height: h + "px" }); p.appendChild(c); celdas.push(c);
+  }
+}
+const cacheJ = [];
+function jacobi(n) {   // borde superior a 100 °C, resto de bordes a 0 °C
+  if (!cacheJ.length) cacheJ.push(Array.from({ length: NY }, (_, j) => Array.from({ length: NX }, () => (j === 0 ? 100 : 0))));
+  while (cacheJ.length <= n) {
+    const A = cacheJ.at(-1), B = A.map((r) => r.slice());
+    for (let j = 1; j < NY - 1; j++) for (let i = 1; i < NX - 1; i++) B[j][i] = (A[j - 1][i] + A[j + 1][i] + A[j][i - 1] + A[j][i + 1]) / 4;
+    cacheJ.push(B);
+  }
+  return cacheJ[n];
+}
+const CALOR = ["#0b1426", "#27306a", "#8a2f8f", "#e5487f", "#ff9b5a", "#ffe08a"];
+$("#ca-ley").style.background = `linear-gradient(90deg, ${CALOR.join(",")})`;
+hooks.capas = (tl, cue) => {
+  const pE = easeOut((tl - cue(0) - 4.17 - 0.3) / 1.0);
+  const pC = easeIO((tl - cue(1) - 1.41 - 0.3) / 1.2);
+  const tj = cue(2) + 8.97, n = Math.min(400, Math.max(0, Math.floor((tl - tj) * 10))), TT = jacobi(n);
+  celdas.forEach((c, k) => {
+    const i = k % NX, j = Math.floor(k / NX);
+    c.style.opacity = clamp(pE * 1.4 - (i + j) * 0.03);
+    c.style.boxShadow = `inset 0 0 0 ${lerp(1, 3, pC)}px ${pC > 0.5 ? "#060a13" : "#2a4674"}`;
+    c.style.borderRadius = `${pC * 8}px`;
+    c.style.background = pC <= 0 ? "transparent" : mix("#060a13", rampa(CALOR, tl > tj ? TT[j][i] / 100 : 0.05 + 0.04 * ((i + j) % 3)), pC);
+  });
+  $("#ca-it").textContent = tl > tj ? `iteración ${n}` : "";
+  ["#ca-l0", "#ca-l1", "#ca-l2"].forEach((id, k) => $(id).classList.toggle("activo", tl >= cue(k) && tl < cue(k + 1)));
+};
+
+// ─── 13 · CRUD: las letras se encienden; la D cambia con una interferencia ─
+hooks.crud = (tl, cue) => {
+  const on = (id, t0, col = "#4ea8ff") => { const el = $(id), p = easeOut((tl - t0) / 0.6); el.setAttribute("fill", p > 0 ? col : "none"); el.setAttribute("fill-opacity", p); el.style.filter = p > 0 ? `drop-shadow(0 0 ${24 * p}px ${col})` : "none"; };
+  on("#cr-C", cue(1) + 0.05); on("#cr-R", cue(1) + 6.1); on("#cr-U", cue(2));
+  const tD = cue(3) + 1.31, D = $("#cr-D");
+  if (tl >= tD) { on("#cr-D", tD, "#ff4fa3"); D.setAttribute("stroke", "#ff4fa3"); } else { D.setAttribute("fill", "none"); D.setAttribute("stroke", "#4ea8ff"); D.style.filter = "none"; }
+  const g = tl - tD;
+  if (g > -0.35 && g < 0.4) { const r = azar(Math.floor(tl * 30)); D.setAttribute("x", 1420 + (r() - 0.5) * 40); D.style.opacity = r() < 0.2 ? 0.2 : 1; } else { D.setAttribute("x", 1420); D.style.opacity = 1; }
+  const tB = cue(3) + 0.33; const del = $("#cr-del");
+  del.style.textDecoration = tl > tB ? "line-through" : "none"; del.style.color = tl > tB ? "#ff6b7a" : "";
+};
+
+// ─── 15 · editores: la misma ventana pasa de Bloc de notas a VS Code ──────
+const ED_TXT = "<h1>Rúbrica</h1>\n<ul>\n  <li>Claridad</li>\n  <li>Rigor</li>\n</ul>";
+hooks.editores = (tl, cue) => {
+  const tN = cue(0) + 3.97, tV = cue(0) + 7.79;
+  const fase = tl < tN ? 0 : tl < tV ? 1 : 2;
+  [0, 1, 2].forEach((k) => { const el = $(`#ed-p${k}`); el.style.color = k === fase ? "#62e3ff" : k < fase ? "#8ea3c0" : "#4c607d"; el.style.textShadow = k === fase ? "0 0 18px rgba(98,227,255,.6)" : "none"; });
+  $("#ed-tit").textContent = ["sin título · bloc de notas", "rubrica.html · notepad++", "pruebas-24 · visual studio code"][fase];
+  const pre = $("#ed-pre"), quiere = fase >= 1 ? "html" : "";
+  if ((pre.dataset.hl || "") !== quiere) {
+    pre.textContent = ED_TXT;
+    if (quiere) { pre.dataset.hl = "html"; resaltar(pre); } else delete pre.dataset.hl;
+  }
+  const pL = easeIO((tl - cue(1) - 2) / 0.8), pI = easeIO((tl - cue(2) - 2.86) / 0.8);
+  $("#ed-lat").style.width = `${340 * pL}px`; $("#ed-ia").style.width = `${340 * pI}px`;
+  $("#ed-cod").style.left = `${340 * pL}px`; $("#ed-cod").style.right = `${340 * pI}px`;
+  const tD = cue(1) + 6.9;
+  [0, 1].forEach((k) => ($(`#ed-f${k}`).style.opacity = clamp((tl - tD - k * 0.3) / 0.4)));
+  [2, 3, 4].forEach((k) => ($(`#ed-f${k}`).style.opacity = clamp((tl - cue(2) - 2.86 - 0.6 - (k - 2) * 0.4) / 0.4)));
+  $("#ed-ven").classList.toggle("activo", fase === 2);
+};
+
+// ─── 16 · agente: partículas en el bucle agente ⇄ modelo ─────────────────
+neuronas($("#ag-neur"), 42);
+hooks.agente = (tl, cue) => {
+  const t0 = cue(1) + 6.4, b = $("#ag-bucle"), L = b.getTotalLength();
+  const vivo = tl > t0 + 0.8;
+  $("#ag-p1").style.opacity = $("#ag-p2").style.opacity = vivo ? 1 : 0;
+  if (vivo) { punto($("#ag-p1"), b, (tl - t0) * 380); punto($("#ag-p2"), b, (tl - t0) * 380 + L / 2); }
+  encender($("#ag-neur"), tl, vivo, 5);
+  const ag = $("#ag-agente");
+  ag.style.boxShadow = tl > t0 ? `0 0 ${30 + 20 * Math.sin(tl * 4)}px rgba(78,168,255,.45)` : ""; ag.style.borderColor = tl > t0 ? "#4ea8ff" : "";
+  const tA = cue(2) + 1.06, tC = cue(2) + 3.7;
+  $("#ag-m1").className = "chipl" + (tl > tA && tl < tC ? " az" : ""); $("#ag-m2").className = "chipl" + (tl >= tC ? " az" : "");
+};
+
+// ─── 17 · OpenRouter: la clave viaja a los proveedores ───────────────────
+hooks.openrouter = (tl, cue) => {
+  const t0 = cue(0) + 8.67 + 0.8;
+  [0, 1, 2, 3].forEach((k) => { const d = $(`#or-d${k}`), p = $(`#or-p${k}`); if (tl < t0) { d.style.opacity = 0; return; } d.style.opacity = 1; punto(d, p, (tl - t0) * 220 + k * 60); });
+};
+
+// ─── 18 · markdown: conexiones entre las marcas y el resultado ────────────
+const mdL = [];
+hooks.markdown = (tl, cue, root) => {
+  const tv = cue(2) + 0.37;
+  if (!mdL.length && tl > tv + 0.5) {
+    const svg = $("#md-svg"), lns = $$("#md-code .ln");
+    [[0, "#md-h1", 30], [2, "#md-h2", 48], [3, "#md-li", 20]].forEach(([i, sel, n]) => {
+      const a = enEscena(root, lns[i]), b = enEscena(root, $(sel));
+      const x1 = a.x + 44 + n, y1 = a.y + a.h / 2, x2 = b.x - 10, y2 = b.y + (sel === "#md-li" ? 22 : b.h / 2);
+      mdL.push(linea(svg, `M ${x1} ${y1} C ${x1 + 220} ${y1}, ${x2 - 220} ${y2}, ${x2} ${y2}`, "#ff4fa3", 2));
+    });
+  }
+  mdL.forEach((p, i) => { trazar(p, (tl - tv - 0.6 - i * 0.4) / 0.8); p.style.opacity = 1 - clamp((tl - cue(2) - 6.84) / 0.5); });
+};
+
+// ─── 19 · SVG: lienzo con coordenadas; el código cambia y el dibujo le sigue ─
+{
+  let h = `<rect x="0" y="0" width="600" height="300" fill="none" stroke="#1b2d4b" stroke-width="2"/>`;
+  for (let x = 0; x <= 600; x += 100) h += `<line x1="${x}" y1="0" x2="${x}" y2="300" stroke="#13223b"/><text x="${x}" y="-10" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#4c607d">${x}</text>`;
+  for (let y = 0; y <= 300; y += 100) h += `<line x1="0" y1="${y}" x2="600" y2="${y}" stroke="#13223b"/><text x="-12" y="${y + 5}" text-anchor="end" font-family="JetBrains Mono" font-size="14" fill="#4c607d">${y}</text>`;
+  h += `<rect id="sv-rect" x="60" y="100" width="200" height="100" fill="#4ea8ff" fill-opacity=".25" stroke="#4ea8ff" stroke-width="3" opacity="0"/><circle id="sv-circ" cx="450" cy="150" r="70" fill="none" stroke="#62e3ff" stroke-width="3" opacity="0"/>`;
+  h += `<g id="sv-cotas" font-family="JetBrains Mono" font-size="16" fill="#ff4fa3" opacity="0"><line x1="0" y1="245" x2="60" y2="245" stroke="#ff4fa3" stroke-dasharray="4 4"/><text x="30" y="266" text-anchor="middle">x=60</text><line id="sv-cw" x1="60" y1="225" x2="260" y2="225" stroke="#ff4fa3"/><text id="sv-tw" x="160" y="218" text-anchor="middle">width=200</text></g>`;
+  $("#sv-lienzo").innerHTML = h;
+}
+hooks.svg = (tl, cue) => {
+  const tr = cue(0) + 6.42, tc = cue(0) + 8.09;
+  const r = $("#sv-rect"), c = $("#sv-circ");
+  const pr = easeOut((tl - tr) / 0.8); r.setAttribute("opacity", clamp(pr * 2)); r.setAttribute("stroke-dasharray", "600"); r.setAttribute("stroke-dashoffset", 600 * (1 - pr));
+  const pc = easeOut((tl - tr - 1.0) / 0.8); c.setAttribute("stroke-dasharray", "440"); c.setAttribute("stroke-dashoffset", 440 * (1 - pc)); c.setAttribute("opacity", pc > 0 ? 1 : 0);
+  $("#sv-cotas").setAttribute("opacity", clamp((tl - tc) / 0.5));
+  const tm = cue(1) + 2.27, tw = cue(1) + 2.78;
+  const pf = easeIO((tl - tm) / 0.9), pw = easeIO((tl - tw) / 0.9), col = mix("#4ea8ff", "#ff4fa3", pf), w = Math.round(lerp(200, 280, pw));
+  r.setAttribute("fill", col); r.setAttribute("stroke", col); r.setAttribute("width", w);
+  $("#sv-cw").setAttribute("x2", 60 + w); $("#sv-tw").setAttribute("x", 60 + w / 2); $("#sv-tw").textContent = `width=${w}`;
+  if (tl > tm) { $("#sv-f").firstChild.nodeValue = pf > 0.5 ? "#ff4fa3" : "#4ea8ff"; $("#sv-f").style.background = tl < tm + 3 ? "rgba(255,79,163,.25)" : "transparent"; }
+  if (tl > tw) { $("#sv-w").firstChild.nodeValue = String(w); $("#sv-w").style.background = tl < tw + 3 ? "rgba(255,79,163,.25)" : "transparent"; }
+  $("#sv-coord").textContent = tl > tc ? `x 60 · y 100 · w ${w} · h 100` : "";
+};
+
+// ─── 21 · tarea: cuatro simuladores sencillos y uno de asignatura, en neón ─
+hooks.tarea = (tl, cue) => {
+  const g = $("#ta-canvas").getContext("2d"); g.clearRect(0, 0, 1920, 1080);
+  const junto = easeIO((tl - cue(2) - 1.32) / 1.4);
+  const peq = [0, 1, 2, 3].map((k) => [lerp(560 + k * 318, 570 + k * 312, junto), lerp(260, 300, junto), 290, 220]);
+  const gr = [570, lerp(560, 545, junto), 1220, lerp(400, 450, junto)];
+  const nombres = ["2.ª ley de Newton", "suma de vectores", "péndulo", "tiro parabólico"];
+  const caja = ([x, y, w, h], op, nombre, col = "#2a4674") => {
+    g.globalAlpha = op; g.fillStyle = "rgba(11,20,37,.92)"; g.strokeStyle = col; g.lineWidth = 1.5; g.shadowColor = col; g.shadowBlur = col === "#2a4674" ? 0 : 20;
+    g.beginPath(); g.roundRect(x, y, w, h, 12); g.fill(); g.stroke(); g.shadowBlur = 0;
+    g.fillStyle = "#8ea3c0"; g.font = "18px 'JetBrains Mono'"; g.fillText(nombre.toUpperCase(), x + 14, y + h - 14);
+  };
+  const neon = (c, w = 3) => { g.strokeStyle = c; g.fillStyle = c; g.lineWidth = w; g.shadowColor = c; g.shadowBlur = 14; };
+  const s = tl, tNew = cue(0) + 5.37;
+  peq.forEach((r, k) => {
+    const op = easeOut((tl - cue(0) - 2.98 - k * 0.35) / 0.5); if (op <= 0) return;
+    caja(r, op, nombres[k], k === 0 && tl > tNew && tl < cue(1) ? "#4ea8ff" : "#2a4674");
+    const [x, y, w, h] = r; g.save(); g.beginPath(); g.rect(x, y, w, h - 40); g.clip();
+    if (k === 0) { // bloque con aceleración constante: x = ½·a·t²
+      const tt = s % 2.6, bx = x + 20 + 0.5 * 55 * tt * tt;
+      neon("#2a4674", 2); g.beginPath(); g.moveTo(x + 10, y + 142); g.lineTo(x + w - 10, y + 142); g.stroke();
+      neon("#4ea8ff"); g.strokeRect(bx, y + 100, 50, 40); neon("#ff4fa3", 2); g.beginPath(); g.moveTo(bx + 50, y + 120); g.lineTo(bx + 90, y + 120); g.stroke();
+    } else if (k === 1) { // a + b
+      const o = [x + 40, y + 140], a = [100, -30], b = [40 + 20 * Math.sin(s), -80];
+      const fl = (p0, v, c) => { neon(c); g.beginPath(); g.moveTo(...p0); g.lineTo(p0[0] + v[0], p0[1] + v[1]); g.stroke(); g.beginPath(); g.arc(p0[0] + v[0], p0[1] + v[1], 5, 0, 7); g.fill(); };
+      fl(o, a, "#4ea8ff"); fl([o[0] + a[0], o[1] + a[1]], b, "#4ea8ff"); fl(o, [a[0] + b[0], a[1] + b[1]], "#ff4fa3");
+    } else if (k === 2) { // péndulo
+      const th = 0.6 * Math.cos(s * 2.2), cx = x + w / 2, cy = y + 16, L = 110, px = cx + L * Math.sin(th), py = cy + L * Math.cos(th);
+      neon("#2a4674", 2); g.beginPath(); g.moveTo(cx, cy); g.lineTo(px, py); g.stroke(); neon("#62e3ff"); g.beginPath(); g.arc(px, py, 13, 0, 7); g.stroke();
+    } else { // tiro parabólico
+      const tt = s % 2.2, vx = 105, vy = -150, gg = 140;
+      neon("#2a4674", 2); g.beginPath(); for (let q = 0; q <= 2.2; q += 0.05) { const X2 = x + 20 + vx * q, Y2 = y + 150 + vy * q + 0.5 * gg * q * q; q ? g.lineTo(X2, Y2) : g.moveTo(X2, Y2); } g.stroke();
+      neon("#ffc857"); g.beginPath(); g.arc(x + 20 + vx * tt, y + 150 + vy * tt + 0.5 * gg * tt * tt, 9, 0, 7); g.fill();
+    }
+    g.restore(); g.shadowBlur = 0;
+  });
+  const opG = easeOut((tl - cue(1) - 0.28) / 0.6);
+  if (opG > 0) {
+    caja(gr, opG, "5 · de tu asignatura: brazo robot de dos barras", "#ff4fa3");
+    const [x, y, w, h] = gr, ox = x + w * 0.4, oy = y + h - 90, L1 = 170, L2 = 130;
+    const ang = (ss) => [-1.0 + 0.5 * Math.sin(ss * 0.9), 0.9 + 0.6 * Math.sin(ss * 1.3 + 1)];
+    const [a1, a2] = ang(s), p1 = [ox + L1 * Math.cos(a1), oy + L1 * Math.sin(a1)], p2 = [p1[0] + L2 * Math.cos(a1 + a2), p1[1] + L2 * Math.sin(a1 + a2)];
+    g.globalAlpha = opG * 0.5; g.lineCap = "round"; neon("#ff4fa3", 2); g.beginPath();   // estela del extremo
+    for (let q = 0; q < 60; q++) { const [b1, b2] = ang(s - q * 0.03); const P = [ox + L1 * Math.cos(b1) + L2 * Math.cos(b1 + b2), oy + L1 * Math.sin(b1) + L2 * Math.sin(b1 + b2)]; q ? g.lineTo(...P) : g.moveTo(...P); }
+    g.stroke(); g.globalAlpha = opG;
+    neon("#2a4674", 2); g.beginPath(); g.moveTo(x + 40, oy + 20); g.lineTo(x + w - 40, oy + 20); g.stroke();
+    neon("#4ea8ff", 10); g.beginPath(); g.moveTo(ox, oy); g.lineTo(...p1); g.stroke();
+    neon("#62e3ff", 8); g.beginPath(); g.moveTo(...p1); g.lineTo(...p2); g.stroke();
+    neon("#e9f0fb", 2); [[ox, oy], p1].forEach(([X2, Y2]) => { g.beginPath(); g.arc(X2, Y2, 11, 0, 7); g.stroke(); });
+    neon("#ff4fa3"); g.beginPath(); g.arc(...p2, 9, 0, 7); g.fill();
+  }
+  g.globalAlpha = 1; g.shadowBlur = 0;
+};
+
+</script>
+<script>
+// Presentador: se avanza paso a paso con el teclado o el ratón, como en PowerPoint.
+//   → · espacio · clic · AvPág   siguiente paso (si el paso aún se está animando, lo completa)
+//   ← · RePág                    paso anterior (ya construido)
+//   Inicio / Fin                 primera / última escena
+//   F  pantalla completa         H  mostrar u ocultar el contador
+// La escena en curso queda en la dirección (#7): al recargar tras editar, se vuelve a ella.
+
+(() => {
+  const secs = $$(".escena"), N = secs.length, todo = $("#todo");
+  const ahora = () => performance.now() / 1000;
+  let cur = null, prev = null, hud = true;
+
+  // El lienzo mide 1920 × 1080 y se escala para caber en la ventana.
+  const estilo = document.createElement("style");
+  estilo.textContent = `html, body { width: 100vw; height: 100vh; }
+    #todo { right: auto; bottom: auto; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: hidden; }
+    #hud { position: fixed; right: 18px; bottom: 14px; font: 14px "JetBrains Mono", monospace; color: #4c607d; letter-spacing: .08em; z-index: 1000; pointer-events: none; }
+    #ayuda { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); font: 15px "JetBrains Mono", monospace; color: #8ea3c0; background: rgba(11,20,37,.9); border: 1px solid #2a4674; border-radius: 10px; padding: 10px 18px; z-index: 1000; transition: opacity .6s; }`;
+  document.head.appendChild(estilo);
+  document.body.insertAdjacentHTML("beforeend", `<div id="hud"></div><div id="ayuda">→ avanzar · ← volver · F pantalla completa · H ocultar el contador</div>`);
+  setTimeout(() => ($("#ayuda").style.opacity = 0), 5000);
+  const encajar = () => { const s = Math.min(innerWidth / 1920, innerHeight / 1080); todo.style.transform = `translate(${(innerWidth - 1920 * s) / 2}px, ${(innerHeight - 1080 * s) / 2}px) scale(${s})`; };
+
+  const pasos = (i) => +secs[i].dataset.pasos || 1;
+  // Entrar en una escena: desde el principio, o ya construida hasta el paso p.
+  function entrar(i, p = null, transicion = true) {
+    prev = transicion && cur && cur.i !== i ? { ...cur, fin: ahora() } : null;
+    const cues = p == null ? [0.6] : Array.from({ length: p + 1 }, (_, j) => -30 * (p + 1 - j));
+    cur = { i, k: p ?? 0, t0: ahora(), cues };
+    try { history.replaceState(null, "", `#${i + 1}`); } catch { /* algunos visores no lo permiten */ }
+  }
+  function siguiente() {
+    const id = secs[cur.i].id, tl = ahora() - cur.t0, fin = cur.cues[cur.k] + finDelPaso(id, cur.k);
+    if (tl < fin - 0.05) { cur.t0 -= fin - tl; return; }      // completa el paso en curso
+    if (cur.k < pasos(cur.i) - 1) { cur.k++; cur.cues[cur.k] = Math.max(tl, cur.cues[cur.k - 1] + 0.2); }
+    else if (cur.i < N - 1) entrar(cur.i + 1);
+  }
+  function anterior() {
+    if (cur.k > 0) entrar(cur.i, cur.k - 1, false);
+    else if (cur.i > 0) entrar(cur.i - 1, pasos(cur.i - 1) - 1);
+  }
+
+  addEventListener("keydown", (e) => {
+    if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); siguiente(); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); anterior(); }
+    else if (e.key === "Home") entrar(0);
+    else if (e.key === "End") entrar(N - 1, pasos(N - 1) - 1);
+    else if (e.key === "f" || e.key === "F") (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen())?.catch?.(() => {});
+    else if (e.key === "h" || e.key === "H") hud = !hud;
+  });
+  addEventListener("click", siguiente);
+  addEventListener("resize", encajar);
+
+  function pintar(estado, opacidad, desenfoque, escala) {
+    const el = secs[estado.i], tl = ahora() - estado.t0;
+    const cue = (k) => estado.cues[k] ?? 1e9;
+    el.style.display = "block"; el.style.opacity = opacidad;
+    el.style.filter = desenfoque > 0.05 ? `blur(${desenfoque}px)` : "none";
+    el.style.transform = `scale(${escala * (1 + 0.02 * clamp(tl / 30))})`;
+    for (const it of items[el.id]) aplicar(it, tl, cue);
+    if (hooks[el.id]) hooks[el.id](tl, cue, el);
+  }
+  function fotograma() {
+    const t = ahora();
+    secs.forEach((s, i) => { if (i !== cur.i && (!prev || i !== prev.i)) s.style.display = "none"; });
+    const p = prev ? easeIO((t - prev.fin) / 0.7) : 1;
+    if (prev && p >= 1) { secs[prev.i].style.display = "none"; prev = null; }
+    if (prev) { secs[prev.i].style.zIndex = 0; pintar(prev, 1 - p, p * 10, lerp(1, 0.96, p)); }
+    secs[cur.i].style.zIndex = 1; pintar(cur, p, (1 - p) * 16, lerp(1.06, 1, p));
+    window.fondo(t);
+    $("#hud").textContent = hud ? `${cur.i + 1} / ${N} · paso ${cur.k + 1} de ${pasos(cur.i)}` : "";
+    requestAnimationFrame(fotograma);
+  }
+
+  (async () => {
+    await Promise.all(["800 64px 'Plus Jakarta Sans'", "700 64px 'Plus Jakarta Sans'", "500 30px 'Plus Jakarta Sans'", "400 24px 'JetBrains Mono'", "700 24px 'JetBrains Mono'"].map((f) => document.fonts.load(f)));
+    preparar(); encajar();
+    const n = parseInt(location.hash.slice(1), 10);
+    entrar(n >= 1 && n <= N ? n - 1 : 0, null, false);
+    requestAnimationFrame(fotograma);
+  })();
+})();
+
+</script>
+</body>
+</html>
